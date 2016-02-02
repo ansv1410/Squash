@@ -529,9 +529,6 @@ h4{
 [id='4-7-2']{
     background-color:pink;
 }*/
-.bookedCourt{
-    background-color:lightblue;
-}
 .subscribedCourt{
     /*background-color:lightcoral;*/
   background: #fac5c5;
@@ -540,6 +537,9 @@ h4{
   background-image: -ms-linear-gradient(top, #fac5c5, #d46868);
   background-image: -o-linear-gradient(top, #fac5c5, #d46868);
   background-image: linear-gradient(to bottom, #fac5c5, #d46868);
+}
+.reservedCourt{
+    background-color:lightblue;
 }
 /*.toolTip{
     display:none;
@@ -634,7 +634,7 @@ h4{
 }
 .courtImgReserved{
     max-width:100%;
-    background-color:lightcoral;
+    background-color:lightblue;
 }
 .courtImg{
     width:100%;
