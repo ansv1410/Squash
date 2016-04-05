@@ -13,6 +13,7 @@
     <div>
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         testing testing
+        funkar?
         </asp:ContentPlaceHolder>
     </div>
     </form>
