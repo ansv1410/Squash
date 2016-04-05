@@ -12,6 +12,7 @@
     <form id="form1" runat="server">
     <div>
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        testing testing
         funkar?
             ololoooo
         </asp:ContentPlaceHolder>
