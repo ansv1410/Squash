@@ -71,11 +71,33 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Administrators.cs" />
+    <Compile Include="Classes\CodeLock.cs" />
+    <Compile Include="Classes\CodeLockRequests.cs" />
+    <Compile Include="Classes\Companies.cs" />
+    <Compile Include="Classes\Courts.cs" />
+    <Compile Include="Classes\CourtTimes.cs" />
+    <Compile Include="Classes\Days.cs" />
+    <Compile Include="Classes\HitCount.cs" />
+    <Compile Include="Classes\Logins.cs" />
+    <Compile Include="Classes\MemberCompany.cs" />
+    <Compile Include="Classes\MemberFloatable.cs" />
+    <Compile Include="Classes\MemberMessages.cs" />
+    <Compile Include="Classes\Members.cs" />
+    <Compile Include="Classes\MembersNotPaid.cs" />
+    <Compile Include="Classes\MemberTypes.cs" />
+    <Compile Include="Classes\Messages.cs" />
+    <Compile Include="Classes\Reservations.cs" />
+    <Compile Include="Classes\ReservationTypes.cs" />
+    <Compile Include="Classes\StatusCodes.cs" />
+    <Compile Include="Classes\Subscriptions.cs" />
+    <Compile Include="Classes\Users.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="headsite.Master.cs">
       <DependentUpon>headsite.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="headsite.Master.designer.cs">
       <DependentUpon>headsite.Master</DependentUpon>
