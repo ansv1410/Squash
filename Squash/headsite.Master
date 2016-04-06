@@ -4,20 +4,27 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <%--<meta charset="utf-8" />--%>
+    <title>Östersunds Squash</title>
+    <link href="CSS/headsite.css" rel="stylesheet" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
-        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-        testing testing 123
-        testing testing kullamannen
-        funkar?
-            ololoooo
-        </asp:ContentPlaceHolder>
-    </div>
+        <header>
+            <a href="http://www.nba.com" title="Till startsida"><img src="Images/squash.svg" /></a> 
+        </header>
+
+        <div id="content">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            <%-- Varje individuell sida visas i detta --%>
+            </asp:ContentPlaceHolder>
+        </div>
+
+        <footer>
+            
+        </footer>
     </form>
 </body>
 </html>
