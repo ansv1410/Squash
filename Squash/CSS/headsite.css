@@ -3,9 +3,17 @@ body {
     background-color:lightblue;
 }
 
+header{
+    overflow:auto;
+    background-color:purple;
+    border: 3px solid black;
+
+}
+
 footer{
 
 }
+
 
 
 
@@ -17,6 +25,17 @@ footer{
     background-color:grey;
 }
 
+#headerH2{
+    width:50%;
+    float:left;
+    background-color:red;
+}
+
+#logo{
+    background-color:green;
+    width:50%;
+    float:left;
+}
 
 
 

@@ -13,7 +13,13 @@
 <body>
     <form id="form1" runat="server">
         <header>
-            <a href="http://www.nba.com" title="Till startsida"><img src="Images/squash.svg" /></a> 
+            <div id="headerH2">
+                <h2>Östersunds Squashförening</h2>
+            </div>
+
+            <div id="logo">
+                <a href="http://www.nba.com" title="Till startsida"><img src="/Images/squash.jpg" /></a> 
+            </div>
         </header>
 
         <div id="content">

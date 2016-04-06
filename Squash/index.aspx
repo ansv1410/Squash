@@ -4,5 +4,5 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <link href="CSS/index.css" rel="stylesheet"/>
 
-    <h1 id="headerH1">Header1</h1>
+    <%--<h1 id="headerH1">Header1</h1>--%>
 </asp:Content>
