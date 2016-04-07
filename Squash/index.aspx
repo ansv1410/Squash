@@ -5,7 +5,7 @@
     <link href="CSS/index.css" rel="stylesheet"/>
 
     <%--<h1 id="headerH1">Header1</h1>--%>
-
+    <asp:Button ID="Button1" runat="server" Text="Button" />
 
     <asp:Label ID="testarn" runat="server" Text="Label"></asp:Label>
 </asp:Content>
