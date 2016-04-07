@@ -72,6 +72,7 @@
     <Content Include="Images\squash.jpg" />
     <Content Include="Images\squash.svg" />
     <Content Include="index.aspx" />
+    <Content Include="JavaScript\menu.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
