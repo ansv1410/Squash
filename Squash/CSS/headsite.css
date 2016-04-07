@@ -3,12 +3,6 @@ body {
     background-color:lightblue;
 }
 
-header{
-    overflow:auto;
-    background-color:purple;
-    border: 3px solid black;
-
-}
 
 footer{
 
@@ -19,8 +13,15 @@ footer{
 
 
 /*ID*/
+#the_header{
+    overflow:auto;
+    background-color:peachpuff;
+    border: 3px solid black;
+
+}
 #form1{
-    width:20%;
+    width:70%;
+    height:auto;
     margin: 0 auto;
     background-color:grey;
 }
@@ -43,3 +44,104 @@ footer{
 
 /*KLASSER*/
 
+
+
+
+
+
+
+
+
+
+
+.header .menuIcon {
+  display: none;
+}
+.header .menu {
+  position: relative;
+}
+.header .menu ul {
+  padding: 0;
+  margin: 0;
+}
+.header .menu ul li {
+  position: relative;
+  display: inline-block;
+  padding: 0;
+  list-style: none;
+}
+
+.mobileMenu {
+  display: none;
+  width: 50%;
+  position: absolute;
+  margin-left: -100%;
+  top: 0;
+  z-index: 2;
+}
+.mobileMenu ul {
+  margin: 0;
+  padding: 0;
+}
+.mobileMenu ul li {
+  list-style: none;
+  margin: 0;
+}
+.mobileMenu ul li a {
+  display: block;
+}
+.mobileMenu ul li a:hover, .mobileMenu ul li a:active {
+  background-color: #999;
+}
+
+.mobileBodyWrapper .mobileDimmer {
+  left: 50%;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  display: none;
+  /*background-color: rgba(0, 0, 0, 0.45);*/
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 767px) {
+    .header .menuIcon {
+        display: block;
+        width: 100%;
+        text-align: left;
+    }
+
+    .header .menuIcon a {
+        width: 94%;
+        display: inline-block;
+        padding: 3%;
+    }
+
+    .header .menu {
+        max-height: 0;
+        overflow: hidden;
+    }
+
+    .mobileBodyWrapper.menuOpen {
+        left: 50%;
+        overflow: hidden;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        z-index: 100;
+    }
+
+    .mobileMenu.menuOpen {
+        overflow-x: hidden;
+        overflow-y: scroll;
+        position: fixed;
+        display: block;
+        top: 0;
+        margin-left: 0;
+        z-index: 1;
+        width: 50%;
+        bottom: 0;
+    }
+}
