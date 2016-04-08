@@ -15,6 +15,7 @@ namespace Squash_Template.Classes
 {
     public class Methods
     {
+        #region Connection, myReader, myDelete
         public MySqlConnection myConn()
         {
             MySqlConnection conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["squash"].ConnectionString);
@@ -39,6 +40,16 @@ namespace Squash_Template.Classes
             cmd.ExecuteNonQuery();
             conn.Close();
         }
+        #endregion
+
+
+        #region LogIn
+        public bool CheckEmailExist(string email, MySqlConnection conn)
+        {
+            return true;
+        }
+        #endregion
+
 
     }
 }
