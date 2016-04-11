@@ -115,6 +115,8 @@ namespace Squash_Template.Account
                                     conn.Open();
                                     cmdInsertLogins.ExecuteNonQuery();
                                     conn.Close();
+                                    //FORM.REDIRECT(Nyhetssida).
+
                                 }
                             }
                             else

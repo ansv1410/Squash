@@ -1,12 +1,25 @@
 ﻿/* Move down content because we have a fixed navbar that is 50px tall */
 body {
     padding-top: 50px;
-    padding-bottom: 20px;
+    padding-bottom: 0px;
 }
+
+footer{
+    float:right;
+    text-align:right;
+    background-color:#dc3838;
+    width:100%;
+}
+
+footer p{
+    margin-top:1%;
+}
+
 
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
+    display:block;
     padding-left: 15px;
     padding-right: 15px;
 }
@@ -17,6 +30,14 @@ body {
 .dl-horizontal dt {
     white-space: normal;
 }
+
+/*.navbar-fixed-top{
+    display:block;
+}
+
+navbar{
+    display:block;
+}*/
 
 /* Set widths on the form inputs since otherwise they're 100% wide */
 input[type="text"],
@@ -34,5 +55,6 @@ input[type="select"] {
     }
     .body-content {
         padding: 0;
+        padding-top:50px;
     }
 }
