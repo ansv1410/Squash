@@ -80,11 +80,13 @@
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <hr />
-            <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
-                <a href="Contact.aspx">Kontakt / Hitta hit</a>
-            </footer>
         </div>
+
+        <footer>
+            <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
+            <br />
+            <a href="Contact.aspx">Kontakt / Hitta hit</a>
+        </footer>
     </form>
 </body>
 </html>
