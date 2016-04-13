@@ -49,13 +49,27 @@ footer a{
     white-space: normal;
 }
 
-/*.navbar-fixed-top{
-    display:block;
+.navbar-inverse .navbar-toggle:hover .icon-bar{
+    background-color:#dc3838;
 }
 
-navbar{
-    display:block;
-}*/
+.navbar-inverse .navbar-toggle:focus{
+    border:0px solid white;
+    background-color:white;
+}
+.navbar-inverse .navbar-toggle:focus .icon-bar{
+    background-color:#dc3838;
+}
+
+.collapsed{
+    background-color:#dc3838;
+}
+
+.collapsed:focus{
+    background-color:#dc3838;
+}
+
+
 
 /* Set widths on the form inputs since otherwise they're 100% wide */
 input[type="text"],
