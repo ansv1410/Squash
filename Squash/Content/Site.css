@@ -76,3 +76,13 @@ input[type="select"] {
         padding-top:50px;
     }
 }
+
+@media screen and (max-width: 360px){
+    a.navbar-brand{
+        margin-left:0px;
+        padding-top:15px;
+        padding-left:15px;
+        padding-right:0px;  
+        font-size:150%;
+    }
+}

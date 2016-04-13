@@ -4193,7 +4193,8 @@ textarea.input-group-sm > .input-group-btn > .btn {
 
 .navbar-brand {
   float: left;
-  padding: 15px 15px 15px 45px;
+  padding: 15px 15px 15px 0px;
+  margin-left:30px;
   font-size: 24px;
   line-height: 20px;
 }
@@ -4205,7 +4206,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 
 @media (min-width: 768px) {
   .navbar > .container .navbar-brand {
-    margin-left: -15px;
+    /*margin-left: -15px;*/
   }
 }
 
