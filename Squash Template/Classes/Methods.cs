@@ -10,6 +10,8 @@ using MySql.Data.Entity;
 using MySql.Data.MySqlClient;
 using System.Configuration;
 using Squash.Classes;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace Squash_Template.Classes
 {
@@ -48,6 +50,29 @@ namespace Squash_Template.Classes
         {
             return true;
         }
+
+        public string Hashify(string pw)
+        {
+            string input = pw;
+            ASCIIEncoding ASCII = new ASCIIEncoding();
+            byte[] HashValue;
+            byte[] MessageBytes = ASCII.GetBytes(input);
+            SHA1Managed sha1 = new SHA1Managed();
+
+            string finalHash = "";
+
+            HashValue = sha1.ComputeHash(MessageBytes);
+            foreach (byte b in HashValue)
+            {
+                finalHash += String.Format("{0:x2}", b);
+            }
+
+            return finalHash;
+        }
+
+
+
+
         #endregion
 
 

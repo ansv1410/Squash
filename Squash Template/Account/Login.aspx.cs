@@ -82,7 +82,7 @@ namespace Squash_Template.Account
                             //uPw.Password = dr2["Password"].ToString();
                             //uPw.UserId = Convert.ToInt32(dr2["UserId"].ToString());
 
-                            if(u.Password == password)
+                            if(u.Password == method.Hashify(password))
                             //if(dr2.HasRows)
                             {
                                 LoggedInUser.Text = "Välkommen " + u.FirstName + " " + u.SurName + ".";
