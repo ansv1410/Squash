@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace Squash_Template
 {
-    public partial class About : Page
+    public partial class Info : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

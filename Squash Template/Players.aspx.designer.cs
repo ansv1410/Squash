@@ -11,7 +11,7 @@ namespace Squash_Template
 {
 
 
-    public partial class About
+    public partial class Players
     {
     }
 }
