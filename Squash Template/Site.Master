@@ -46,7 +46,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" runat="server" href="~/">Östersunds squash</a>
+                    <a class="navbar-brand" runat="server" href="~/Default">Östersunds squash</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
@@ -68,10 +68,10 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/">Hem</a></li>
-                        <li><a runat="server" href="~/">Information</a></li>
-                        <li><a runat="server" href="~/About">Spelschema & Bokningar</a></li>
-                        <li><a runat="server" href="~/Contact">Flitigaste spelaren & adresslista</a></li>
+                        <li><a runat="server" href="~/Default">Hem</a></li>
+                        <li><a runat="server" href="~/Info">Information</a></li>
+                        <li><a runat="server" href="~/Booking">Spelschema & Bokningar</a></li>
+                        <li><a runat="server" href="~/Players">Flitigaste spelaren & adresslista</a></li>
                     </ul>
                 </div>
             </div>
@@ -85,7 +85,7 @@
         <footer>
             <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
             <br />
-            <a href="Contact.aspx">Kontakt / Hitta hit</a>
+            <a runat="server" href="~/Contact">Kontakt / Hitta hit</a>
         </footer>
     </form>
 </body>
