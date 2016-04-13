@@ -34,7 +34,7 @@ footer a{
     display:block;
     padding-left: 15px;
     padding-right: 15px;
-    background-color:blue;
+    /*background-color:blue;*/
     min-height: calc(100vh - 150px);
     /*height: calc(.body-content - 150px);*/
 }
