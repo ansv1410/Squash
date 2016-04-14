@@ -53,11 +53,11 @@ footer a{
     background-color:#dc3838;
 }
 
-.navbar-inverse .navbar-toggle:focus{
+.navbar-inverse .navbar-toggle:target{
     border:0px solid white;
     background-color:white;
 }
-.navbar-inverse .navbar-toggle:focus .icon-bar{
+.navbar-inverse .navbar-toggle:target .icon-bar{
     background-color:#dc3838;
 }
 
@@ -65,9 +65,10 @@ footer a{
     background-color:#dc3838;
 }
 
-.collapsed:focus{
+.collapsed:target{
     background-color:#dc3838;
 }
+
 
 
 

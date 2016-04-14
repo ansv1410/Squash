@@ -83,7 +83,7 @@
         </div>
 
         <footer>
-            <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
+            <p>© <%: DateTime.Now.Year %> - Östersunds squash</p>
             <br />
             <a runat="server" href="~/Contact">Kontakt / Hitta hit</a>
         </footer>
