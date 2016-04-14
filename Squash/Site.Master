@@ -53,7 +53,8 @@
                         <AnonymousTemplate>
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a runat="server" href="~/Account/Register">Skapa konto</a></li>
-                                <li><a runat="server" href="~/Account/Login">Logga in</a></li>
+                                <li><%--<a runat="server" href="~/Account/Login">Logga in</a>--%><a class="lbtnLogin" onClick="OpenOverlay()">Logga in</a></li>
+
                             </ul>
                         </AnonymousTemplate>
                         <LoggedInTemplate>
@@ -76,6 +77,14 @@
                 </div>
             </div>
         </div>
+        <div class="overlay-container">
+            <div class="page-overlay" onclick="CloseOverlay()">
+          
+            </div>
+            <div class="overlay-message">
+
+            </div>
+        </div>
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
@@ -90,3 +99,19 @@
     </form>
 </body>
 </html>
+<script type="text/javascript">
+
+    function OpenOverlay() {
+        $('.overlay-container').fadeIn('slow');
+        //$('.page-overlay').fadeIn('slow');
+        //$('.overlay-message').fadeIn('slow');
+        return false;
+    }
+
+    function CloseOverlay() {
+        $('.overlay-container').fadeOut('slow');
+        //$('.page-overlay').fadeOut('slow');
+        //$('.overlay-message').fadeOut('slow');
+    }
+
+</script>

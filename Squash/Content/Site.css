@@ -68,6 +68,40 @@ footer a{
 .collapsed:target{
     background-color:#dc3838;
 }
+.overlay-container{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color:transparent;
+    z-index: 1499;
+    display: none;
+}
+.page-overlay{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: rgba(51,51,51,0.7);
+    z-index: 1500;
+}
+.overlay-message {
+    position:relative;
+     margin: 0 auto;
+     margin-top: 110px;
+     padding: 1em;
+     z-index: 1501;
+     background: white;
+     max-width: 500px;
+ /*display:none;*/
+ /*text-align: center;*/
+}
+.lbtnLogin:hover{
+    cursor:pointer;
+}
+
 
 
 
@@ -90,6 +124,7 @@ input[type="select"] {
         padding: 0;
         padding-top:50px;
     }
+
 }
 
 @media screen and (max-width: 360px){
@@ -99,5 +134,11 @@ input[type="select"] {
         padding-left:15px;
         padding-right:0px;  
         font-size:150%;
+    }
+
+}
+@media screen and (max-width: 550px){
+    .overlay-message{
+    width: 95%
     }
 }
