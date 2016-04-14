@@ -13,6 +13,15 @@ namespace Squash {
     public partial class SiteMaster {
         
         /// <summary>
+        /// MyLoginControll control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Squash_Template.Account.Login MyLoginControll;
+        
+        /// <summary>
         /// MainContent control.
         /// </summary>
         /// <remarks>

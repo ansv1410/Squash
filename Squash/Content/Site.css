@@ -101,7 +101,9 @@ footer a{
 .lbtnLogin:hover{
     cursor:pointer;
 }
-
+#col-md-8-loginForm{
+    width:95%;
+}
 
 
 

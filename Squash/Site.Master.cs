@@ -7,6 +7,10 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
+using MySql.Data.MySqlClient;
+using Squash.Classes;
+using System.Diagnostics;
+
 
 namespace Squash
 {
@@ -15,6 +19,8 @@ namespace Squash
         private const string AntiXsrfTokenKey = "__AntiXsrfToken";
         private const string AntiXsrfUserNameKey = "__AntiXsrfUserName";
         private string _antiXsrfTokenValue;
+        static Methods method = new Methods();
+        MySqlConnection conn = method.myConn();
 
         protected void Page_Init(object sender, EventArgs e)
         {
@@ -76,6 +82,7 @@ namespace Squash
         {
             Context.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
         }
-    }
 
+
+    }
 }
