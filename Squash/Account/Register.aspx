@@ -20,10 +20,10 @@
             </div>
         </div>
         <div class="form-group">
-            <asp:Label runat="server" AssociatedControlID="tbLastName" CssClass="col-md-2 control-label">Efternamn</asp:Label>
+            <asp:Label runat="server" AssociatedControlID="tbSurName" CssClass="col-md-2 control-label">Efternamn</asp:Label>
             <div class="col-md-10">
-                <asp:TextBox runat="server" ID="tbLastName" CssClass="form-control" TextMode="SingleLine" />
-                <asp:RequiredFieldValidator runat="server" ControlToValidate="tbLastName"
+                <asp:TextBox runat="server" ID="tbSurName" CssClass="form-control" TextMode="SingleLine" />
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="tbSurName"
                     CssClass="text-danger" ErrorMessage="Fyll i efternamn." />
             </div>
         </div>

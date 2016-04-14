@@ -22,13 +22,13 @@ namespace Squash.Account {
         protected global::System.Web.UI.WebControls.TextBox tbFirstName;
         
         /// <summary>
-        /// tbLastName control.
+        /// tbSurName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbLastName;
+        protected global::System.Web.UI.WebControls.TextBox tbSurName;
         
         /// <summary>
         /// tbStreetAddress control.
