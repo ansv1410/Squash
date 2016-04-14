@@ -101,7 +101,7 @@
         </div>
 
         <footer>
-            <p>&copy; <%: DateTime.Now.Year %> - Östersunds Squashförening</p>
+            <p>© <%: DateTime.Now.Year %> - Östersunds squash</p>
             <br />
             <a runat="server" href="~/Contact">Kontakt / Hitta hit</a>
         </footer>
