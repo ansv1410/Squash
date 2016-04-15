@@ -12,6 +12,7 @@ using System.Configuration;
 using System.Diagnostics;
 using Squash.Models;
 using Squash.Classes;
+using System.Text;
 
 
 namespace Squash_Template.Account
@@ -23,6 +24,7 @@ namespace Squash_Template.Account
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            //hfShowLogin.Value = "1";
             RegisterHyperLink.NavigateUrl = "Register";
             // Enable this once you have account confirmation enabled for password reset functionality
             //ForgotPasswordHyperLink.NavigateUrl = "Forgot";
@@ -36,15 +38,20 @@ namespace Squash_Template.Account
 
         protected void LogIn(object sender, EventArgs e)
         {
-            string email = tbLogInEmail.Text;
-            string password = tbLogInPassword.Text;
+            if (Page.IsValid)
+            {
+                ((HiddenField)Page.Master.FindControl("hfShowLogin")).Value = "0";
 
-            string queryEmail = "SELECT * FROM users WHERE EMail = '" + email + "'";
-            string queryPw = "";
-            string queryMemberId = "";
-            string queryInsertLogins = "";
+                //hfShowLogin.Value = "0";
+                string email = tbLogInEmail.Text;
+                string password = tbLogInPassword.Text;
 
-            MySqlDataReader dr = method.myReader(queryEmail, conn);
+                string queryEmail = "SELECT * FROM users WHERE EMail = '" + email + "'";
+                string queryPw = "";
+                string queryMemberId = "";
+                string queryInsertLogins = "";
+
+                MySqlDataReader dr = method.myReader(queryEmail, conn);
 
 
             try
@@ -143,6 +150,30 @@ namespace Squash_Template.Account
             finally
             {
                 conn.Close();
+            }
+            }
+            else
+            {
+                //hfShowLogin.Value = "1";
+
+                //StringBuilder SB = new StringBuilder();
+                //SB.Append("<script type='text/javascript'>function OpenOverlay() {");
+                //SB.Append("$('.overlay-container').fadeIn('slow');");
+                //SB.Append("return false;");
+                //SB.Append("}</script>");
+
+                //if (!Page.ClientScript.IsClientScriptBlockRegistered("JSScriptBlock"))
+                //{
+                //    Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "JSScriptBlock", SB.ToString());
+                //}
+
+                //string funcCall = "<script language='javascript'>OpenOverlay();</script>";
+
+                //if (!Page.ClientScript.IsStartupScriptRegistered("JSScript"))
+                //{
+                //    Page.ClientScript.RegisterStartupScript(this.GetType(), "JSScript", funcCall);
+                //}
+
             }
 
 

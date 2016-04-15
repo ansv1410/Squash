@@ -22,8 +22,21 @@ namespace Squash
         static Methods method = new Methods();
         MySqlConnection conn = method.myConn();
 
+        //public string ShowOrNot
+        //{
+        //    get
+        //    {
+        //        return hfShowLogin.Value;
+        //    }
+        //    set
+        //    {
+        //        hfShowLogin.Value = value;
+        //    }
+        //}
+
         protected void Page_Init(object sender, EventArgs e)
         {
+            //string testarn = hfShowLogin.Value;
             // The code below helps to protect against XSRF attacks
             var requestCookie = Request.Cookies[AntiXsrfTokenKey];
             Guid requestCookieGuidValue;

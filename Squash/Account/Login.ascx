@@ -42,7 +42,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <asp:Button runat="server" OnClick="LogIn" Text="Log in" CssClass="btn btn-default" ValidationGroup="Login" />
+                        <asp:Button runat="server" OnClick="LogIn" OnClientClick="reopenOverlay()" Text="Log in" CssClass="btn btn-default" ValidationGroup="Login" />
                         <asp:Label ID="LoggedInUser" runat="server" Text="Här visas inloggad användare."></asp:Label>
                         <asp:Label ID="LoggedInMember" runat="server" Text="Inloggad medlem"></asp:Label>
                     </div>
@@ -57,6 +57,21 @@
                 --%>
             </p>
         </section>
+        <script type="text/javascript">
+
+            function OpenOverlay() {
+                $('.overlay-container').fadeIn('slow');
+                return false;
+            }
+
+            function reopenOverlay() {
+                if(!Page_ClientValidate("Login"))
+                {
+                    OpenOverlay()
+                }
+
+            }
+        </script>
     </div>
 
     <%--        <div class="col-md-4">
@@ -64,5 +79,6 @@
                 <uc:OpenAuthProviders runat="server" ID="OpenAuthLogin" />
             </section>
         </div>--%>
+    <%--<asp:HiddenField ID="hfShowLogin" runat="server" Value="0" />--%>
 </div>
 <%--</asp:Content>--%>
