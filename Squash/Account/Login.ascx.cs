@@ -141,7 +141,7 @@ namespace Squash.Account
                             Session["MemberType"] = m.MemberType;
 
                             FormsAuthentication.RedirectFromLoginPage(m.MemberId.ToString(), false);
-                            Response.Redirect("MyPage.aspx");
+                            Response.Redirect("~/Account/MyPage.aspx");
 
                         }
                         else
