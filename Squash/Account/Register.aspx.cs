@@ -12,6 +12,8 @@ using MySql.Data.MySqlClient;
 using System.Configuration;
 using System.Diagnostics;
 using Squash.Classes;
+using System.Net;
+using System.IO;
 
 
 namespace Squash.Account
@@ -62,7 +64,6 @@ namespace Squash.Account
 
                 MySqlDataReader dr = method.myReader(queryEmailExist, conn);
 
-                string ipAddress = Context.Request.ServerVariables["REMOTE_ADDR"];
                 string pw = tbConfirmPassword.Text;
                 int agreed = 0;
 
@@ -73,6 +74,19 @@ namespace Squash.Account
                 {
                     agreed = 1;
                 }
+
+
+                string url = "http://checkip.dyndns.org";
+                WebRequest request = WebRequest.Create(url);
+                WebResponse resp = request.GetResponse();
+                StreamReader sr = new StreamReader(resp.GetResponseStream());
+                string response = sr.ReadToEnd().Trim();
+                string[] a = response.Split(':');
+                string a2 = a[1].Substring(1);
+                string[] a3 = a2.Split('<');
+                string ipAddress = a3[0];
+
+
 
 
                 try
@@ -145,7 +159,7 @@ namespace Squash.Account
                 //}
                 //else
                 //{
-                //    //ErrorMessage.Text = result.Errors.FirstOrDefault();
+                //    ErrorMessage.Text = result.Errors.FirstOrDefault();
                 //}
                 #endregion
 
@@ -161,5 +175,7 @@ namespace Squash.Account
 
 
         }
+
+
     }
 }

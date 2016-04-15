@@ -36,8 +36,8 @@ namespace Squash_Template.Account
 
         protected void LogIn(object sender, EventArgs e)
         {
-            string email = Email.Text;
-            string password = Password.Text;
+            string email = tbLogInEmail.Text;
+            string password = tbLogInPassword.Text;
 
             string queryEmail = "SELECT * FROM users WHERE EMail = '" + email + "'";
             string queryPw = "";
