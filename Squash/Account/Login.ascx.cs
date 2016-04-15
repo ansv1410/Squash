@@ -12,9 +12,12 @@ using System.Configuration;
 using System.Diagnostics;
 using Squash.Models;
 using Squash.Classes;
+using System.Net;
+using System.IO;
+using System.Web.Security;
 
 
-namespace Squash_Template.Account
+namespace Squash.Account
 {
     public partial class Login : System.Web.UI.UserControl
     {
@@ -81,16 +84,27 @@ namespace Squash_Template.Account
                     //uPw.Password = dr2["Password"].ToString();
                     //uPw.UserId = Convert.ToInt32(dr2["UserId"].ToString());
 
+                    string url = "http://checkip.dyndns.org";
+                    WebRequest request = WebRequest.Create(url);
+                    WebResponse resp = request.GetResponse();
+                    StreamReader sr = new StreamReader(resp.GetResponseStream());
+                    string response = sr.ReadToEnd().Trim();
+                    string[] a = response.Split(':');
+                    string a2 = a[1].Substring(1);
+                    string[] a3 = a2.Split('<');
+                    string ipAddress = a3[0];
+
+
                     if (u.Password == method.Hashify(password))
                     //if(dr2.HasRows)
                     {
-                        LoggedInUser.Text = "Välkommen " + u.FirstName + " " + u.SurName + ".";
-                        conn.Close();
+                        //LoggedInUser.Text = "Välkommen " + u.FirstName + " " + u.SurName + ".";
+                        //conn.Close();
 
                         queryMemberId = "SELECT * FROM members WHERE UserId = '" + u.UserId + "'";
                         MySqlDataReader dr3 = method.myReader(queryMemberId, conn);
 
-                        while (dr3.Read())
+                        if (dr3.Read())
                         {
                             Members m = new Members();
                             m.MemberId = Convert.ToInt32(dr3["MemberId"].ToString());
@@ -110,13 +124,32 @@ namespace Squash_Template.Account
                             MySqlCommand cmdInsertLogins = new MySqlCommand(queryInsertLogins, conn);
                             cmdInsertLogins.Parameters.AddWithValue("mid", memberId);
                             cmdInsertLogins.Parameters.AddWithValue("li", DateTime.Now);
-                            cmdInsertLogins.Parameters.AddWithValue("ip", "123.456.789.1011");
+                            cmdInsertLogins.Parameters.AddWithValue("ip", ipAddress);
                             conn.Open();
                             cmdInsertLogins.ExecuteNonQuery();
+
+                            LoggedInUser.Text = "Välkommen " + u.FirstName + " " + u.SurName + ".";
+                            
                             conn.Close();
-                            //FORM.REDIRECT(Nyhetssida).
+                            //FORM.REDIRECT(Nyhetssida med meddelande).
+                            //I varje sida som Session ska användas skapas ett nytt member/userobjekt:
+                            //member loggedInMember = new member();
+                            //loggedInMember.MemberId = Convert.ToInt32(Session["MemberId"]);
+
+                            Session["MemberId"] = m.MemberId;
+                            Session["UserId"] = m.UserId;
+                            Session["MemberType"] = m.MemberType;
+
+                            FormsAuthentication.RedirectFromLoginPage(m.MemberId.ToString(), false);
+                            Response.Redirect("MyPage.aspx");
 
                         }
+                        else
+                        {
+                            LoggedInUser.Text = "";
+                            LoggedInMember.Text = "Administratör har inte godkänt dig än.";
+                        }
+
                     }
                     else
                     {

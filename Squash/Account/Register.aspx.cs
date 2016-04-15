@@ -14,6 +14,7 @@ using System.Diagnostics;
 using Squash.Classes;
 using System.Net;
 using System.IO;
+using System.Globalization;
 
 
 namespace Squash.Account
@@ -88,25 +89,39 @@ namespace Squash.Account
 
 
 
-
                 try
                 {
                     if(!dr.HasRows)
                     {
+                        //Gör om alla strängar med text [0].To.Upper, SubString.ToLower.
+                        string tbFN = tbFirstName.Text;
+                        string firstName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(tbFN);
+
+                        string tbSN = tbSurName.Text;
+                        string surName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(tbSN);
+
+                        string tbSA = tbStreetAddress.Text;
+                        string streetAddress = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(tbSA);
+
+                        string tbC = tbCity.Text;
+                        string city = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(tbC);
+
+
                         Users createUser = new Users()
                         {
-                            FirstName = tbFirstName.Text,
-                            SurName = tbSurName.Text,
+                            FirstName = firstName,
+                            SurName = surName,
                             Phone = tbTelephone.Text,
                             EMail = tbEmail.Text,
-                            StreatAddress = tbStreetAddress.Text,
+                            StreatAddress = streetAddress,
                             ZipCode = tbPostalCode.Text,
-                            City = tbCity.Text,
+                            City = city,
                             IPAddress = ipAddress,
                             Password = method.Hashify(pw),
                             PublicAddres = agreed
                         };
                         conn.Close();
+
 
                         queryInsToUser = "INSERT INTO users (Firstname, Surname, Phone, EMail, StreetAddress, ZipCode, City, IPAddress, Password, PublicAddress) VALUES (@fn, @sn, @p, @e, @sa, @zc, @c, @ip, @pw, @pa)";
                         MySqlCommand cmd = new MySqlCommand(queryInsToUser, conn);

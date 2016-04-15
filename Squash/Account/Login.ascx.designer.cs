@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Squash_Template.Account {
+namespace Squash.Account {
     
     
     public partial class Login {
