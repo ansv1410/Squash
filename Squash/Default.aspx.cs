@@ -9,7 +9,8 @@ using Squash.Classes;
 using MySql.Data.MySqlClient;
 using System.Configuration;
 using System.Diagnostics;
-using Squash_Template;
+//using Squash;
+using Squash;
 
 
 namespace Squash

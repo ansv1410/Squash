@@ -19,7 +19,7 @@ namespace Squash {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Squash_Template.Account.Login MyLoginControll;
+        protected global::Squash.Account.Login MyLoginControll;
         
         /// <summary>
         /// MainContent control.
