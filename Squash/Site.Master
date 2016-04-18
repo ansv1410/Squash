@@ -1,6 +1,6 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Squash.SiteMaster" %>
 
-<%@ Register TagPrefix="uc" TagName="MyLoginControl" 
+<%@ Register TagPrefix="uc" TagName="MyLoginControl"
     Src="~/Account/Login.ascx" %>
 <!DOCTYPE html>
 
@@ -13,7 +13,7 @@
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
-    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
 </head>
@@ -54,9 +54,14 @@
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a runat="server" href="~/Account/Register">Skapa konto</a></li>
-                                <li><%--<a runat="server" href="~/Account/Login">Logga in</a>--%><a class="lbtnLogin" onClick="OpenOverlay()">Logga in</a></li>
-
+                                <div id="pubAcc" runat="server">
+                                    <li><a runat="server" href="~/Account/Register">Skapa konto</a></li>
+                                    <li><a class="lbtnLogin" onclick="OpenOverlay()">Logga in</a></li>
+                                </div>
+                                <div id="privAcc" runat="server">
+                                    <li><a id="myPageLink" runat="server" href="~/Account/MyPage">Min Sida</a></li>
+                                    <li><a class="lbtnLogin" onclick="">Logga ut</a></li>
+                                </div>
                             </ul>
                         </AnonymousTemplate>
                         <LoggedInTemplate>
@@ -81,14 +86,12 @@
         </div>
         <div class="overlay-container">
             <div class="page-overlay" onclick="CloseOverlay()">
-          
             </div>
             <div class="overlay-message">
 
-              
-                <uc:MyLoginControl id="MyLoginControll" 
-                    runat="server" 
-                    />
+
+                <uc:MyLoginControl ID="MyLoginControll"
+                    runat="server" />
 
             </div>
 
@@ -104,8 +107,8 @@
             <br />
             <a runat="server" href="~/Contact">Kontakt / Hitta hit</a>
         </footer>
-    <asp:HiddenField ID="hfShowLogin" runat="server" Value="0" />
-        
+        <asp:HiddenField ID="hfShowLogin" runat="server" Value="0" />
+
     </form>
 </body>
 </html>
@@ -113,7 +116,7 @@
 
     function OpenOverlay() {
         $('.overlay-container').fadeIn('slow');
-        document.getElementById('hfShowLogin').setAttribute('Value','1')
+        document.getElementById('hfShowLogin').setAttribute('Value', '1')
         //$('.page-overlay').fadeIn('slow');
         //$('.overlay-message').fadeIn('slow');
         return false;
