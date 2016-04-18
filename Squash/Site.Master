@@ -51,7 +51,6 @@
                     <a class="navbar-brand" runat="server" href="~/Default">Östersunds squash</a>
                 </div>
                 <div class="navbar-collapse collapse">
-                    <div id="testarn1" runat="server"></div>
                     <%--<asp:LoginView runat="server" >--%>
                         <%--<AnonymousTemplate>--%>
                             <asp:PlaceHolder ID="pubAcc" runat="server" Visible="false">
