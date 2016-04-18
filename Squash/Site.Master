@@ -129,7 +129,7 @@
         var oneOrZero = document.getElementById('hfShowLogin').getAttribute('Value')
         //alert(oneOrZero)
         if (oneOrZero == "1")
-        $('.overlay-container').fadeIn('slow');
+            $('.overlay-container').show();
     }
 
     ReopenOverlay();

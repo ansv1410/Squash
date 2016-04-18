@@ -43,7 +43,7 @@ namespace Squash.Account
         {
             if (Page.IsValid)
             {
-                ((HiddenField)Page.Master.FindControl("hfShowLogin")).Value = "0";
+                
 
                 //hfShowLogin.Value = "0";
             string email = tbLogInEmail.Text;
@@ -145,6 +145,8 @@ namespace Squash.Account
                             Session["MemberId"] = m.MemberId;
                             Session["UserId"] = m.UserId;
                             Session["MemberType"] = m.MemberType;
+
+                            ((HiddenField)Page.Master.FindControl("hfShowLogin")).Value = "0";
 
                             FormsAuthentication.RedirectFromLoginPage(m.MemberId.ToString(), false);
                             Response.Redirect("~/Account/MyPage.aspx");
