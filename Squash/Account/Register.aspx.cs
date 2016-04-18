@@ -77,17 +77,17 @@ namespace Squash.Account
                 }
 
 
-                string url = "http://checkip.dyndns.org";
-                WebRequest request = WebRequest.Create(url);
-                WebResponse resp = request.GetResponse();
-                StreamReader sr = new StreamReader(resp.GetResponseStream());
-                string response = sr.ReadToEnd().Trim();
-                string[] a = response.Split(':');
-                string a2 = a[1].Substring(1);
-                string[] a3 = a2.Split('<');
-                string ipAddress = a3[0];
+                //string url = "http://checkip.dyndns.org";
+                //WebRequest request = WebRequest.Create(url);
+                //WebResponse resp = request.GetResponse();
+                //StreamReader sr = new StreamReader(resp.GetResponseStream());
+                //string response = sr.ReadToEnd().Trim();
+                //string[] a = response.Split(':');
+                //string a2 = a[1].Substring(1);
+                //string[] a3 = a2.Split('<');
+                //string ipAddress = a3[0];
 
-
+                string ipAddress = ((HiddenField)Page.Master.FindControl("hfLoggedInIP")).Value;
 
                 try
                 {

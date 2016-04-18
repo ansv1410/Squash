@@ -79,34 +79,10 @@ namespace Squash.Account
                     conn.Close();
 
 
-                    //Behövs nog inte göras en ny DataReader. Har som test nu bara.
-                    //queryPw = "SELECT * FROM users WHERE EMail = '" + email + "' AND UserId = '" + u.UserId + "'";
-                    //MySqlDataReader dr2 = method.myReader(queryPw, conn);
-
-
-                    //while(dr2.Read())
-                    //{
-                    //Users uPw = new Users();
-                    //uPw.Password = dr2["Password"].ToString();
-                    //uPw.UserId = Convert.ToInt32(dr2["UserId"].ToString());
-
-                    string url = "http://checkip.dyndns.org";
-                    WebRequest request = WebRequest.Create(url);
-                    WebResponse resp = request.GetResponse();
-                    StreamReader sr = new StreamReader(resp.GetResponseStream());
-                    string response = sr.ReadToEnd().Trim();
-                    string[] a = response.Split(':');
-                    string a2 = a[1].Substring(1);
-                    string[] a3 = a2.Split('<');
-                    string ipAddress = a3[0];
-
+                    string ipAddress = ((HiddenField)Page.Master.FindControl("hfLoggedInIP")).Value;
 
                     if (u.Password == method.Hashify(password))
-                    //if(dr2.HasRows)
                     {
-                        //LoggedInUser.Text = "Välkommen " + u.FirstName + " " + u.SurName + ".";
-                        //conn.Close();
-
                         queryMemberId = "SELECT * FROM members WHERE UserId = '" + u.UserId + "'";
                         MySqlDataReader dr3 = method.myReader(queryMemberId, conn);
 
@@ -125,26 +101,30 @@ namespace Squash.Account
                             conn.Close();
 
 
+                            Logins l = new Logins();
+                            l.MemberId = memberId;
+                            l.LoggedIn = DateTime.Now;
+                            l.IPAddress = ipAddress;
+
                             //EN INSERT TILL logins-tabellen.
                             queryInsertLogins = "INSERT INTO logins (MemberId, LoggedIn, IPAddress) VALUES (@mid, @li, @ip)";
                             MySqlCommand cmdInsertLogins = new MySqlCommand(queryInsertLogins, conn);
-                            cmdInsertLogins.Parameters.AddWithValue("mid", memberId);
-                            cmdInsertLogins.Parameters.AddWithValue("li", DateTime.Now);
-                            cmdInsertLogins.Parameters.AddWithValue("ip", ipAddress);
+                            cmdInsertLogins.Parameters.AddWithValue("mid", l.MemberId);
+                            cmdInsertLogins.Parameters.AddWithValue("li", l.LoggedIn);
+                            cmdInsertLogins.Parameters.AddWithValue("ip", l.IPAddress);
                             conn.Open();
                             cmdInsertLogins.ExecuteNonQuery();
 
                             LoggedInUser.Text = "Välkommen " + u.FirstName + " " + u.SurName + ".";
                             
                             conn.Close();
-                            //FORM.REDIRECT(Nyhetssida med meddelande).
-                            //I varje sida som Session ska användas skapas ett nytt member/userobjekt:
-                            //member loggedInMember = new member();
-                            //loggedInMember.MemberId = Convert.ToInt32(Session["MemberId"]);
 
-                            Session["MemberId"] = m.MemberId;
-                            Session["UserId"] = m.UserId;
-                            Session["MemberType"] = m.MemberType;
+                            LoggedInPerson lip = new LoggedInPerson();
+                            lip.user = u;
+                            lip.member = m;
+                            lip.logins = l;
+
+                            Session["lip"] = lip;
 
                             ((HiddenField)Page.Master.FindControl("hfShowLogin")).Value = "0";
 
@@ -165,12 +145,7 @@ namespace Squash.Account
                         LoggedInMember.Text = "";
                     }
                 }
-                //}
-                //else
-                //{
-                //    LoggedInUser.Text = "Fel Email.";
-                //}
-                //}
+
                 else
                 {
                     LoggedInUser.Text = "Fel Email.";
@@ -188,25 +163,6 @@ namespace Squash.Account
             }
             else
             {
-                //hfShowLogin.Value = "1";
-
-                //StringBuilder SB = new StringBuilder();
-                //SB.Append("<script type='text/javascript'>function OpenOverlay() {");
-                //SB.Append("$('.overlay-container').fadeIn('slow');");
-                //SB.Append("return false;");
-                //SB.Append("}</script>");
-
-                //if (!Page.ClientScript.IsClientScriptBlockRegistered("JSScriptBlock"))
-                //{
-                //    Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "JSScriptBlock", SB.ToString());
-                //}
-
-                //string funcCall = "<script language='javascript'>OpenOverlay();</script>";
-
-                //if (!Page.ClientScript.IsStartupScriptRegistered("JSScript"))
-                //{
-                //    Page.ClientScript.RegisterStartupScript(this.GetType(), "JSScript", funcCall);
-                //}
 
             }
 

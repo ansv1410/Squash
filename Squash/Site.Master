@@ -105,29 +105,30 @@
             <a runat="server" href="~/Contact">Kontakt / Hitta hit</a>
         </footer>
     <asp:HiddenField ID="hfShowLogin" runat="server" Value="0" />
+    <asp:HiddenField ID="hfLoggedInIP" runat="server" Value="0"/>
         
     </form>
 </body>
 </html>
 <script type="text/javascript">
 
+    $.getJSON('http://ipinfo.io', function (data) {
+        document.getElementById('hfLoggedInIP').setAttribute('Value', data.ip)
+    });
+
+
     function OpenOverlay() {
         $('.overlay-container').fadeIn('slow');
         document.getElementById('hfShowLogin').setAttribute('Value','1')
-        //$('.page-overlay').fadeIn('slow');
-        //$('.overlay-message').fadeIn('slow');
         return false;
     }
 
     function CloseOverlay() {
         document.getElementById('hfShowLogin').setAttribute('Value', '0')
         $('.overlay-container').fadeOut('slow');
-        //$('.page-overlay').fadeOut('slow');
-        //$('.overlay-message').fadeOut('slow');
     }
     function ReopenOverlay() {
         var oneOrZero = document.getElementById('hfShowLogin').getAttribute('Value')
-        //alert(oneOrZero)
         if (oneOrZero == "1")
             $('.overlay-container').show();
     }

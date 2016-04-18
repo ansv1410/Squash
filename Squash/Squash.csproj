@@ -354,6 +354,7 @@
     <Compile Include="Classes\CourtTimes.cs" />
     <Compile Include="Classes\Days.cs" />
     <Compile Include="Classes\HitCount.cs" />
+    <Compile Include="Classes\LoggedInPerson.cs" />
     <Compile Include="Classes\Logins.cs" />
     <Compile Include="Classes\MemberCompany.cs" />
     <Compile Include="Classes\MemberFloatable.cs" />
