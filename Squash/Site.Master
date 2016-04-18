@@ -1,6 +1,6 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Squash.SiteMaster" %>
 
-<%@ Register TagPrefix="uc" TagName="MyLoginControl"
+<%@ Register TagPrefix="uc" TagName="MyLoginControl" 
     Src="~/Account/Login.ascx" %>
 <!DOCTYPE html>
 
@@ -55,7 +55,7 @@
                         <AnonymousTemplate>
                             <ul class="nav navbar-nav navbar-right">
                                 <div id="pubAcc" runat="server">
-                                    <li><a runat="server" href="~/Account/Register">Skapa konto</a></li>
+                                <li><a runat="server" href="~/Account/Register">Skapa konto</a></li>
                                     <li><a class="lbtnLogin" onclick="OpenOverlay()">Logga in</a></li>
                                 </div>
                                 <div id="privAcc" runat="server">
@@ -89,7 +89,7 @@
             </div>
             <div class="overlay-message">
 
-
+              
                 <uc:MyLoginControl ID="MyLoginControll"
                     runat="server" />
 
@@ -107,30 +107,31 @@
             <br />
             <a runat="server" href="~/Contact">Kontakt / Hitta hit</a>
         </footer>
-        <asp:HiddenField ID="hfShowLogin" runat="server" Value="0" />
-
+    <asp:HiddenField ID="hfShowLogin" runat="server" Value="0" />
+    <asp:HiddenField ID="hfLoggedInIP" runat="server" Value="0"/>
+        
     </form>
 </body>
 </html>
 <script type="text/javascript">
 
+    $.getJSON('http://ipinfo.io', function (data) {
+        document.getElementById('hfLoggedInIP').setAttribute('Value', data.ip)
+    });
+
+
     function OpenOverlay() {
         $('.overlay-container').fadeIn('slow');
-        document.getElementById('hfShowLogin').setAttribute('Value', '1')
-        //$('.page-overlay').fadeIn('slow');
-        //$('.overlay-message').fadeIn('slow');
+        document.getElementById('hfShowLogin').setAttribute('Value','1')
         return false;
     }
 
     function CloseOverlay() {
         document.getElementById('hfShowLogin').setAttribute('Value', '0')
         $('.overlay-container').fadeOut('slow');
-        //$('.page-overlay').fadeOut('slow');
-        //$('.overlay-message').fadeOut('slow');
     }
     function ReopenOverlay() {
         var oneOrZero = document.getElementById('hfShowLogin').getAttribute('Value')
-        //alert(oneOrZero)
         if (oneOrZero == "1")
             $('.overlay-container').show();
     }

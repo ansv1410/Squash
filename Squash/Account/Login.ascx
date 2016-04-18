@@ -57,8 +57,8 @@
                 --%>
             </p>
         </section>
-        <script type="text/javascript">
 
+        <script type="text/javascript">
             function OpenOverlay() {
                 $('.overlay-container').fadeIn('slow');
                 return false;

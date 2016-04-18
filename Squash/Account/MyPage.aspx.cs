@@ -22,13 +22,10 @@ namespace Squash.Account
 {
     public partial class MyPage : System.Web.UI.Page
     {
-        Members loggedInMember = new Members();
-
         protected void Page_Load(object sender, EventArgs e)
         {
-            loggedInMember.MemberId = Convert.ToInt32(Session["MemberId"]);
-
-            Response.Write("<script>alert('" + loggedInMember.MemberId + "')</script>");
+            LoggedInPerson lip = (LoggedInPerson)Session["lip"];
+            Response.Write("<script>alert('" + lip.user.FirstName + " " + lip.member.MemberId + " " + lip.logins.IPAddress + "')</script>");
         }
     }
 }
