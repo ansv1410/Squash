@@ -1,6 +1,6 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Squash.SiteMaster" %>
 
-<%@ Register TagPrefix="uc" TagName="MyLoginControl" 
+<%@ Register TagPrefix="uc" TagName="MyLoginControl"
     Src="~/Account/Login.ascx" %>
 <!DOCTYPE html>
 
@@ -51,28 +51,32 @@
                     <a class="navbar-brand" runat="server" href="~/Default">Östersunds squash</a>
                 </div>
                 <div class="navbar-collapse collapse">
-                    <asp:LoginView runat="server" ViewStateMode="Disabled">
-                        <AnonymousTemplate>
-                            <ul class="nav navbar-nav navbar-right">
-                                <div id="pubAcc" runat="server">
-                                <li><a runat="server" href="~/Account/Register">Skapa konto</a></li>
+                    <div id="testarn1" runat="server"></div>
+                    <%--<asp:LoginView runat="server" >--%>
+                        <%--<AnonymousTemplate>--%>
+                            <asp:PlaceHolder ID="pubAcc" runat="server" Visible="false">
+                                <ul runat="server" class="nav navbar-nav navbar-right">
+                                    <li><a runat="server" href="~/Account/Register">Skapa konto</a></li>
                                     <li><a class="lbtnLogin" onclick="OpenOverlay()">Logga in</a></li>
-                                </div>
-                                <div id="privAcc" runat="server">
+                                </ul>
+                            </asp:PlaceHolder>
+                            <asp:PlaceHolder ID="privAcc" runat="server" Visible="false">
+                                <ul runat="server" class="nav navbar-nav navbar-right">
                                     <li><a id="myPageLink" runat="server" href="~/Account/MyPage">Min Sida</a></li>
-                                    <li><a class="lbtnLogin" onclick="">Logga ut</a></li>
-                                </div>
-                            </ul>
-                        </AnonymousTemplate>
-                        <LoggedInTemplate>
+                                    <%--<li><a class="lbtnLogin" onclick="">Logga ut</a></li>--%>
+                                    <li><asp:LinkButton ID="lbtnLogin" runat="server" OnClick="lbtnLogin_Click">Logga ut</asp:LinkButton></li>
+                                </ul>
+                            </asp:PlaceHolder>
+                        <%--</AnonymousTemplate>--%>
+                      <%--  <LoggedInTemplate>
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: Context.User.Identity.GetUserName()  %> !</a></li>
                                 <li>
                                     <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
                                 </li>
                             </ul>
-                        </LoggedInTemplate>
-                    </asp:LoginView>
+                        </LoggedInTemplate>--%>
+                    <%--</asp:LoginView>--%>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
@@ -89,7 +93,7 @@
             </div>
             <div class="overlay-message">
 
-              
+
                 <uc:MyLoginControl ID="MyLoginControll"
                     runat="server" />
 
@@ -107,9 +111,9 @@
             <br />
             <a runat="server" href="~/Contact">Kontakt / Hitta hit</a>
         </footer>
-    <asp:HiddenField ID="hfShowLogin" runat="server" Value="0" />
-    <asp:HiddenField ID="hfLoggedInIP" runat="server" Value="0"/>
-        
+        <asp:HiddenField ID="hfShowLogin" runat="server" Value="0" />
+        <asp:HiddenField ID="hfLoggedInIP" runat="server" Value="0" />
+
     </form>
 </body>
 </html>
@@ -122,7 +126,7 @@
 
     function OpenOverlay() {
         $('.overlay-container').fadeIn('slow');
-        document.getElementById('hfShowLogin').setAttribute('Value','1')
+        document.getElementById('hfShowLogin').setAttribute('Value', '1')
         return false;
     }
 

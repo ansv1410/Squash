@@ -10,6 +10,8 @@ using Microsoft.AspNet.Identity;
 using MySql.Data.MySqlClient;
 using Squash.Classes;
 using System.Diagnostics;
+using System.Web.UI.HtmlControls;
+
 
 
 namespace Squash
@@ -69,11 +71,20 @@ namespace Squash
 
         protected void master_Page_PreLoad(object sender, EventArgs e)
         {
+            
             if (!IsPostBack)
             {
                 // Set Anti-XSRF token
                 ViewState[AntiXsrfTokenKey] = Page.ViewStateUserKey;
                 ViewState[AntiXsrfUserNameKey] = Context.User.Identity.Name ?? String.Empty;
+                    
+                if (Session == null)
+                {
+                    
+                    //(this.FindControl("pubAcc")).Visible = true;
+
+                    //((HiddenField)Page.Master.FindControl("hfShowLogin")).Value = "0";
+                }
             }
             else
             {
@@ -88,12 +99,36 @@ namespace Squash
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["lip"] != null)
+            {
+                LoggedInPerson lip = (LoggedInPerson)Session["lip"];
+                privAcc.Visible = true;
+                myPageLink.InnerText = lip.user.FirstName + " " + lip.user.SurName; 
+
+            }
+            else
+            {
+                pubAcc.Visible = true;
+            }
+
+            //(HtmlGenericControl)Page.Master.FindControl("pubAcc").
+            //HtmlGenericControl accMenu = (HtmlGenericControl)m.FindControl("pubAcc");
+            //accMenu.Attributes.Remove("hidden");
+            
+            
+            
 
         }
 
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)
         {
             Context.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+        }
+
+        protected void lbtnLogin_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect("~/Default");
         }
 
 

@@ -16,6 +16,7 @@ using System.Net;
 using System.IO;
 using System.Web.Security;
 using System.Text;
+using System.Web.UI.HtmlControls;
 
 
 namespace Squash.Account
@@ -37,6 +38,11 @@ namespace Squash.Account
             {
                 RegisterHyperLink.NavigateUrl += "?ReturnUrl=" + returnUrl;
             }
+            //(HtmlGenericControl)Page.Master.FindControl("pubAcc").A
+            //((PlaceHolder)Page.Master.FindControl("pubAcc")).Visible = true;
+
+            //PlaceHolder ph = (PlaceHolder)Page.Master.FindControl("pubAcc");
+            //ph.Visible = true;
         }
 
         protected void LogIn(object sender, EventArgs e)
