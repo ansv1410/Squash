@@ -12,6 +12,7 @@ using System.Configuration;
 using Squash.Classes;
 using System.Security.Cryptography;
 using System.Text;
+using System.Net.Mail;
 
 namespace Squash.Classes
 {
@@ -70,11 +71,56 @@ namespace Squash.Classes
             return finalHash;
         }
 
+        public void ResetPW(string toEmail)
+        {
+            char[] chars = new char[62];
+            chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".ToCharArray();
+            byte[] data = new byte[1];
+            using (RNGCryptoServiceProvider crypto = new RNGCryptoServiceProvider())
+            {
+                crypto.GetNonZeroBytes(data);
+                data = new byte[8];
+                crypto.GetNonZeroBytes(data);
+            }
+            StringBuilder result = new StringBuilder(8);
+            foreach (byte b in data)
+            {
+                result.Append(chars[b % (chars.Length)]);
+            }
 
+            pwResetMail(toEmail, result.ToString());
+
+
+        }
 
 
         #endregion
 
+        #region E-mail
+        public void pwResetMail(string toEmail, string newPW)
+        {
+           string content = "<!DOCTYPE html><html><head><meta charset='UTF-8'><title>Ditt nya lösenord</title></head><body><h2>Ditt nya lösenord</h2><hr /><p>"+ newPW +"</p></body></html>";
+
+
+            System.Net.Mail.MailMessage mail = new System.Net.Mail.MailMessage();
+            mail.To.Add(toEmail);
+            mail.From = new MailAddress("admin@ostersundssquash.se", "Östersunds Squashförening", System.Text.Encoding.UTF8);
+            mail.Subject = "Ditt nya lösenord";
+            mail.SubjectEncoding = System.Text.Encoding.UTF8;
+            mail.Body = content;
+            mail.BodyEncoding = System.Text.Encoding.UTF8;
+            mail.IsBodyHtml = true;
+            mail.Priority = MailPriority.High;
+            
+            System.Net.ServicePointManager.ServerCertificateValidationCallback += delegate { return true; };
+
+            SmtpClient client = new SmtpClient();
+            client.Send(mail);
+
+        }
+
+
+        #endregion
 
     }
 }

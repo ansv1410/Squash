@@ -53,7 +53,7 @@
                 <asp:HyperLink runat="server" ID="RegisterHyperLink" ViewStateMode="Disabled">Bli medlem</asp:HyperLink>
             </p>
             <p>
-                <asp:HyperLink runat="server" ID="ForgotPasswordHyperLink" ViewStateMode="Disabled">Glömt lösenordet?</asp:HyperLink>
+                <asp:HyperLink runat="server" ID="ForgotPasswordHyperLink" ViewStateMode="Disabled" NavigateUrl="~/Account/Forgot.aspx">Glömt lösenordet?</asp:HyperLink>
             </p>
         </section>
 
