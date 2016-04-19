@@ -55,7 +55,7 @@
                         <%--<AnonymousTemplate>--%>
                             <asp:PlaceHolder ID="pubAcc" runat="server" Visible="false">
                                 <ul runat="server" class="nav navbar-nav navbar-right">
-                                    <li><a runat="server" href="~/Account/Register">Skapa konto</a></li>
+                                    <li><a runat="server" href="~/Account/Register">Bli medlem</a></li>
                                     <li><a class="lbtnLogin" onclick="OpenOverlay()">Logga in</a></li>
                                 </ul>
                             </asp:PlaceHolder>

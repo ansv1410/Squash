@@ -17,7 +17,7 @@
                     </p>
                 </asp:PlaceHolder>
                 <div class="form-group">
-                    <asp:Label runat="server" AssociatedControlID="tbLogInEmail" CssClass="col-md-2 control-label">Email</asp:Label>
+                    <asp:Label runat="server" AssociatedControlID="tbLogInEmail" CssClass="col-md-2 control-label">E-post</asp:Label>
                     <div class="col-md-10">
                         <asp:TextBox runat="server" ID="tbLogInEmail" CssClass="form-control" TextMode="Email" />
                         <asp:RequiredFieldValidator runat="server" ControlToValidate="tbLogInEmail" ValidationGroup="Login"
@@ -25,36 +25,35 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <asp:Label runat="server" AssociatedControlID="tbLogInPassword" CssClass="col-md-2 control-label">Password</asp:Label>
+                    <asp:Label runat="server" AssociatedControlID="tbLogInPassword" CssClass="col-md-2 control-label">Lösenord</asp:Label>
                     <div class="col-md-10">
                         <asp:TextBox runat="server" ID="tbLogInPassword" TextMode="Password" CssClass="form-control" />
                         <asp:RequiredFieldValidator runat="server" ControlToValidate="tbLogInPassword" ValidationGroup="Login"
                             CssClass="text-danger" ErrorMessage="The password field is required." />
                     </div>
                 </div>
-                <div class="form-group">
+                <%--<div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         <div class="checkbox">
                             <asp:CheckBox runat="server" ID="RememberMe" />
                             <asp:Label runat="server" AssociatedControlID="RememberMe">Remember me?</asp:Label>
                         </div>
                     </div>
-                </div>
+                </div>--%>
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         <asp:Button runat="server" OnClick="LogIn" OnClientClick="reopenOverlay()" Text="Log in" CssClass="btn btn-default" ValidationGroup="Login" />
-                        <asp:Label ID="LoggedInUser" runat="server" Text="Här visas inloggad användare."></asp:Label>
-                        <asp:Label ID="LoggedInMember" runat="server" Text="Inloggad medlem"></asp:Label>
+                        <asp:Label ID="LoginFail" runat="server"></asp:Label>
+                        
                     </div>
                 </div>
+                <hr />
             </div>
             <p>
-                <asp:HyperLink runat="server" ID="RegisterHyperLink" ViewStateMode="Disabled">Register as a new user</asp:HyperLink>
+                <asp:HyperLink runat="server" ID="RegisterHyperLink" ViewStateMode="Disabled">Bli medlem</asp:HyperLink>
             </p>
             <p>
-                <%-- Enable this once you have account confirmation enabled for password reset functionality
-                    <asp:HyperLink runat="server" ID="ForgotPasswordHyperLink" ViewStateMode="Disabled">Forgot your password?</asp:HyperLink>
-                --%>
+                <asp:HyperLink runat="server" ID="ForgotPasswordHyperLink" ViewStateMode="Disabled">Glömt lösenordet?</asp:HyperLink>
             </p>
         </section>
 
@@ -65,8 +64,7 @@
             }
 
             function reopenOverlay() {
-                if(!Page_ClientValidate("Login"))
-                {
+                if (!Page_ClientValidate("Login")) {
                     OpenOverlay()
                 }
 

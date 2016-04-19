@@ -102,7 +102,7 @@ namespace Squash.Account
                             m.SessionId = dr3["SessionId"].ToString();
                             m.MemberType = Convert.ToInt32(dr3["MemberType"].ToString());
 
-                            LoggedInMember.Text = "MedlemsId: " + m.MemberId;
+                            
                             int memberId = m.MemberId;
                             conn.Close();
 
@@ -121,7 +121,7 @@ namespace Squash.Account
                             conn.Open();
                             cmdInsertLogins.ExecuteNonQuery();
 
-                            LoggedInUser.Text = "Välkommen " + u.FirstName + " " + u.SurName + ".";
+                            
                             
                             conn.Close();
 
@@ -140,22 +140,22 @@ namespace Squash.Account
                         }
                         else
                         {
-                            LoggedInUser.Text = "";
-                            LoggedInMember.Text = "Administratör har inte godkänt dig än.";
+                            LoginFail.Text = "Administratör har inte godkänt dig än.";
+                            
                         }
 
                     }
                     else
                     {
-                        LoggedInUser.Text = "Fel lösenord.";
-                        LoggedInMember.Text = "";
+                        LoginFail.Text = "Fel e-post eller lösenord.";
+                        
                     }
                 }
 
                 else
                 {
-                    LoggedInUser.Text = "Fel Email.";
-                    LoggedInMember.Text = "";
+                    LoginFail.Text = "Fel e-post eller lösenord.";
+                    
                 }
             }
             catch (MySqlException ex)
