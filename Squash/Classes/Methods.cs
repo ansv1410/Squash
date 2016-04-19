@@ -13,6 +13,7 @@ using Squash.Classes;
 using System.Security.Cryptography;
 using System.Text;
 using System.Net.Mail;
+using System.Globalization;
 
 namespace Squash.Classes
 {
@@ -119,6 +120,42 @@ namespace Squash.Classes
 
         }
 
+
+        #endregion
+
+        #region CheckTelephoneNumber
+
+        public string FixNumber(string phonenumber)
+        {
+            string newNum = "";
+
+            foreach (char c in phonenumber)
+            {
+                if (Char.IsLetter(c))
+                {
+                    newNum += "";
+                }
+                else if (Char.IsDigit(c))
+                {
+                    newNum += c;
+                }
+                else
+                {
+                    newNum += "";
+                }
+            }
+
+            return newNum;
+        }
+
+        #endregion
+
+        #region UpperCaseLowerCase
+
+        public string FixName(string text)
+        {
+            return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(text);
+        }
 
         #endregion
 

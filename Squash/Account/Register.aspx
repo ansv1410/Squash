@@ -1,13 +1,14 @@
-﻿<%@ Page Title="Register" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="Squash.Account.Register" %>
+﻿<%@ Page Title="Bli medlem" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="Squash.Account.Register" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
-    <h2><%: Title %>.</h2>
+    <h2><%: Title %></h2>
     <%--<p class="text-danger">
         <asp:Literal runat="server" ID="ErrorMessage" />
     </p>--%>
 
     <div class="form-horizontal">
-        <h4>Create a new account</h4>
+        <h4>Fyll i formuläret nedan för att bli medlem.</h4>
+        <h5>Uppgifterna skickas till administratör för godkännande. Efter godkännandet får du ett e-mail och därefter kan du använda tjänsten.</h5>
         <hr />
         <%--<asp:ValidationSummary runat="server" CssClass="text-danger" />--%>
 

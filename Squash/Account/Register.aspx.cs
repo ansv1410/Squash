@@ -29,25 +29,25 @@ namespace Squash.Account
             if (Page.IsValid)
             {
                 string telNum = tbTelephone.Text;
-                string newNum = "";
+                string newNum = method.FixNumber(telNum);
                 string corrNum = "";
 
 
-                foreach (char c in telNum)
-                {
-                    if (Char.IsLetter(c))
-                    {
-                        newNum += "";
-                    }
-                    else if (Char.IsDigit(c))
-                    {
-                        newNum += c;
-                    }
-                    else
-                    {
-                        newNum += "";
-                    }
-                }
+                //foreach (char c in telNum)
+                //{
+                //    if (Char.IsLetter(c))
+                //    {
+                //        newNum += "";
+                //    }
+                //    else if (Char.IsDigit(c))
+                //    {
+                //        newNum += c;
+                //    }
+                //    else
+                //    {
+                //        newNum += "";
+                //    }
+                //}
 
                 //Börja med 0a, minst 8 siffror, max 15
                 if (newNum[0] == '0' && newNum.Length >= 8 && newNum.Length <= 15)
@@ -68,8 +68,6 @@ namespace Squash.Account
                 string pw = tbConfirmPassword.Text;
                 int agreed = 0;
 
-                string queryInsToUser = "";
-                string queryInsToMember = "";
 
                 if(rblAgreement.SelectedValue == "Agree")
                 {
@@ -89,29 +87,36 @@ namespace Squash.Account
 
                 string ipAddress = ((HiddenField)Page.Master.FindControl("hfLoggedInIP")).Value;
 
+                string queryInsToUser = "";
+                string queryInsToMember = "";
+
                 try
                 {
                     if(!dr.HasRows)
                     {
                         //Gör om alla strängar med text [0].To.Upper, SubString.ToLower.
-                        string tbFN = tbFirstName.Text;
-                        string firstName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(tbFN);
+                        //string tbFN = tbFirstName.Text;
+                        //string firstName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(tbFN);
+                        string firstName = method.FixName(tbFirstName.Text);
 
-                        string tbSN = tbSurName.Text;
-                        string surName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(tbSN);
+                        //string tbSN = tbSurName.Text;
+                        //string surName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(tbSN);
+                        string surName = method.FixName(tbSurName.Text);
 
-                        string tbSA = tbStreetAddress.Text;
-                        string streetAddress = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(tbSA);
+                        //string tbSA = tbStreetAddress.Text;
+                        //string streetAddress = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(tbSA);
+                        string streetAddress = method.FixName(tbStreetAddress.Text);
 
-                        string tbC = tbCity.Text;
-                        string city = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(tbC);
+                        //string tbC = tbCity.Text;
+                        //string city = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(tbC);
+                        string city = method.FixName(tbCity.Text);
 
 
                         Users createUser = new Users()
                         {
                             FirstName = firstName,
                             SurName = surName,
-                            Phone = tbTelephone.Text,
+                            Phone = newNum,
                             EMail = tbEmail.Text,
                             StreatAddress = streetAddress,
                             ZipCode = tbPostalCode.Text,
