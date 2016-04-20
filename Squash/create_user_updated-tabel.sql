@@ -17,6 +17,7 @@ Password varchar(45) NOT NULL DEFAULT '',
 Cellular varchar(45) DEFAULT '',
 PublicAddress tinyint(3) unsigned NOT NULL DEFAULT '1',
 PRIMARY KEY (Id)
+UNIQUE INDEX `UserId_UNIQUE` (`UserId` ASC);
 )ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 INSERT INTO users_updated (UserId, Firstname, Surname, Phone, EMail, StreetAddress, ZipCode, City, IPAddress, Password, Cellular, PublicAddress)

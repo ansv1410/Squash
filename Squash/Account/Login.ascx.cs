@@ -55,7 +55,7 @@ namespace Squash.Account
             string email = tbLogInEmail.Text;
             string password = tbLogInPassword.Text;
 
-            string queryEmail = "SELECT * FROM users WHERE EMail = '" + email + "'";
+            string queryEmail = "SELECT * FROM users_updated WHERE EMail = '" + email + "'";
             string queryMemberId = "";
             string queryInsertLogins = "";
 
