@@ -15,16 +15,16 @@
                         </p>
                     </asp:PlaceHolder>
                     <div class="form-group">
-                        <asp:Label runat="server" AssociatedControlID="Email" CssClass="col-md-2 control-label">Email</asp:Label>
+                        <asp:Label runat="server" AssociatedControlID="ResetToEmail" CssClass="col-md-2 control-label">Email</asp:Label>
                         <div class="col-md-10">
-                            <asp:TextBox runat="server" ID="Email" CssClass="form-control" TextMode="Email" />
-                            <asp:RequiredFieldValidator runat="server" ControlToValidate="Email"
+                            <asp:TextBox runat="server" ID="ResetToEmail" CssClass="form-control" TextMode="Email" />
+                            <asp:RequiredFieldValidator runat="server" ControlToValidate="ResetToEmail"
                                 CssClass="text-danger" ErrorMessage="The email field is required." />
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <asp:Button runat="server" OnClick="Forgot" Text="Email Link" CssClass="btn btn-default" />
+                            <asp:Button ID="btnResetPW" runat="server" onClick="btnResetPW_Click" Text="Skicka lösenord" CssClass="btn btn-default" />
                         </div>
                     </div>
                 </div>
