@@ -14,6 +14,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Net.Mail;
 using System.Globalization;
+using System.Diagnostics;
 
 namespace Squash.Classes
 {
@@ -48,9 +49,22 @@ namespace Squash.Classes
 
 
         #region LogIn
-        public bool CheckEmailExist(string email, MySqlConnection conn)
+        public bool EmailExist(string email)
         {
-            return true;
+            MySqlConnection conn = myConn();
+            string queryEmailExist = "SELECT * FROM users_updated WHERE EMail = '" + email + "'";
+            MySqlDataReader dr = myReader(queryEmailExist, conn);
+            
+            if(!dr.HasRows)
+            {
+                conn.Close();
+                return false;
+            }
+            else
+            {
+                conn.Close();
+                return true;
+            }
         }
 
         public string Hashify(string pw)
@@ -74,6 +88,7 @@ namespace Squash.Classes
 
         public void ResetPW(string toEmail)
         {
+
             char[] chars = new char[62];
             chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".ToCharArray();
             byte[] data = new byte[1];
@@ -103,7 +118,7 @@ namespace Squash.Classes
            string content = "<!DOCTYPE html><html><head><meta charset='UTF-8'><title>Ditt nya lösenord</title></head><body><h2>Ditt nya lösenord</h2><hr /><p>"+ newPW +"</p></body></html>";
 
 
-            System.Net.Mail.MailMessage mail = new System.Net.Mail.MailMessage();
+            MailMessage mail = new MailMessage();
             mail.To.Add(toEmail);
             mail.From = new MailAddress("admin@ostersundssquash.se", "Östersunds Squashförening", System.Text.Encoding.UTF8);
             mail.Subject = "Ditt nya lösenord";
@@ -116,7 +131,38 @@ namespace Squash.Classes
             System.Net.ServicePointManager.ServerCertificateValidationCallback += delegate { return true; };
 
             SmtpClient client = new SmtpClient();
-            client.Send(mail);
+
+            try
+            {
+                client.Send(mail);
+
+                try
+                {
+
+                string queryUpdatePW = "UPDATE users_updated "
+                + "SET Password = @pw "
+                + "WHERE EMail = '" + toEmail + "'";
+                MySqlConnection conn = myConn();
+
+                MySqlCommand cmd = new MySqlCommand(queryUpdatePW, conn);
+                cmd.Parameters.AddWithValue("pw", Hashify(newPW));
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                conn.Close();
+
+                }
+                catch (MySqlException ex)
+                {
+                    Debug.WriteLine(ex);
+                }
+            }
+            catch(System.Net.Mail.SmtpException ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            
+            
 
         }
 

@@ -46,7 +46,17 @@ namespace Squash.Account
 
         protected void btnResetPW_Click(object sender, EventArgs e)
         {
+            if(method.EmailExist(ResetToEmail.Text))
+            {
             method.ResetPW(ResetToEmail.Text);
+            wrongEmail.Visible = false;
+            DisplayEmail.Visible = true;
+            }
+            else
+            {
+                wrongEmail.Visible = true;
+                DisplayEmail.Visible = false;
+            }
         }
     }
 }
