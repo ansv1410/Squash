@@ -13,129 +13,102 @@ namespace Squash.Account {
     public partial class MyPage {
         
         /// <summary>
-        /// tbMPFirstName control.
+        /// myinfo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbMPFirstName;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl myinfo;
         
         /// <summary>
-        /// tbMPSurName control.
+        /// lblName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbMPSurName;
+        protected global::System.Web.UI.WebControls.Label lblName;
         
         /// <summary>
-        /// tbMPStreetAddress control.
+        /// lblStreetAddress control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbMPStreetAddress;
+        protected global::System.Web.UI.WebControls.Label lblStreetAddress;
         
         /// <summary>
-        /// tbMPPostalCode control.
+        /// lblPostalCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbMPPostalCode;
+        protected global::System.Web.UI.WebControls.Label lblPostalCode;
         
         /// <summary>
-        /// RegularExpressionValidatorPostalCode control.
+        /// lblCity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidatorPostalCode;
+        protected global::System.Web.UI.WebControls.Label lblCity;
         
         /// <summary>
-        /// tbMPCity control.
+        /// lblTelephone control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbMPCity;
+        protected global::System.Web.UI.WebControls.Label lblTelephone;
         
         /// <summary>
-        /// tbMPTelephone control.
+        /// lblEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbMPTelephone;
+        protected global::System.Web.UI.WebControls.Label lblEmail;
         
         /// <summary>
-        /// tbMPEmail control.
+        /// lblAgreement control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbMPEmail;
+        protected global::System.Web.UI.WebControls.Label lblAgreement;
         
         /// <summary>
-        /// tbMPPassword control.
+        /// BtnShowEditInfo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbMPPassword;
+        protected global::System.Web.UI.WebControls.Button BtnShowEditInfo;
         
         /// <summary>
-        /// RegularExpressionValidator2 control.
+        /// editinfo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator2;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl editinfo;
         
         /// <summary>
-        /// tbMPConfirmPassword control.
+        /// EditMyInfoControll control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbMPConfirmPassword;
-        
-        /// <summary>
-        /// rblMPAgreement control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rblMPAgreement;
-        
-        /// <summary>
-        /// Button1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
-        
-        /// <summary>
-        /// lblMPMessage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMPMessage;
+        protected global::Squash.Account.EditUserInfo EditMyInfoControll;
     }
 }

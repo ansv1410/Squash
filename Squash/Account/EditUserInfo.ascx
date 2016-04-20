@@ -1,20 +1,12 @@
-﻿<%@ Page Title="Min sida" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MyPage.aspx.cs" Inherits="Squash.Account.MyPage" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EditUserInfo.ascx.cs" Inherits="Squash.Account.EditUserInfo" %>
 
-<%@ Register TagPrefix="uc" TagName="EditMyInfoControl" Src="~/Account/EditUserInfo.ascx" %>
 
-<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h2><%: Title %></h2>
-    <%--<p class="text-danger">
-        <asp:Literal runat="server" ID="ErrorMessage" />
-    </p>--%>
-
-    <div class="form-horizontal">
-        <%--        <h4>Uppdatera dina information nedan.</h4>
+<h4>Uppdatera dina information nedan.</h4>
         <h5>Uppgifterna skickas till administratör för godkännande. Efter godkännandet får du ett e-mail och därefter är dina uppgifter uppdaterade.</h5>
-        <hr />--%>
-        <%--<asp:ValidationSummary runat="server" CssClass="text-danger" />
+        <hr />
+        <%--<asp:ValidationSummary runat="server" CssClass="text-danger" />--%>
 
-        <%-- <div class="form-group">
+        <div class="form-group">
             <asp:Label runat="server" AssociatedControlID="tbMPFirstName" CssClass="col-md-2 control-label">Förnamn</asp:Label>
             <div class="col-md-10">
                 <asp:TextBox runat="server" ID="tbMPFirstName" CssClass="form-control" TextMode="SingleLine" />
@@ -64,7 +56,7 @@
             </div>
         </div>
         <%-- Inloggningskontroller --%>
-        <%--<div class="form-group">
+        <div class="form-group">
             <asp:Label runat="server" AssociatedControlID="tbMPEmail" CssClass="col-md-2 control-label">E-post</asp:Label>
             <div class="col-md-10">
                 <asp:TextBox runat="server" ID="tbMPEmail" CssClass="form-control" TextMode="Email" />
@@ -94,7 +86,7 @@
             </div>
         </div>
         <%-- Radiobuttons för att godkänna lagring och eventuell visning i kontaktlista --%>
-        <%--<div class="form-group">
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <asp:Label AssociatedControlID="rblMPAgreement" runat="server" Text="Jag godkänner att personuppgifter lagras och vill:"></asp:Label>
                 <asp:RadioButtonList ID="rblMPAgreement" runat="server"
@@ -112,49 +104,4 @@
                 <asp:Button ID="Button1" runat="server" Text="Button" CssClass="btn btn-default" OnClick="Button1_Click"/>
             </div>
         </div>
-        <asp:Label ID="lblMPMessage" runat="server" Text="Label"></asp:Label>--%>
-
-
-
-        
-
-        <div id="myinfo" runat="server">
-            <h4>Här syns din information och bokningar.</h4>
-            <h5>Uppgifterna går att uppdatera genom att trycka på knappen nederst.</h5>
-            <hr />
-            <div class="my-info-label-div">
-                <asp:Label ID="lblName" runat="server" CssClass="my-info-label"></asp:Label>
-            </div>
-            <div class="my-info-label-div">
-                <asp:Label ID="lblStreetAddress" runat="server" CssClass="my-info-label"></asp:Label>
-            </div>
-            <div class="my-info-label-div">
-                <asp:Label ID="lblPostalCode" runat="server" CssClass="my-info-label"></asp:Label>
-            </div>
-            <div class="my-info-label-div">
-                <asp:Label ID="lblCity" runat="server" CssClass="my-info-label"></asp:Label>
-            </div>
-            <div class="my-info-label-div">
-                <asp:Label ID="lblTelephone" runat="server" CssClass="my-info-label"></asp:Label>
-            </div>
-            <div class="my-info-label-div">
-                <asp:Label ID="lblEmail" runat="server" CssClass="my-info-label"></asp:Label>
-            </div>
-            <div class="my-info-label-div">
-                <asp:Label ID="lblAgreement" runat="server" CssClass="my-info-label"></asp:Label>
-            </div>
-            <div class="my-info-label-div">
-                <div class="btn-update-info">
-                    <asp:Button ID="BtnShowEditInfo" runat="server" Text="Redigera uppgifter" CssClass="btn btn-default" OnClick="BtnShowEditInfo_Click" />
-                </div>
-            </div>
-        </div>
-
-        <div id="editinfo" runat="server">
-
-            <uc:EditMyInfoControl ID="EditMyInfoControll" runat="server" />
-
-        </div>
-
-    </div>
-</asp:Content>
+        <asp:Label ID="lblMPMessage" runat="server" Text="Label"></asp:Label>

@@ -116,6 +116,26 @@ footer a{
 }*/
 
 
+#myinfo{
+    /*float:left;*/
+    /*text-align:left;*/
+    /*width:10%;*/
+}
+.my-info-label-div{
+    font-weight:bold;
+}
+.my-info-label{
+    /*text-align:left;*/
+    /*color:red;*/
+}
+.btn-update-info{
+    margin-top:10px;
+}
+.my-info-label-div{
+    margin-bottom:12px;
+}
+
+
 
 /* Set widths on the form inputs since otherwise they're 100% wide */
 input[type="text"],
