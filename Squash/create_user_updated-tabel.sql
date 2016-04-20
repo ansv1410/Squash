@@ -4,7 +4,7 @@ DROP TABLE IF EXISTS users_updated;
 
 CREATE TABLE users_updated (
 Id int(10) unsigned NOT NULL AUTO_INCREMENT,
-UserId int(10) NOT NULL,
+UserId int(10) unsigned NOT NULL,
 Firstname varchar(45) NOT NULL DEFAULT '',
 Surname varchar(45) NOT NULL DEFAULT '',
 Phone varchar(45) NOT NULL DEFAULT '',
@@ -16,7 +16,13 @@ IPAddress varchar(45) NOT NULL DEFAULT '',
 Password varchar(45) NOT NULL DEFAULT '',
 Cellular varchar(45) DEFAULT '',
 PublicAddress tinyint(3) unsigned NOT NULL DEFAULT '1',
-PRIMARY KEY (Id)
+PRIMARY KEY (Id),
+INDEX `FK_to_users_idx` (`UserId` ASC),
+CONSTRAINT `FK_to_users`
+FOREIGN KEY (`UserId`)
+  REFERENCES `users` (`UserId`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION
 )ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 INSERT INTO users_updated (UserId, Firstname, Surname, Phone, EMail, StreetAddress, ZipCode, City, IPAddress, Password, Cellular, PublicAddress)
