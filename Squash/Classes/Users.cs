@@ -7,6 +7,7 @@ namespace Squash.Classes
 {
     public class Users
     {
+        public int Id { get; set; }
         public int UserId { get; set; }
         public string FirstName { get; set; }
         public string SurName { get; set; }

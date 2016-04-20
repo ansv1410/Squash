@@ -11,28 +11,29 @@
             <div class="form-horizontal">
                 <h4>Ange e-post och lösenord.</h4>
                 <hr />
-                <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
-                    <p class="text-danger">
-                        <asp:Literal runat="server" ID="FailureText" />
-                    </p>
-                </asp:PlaceHolder>
-                <div class="form-group">
-                    <asp:Label runat="server" AssociatedControlID="tbLogInEmail" CssClass="col-md-2 control-label">E-post</asp:Label>
-                    <div class="col-md-10">
-                        <asp:TextBox runat="server" ID="tbLogInEmail" CssClass="form-control" TextMode="Email" />
-                        <asp:RequiredFieldValidator runat="server" ControlToValidate="tbLogInEmail" ValidationGroup="Login"
-                            CssClass="text-danger" ErrorMessage="The email field is required." />
+                <asp:Panel ID="pnlDefaultButton" runat="server" DefaultButton="btnLogin">
+                    <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
+                        <p class="text-danger">
+                            <asp:Literal runat="server" ID="FailureText" />
+                        </p>
+                    </asp:PlaceHolder>
+                    <div class="form-group">
+                        <asp:Label runat="server" AssociatedControlID="tbLogInEmail" CssClass="col-md-2 control-label">E-post</asp:Label>
+                        <div class="col-md-10">
+                            <asp:TextBox runat="server" ID="tbLogInEmail" CssClass="form-control" TextMode="Email" />
+                            <asp:RequiredFieldValidator runat="server" ControlToValidate="tbLogInEmail" ValidationGroup="Login"
+                                CssClass="text-danger" ErrorMessage="The email field is required." />
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <asp:Label runat="server" AssociatedControlID="tbLogInPassword" CssClass="col-md-2 control-label">Lösenord</asp:Label>
-                    <div class="col-md-10">
-                        <asp:TextBox runat="server" ID="tbLogInPassword" TextMode="Password" CssClass="form-control" />
-                        <asp:RequiredFieldValidator runat="server" ControlToValidate="tbLogInPassword" ValidationGroup="Login"
-                            CssClass="text-danger" ErrorMessage="The password field is required." />
+                    <div class="form-group">
+                        <asp:Label runat="server" AssociatedControlID="tbLogInPassword" CssClass="col-md-2 control-label">Lösenord</asp:Label>
+                        <div class="col-md-10">
+                            <asp:TextBox runat="server" ID="tbLogInPassword" TextMode="Password" CssClass="form-control" />
+                            <asp:RequiredFieldValidator runat="server" ControlToValidate="tbLogInPassword" ValidationGroup="Login"
+                                CssClass="text-danger" ErrorMessage="The password field is required." />
+                        </div>
                     </div>
-                </div>
-                <%--<div class="form-group">
+                    <%--<div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         <div class="checkbox">
                             <asp:CheckBox runat="server" ID="RememberMe" />
@@ -40,13 +41,13 @@
                         </div>
                     </div>
                 </div>--%>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <asp:Button runat="server" OnClick="LogIn" OnClientClick="reopenOverlay()" Text="Log in" CssClass="btn btn-default" ValidationGroup="Login" />
-                        <asp:Label ID="LoginFail" runat="server"></asp:Label>
-                        
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <asp:Button ID="btnLogin" runat="server" OnClick="LogIn" OnClientClick="reopenOverlay()" Text="Log in" CssClass="btn btn-default" ValidationGroup="Login" />
+                            <asp:Label ID="LoginFail" runat="server"></asp:Label>
+                        </div>
                     </div>
-                </div>
+                </asp:Panel>
                 <hr />
             </div>
             <p>

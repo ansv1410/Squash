@@ -69,6 +69,7 @@ namespace Squash.Account
                     //if(dr.HasRows)
                     //{
                     Users u = new Users();
+                    u.Id = Convert.ToInt32(dr["Id"].ToString());
                     u.UserId = Convert.ToInt32(dr["UserId"].ToString());
                     u.FirstName = dr["Firstname"].ToString();
                     u.SurName = dr["Surname"].ToString();
