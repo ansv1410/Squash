@@ -73,7 +73,7 @@ namespace Squash.Account
                 //string postalCode = tbMPPostalCode.Text;
 
                 string email = tbMPEmail.Text;
-                string queryEmailExist = "SELECT * FROM users WHERE EMail = '" + email + "'";
+                string queryEmailExist = "SELECT * FROM users_updated WHERE EMail = '" + email + "'";
                 //string queryUpdateUser = "";
 
                 MySqlDataReader dr = method.myReader(queryEmailExist, conn);

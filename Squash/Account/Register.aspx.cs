@@ -61,7 +61,7 @@ namespace Squash.Account
                 }
 
                 string email = tbEmail.Text;
-                string queryEmailExist = "SELECT * FROM users WHERE EMail = '" + email + "'";
+                string queryEmailExist = "SELECT * FROM users_updated WHERE EMail = '" + email + "'";
 
                 MySqlDataReader dr = method.myReader(queryEmailExist, conn);
 
