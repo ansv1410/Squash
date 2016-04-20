@@ -128,7 +128,13 @@ namespace Squash.Account
                         conn.Close();
 
 
-                        queryInsToUser = "INSERT INTO users (Firstname, Surname, Phone, EMail, StreetAddress, ZipCode, City, IPAddress, Password, PublicAddress) VALUES (@fn, @sn, @p, @e, @sa, @zc, @c, @ip, @pw, @pa)";
+                        queryInsToUser = "START TRANSACTION; "
+                                        + "INSERT INTO users (Firstname, Surname, Phone, EMail, StreetAddress, ZipCode, City, IPAddress, Password, Cellular, PublicAddress) "
+                                        + "VALUES (@fn, @sn, @p, @e, @sa, @zc, @c, @ip, @pw, @cell, @pa); "
+                                        + "INSERT INTO users_updated (UserId, Firstname, Surname, Phone, EMail, StreetAddress, ZipCode, City, IPAddress, Password, Cellular, PublicAddress) "
+                                        + "SELECT UserId, Firstname, Surname, Phone, EMail, StreetAddress, ZipCode, City, IPAddress, Password, Cellular, PublicAddress FROM users WHERE UserId = last_insert_id(); "
+                                        + "COMMIT;";
+
                         MySqlCommand cmd = new MySqlCommand(queryInsToUser, conn);
                         cmd.Parameters.AddWithValue("fn", createUser.FirstName);
                         cmd.Parameters.AddWithValue("sn", createUser.SurName);
@@ -139,11 +145,12 @@ namespace Squash.Account
                         cmd.Parameters.AddWithValue("c", createUser.City);
                         cmd.Parameters.AddWithValue("ip", createUser.IPAddress);
                         cmd.Parameters.AddWithValue("pw", createUser.Password);
+                        cmd.Parameters.AddWithValue("cell", "");
                         cmd.Parameters.AddWithValue("pa", createUser.PublicAddres);
 
                         conn.Open();
                         cmd.ExecuteNonQuery();
-                        //cmd.ExecuteScalar();
+                        //int returningUserId = Convert.ToInt32(cmd.ExecuteScalar());
 
                         //Möjligtvis använda returning ID för att göra en insert till members.
                         //Alternativt typ: int id = conn.LastInsertedId;
