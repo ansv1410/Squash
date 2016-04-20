@@ -56,9 +56,6 @@ namespace Squash.Account
         {
             if (Page.IsValid)
             {
-                string k = tbMPCity.Text;
-
-
                 //Response.Write("<script>alert('" + "hej" + "')</script>");
 
                 //string telNum = tbMPTelephone.Text;
