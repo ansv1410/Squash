@@ -33,22 +33,6 @@ namespace Squash.Account
                 string corrNum = "";
 
 
-                //foreach (char c in telNum)
-                //{
-                //    if (Char.IsLetter(c))
-                //    {
-                //        newNum += "";
-                //    }
-                //    else if (Char.IsDigit(c))
-                //    {
-                //        newNum += c;
-                //    }
-                //    else
-                //    {
-                //        newNum += "";
-                //    }
-                //}
-
                 //Börja med 0a, minst 8 siffror, max 15
                 if (newNum[0] == '0' && newNum.Length >= 8 && newNum.Length <= 15)
                 {
@@ -60,11 +44,6 @@ namespace Squash.Account
                     lblMessage.Text = "Ogiltigt telefonnummer";
                 }
 
-                string email = tbEmail.Text;
-                string queryEmailExist = "SELECT * FROM users_updated WHERE EMail = '" + email + "'";
-
-                MySqlDataReader dr = method.myReader(queryEmailExist, conn);
-
                 string pw = tbConfirmPassword.Text;
                 int agreed = 0;
 
@@ -75,40 +54,17 @@ namespace Squash.Account
                 }
 
 
-                //string url = "http://checkip.dyndns.org";
-                //WebRequest request = WebRequest.Create(url);
-                //WebResponse resp = request.GetResponse();
-                //StreamReader sr = new StreamReader(resp.GetResponseStream());
-                //string response = sr.ReadToEnd().Trim();
-                //string[] a = response.Split(':');
-                //string a2 = a[1].Substring(1);
-                //string[] a3 = a2.Split('<');
-                //string ipAddress = a3[0];
-
                 string ipAddress = ((HiddenField)Page.Master.FindControl("hfLoggedInIP")).Value;
 
                 string queryInsToUser = "";
-                string queryInsToMember = "";
 
                 try
                 {
-                    if(!dr.HasRows)
+                    if(!method.EmailExist(tbEmail.Text))
                     {
-                        //Gör om alla strängar med text [0].To.Upper, SubString.ToLower.
-                        //string tbFN = tbFirstName.Text;
-                        //string firstName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(tbFN);
                         string firstName = method.FixName(tbFirstName.Text);
-
-                        //string tbSN = tbSurName.Text;
-                        //string surName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(tbSN);
                         string surName = method.FixName(tbSurName.Text);
-
-                        //string tbSA = tbStreetAddress.Text;
-                        //string streetAddress = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(tbSA);
                         string streetAddress = method.FixName(tbStreetAddress.Text);
-
-                        //string tbC = tbCity.Text;
-                        //string city = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(tbC);
                         string city = method.FixName(tbCity.Text);
 
 
@@ -116,7 +72,7 @@ namespace Squash.Account
                         {
                             FirstName = firstName,
                             SurName = surName,
-                            Phone = newNum,
+                            Phone = newNum, //Möjligtvis corrNum om man vill ha med ett -.
                             EMail = tbEmail.Text,
                             StreatAddress = streetAddress,
                             ZipCode = tbPostalCode.Text,
@@ -150,14 +106,10 @@ namespace Squash.Account
 
                         conn.Open();
                         cmd.ExecuteNonQuery();
-                        //int returningUserId = Convert.ToInt32(cmd.ExecuteScalar());
-
-                        //Möjligtvis använda returning ID för att göra en insert till members.
-                        //Alternativt typ: int id = conn.LastInsertedId;
                     }
                     else
                     {
-                        //E-posten användaren angav finns redan i databasen, vänligen ange en ny.
+                        lblMessage.Text = "E-posten du angav finns redan i databasen, vänligen ange en ny.";
                     }
                 }
                 catch (MySqlException ex)
@@ -169,40 +121,9 @@ namespace Squash.Account
                     conn.Close();
                 }
 
-                #region ONÖDIGA SAKER
-                //var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-                //var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
-                //var user = new ApplicationUser() { UserName = tbEmail.Text, Email = tbEmail.Text };
-                //IdentityResult result = manager.Create(user, tbPassword.Text);
-                //if (result.Succeeded)
-                //{
-                //    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                //    //string code = manager.GenerateEmailConfirmationToken(user.Id);
-                //    //string callbackUrl = IdentityHelper.GetUserConfirmationRedirectUrl(code, user.Id, Request);
-                //    //manager.SendEmail(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>.");
-
-                //    signInManager.SignIn(user, isPersistent: false, rememberBrowser: false);
-                //    IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
-                //}
-                //else
-                //{
-                //    ErrorMessage.Text = result.Errors.FirstOrDefault();
-                //}
-                #endregion
-
             }
-
-            else
-            {
-                //ErrorMessage.Text = "Det funkar inte det här.";
-            }
-
-
-            
-
 
         }
-
 
     }
 }

@@ -72,11 +72,6 @@ namespace Squash.Account
 
                 //string postalCode = tbMPPostalCode.Text;
 
-                string email = tbMPEmail.Text;
-                string queryEmailExist = "SELECT * FROM users_updated WHERE EMail = '" + email + "'";
-                //string queryUpdateUser = "";
-
-                MySqlDataReader dr = method.myReader(queryEmailExist, conn);
 
                 //string ipAddress = ((HiddenField)Page.Master.FindControl("hfLoggedInIP")).Value;
                 //string pw = tbMPConfirmPassword.Text;
@@ -91,7 +86,7 @@ namespace Squash.Account
 
                 try
                 {
-                    if (!dr.HasRows)
+                    if (!method.EmailExist(tbMPEmail.Text))
                     {
                         UpdateUser();
 
@@ -139,7 +134,7 @@ namespace Squash.Account
 
                     }
 
-                    else if (lip.user.EMail == email)
+                    else if (lip.user.EMail == tbMPEmail.Text)
                     {
                         UpdateUser();
                     }
