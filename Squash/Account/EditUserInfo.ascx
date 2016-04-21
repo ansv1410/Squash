@@ -4,8 +4,6 @@
 <h4>Uppdatera dina information nedan.</h4>
 <h5>Uppgifterna skickas till administratör för godkännande. Efter godkännandet får du ett e-mail och därefter är dina uppgifter uppdaterade.</h5>
 <hr />
-<%--<asp:ValidationSummary runat="server" CssClass="text-danger" />--%>
-
 
 <asp:Panel ID="pnlDefaultButton" runat="server" DefaultButton="btnUpdateInfo">
     <div class="form-group">
@@ -66,27 +64,6 @@
                 CssClass="text-danger" ErrorMessage="Fyll i e-post." />
         </div>
     </div>
-    <div class="form-group">
-        <asp:Label runat="server" AssociatedControlID="tbMPPassword" CssClass="col-md-2 control-label">Lösenord</asp:Label>
-        <div class="col-md-10">
-            <asp:TextBox runat="server" ID="tbMPPassword" TextMode="Password" CssClass="form-control" />
-            <asp:RequiredFieldValidator runat="server" ControlToValidate="tbMPPassword" ValidationGroup="UpdateInfo"
-                CssClass="text-danger" ErrorMessage="Fyll i önskat lösenord." />
-            <br />
-            <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="tbMPPassword" CssClass="text-danger" ErrorMessage="Ska vara mellan 6-12 tecken och minst en siffra." ValidationExpression="^(?=.*\d)(?=.*[a-zA-Z]|å|Å|ä|Ä|ö|Ö).{6,12}$"></asp:RegularExpressionValidator>
-        </div>
-    </div>
-    <div class="form-group">
-        <asp:Label runat="server" AssociatedControlID="tbMPConfirmPassword" CssClass="col-md-2 control-label">Upprepa lösenord</asp:Label>
-        <div class="col-md-10">
-            <asp:TextBox runat="server" ID="tbMPConfirmPassword" TextMode="Password" CssClass="form-control" />
-            <asp:RequiredFieldValidator runat="server" ControlToValidate="tbMPConfirmPassword" ValidationGroup="UpdateInfo"
-                CssClass="text-danger" Display="Dynamic" ErrorMessage="Fyll i upprepa lösenord." />
-            <asp:CompareValidator runat="server" ControlToCompare="tbMPPassword" ControlToValidate="tbMPConfirmPassword"
-                CssClass="text-danger" Display="Dynamic" ErrorMessage="Lösenorden du fyllt i stämmer inte överens." />
-            <br />
-        </div>
-    </div>
     <%-- Radiobuttons för att godkänna lagring och eventuell visning i kontaktlista --%>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
@@ -103,7 +80,6 @@
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <asp:Button ID="btnUpdateInfo" runat="server" OnClick="UpdateInfo_Click" Text="Uppdatera konto" CssClass="btn btn-default" ValidationGroup="UpdateInfo" />
-            <asp:Button ID="Button1" runat="server" Text="Button" CssClass="btn btn-default" OnClick="Button1_Click" />
         </div>
     </div>
     <asp:Label ID="lblMPMessage" runat="server" Text="Label"></asp:Label>

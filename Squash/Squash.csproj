@@ -165,6 +165,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Account\ChangePassword.ascx" />
     <Content Include="Account\EditUserInfo.ascx" />
     <Content Include="Account\Forgot.aspx" />
     <Content Include="Account\Login.ascx" />
@@ -246,6 +247,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account\ChangePassword.ascx.cs">
+      <DependentUpon>ChangePassword.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\ChangePassword.ascx.designer.cs">
+      <DependentUpon>ChangePassword.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Account\EditUserInfo.ascx.cs">
       <DependentUpon>EditUserInfo.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -173,7 +173,7 @@ namespace Squash.Account
             string postalCode = tbMPPostalCode.Text;
             string email = tbMPEmail.Text;
             string ipAddress = ((HiddenField)Page.Master.FindControl("hfLoggedInIP")).Value;
-            string pw = tbMPConfirmPassword.Text;
+            string pw = lip.user.Password;
             int agreed = 0;
             if (rblMPAgreement.SelectedValue == "Agree")
             {
@@ -181,9 +181,11 @@ namespace Squash.Account
             }
 
             int userId = lip.user.UserId;
+            int id = lip.user.Id;
 
             Users UpdateUser = new Users()
             {
+                Id = id,
                 UserId = userId,
                 FirstName = firstName,
                 SurName = surName,
@@ -193,15 +195,15 @@ namespace Squash.Account
                 ZipCode = postalCode,
                 City = city,
                 IPAddress = ipAddress,
-                Password = method.Hashify(pw),
+                Password = pw,
                 PublicAddres = agreed
             };
             conn.Close();
 
-            string queryUpdateUser = "UPDATE users_update "
+            string queryUpdateUser = "UPDATE users_updated "
                 + "SET Firstname = @fn, Surname = @sn, Phone = @p, EMail = @e, "
-                + "StreetAddress = @sa, ZipCode = @zc, City = @c, IPAddress = @ip, Password = @pw, PublicAddress = @pa "
-                + "WHERE UserId = '" + userId + "'";
+                + "StreetAddress = @sa, ZipCode = @zc, City = @c, IPAddress = @ip, PublicAddress = @pa "
+                + "WHERE Id = '" + id + "'";
 
             MySqlCommand cmd = new MySqlCommand(queryUpdateUser, conn);
             cmd.Parameters.AddWithValue("fn", UpdateUser.FirstName);
@@ -212,7 +214,7 @@ namespace Squash.Account
             cmd.Parameters.AddWithValue("zc", UpdateUser.ZipCode);
             cmd.Parameters.AddWithValue("c", UpdateUser.City);
             cmd.Parameters.AddWithValue("ip", UpdateUser.IPAddress);
-            cmd.Parameters.AddWithValue("pw", UpdateUser.Password);
+            //cmd.Parameters.AddWithValue("pw", UpdateUser.Password);
             cmd.Parameters.AddWithValue("pa", UpdateUser.PublicAddres);
 
             conn.Open();
@@ -224,9 +226,9 @@ namespace Squash.Account
             Response.Redirect("MyPage.aspx");
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
+        protected void btnUpdatePW_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Players.aspx");
+
         }
     }
 }
