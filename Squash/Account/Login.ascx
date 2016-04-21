@@ -22,7 +22,7 @@
                         <div class="col-md-10">
                             <asp:TextBox runat="server" ID="tbLogInEmail" CssClass="form-control" TextMode="Email" />
                             <asp:RequiredFieldValidator runat="server" ControlToValidate="tbLogInEmail" ValidationGroup="Login"
-                                CssClass="text-danger" ErrorMessage="The email field is required." />
+                                CssClass="text-danger" ErrorMessage="E-postfältet måste fyllas i." />
                         </div>
                     </div>
                     <div class="form-group">
@@ -30,7 +30,7 @@
                         <div class="col-md-10">
                             <asp:TextBox runat="server" ID="tbLogInPassword" TextMode="Password" CssClass="form-control" />
                             <asp:RequiredFieldValidator runat="server" ControlToValidate="tbLogInPassword" ValidationGroup="Login"
-                                CssClass="text-danger" ErrorMessage="The password field is required." />
+                                CssClass="text-danger" ErrorMessage="Lösenordsfältet måste fyllas i." />
                         </div>
                     </div>
                     <%--<div class="form-group">

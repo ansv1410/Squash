@@ -103,6 +103,15 @@ namespace Squash.Account {
         protected global::System.Web.UI.WebControls.Button BtnShowEditInfo;
         
         /// <summary>
+        /// BtnShowEditPW control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnShowEditPW;
+        
+        /// <summary>
         /// editinfo control.
         /// </summary>
         /// <remarks>
@@ -119,5 +128,23 @@ namespace Squash.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Squash.Account.EditUserInfo EditMyInfoControll;
+        
+        /// <summary>
+        /// changepw control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl changepw;
+        
+        /// <summary>
+        /// ChangePasswordControl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Squash.Account.ChangePassword ChangePasswordControl;
     }
 }

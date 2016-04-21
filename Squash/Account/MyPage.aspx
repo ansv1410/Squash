@@ -1,6 +1,8 @@
 ﻿<%@ Page Title="Min sida" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MyPage.aspx.cs" Inherits="Squash.Account.MyPage" %>
 
 <%@ Register TagPrefix="uc" TagName="EditMyInfoControl" Src="~/Account/EditUserInfo.ascx" %>
+<%@ Register TagPrefix="uc" TagName="ChangePasswordControl" Src="~/Account/ChangePassword.ascx" %>
+
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%: Title %></h2>
@@ -38,6 +40,7 @@
                 <div class="my-info-label-div">
                     <div class="btn-update-info">
                         <asp:Button ID="BtnShowEditInfo" runat="server" Text="Redigera uppgifter" CssClass="btn btn-default" OnClick="BtnShowEditInfo_Click" />
+                        <asp:Button ID="BtnShowEditPW" runat="server" Text="Byt Lösenord" CssClass="btn btn-default" OnClick="BtnShowEditPW_Click" />
                     </div>
                 </div>
             </asp:Panel>
@@ -48,6 +51,12 @@
             <uc:EditMyInfoControl ID="EditMyInfoControll" runat="server" />
 
         </div>
+        <div id="changepw" runat="server">
+
+            <uc:ChangePasswordControl ID="ChangePasswordControl" runat="server" />
+
+        </div>
+
 
     </div>
 </asp:Content>

@@ -28,14 +28,51 @@ namespace Squash.Account
         protected void Page_Load(object sender, EventArgs e)
         {
             editinfo.Visible = false;
+            changepw.Visible = false;
+            myinfo.Visible = true;
 
             lip = (LoggedInPerson)Session["lip"];
 
             //if (!Page.IsPostBack)
             //{
                 //Response.Write("<script>alert('" + lip.user.FirstName + " " + lip.member.MemberId + " " + lip.logins.IPAddress + "')</script>");
-            myinfo.Visible = true;
-            editinfo.Visible = false;
+
+            lblName.Text = lip.user.FirstName + " " + lip.user.SurName;
+            lblStreetAddress.Text = lip.user.StreatAddress;
+            lblPostalCode.Text = lip.user.ZipCode;
+            lblCity.Text = lip.user.City;
+            lblTelephone.Text = lip.user.Phone;
+            lblEmail.Text = lip.user.EMail;
+
+            if (lip.user.PublicAddres == 1)
+            {
+                lblAgreement.Text = "Du har valt att finnas i klubbens adresslista.";
+            }
+            else if (lip.user.PublicAddres == 0)
+            {
+                lblAgreement.Text = "Du har valt att inte finnas klubbens adresslista.";
+            }
+            //}
+
+            //else
+            //{
+            //    Response.Write("<script>alert('" + lip.user.FirstName + " " + lip.member.MemberId + " " + lip.logins.IPAddress + "')</script>");
+            //}
+        }
+        protected void Page_Load(object sender, EventArgs e, bool failedPW)
+        {
+            if (failedPW == true)
+            {
+                editinfo.Visible = false;
+                changepw.Visible = true;
+                myinfo.Visible = false;
+            }
+
+            lip = (LoggedInPerson)Session["lip"];
+
+            //if (!Page.IsPostBack)
+            //{
+            //Response.Write("<script>alert('" + lip.user.FirstName + " " + lip.member.MemberId + " " + lip.logins.IPAddress + "')</script>");
 
             lblName.Text = lip.user.FirstName + " " + lip.user.SurName;
             lblStreetAddress.Text = lip.user.StreatAddress;
@@ -60,10 +97,22 @@ namespace Squash.Account
             //}
         }
 
+
         protected void BtnShowEditInfo_Click(object sender, EventArgs e)
         {
-            editinfo.Visible = true;
             myinfo.Visible = false;
+            changepw.Visible = false;
+            
+            editinfo.Visible = true;
+
+        }
+
+        protected void BtnShowEditPW_Click(object sender, EventArgs e)
+        {
+            myinfo.Visible = false;
+            editinfo.Visible = false;
+
+            changepw.Visible = true;
         }
 
     
