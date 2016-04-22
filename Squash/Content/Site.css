@@ -25,12 +25,13 @@ h5{
     font-weight:bold;
 }
 
-#startPageDiv, #infoDiv{
+#startPageDiv, #infoDiv, #contactDiv{
     max-width:1000px;
     margin: 0 auto;
 }
-
-
+#startPageDiv .row {
+    padding-left:2%;
+}
 
 
 body {
@@ -242,9 +243,32 @@ input[type="select"] {
     width:98%;
     padding-left:2%;
 }
+#infoDiv h2,
+.form-horizontal h4,
+.form-horizontal h5{
+    padding-left:2%;
+}
+
+#shortInfo{
+    margin-bottom:20px;
+}
+h2{
+    font-size:250%;
+    padding-left:2%;
+}
+h4{
+    font-size:170%;
+}
+
+
+
+/*KONTAKTSIDA*/
+.form-horizontal h2{
+    padding-left:2%;
+}
 #logoDiv{
-    
-    
+
+
 }
 #logoImg{
     /*margin-left:10%;*/
@@ -256,7 +280,7 @@ input[type="select"] {
     /*clear:none;*/
 }
 #logoCont{
-    
+
     float:left;
     clear:none;
     width:100px;

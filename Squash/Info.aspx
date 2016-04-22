@@ -6,11 +6,12 @@
         <div class="form-horizontal">
             <h4>Bokning, kodlås och abonnemang</h4>
             <hr />
-            <h5>Squashhallen i Östersund drivs ideellt av Östersunds squashförening. Det innebär att vi inte har möjlighet att ha någon personal anställd. För att detta ska fungera krävs att samtliga spelare som utnyttjar någon av våra banor tar ansvar och följer de regler som vill tillsammans satt upp.
+            <p class="foldedText" id="shortInfo">Squashhallen i Östersund drivs ideellt av Östersunds squashförening. Det innebär att vi inte har möjlighet att ha någon personal anställd. 
+                För att detta ska fungera krävs att samtliga spelare som utnyttjar någon av våra banor tar ansvar och följer de regler som vill tillsammans satt upp. <br /><br />
             Vi vill också påminna dig om att det är den som bokar en tid som är personligt ansvarig. Det innebär att du inte under några omständigheter ska lämna ifrån dig koden eller dina inloggningsuppgifter till någon annan.
             Det är även du som har bokat tiden som är ansvarig för att tiden betalas direkt i anslutning till att du spelar.
             Om vi ser att någon missbrukar detta ansvar, så har vi rätten att stänga av spelare från vidare spel i hallen.
-            </h5>
+            </p>
 
 
             <div id="bookingFold" class="headerDiv" onclick="toggleSection('booking')">
@@ -19,10 +20,10 @@
             <div id="booking" class="foldDiv">
                 <p class="foldedText">
                     För att kunna boka en tid måste du vara registrerad som användare. 
-                Det gör du under fliken Skapa konto. När du fyllt i dina uppgifter skickas de till en administratör. 
-                Det tar sedan upp till en vecka innan ditt konto aktiverat och du kan börja använda det. Om du vill komma i kontakt med våra administratörer klicka på fliken Kontakt.
-                Innan du går in och bokar en tid kan du klicka på fliken Spelschema. Där ser du vilka tider de kommande 8 dagarna som är bokningsbara. 
-                För att boka loggar du in på ditt konto. Du klickar sedan på fliken "Gör bokning". Välj sedan den tid du vill boka. Du kan max ha fem aktiva bokningar samtidigt. 
+                Det gör du i menyn under "Bli medlem". När du fyllt i dina uppgifter skickas de till en administratör. <br /><br />
+                Det tar sedan upp till en vecka innan ditt konto aktiverat och du kan börja använda det. Om du vill komma i kontakt med våra administratörer klicka längst ned på "Kontakt / Hitta hit". <br /><br />
+                Innan du går in och bokar en tid kan du klicka i menyn på "Spelschema & Bokningar". Där ser du vilka tider de kommande 8 dagarna som är bokningsbara. 
+                För att boka loggar du in på ditt konto och sedan klicka i menyn på "Spelschema & Bokningar". Välj sedan den tid du vill boka. Du kan max ha fem aktiva bokningar samtidigt. <br /><br /> 
                 Du kan inte använda ett företagskonto (det konto som finns för fasta företagsabonnemang), för att boka strötider, då detta inte är personligt.
                 </p>
             </div>
@@ -32,9 +33,9 @@
             </div>
             <div id="codeLock" class="foldDiv">
                 <p class="foldedText">
-                    För att komma in i squashhallen behöver du den aktuella koden. Koden är personlig, du får av den anledningen inte under några omständigheter lämna ifrån dig koden till någon annan. 
+                    För att komma in i squashhallen behöver du den aktuella koden. Koden är personlig, du får av den anledningen inte under några omständigheter lämna ifrån dig koden till någon annan.<br /><br />
                     Koden byts med jämna mellanrum. Vi har inga fasta tider då vi byter kod. Vi har även gått ifrån systemet med fasta koder för dem som har abonnemang. 
-                    Det innebär att du alltid ska kontrollera koden innan du åker iväg och spelar. 
+                    Det innebär att du alltid ska kontrollera koden innan du åker iväg och spelar. <br /><br />
                     Du får enbart tillgång till koden om du har en tid bokad den aktuella dagen. 
                     Det innebär att du inte kan gå in dagen före aktuell speltid och kontrollera kod. Om du väljer att gå in och kontrollera koden, så förbrukas din möjlighet att gå in och avboka tiden. 
                     Har du bokat en tid och väljer att titta på koden, så är du skyldig att betala för den bokade tiden.

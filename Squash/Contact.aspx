@@ -1,17 +1,29 @@
-﻿<%@ Page Title="Contact" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Contact.aspx.cs" Inherits="Squash.Contact" %>
+﻿<%@ Page Title="Kontakt" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Contact.aspx.cs" Inherits="Squash.Contact" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h2><%: Title %>.</h2>
-    <h3>Your contact page.</h3>
-    <address>
-        One Microsoft Way<br />
-        Redmond, WA 98052-6399<br />
-        <abbr title="Phone">P:</abbr>
-        425.555.0100
-    </address>
+    <div id="contactDiv">
+        <div class="form-horizontal">
+            <h2><%: Title %>info</h2>
+            <br />
+            <div id="Telephone">
+                <h4>Telefon</h4>
+                <p class="foldedText">
+                    <u>Alexander Berggren</u>
+                    <br />
+                    070-695 22 70<br />
+                    <br />
 
-    <address>
-        <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-        <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-    </address>
+                    <u>Hans Ling</u><br />
+                    070-691 43 86
+                </p>
+            </div>
+            <br />
+
+            <div id="Email">
+                <h4>E-Post</h4>
+                <p class="foldedText">Maila oss på: <a href="mailto:info@ostersundssquash.se">info@ostersundssquash.se</a></p>
+            </div>
+        </div>
+    </div>
+
 </asp:Content>
