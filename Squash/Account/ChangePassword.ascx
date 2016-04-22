@@ -38,7 +38,7 @@
     </div>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <asp:Button ID="btnUpdatePW" runat="server" OnClick="btnUpdatePW_Click" Text="Uppdatera lösenord" CssClass="btn btn-default" ValidationGroup="UpdatePW" />
+            <asp:Button ID="btnUpdatePW" runat="server" Text="Uppdatera lösenord" CssClass="btn btn-default" ValidationGroup="UpdatePW" OnCommand="btnUpdatePW_Command" CommandArgument='1'/>
         </div>
     </div>
 </asp:Panel>

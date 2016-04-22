@@ -1,45 +1,63 @@
-﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Squash._Default" %>
+﻿<%@ Page Title="Hem" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Squash._Default" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    
-    <div class="jumbotron">
+    <div id="startPageDiv">
+        <h2><%: Title %></h2>
+        <%--    <div id="messagesDiv" runat="server" visible="false">
+        <h2>Meddelanden</h2>
+        <p>Du har bokat en tid Fredag 2016-04-22 kl 17:00.</p>
+    </div>--%>
+
+        <%--<div id="presentationDiv" runat="server" visible="false">
+        <h2>Presentation av föreningen</h2>
+        <p>Vi finns på Storsjöstråket 15 i ett stort tegelhus.</p>
+        <p>Föreningen bedrivs ideellt vilket betyder att alla allmosor är välkomna.</p>
+    </div>--%>
+
+        <%--    <div id="recruitDiv" runat="server" visible="false">
+        <h2>Värvningstext</h2>
+        <p>Squash är lika bra för kroppen som för själen. Börja spela squassh regelbundet för att må bättre!</p>
+    </div>--%>
+
+        <%--    <div id="newsDiv" runat="server" visible="false">
+        <h2>Nyheter</h2>
+        <p>Pga snöstorm nu så är det dags att ta sig till squashhallen och lira lite.</p>
+        <p>Det finns kaffe i receptionen!</p>
+    </div>--%>
+
+
+
+
+
+        <%--    <div class="jumbotron">
         <h1>Meddelanden</h1>
-        <%--<p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>--%>
-        <ul id="messageList" runat="server">
+        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
+    <ul id="messageList" runat="server">
         </ul>
-    </div>
+    </div>--%>
 
-    <div class="row">
-        <div class="col-md-4">
-            <h2>Getting started</h2>
-            <p>
-                ASP.NET Web Forms lets you build dynamic websites using a familiar drag-and-drop, event-driven model.
-            A design surface and hundreds of controls and components let you rapidly build sophisticated, powerful UI-driven sites with data access.
-            </p>
-            <p>
-                <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301948">Learn more &raquo;</a>
-            </p>
-        </div>
-        <div class="col-md-4">
-            <h2>Get more libraries</h2>
-            <p>
-                NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.
-            </p>
-            <p>
-                <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301949">Learn more &raquo;</a>
-            </p>
-        </div>
-        <div class="col-md-4">
-            <h2>Web Hosting</h2>
-            <p>
-                You can easily find a web hosting company that offers the right mix of features and price for your applications.
-            </p>
-            <p>
-                <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301950">Learn more &raquo;</a>
-            </p>
-        </div>
-        <asp:Label ID="testarn" runat="server" Text="Label"></asp:Label>
-        
-    </div>
+        <div class="row">
+            <div class="col-md-7" id="messagesDiv" runat="server" visible="false">
+                <h3>Meddelanden</h3>
+                <p>Du har bokat en tid Fredag 2016-04-22 kl 17:00.</p>
+            </div>
 
+            <div class="col-md-7" id="presentationDiv" runat="server" visible="false">
+                <h3>Presentation av föreningen</h3>
+                <p>Vi finns på Storsjöstråket 15 i ett stort tegelhus.</p>
+                <p>Föreningen bedrivs ideellt vilket betyder att alla allmosor är välkomna.</p>
+            </div>
+
+            <div class="col-md-4" id="recruitDiv" runat="server" visible="false">
+                <h3>Värvningstext</h3>
+                <p>Squash är lika bra för kroppen som för själen. Börja spela squassh regelbundet för att må bättre!</p>
+            </div>
+
+            <div class="col-md-4" id="newsDiv" runat="server" visible="false">
+                <h3>Nyheter</h3>
+                <p>Pga snöstorm nu så är det dags att ta sig till squashhallen och lira lite.</p>
+                <p>Det finns kaffe i receptionen!</p>
+            </div>
+        </div>
+    </div>
 </asp:Content>
