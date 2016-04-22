@@ -1080,7 +1080,7 @@ pre code {
 
 @media (min-width: 992px) {
   .container {
-    width:90%;/*max-width: 970px;*/
+    width:80%;/*max-width: 970px;*/
   }
   .col-md-1,
   .col-md-2,

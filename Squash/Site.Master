@@ -60,50 +60,41 @@
         </asp:ScriptManager>
 
         <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" runat="server" href="~/Default">Östersunds squash</a>
-                </div>
-                <div class="navbar-collapse collapse">
-                    <%--<asp:LoginView runat="server" >--%>
-                    <%--<AnonymousTemplate>--%>
-                    <asp:PlaceHolder ID="pubAcc" runat="server" Visible="false">
-                        <ul runat="server" class="nav navbar-nav navbar-right">
-                            <li><a runat="server" href="~/Account/Register">Bli medlem</a></li>
-                            <li><a class="lbtnLogin" onclick="OpenOverlay()">Logga in</a></li>
-                        </ul>
-                    </asp:PlaceHolder>
-                    <asp:PlaceHolder ID="privAcc" runat="server" Visible="false">
-                        <ul runat="server" class="nav navbar-nav navbar-right">
-                            <li><a id="myPageLink" runat="server" href="~/Account/MyPage">Min Sida</a></li>
-                            <%--<li><a class="lbtnLogin" onclick="">Logga ut</a></li>--%>
-                            <li>
-                                <asp:LinkButton ID="lbtnLogin" runat="server" OnClick="lbtnLogin_Click">Logga ut</asp:LinkButton></li>
-                        </ul>
-                    </asp:PlaceHolder>
-                    <%--</AnonymousTemplate>--%>
-                    <%--  <LoggedInTemplate>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: Context.User.Identity.GetUserName()  %> !</a></li>
-                                <li>
-                                    <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
-                                </li>
+            <div id="margincorrection">
+                <img id="logoImg" src="Images/logga.svg" />
+                <div id="mContainer" class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" runat="server" href="~/Default">Östersunds squash</a>
+                    </div>
+                    <div id="rightFloat" class="navbar-collapse collapse">
+                        <asp:PlaceHolder ID="pubAcc" runat="server" Visible="false">
+                            <ul runat="server" class="nav navbar-nav navbar-right">
+                                <li><a runat="server" href="~/Account/Register">Bli medlem</a></li>
+                                <li><a class="lbtnLogin" onclick="OpenOverlay()">Logga in</a></li>
                             </ul>
-                        </LoggedInTemplate>--%>
-                    <%--</asp:LoginView>--%>
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/Default">Hem</a></li>
-                        <li><a runat="server" href="~/Info">Information</a></li>
-                        <li><a runat="server" href="~/Booking">Spelschema & Bokningar</a></li>
-                        <li><a runat="server" href="~/Players">Flitigaste spelaren & adresslista</a></li>
-                    </ul>
+                        </asp:PlaceHolder>
+                        <asp:PlaceHolder ID="privAcc" runat="server" Visible="false">
+                            <ul runat="server" class="nav navbar-nav navbar-right">
+                                <li><a id="myPageLink" runat="server" href="~/Account/MyPage">Min Sida</a></li>
+                                <li>
+                                    <asp:LinkButton ID="lbtnLogin" runat="server" OnClick="lbtnLogin_Click">Logga ut</asp:LinkButton></li>
+                            </ul>
+                        </asp:PlaceHolder>
+
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a runat="server" href="~/Default">Hem</a></li>
+                            <li><a runat="server" href="~/Info">Information</a></li>
+                            <li><a runat="server" href="~/Booking">Spelschema & Bokningar</a></li>
+                            <li><a runat="server" href="~/Players">Spelare & Statistik</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
