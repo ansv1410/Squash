@@ -1,8 +1,8 @@
 ﻿<%@ Page Title="Information" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Info.aspx.cs" Inherits="Squash.Info" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <h2><%: Title %></h2>
     <div id="infoDiv">
+    <h2><%: Title %></h2>
         <div class="form-horizontal">
             <h4>Bokning, kodlås och abonnemang</h4>
             <hr />

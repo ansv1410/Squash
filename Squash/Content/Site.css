@@ -25,6 +25,12 @@ h5{
     font-weight:bold;
 }
 
+#startPageDiv, #infoDiv{
+    max-width:1000px;
+    margin: 0 auto;
+}
+
+
 
 
 body {
@@ -95,10 +101,14 @@ footer a:hover{
 .navbar-inverse .navbar-toggle:hover .icon-bar{
     background-color:#dc3838;
 }
+.navbar-inverse .navbar-toggle:hover{
+    background-color:white;
+}
+
 
 .navbar-inverse .navbar-toggle:target{
-    border:0px solid white;
-    background-color:white;
+    /*border:0px solid white;*/
+    /*background-color:white;*/
 }
 .navbar-inverse .navbar-toggle:target .icon-bar{
     background-color:#dc3838;
@@ -109,7 +119,7 @@ footer a:hover{
 }
 
 .collapsed:target{
-    background-color:#dc3838;
+    /*background-color:#dc3838;*/
 }
 .overlay-container{
     position: fixed;

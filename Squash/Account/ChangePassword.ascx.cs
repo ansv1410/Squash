@@ -31,6 +31,51 @@ namespace Squash.Account
         protected void btnUpdatePW_Click(object sender, EventArgs e)
         {
 
+            //if (Page.IsValid)
+            //{
+
+            //    string oldPasswordInput = tbMPOldPassword.Text;
+            //    string oldPasswordRead;
+            //    string newPW = tbMPPassword.Text;
+            //    string confirmNewPW = tbMPConfirmPassword.Text;
+
+            //    string queryPW = "SELECT Password FROM users_updated WHERE Id = '" + lip.user.Id + "'";
+
+            //    MySqlDataReader dr = method.myReader(queryPW, conn);
+
+            //    if (dr.Read())
+            //    {
+            //        oldPasswordRead = dr["Password"].ToString();
+            //        conn.Close();
+            //        if (oldPasswordRead == method.Hashify(oldPasswordInput))
+            //        {
+            //            string queryUpdatePW = "UPDATE users_updated "
+            //                                + "SET Password = @pw "
+            //                                + "WHERE Id = '" + lip.user.Id + "'";
+
+            //            MySqlCommand cmd = new MySqlCommand(queryUpdatePW, conn);
+            //            string PwHash = method.Hashify(newPW);
+            //            cmd.Parameters.AddWithValue("pw", PwHash);
+                        
+            //            conn.Open();
+            //            cmd.ExecuteNonQuery();
+            //            conn.Close();
+            //            lip.user.Password = PwHash;
+            //            Session["lip"] = lip;
+            //        }
+            //        else
+            //        {
+            //            string pwID = e.CommandArgument.ToString();
+            //            Page.Response.Redirect("MyPage.aspx");
+            //        }
+            //    }
+
+
+            //}
+        }
+
+        protected void btnUpdatePW_Command(object sender, CommandEventArgs e)
+        {
             if (Page.IsValid)
             {
 
@@ -56,16 +101,18 @@ namespace Squash.Account
                         MySqlCommand cmd = new MySqlCommand(queryUpdatePW, conn);
                         string PwHash = method.Hashify(newPW);
                         cmd.Parameters.AddWithValue("pw", PwHash);
-                        
+
                         conn.Open();
                         cmd.ExecuteNonQuery();
                         conn.Close();
                         lip.user.Password = PwHash;
                         Session["lip"] = lip;
+                        Response.Redirect("MyPage.aspx");
                     }
                     else
                     {
-                        Response.Redirect("MyPage", true);
+                        string pwID = e.CommandArgument.ToString();
+                        Response.Redirect("MyPage.aspx?falsePw=" + pwID);
                     }
                 }
 

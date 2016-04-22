@@ -24,54 +24,69 @@ namespace Squash
         {
             if (!IsPostBack)
             {
-
-                //string query = "SELECT * FROM users WHERE UserId = 1";
-                //MySqlDataReader dr = method.myReader(query, conn);
-                //try
-                //{
-                //    while (dr.Read())
-                //    {
-                //        testarn.Text = dr["Firstname"].ToString();
-                //    }
-                //}
-                //catch (MySqlException ex)
-                //{
-                //    Debug.WriteLine(ex.Message);
-                //}
-                //finally
-                //{
-                //    conn.Close();
-                //}
-                List<Messages> messages = new List<Messages>();
-                string query = "SELECT * from Messages";
-                MySqlDataReader dr = method.myReader(query, conn);
-                try
+                if (Session["lip"] != null)
                 {
-                    while (dr.Read())
+                    messagesDiv.Visible = true;
+                    //presentationDiv.Visible = true;
+                    //recruitDiv.Visible = true;
+                    newsDiv.Visible = true;
+
+
+
+
+                    //string query = "SELECT * FROM users WHERE UserId = 1";
+                    //MySqlDataReader dr = method.myReader(query, conn);
+                    //try
+                    //{
+                    //    while (dr.Read())
+                    //    {
+                    //        testarn.Text = dr["Firstname"].ToString();
+                    //    }
+                    //}
+                    //catch (MySqlException ex)
+                    //{
+                    //    Debug.WriteLine(ex.Message);
+                    //}
+                    //finally
+                    //{
+                    //    conn.Close();
+                    //}
+                    List<Messages> messages = new List<Messages>();
+                    string query = "SELECT * from Messages";
+                    MySqlDataReader dr = method.myReader(query, conn);
+                    try
                     {
-                        Messages m = new Messages();
-                        m.Id = Convert.ToInt32(dr["Id"]);
-                        m.Message = dr["Messages"].ToString();
-                        messages.Add(m);
+                        while (dr.Read())
+                        {
+                            Messages m = new Messages();
+                            m.Id = Convert.ToInt32(dr["Id"]);
+                            m.Message = dr["Messages"].ToString();
+                            messages.Add(m);
+                        }
+                    }
+                    catch (MySqlException ex)
+                    {
+                        Debug.WriteLine(ex.Message);
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+
+                    foreach (Messages m in messages)
+                    {
+                        HtmlGenericControl li = new HtmlGenericControl("li");
+                        li.InnerHtml = m.Message;
+                        //messageList.Controls.Add(li);
+
                     }
                 }
-                catch (MySqlException ex)
+                else
                 {
-                    Debug.WriteLine(ex.Message);
+                    presentationDiv.Visible = true;
+                    recruitDiv.Visible = true;
+                    newsDiv.Visible = true;
                 }
-                finally
-                {
-                    conn.Close();
-                }
-
-                foreach(Messages m in messages)
-                {
-                    HtmlGenericControl li = new HtmlGenericControl("li");
-                    li.InnerHtml = m.Message;
-                    messageList.Controls.Add(li);
-                
-                }
-
             }
         }
 

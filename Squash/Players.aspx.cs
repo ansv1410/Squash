@@ -27,6 +27,7 @@ namespace Squash
         {
             lip = (LoggedInPerson)Session["lip"];
             Response.Write("<script>alert('" + lip.user.UserId + " " + lip.user.FirstName + " " + lip.member.MemberId + " " + lip.logins.IPAddress + "')</script>");
+
         }
     }
 }

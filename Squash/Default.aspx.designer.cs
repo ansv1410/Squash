@@ -13,21 +13,39 @@ namespace Squash {
     public partial class _Default {
         
         /// <summary>
-        /// messageList control.
+        /// messagesDiv control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl messageList;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl messagesDiv;
         
         /// <summary>
-        /// testarn control.
+        /// presentationDiv control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label testarn;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl presentationDiv;
+        
+        /// <summary>
+        /// recruitDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl recruitDiv;
+        
+        /// <summary>
+        /// newsDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl newsDiv;
     }
 }
