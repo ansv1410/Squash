@@ -242,7 +242,21 @@ input[type="select"] {
     width:98%;
     padding-left:2%;
 }
+#infoDiv h2,
+.form-horizontal h4,
+.form-horizontal h5{
+    padding-left:2%;
+}
 
+#shortInfo{
+    margin-bottom:20px;
+}
+h2{
+    font-size:250%;
+}
+h4{
+    font-size:170%;
+}
 
 
 

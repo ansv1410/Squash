@@ -25,9 +25,16 @@ namespace Squash
         LoggedInPerson lip;
         protected void Page_Load(object sender, EventArgs e)
         {
-            lip = (LoggedInPerson)Session["lip"];
-            Response.Write("<script>alert('" + lip.user.UserId + " " + lip.user.FirstName + " " + lip.member.MemberId + " " + lip.logins.IPAddress + "')</script>");
+            if (Session["lip"] != null)
+            {
+                lip = (LoggedInPerson)Session["lip"];
+                Response.Write("<script>alert('" + lip.user.UserId + " " + lip.user.FirstName + " " + lip.member.MemberId + " " + lip.logins.IPAddress + "')</script>");
+            }
 
+            else
+            {
+                Response.Write("<script>alert('" + "Du är inte inloggad." + "')</script>");
+            }
         }
     }
 }
