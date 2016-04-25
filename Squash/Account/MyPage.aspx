@@ -5,12 +5,12 @@
 
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h2><%: Title %></h2>
     <%--<p class="text-danger">
         <asp:Literal runat="server" ID="ErrorMessage" />
     </p>--%>
 
     <div class="form-horizontal">
+    <h2><%: Title %></h2>
         <div id="myinfo" runat="server">
             <h4>Här syns din information och bokningar.</h4>
             <h5>Uppgifterna går att uppdatera genom att trycka på knappen nederst.</h5>

@@ -59,16 +59,5 @@
                 <p>Det finns kaffe i receptionen!</p>
             </div>
         </div>
-        <div style="width: 600px; overflow: hidden; height: 400px; max-width: 100%;">
-            <div id="gmap_display" style="height: 100%; width: 100%; max-width: 100%;">
-                <iframe style="height: 100%; width: 100%; border: 0;" frameborder="0" src="https://www.google.com/maps/embed/v1/directions?origin=Rådhusgatan+46,+Östersund,+Sverige&destination=Storsjöstråket+15,+Östersund,+Sverige&key=AIzaSyAN0om9mFmy1QN6Wf54tXAowK4eT0ZUPrU"></iframe>
-            </div>
-            <a class="embedded-map-html" href="https://www.dog-checks.com" id="grab-map-authorization">www.dog-checks.com</a><style>
-                                                                                                                                 #gmap_display .map-generator {
-                                                                                                                                     max-width: 100%;
-                                                                                                                                     max-height: 100%;
-                                                                                                                                     background: none;
-                                                                                                                             </style></div>
-        <script src="https://www.dog-checks.com/google-maps-authorization.js?id=8157918d-1d21-93b0-d0c4-c6c69ebdc5bb&c=embedded-map-html&u=1461581258" defer="defer" async="async"></script>
     </div>
 </asp:Content>

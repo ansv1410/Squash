@@ -314,9 +314,6 @@ h4{
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
-    .jumbotron {
-        margin-top: 20px;
-    }
     .body-content {
         padding: 0;
         padding-top:50px;
