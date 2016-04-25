@@ -206,8 +206,19 @@ input[type="select"] {
 
 
 
-
-
+/*STARTSIDA*/
+.messageHeaderP{
+    text-decoration:underline;
+    font-size:120%;
+}
+.paragraphInline{
+    display:inline;
+}
+#MainContent_messagesDiv{
+}
+#MainContent_newsDiv{
+    border-left:1px solid lightgrey;
+}
 
 
 
