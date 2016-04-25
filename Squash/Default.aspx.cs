@@ -23,8 +23,10 @@ namespace Squash
         protected void Page_Load(object sender, EventArgs e)
         {
             string queryGetNews = "SELECT * FROM News"; //WHERE date.......
+            string showDivs = "";
+
             MySqlDataReader drNews = method.myReader(queryGetNews, conn);
-            if (drNews.Read())
+            while (drNews.Read())
             {
                 News n = new News();
                 n.Id = Convert.ToInt32(drNews["Id"].ToString());
@@ -32,7 +34,10 @@ namespace Squash
                 n.Newstext = drNews["Newstext"].ToString();
                 n.Imagepath = drNews["Imagepath"].ToString();
                 //n.Imagebin = ;
+
+                showDivs += "<div><h2>" + n.Headline + "</h2><p>" + n.Newstext + "</p><br/><img runat='server' src=" + n.Imagepath + "></div>";
             }
+                newsDiv.InnerHtml = showDivs;
 
 
 
@@ -42,7 +47,7 @@ namespace Squash
                 if (Session["lip"] != null)
                 {
                     messagesDiv.Visible = true;
-                    //presentationDiv.Visible = true;
+                    presentationDiv.Visible = true;
                     //recruitDiv.Visible = true;
                     newsDiv.Visible = true;
 
@@ -99,7 +104,6 @@ namespace Squash
                 else
                 {
                     presentationDiv.Visible = true;
-                    recruitDiv.Visible = true;
                     newsDiv.Visible = true;
                 }
             }

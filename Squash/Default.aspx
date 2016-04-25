@@ -37,26 +37,24 @@
     </div>--%>
 
         <div class="row">
-            <div class="col-md-7" id="messagesDiv" runat="server" visible="false">
-                <h3>Meddelanden</h3>
-                <p>Du har bokat en tid Fredag 2016-04-22 kl 17:00.</p>
+            <%-- MEDDELANDEDIV: Hela bredden överst centrerat. --%>
+            <div class="col-md-10" id="messagesDiv" runat="server" visible="false"> 
+                <%--<h3>Meddelanden</h3>
+                <p>Du har bokat en tid Fredag 2016-04-22 kl 17:00.</p>--%>
             </div>
 
-            <div class="col-md-7" id="presentationDiv" runat="server" visible="false">
+            <%-- PRESENTATIONSDIV: Ligger till vänster om nyhetsdiv och under meddelandediv. Smal. --%>
+            <div class="col-md-4" id="presentationDiv" runat="server" visible="false">
                 <h3>Presentation av föreningen</h3>
                 <p>Vi finns på Storsjöstråket 15 i ett stort tegelhus.</p>
                 <p>Föreningen bedrivs ideellt vilket betyder att alla allmosor är välkomna.</p>
             </div>
 
-            <div class="col-md-4" id="recruitDiv" runat="server" visible="false">
-                <h3>Värvningstext</h3>
-                <p>Squash är lika bra för kroppen som för själen. Börja spela squassh regelbundet för att må bättre!</p>
-            </div>
-
-            <div class="col-md-4" id="newsDiv" runat="server" visible="false">
-                <h3>Nyheter</h3>
+            <%-- NYHETSDIV: Till Höger om presentationsdiv och under meddelandediv. Bred--%>
+            <div class="col-md-7" id="newsDiv" runat="server" visible="false">
+                <%--<h3>Nyheter</h3>
                 <p>Pga snöstorm nu så är det dags att ta sig till squashhallen och lira lite.</p>
-                <p>Det finns kaffe i receptionen!</p>
+                <p>Det finns kaffe i receptionen!</p>--%>
             </div>
         </div>
     </div>
