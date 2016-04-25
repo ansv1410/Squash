@@ -314,7 +314,19 @@ h4{
     overflow:auto;
     max-width:1001px;
 }
-
+.socialMediaIcon{
+    width: 30%;
+    max-width:92px;
+    height:auto;
+    clear:none;
+    float:left;
+    margin-left:5%;
+    margin-right:10%;
+}
+.socialMediaIcon img{
+    height:100%;
+    width:100%;
+}
 
 
 
