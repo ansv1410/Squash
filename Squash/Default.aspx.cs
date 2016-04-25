@@ -37,7 +37,7 @@ namespace Squash
                 n.Imagepath = drNews["Imagepath"].ToString();
                 //n.Imagebin = ;
 
-                showNews += "<div><h2>" + n.Headline + "</h2><p>" + n.Newstext + "</p><br/><img runat='server' class='newsImg' src=" + n.Imagepath + "></div>";
+                showNews += "<div><h2>" + n.Headline + "</h2><p class="+"foldedText"+">" + n.Newstext + "</p><br/><img runat='server' class='newsImg' src=" + n.Imagepath + "></div>";
             }
             newsDiv.InnerHtml = showNews;
 
@@ -50,9 +50,9 @@ namespace Squash
                 m.Headline = drMessages["Headline"].ToString();
                 m.Message = drMessages["Messages"].ToString();
 
-                showMessages += "<div><p class="+"paragraphInline"+"><span class="+"messageHeaderP"+">" + m.Headline + "</span> " + m.Message + "</p></div>";
+                showMessages += "<div><p class=" + "foldedText" + "><span class=" + "messageHeaderP" + ">" + m.Headline + "</span> " + m.Message + "</p></div>";
             }
-            messagesDiv.InnerHtml = showMessages + "<hr />";
+            messagesDiv.InnerHtml = "<h2>Meddelanden</h2>" + showMessages + "<hr />";
 
 
             if (!IsPostBack)

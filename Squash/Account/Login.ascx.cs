@@ -136,7 +136,7 @@ namespace Squash.Account
                             ((HiddenField)Page.Master.FindControl("hfShowLogin")).Value = "0";
 
                             FormsAuthentication.RedirectFromLoginPage(m.MemberId.ToString(), false);
-                            Response.Redirect("~/Account/MyPage.aspx");
+                            Response.Redirect("~/Default.aspx");
 
                         }
                         else
