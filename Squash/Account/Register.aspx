@@ -107,10 +107,11 @@
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <asp:Button ID="btnCreateUser" runat="server" OnClick="CreateUser_Click" Text="Skapa konto" CssClass="btn btn-default" ValidationGroup="Register" />
+                    <br />
+                    <asp:Label ID="lblMessage" runat="server" Text="Label"></asp:Label>
                 </div>
             </div>
 
-            <asp:Label ID="lblMessage" runat="server" Text="Label"></asp:Label>
         </asp:Panel>
     </div>
 </asp:Content>
