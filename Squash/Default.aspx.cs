@@ -22,6 +22,21 @@ namespace Squash
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            string queryGetNews = "SELECT * FROM News"; //WHERE date.......
+            MySqlDataReader drNews = method.myReader(queryGetNews, conn);
+            if (drNews.Read())
+            {
+                News n = new News();
+                n.Id = Convert.ToInt32(drNews["Id"].ToString());
+                n.Headline = drNews["Headline"].ToString();
+                n.Newstext = drNews["Newstext"].ToString();
+                n.Imagepath = drNews["Imagepath"].ToString();
+                //n.Imagebin = ;
+            }
+
+
+
+
             if (!IsPostBack)
             {
                 if (Session["lip"] != null)
