@@ -33,7 +33,7 @@ namespace Squash
 
             else
             {
-                Response.Write("<script>alert('" + "Du är inte inloggad." + "')</script>");
+                //Response.Write("<script>alert('" + "Du är inte inloggad." + "')</script>");
             }
         }
     }

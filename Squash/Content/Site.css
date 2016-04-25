@@ -25,11 +25,14 @@ h5{
     font-weight:bold;
 }
 
-#startPageDiv, #infoDiv, #contactDiv{
+.pageDiv{
     max-width:1000px;
     margin: 0 auto;
 }
 #startPageDiv .row {
+    padding-left:2%;
+}
+.contentPaddingLeft{
     padding-left:2%;
 }
 
@@ -243,7 +246,7 @@ input[type="select"] {
     width:98%;
     padding-left:2%;
 }
-#infoDiv h2,
+
 .form-horizontal h4,
 .form-horizontal h5{
     padding-left:2%;
@@ -258,6 +261,10 @@ h2{
 }
 h4{
     font-size:170%;
+}
+
+#userInfoDiv{
+    padding-left:2%;
 }
 
 

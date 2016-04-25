@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="Hem" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Squash._Default" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <div id="startPageDiv">
+    <div id="startPageDiv" class="pageDiv">
         <h2><%: Title %></h2>
         <%--    <div id="messagesDiv" runat="server" visible="false">
         <h2>Meddelanden</h2>

@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="Kontakt" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Contact.aspx.cs" Inherits="Squash.Contact" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <div id="contactDiv">
+    <div id="contactDiv" class="pageDiv">
         <div class="form-horizontal">
             <h2><%: Title %>info</h2>
             <br />

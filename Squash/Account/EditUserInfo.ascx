@@ -80,7 +80,8 @@
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <asp:Button ID="btnUpdateInfo" runat="server" OnClick="UpdateInfo_Click" Text="Uppdatera konto" CssClass="btn btn-default" ValidationGroup="UpdateInfo" />
+            <br />
+            <asp:Label ID="lblMPMessage" runat="server"></asp:Label>
         </div>
     </div>
-    <asp:Label ID="lblMPMessage" runat="server" Text="Label"></asp:Label>
 </asp:Panel>
