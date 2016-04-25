@@ -29,4 +29,20 @@ INSERT INTO users_updated (UserId, Firstname, Surname, Phone, EMail, StreetAddre
 SELECT UserId, Firstname, Surname, Phone, EMail, StreetAddress, ZipCode, City, IPAddress, Password, Cellular, PublicAddress
 FROM users;
 
+DROP TABLE IF EXISTS news;
+CREATE TABLE news (
+Id int(10) unsigned NOT NULL AUTO_INCREMENT,
+Headline varchar(250) NOT NULL DEFAULT '',
+Newstext varchar(65000) NOT NULL DEFAULT '',
+Imagepath varchar(250),
+Imagebin mediumblob,
+PRIMARY KEY (Id)
+
+)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+
+ALTER TABLE messages
+ADD COLUMN Headline varchar(250),
+MODIFY Messages varchar(1000);
+
 COMMIT;
