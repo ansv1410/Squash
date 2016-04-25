@@ -31,6 +31,7 @@ namespace Squash.Classes
             //MySqlConnection conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["squash"].ConnectionString);
 
             MySqlCommand cmd = new MySqlCommand(query, conn);
+            conn.Close();
             conn.Open();
             MySqlDataReader dr = cmd.ExecuteReader();
             return dr;
@@ -41,6 +42,7 @@ namespace Squash.Classes
             //MySqlConnection conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["squash"].ConnectionString);
 
             MySqlCommand cmd = new MySqlCommand(query, conn);
+            conn.Close();
             conn.Open();
             cmd.ExecuteNonQuery();
             conn.Close();
