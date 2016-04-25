@@ -338,6 +338,11 @@ h4{
     height:100%;
     width:100%;
 }
+.newsImg{
+    max-width:96%;
+    padding-left:2%;
+    padding-right:2%;
+}
 
 
 
