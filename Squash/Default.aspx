@@ -5,12 +5,12 @@
         <h2><%: Title %></h2>
 
         <div class="row">
+
             <%-- MEDDELANDEDIV: Hela bredden överst centrerat. --%>
             <div class="col-md-10" id="messagesDiv" runat="server" visible="false"> 
                 <%--<h3>Meddelanden</h3>
                 <p>Du har bokat en tid Fredag 2016-04-22 kl 17:00.</p>--%>
             </div>
-
             <%-- PRESENTATIONSDIV: Ligger till vänster om nyhetsdiv och under meddelandediv. Smal. --%>
             <div class="col-md-4" id="presentationDiv" runat="server" visible="false">
                 <h3>Välkommen!</h3>

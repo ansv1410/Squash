@@ -23,7 +23,9 @@ namespace Squash
         protected void Page_Load(object sender, EventArgs e)
         {
             string queryGetNews = "SELECT * FROM News"; //WHERE date.......
-            string showDivs = "";
+            string queryGetMessages = "SELECT * FROM Messages";
+            string showNews = "";
+            string showMessages = "";
 
             MySqlDataReader drNews = method.myReader(queryGetNews, conn);
             while (drNews.Read())
@@ -35,11 +37,22 @@ namespace Squash
                 n.Imagepath = drNews["Imagepath"].ToString();
                 //n.Imagebin = ;
 
-                showDivs += "<div><h2>" + n.Headline + "</h2><p>" + n.Newstext + "</p><br/><img runat='server' src=" + n.Imagepath + "></div>";
+                showNews += "<div><h2>" + n.Headline + "</h2><p>" + n.Newstext + "</p><br/><img runat='server' src=" + n.Imagepath + "></div>";
             }
-                newsDiv.InnerHtml = showDivs;
+            newsDiv.InnerHtml = showNews;
 
 
+            MySqlDataReader drMessages = method.myReader(queryGetMessages, conn);
+            while (drMessages.Read())
+            {
+                Messages m = new Messages();
+                m.Id = Convert.ToInt32(drMessages["Id"].ToString());
+                m.Headline = drMessages["Headline"].ToString();
+                m.Message = drMessages["Messages"].ToString();
+
+                showMessages += "<div><p class="+"paragraphInline"+"><span class="+"messageHeaderP"+">" + m.Headline + "</span> " + m.Message + "</p></div>";
+            }
+            messagesDiv.InnerHtml = showMessages + "<hr />";
 
 
             if (!IsPostBack)
@@ -71,35 +84,35 @@ namespace Squash
                     //{
                     //    conn.Close();
                     //}
-                    List<Messages> messages = new List<Messages>();
-                    string query = "SELECT * from Messages";
-                    MySqlDataReader dr = method.myReader(query, conn);
-                    try
-                    {
-                        while (dr.Read())
-                        {
-                            Messages m = new Messages();
-                            m.Id = Convert.ToInt32(dr["Id"]);
-                            m.Message = dr["Messages"].ToString();
-                            messages.Add(m);
-                        }
-                    }
-                    catch (MySqlException ex)
-                    {
-                        Debug.WriteLine(ex.Message);
-                    }
-                    finally
-                    {
-                        conn.Close();
-                    }
+                    //List<Messages> messages = new List<Messages>();
+                    //string query = "SELECT * from Messages";
+                    //MySqlDataReader dr = method.myReader(query, conn);
+                    //try
+                    //{
+                    //    while (dr.Read())
+                    //    {
+                    //        Messages m = new Messages();
+                    //        m.Id = Convert.ToInt32(dr["Id"]);
+                    //        m.Message = dr["Messages"].ToString();
+                    //        messages.Add(m);
+                    //    }
+                    //}
+                    //catch (MySqlException ex)
+                    //{
+                    //    Debug.WriteLine(ex.Message);
+                    //}
+                    //finally
+                    //{
+                    //    conn.Close();
+                    //}
 
-                    foreach (Messages m in messages)
-                    {
-                        HtmlGenericControl li = new HtmlGenericControl("li");
-                        li.InnerHtml = m.Message;
-                        //messageList.Controls.Add(li);
+                    //foreach (Messages m in messages)
+                    //{
+                    //    HtmlGenericControl li = new HtmlGenericControl("li");
+                    //    li.InnerHtml = m.Message;
+                    //    //messageList.Controls.Add(li);
 
-                    }
+                    //}
                 }
                 else
                 {
