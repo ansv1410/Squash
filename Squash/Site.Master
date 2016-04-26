@@ -110,7 +110,7 @@
             </div>
 
         </div>
-        <div class="container body-content" style="padding-top:100px;">
+        <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
         <br />
