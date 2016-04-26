@@ -416,7 +416,14 @@ h4{
     width:100%;
 }
 
-
+@media screen and (min-width: 992px){
+    #startPageDiv{
+        margin-top:2%;
+    }
+    #startPageDiv h2{
+        margin-top:0;
+    }
+}
 
 @media screen and (min-width: 768px) {
     .body-content {
@@ -475,6 +482,9 @@ h4{
     }
     .form-horizontal{
         padding-right:2%;
+    }
+    #infoDiv .form-horizontal{
+        padding-right:0;
     }
 }
 
