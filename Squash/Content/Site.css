@@ -400,7 +400,9 @@ h4{
     padding-left:2%;
     padding-right:2%;
 }
-
+#loginForm .col-md-2{
+    width:auto;
+}
 
 
 
