@@ -42,7 +42,7 @@
                     </div>
                 </div>--%>
                     <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
+                        <div class="col-md-10">
                             <asp:Button ID="btnLogin" runat="server" OnClick="LogIn" OnClientClick="reopenOverlay()" Text="Log in" CssClass="btn btn-default" ValidationGroup="Login" />
                             <asp:Label ID="LoginFail" runat="server"></asp:Label>
                         </div>
