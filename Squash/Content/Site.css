@@ -409,6 +409,9 @@ h4{
 #loginForm .col-md-2{
     width:auto;
 }
+#loginForm .col-md-10{
+    width:100%;
+}
 
 
 
