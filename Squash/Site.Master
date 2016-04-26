@@ -113,13 +113,12 @@
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
-            <hr />
-        </div>
-
-        <footer>
-            <p>© <%: DateTime.Now.Year %> - Östersunds squash</p>
+        <br />
             <br />
-            <a runat="server" href="~/Contact">Kontakt / Hitta hit</a>
+        </div>
+        <footer>
+            <p><a runat="server" href="~/Contact">Kontakt / Hitta hit</a></p>
+            <p>© <%: DateTime.Now.Year %> - Östersunds squash</p>
         </footer>
         <asp:HiddenField ID="hfShowLogin" runat="server" Value="0" />
         <asp:HiddenField ID="hfLoggedInIP" runat="server" Value="0" />
