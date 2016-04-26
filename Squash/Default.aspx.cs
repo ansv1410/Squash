@@ -37,7 +37,15 @@ namespace Squash
                 n.Imagepath = drNews["Imagepath"].ToString();
                 //n.Imagebin = ;
 
-                showNews += "<div><h2>" + n.Headline + "</h2><p class="+"foldedText"+">" + n.Newstext + "</p><br/><img runat='server' class='newsImg' src=" + n.Imagepath + "></div>";
+                
+                if (n.Imagepath != null)
+                {
+                    showNews += "<div><h2>" + n.Headline + "</h2><p class=" + "foldedText" + ">" + n.Newstext + "</p><br/><img runat='server' class='newsImg' src=" + n.Imagepath + "></div>";
+                }
+                else
+                {
+                    showNews += "<div><h2>" + n.Headline + "</h2><p class=" + "foldedText" + ">" + n.Newstext + "</p></div>";
+                }
             }
             newsDiv.InnerHtml = showNews;
 
