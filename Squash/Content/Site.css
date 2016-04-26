@@ -11,7 +11,9 @@
     max-width:1200px;
     margin:0 auto;
 }
-
+.shadowDiv{
+    box-shadow:0px 50px 20px black;
+}
 
 
 
@@ -58,7 +60,7 @@ h5{
 
 
 body {
-    padding-top: 50px;
+    /*padding-top: 50px;*/
     padding-bottom: 0px;
 }
 
@@ -71,6 +73,8 @@ footer{
     max-width:1200px;
     padding-right:2%;
     font-size:135%;
+    border-top:1px solid black;
+    box-shadow:0px 5px 20px black;
 }
 
 footer p{
@@ -118,8 +122,7 @@ footer a:hover{
 
 
 .body-content {
-    /*min-height:100%;*/
-    /*height:100%;*/
+    box-shadow:0px 0px 10px black;
     display:block;
     padding-left: 15px;
     padding-right: 15px;
@@ -195,6 +198,7 @@ footer a:hover{
 #col-md-8-loginForm{
     width:95%;
 }
+
 /*#privAcc{
     display: none;
     display:
