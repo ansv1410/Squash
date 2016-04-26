@@ -27,21 +27,21 @@
 
 
 p, a{
-    font-family:Geneva, Verdana, Tahoma, sans-serif;
+    font-family: Tahoma,Verdana,Segoe,sans-serif;
     font-size:90%;
 }
 h4{
-    font-family:Geneva, Verdana, Tahoma, sans-serif;
+    font-family: Tahoma,Verdana,Segoe,sans-serif;
     font-size:130%;
 }
 h5{
-    font-family:Geneva, Verdana, Tahoma, sans-serif; /*GENEVA VERKAR INTE FUNKA PÅ h5*/
+    font-family: Tahoma,Verdana,Segoe,sans-serif;
     font-size:110%;
 }
 
 
 .form-group{
-    font-family:Geneva, Verdana, Tahoma, sans-serif;
+    font-family: Tahoma,Verdana,Segoe,sans-serif;
     font-size:90%;
     width:98%;
     padding-left:2%;
