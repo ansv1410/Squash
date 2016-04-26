@@ -213,6 +213,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Account\Web.config" />
     <Content Include="Images\background\3905277-paper-background-plenty-of-copy-space-for-your-text-tiles-seamless-as-a-pattern1.jpg" />
+    <Content Include="Images\background\BG.jpg" />
     <Content Include="Images\background\tumblr_mps8cpjZnq1rebw0do8_400.jpg" />
     <Content Include="Images\background\^1F0FEDF4FAF608E4F6D4A32363A14DD16168AE12E79B66F3CB^pimgpsh_fullsize_distr.png" />
     <Content Include="Images\FB.svg" />
