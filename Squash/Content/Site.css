@@ -127,6 +127,9 @@ footer a:hover{
     background-color:lightgreen;
 }
 
+.navbar-inverse .menu-sites > li > a{
+    font-size:105%;
+}
 
 
 .body-content {
@@ -488,7 +491,7 @@ h4{
     }
 }
 
-@media screen and (max-width: 768px){
+@media screen and (max-width: 767px){
     #infoDiv{
         margin-left:-15px;
         margin-right:-15px;
@@ -510,6 +513,7 @@ h4{
         float:none;
         text-align:center;
         padding-top:2%;
+        margin-bottom:0;
     }
     footer a{
         float:none;
@@ -517,6 +521,9 @@ h4{
     }
     .body-content{
         padding-top:-50px;
+    }
+    .navbar-inverse .navbar-nav > li > a{
+        font-size:135%;
     }
 
 }
