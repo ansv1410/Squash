@@ -416,6 +416,90 @@ h4{
     width:100%;
 }
 
+
+
+
+
+/*BOKNINGSSIDA*/
+#MainContent_scheduleDiv{
+    padding-left:2%;
+    float:left;
+    display:table;
+    /*margin:0 auto;*/
+}
+
+.dayDiv{
+    background-color:forestgreen;
+    float:left;
+    border:1px solid black;
+}
+.staticDayDiv{
+    /*margin:5px;*/
+    margin-top:5px;
+    margin-bottom:5px;
+    background-color:grey;
+    text-align:center;
+}
+
+.hourDivs{
+    background-color:blueviolet;
+}
+.courtDivs{
+    background-color:lightgreen;
+    margin:5px;
+    /*margin-top:5px;
+    margin-bottom:5px;
+    margin-right:5px;
+    margin-left:5px;*/
+}
+
+#staticTimesDiv{
+    background-color:white;
+    float:left;
+    border: 1px solid black;
+    padding-top:30px;
+}
+.staticHourDiv{
+    background-color:cornflowerblue;
+    /*margin-left:5px;
+    margin-right:5px;*/
+    margin-top:0px;
+    margin-bottom:5px;
+    /*margin:5px;*/
+    padding-top:9px;
+    padding-bottom:14px;
+    /*height:40px;*/
+    text-align:center;
+    border-top:1px solid black;
+    border-bottom:1px solid black;
+}
+
+[id='3-7-1']{
+    background-color:lightblue;
+}
+[id='3-7-2']{
+    background-color:pink;
+}
+
+/*SLUT - BOKNINGSSIDA*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @media screen and (min-width: 992px){
     #startPageDiv{
         margin-top:2%;

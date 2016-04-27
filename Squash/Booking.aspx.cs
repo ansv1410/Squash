@@ -52,21 +52,24 @@ namespace Squash
        
                         HtmlGenericControl staticTimesDiv = new HtmlGenericControl("div");
                         staticTimesDiv.Attributes.Add("id", "staticTimesDiv");
-                        string width = ((740 / (noOfDays + 1)) - 1).ToString() + "px";
+                        //staticTimesDiv.Attributes.Add("class", "")
+                        string width = ((621 / (noOfDays + 1)) - 1).ToString() + "px";
                         staticTimesDiv.Style.Add("width", width);
-                        staticTimesDiv.Style.Add("float", "left");
-                        staticTimesDiv.Style.Add("border", "1px solid black");
+                        //staticTimesDiv.Style.Add("float", "left");
+                        //staticTimesDiv.Style.Add("border", "1px solid black");
 
                         foreach (CourtTimes CT in DayList[1].CourtTimes)
                         {
                             HtmlGenericControl staticHourDiv = new HtmlGenericControl("div");
                             if(CT.StartHour < 10)
                             {
-                                staticHourDiv.InnerHtml = "0" + CT.StartHour +":00";
+                                staticHourDiv.Attributes.Add("class", "staticHourDiv");
+                                staticHourDiv.InnerHtml = "0" + CT.StartHour +":00" + " " + CT.CourtTimeId;
                             }
                             else
                             {
-                                staticHourDiv.InnerHtml = CT.StartHour +":00";
+                                staticHourDiv.Attributes.Add("class", "staticHourDiv");
+                                staticHourDiv.InnerHtml = CT.StartHour +":00" + " " + CT.CourtTimeId;
                             }
 
 
@@ -84,13 +87,15 @@ namespace Squash
                         {
                             HtmlGenericControl dayDiv = new HtmlGenericControl("div");
                             dayDiv.Attributes.Add("id", "day" + D.Description);
-                            string width = ((740/(noOfDays +1)) - 1).ToString() +"px";
+                            dayDiv.Attributes.Add("class", "dayDiv");
+                            string width = ((702/(noOfDays +1)) - 1).ToString() +"px";
                             dayDiv.Style.Add("width", width);
-                            dayDiv.Style.Add("float", "left");
-                            dayDiv.Style.Add("border", "1px solid black");
+                            //dayDiv.Style.Add("float", "left");
+                            //dayDiv.Style.Add("border", "1px solid black");
 
                             HtmlGenericControl staticDayDiv = new HtmlGenericControl("div");
-                            staticDayDiv.Style.Add("margin", "5px");
+                            staticDayDiv.Attributes.Add("class", "staticDayDiv");
+                            //staticDayDiv.Style.Add("margin", "5px");
                             staticDayDiv.InnerHtml = D.Description;
 
                             dayDiv.Controls.Add(staticDayDiv);
@@ -98,13 +103,17 @@ namespace Squash
                             foreach (CourtTimes CT in D.CourtTimes)
                             {
                                 HtmlGenericControl hourDiv = new HtmlGenericControl("div");
+                                hourDiv.Attributes.Add("id", "" + D.DayId + CT.CourtTimeId +"");
+                                hourDiv.Attributes.Add("class", "hourDivs");
 
                                 foreach (Courts C in D.Courts)
                                 {
                                     HtmlGenericControl courtDiv = new HtmlGenericControl("div");
-                                    courtDiv.Style.Add("background-color", "green");
-                                    courtDiv.Style.Add("margin", "5px");
-                                    courtDiv.InnerHtml = "testarn";
+                                    courtDiv.Attributes.Add("id", ""+ D.DayId + "-" + CT.CourtTimeId + "-" + C.CourtId +"");
+                                    courtDiv.Attributes.Add("class", "courtDivs");
+                                    //courtDiv.Style.Add("background-color", "green");
+                                    //courtDiv.Style.Add("margin", "5px");
+                                    courtDiv.InnerHtml = "" + D.DayId + "-" + CT.CourtTimeId + "-" + C.CourtId + "";
                                     hourDiv.Controls.Add(courtDiv);
                                 }
                                 dayDiv.Controls.Add(hourDiv);
