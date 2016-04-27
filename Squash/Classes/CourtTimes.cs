@@ -9,7 +9,7 @@ namespace Squash.Classes
     {
         public int CourtTimeId { get; set; }
         public int StartHour { get; set; }
-        public int Active { get; set; }
+        public bool Active { get; set; }
 
     }
 }

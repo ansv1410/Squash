@@ -4,6 +4,8 @@
     <div class="pageDiv">
         <h2><%: Title %></h2>
         <%--CONTENT HÄR!--%>
+        <div id="scheduleDiv" runat="server">
 
+        </div>
     </div>
 </asp:Content>
