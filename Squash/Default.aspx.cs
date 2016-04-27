@@ -27,40 +27,52 @@ namespace Squash
             string showNews = "";
             string showMessages = "";
 
-            MySqlDataReader drNews = method.myReader(queryGetNews, conn);
-            while (drNews.Read())
+            try
             {
-                News n = new News();
-                n.Id = Convert.ToInt32(drNews["Id"].ToString());
-                n.Headline = drNews["Headline"].ToString();
-                n.Newstext = drNews["Newstext"].ToString();
-                n.Imagepath = drNews["Imagepath"].ToString();
-                //n.Imagebin = ;
+                MySqlDataReader drNews = method.myReader(queryGetNews, conn);
 
-                
-                if (n.Imagepath != null)
+                while (drNews.Read())
                 {
-                    showNews += "<div><h2>" + n.Headline + "</h2><p class=" + "foldedText" + ">" + n.Newstext + "</p><br/><img runat='server' class='newsImg' src=" + n.Imagepath + "></div>";
+                    News n = new News();
+                    n.Id = Convert.ToInt32(drNews["Id"].ToString());
+                    n.Headline = drNews["Headline"].ToString();
+                    n.Newstext = drNews["Newstext"].ToString();
+                    n.Imagepath = drNews["Imagepath"].ToString();
+                    //n.Imagebin = ;
+
+
+                    if (n.Imagepath != "")
+                    {
+                        showNews += "<div><h2>" + n.Headline + "</h2><p class=" + "foldedText" + ">" + n.Newstext + "</p><br/><img runat='server' class='newsImg' src=" + n.Imagepath + "><br /><hr /></div>";
+                    }
+                    else
+                    {
+                        showNews += "<div><h2>" + n.Headline + "</h2><p class=" + "foldedText" + ">" + n.Newstext + "</p><hr /></div>";
+                    }
                 }
-                else
+                newsDiv.InnerHtml = showNews;
+
+                MySqlDataReader drMessages = method.myReader(queryGetMessages, conn);
+                while (drMessages.Read())
                 {
-                    showNews += "<div><h2>" + n.Headline + "</h2><p class=" + "foldedText" + ">" + n.Newstext + "</p></div>";
+                    Messages m = new Messages();
+                    m.Id = Convert.ToInt32(drMessages["Id"].ToString());
+                    m.Headline = drMessages["Headline"].ToString();
+                    m.Message = drMessages["Messages"].ToString();
+
+                    showMessages += "<div><p class=" + "foldedText" + "><span class=" + "messageHeaderP" + ">" + m.Headline + "</span> " + m.Message + "</p></div>";
                 }
+                messagesDiv.InnerHtml = "<h2>Meddelanden</h2>" + showMessages + "<hr />";
             }
-            newsDiv.InnerHtml = showNews;
-
-
-            MySqlDataReader drMessages = method.myReader(queryGetMessages, conn);
-            while (drMessages.Read())
+            catch (MySqlException ex)
             {
-                Messages m = new Messages();
-                m.Id = Convert.ToInt32(drMessages["Id"].ToString());
-                m.Headline = drMessages["Headline"].ToString();
-                m.Message = drMessages["Messages"].ToString();
-
-                showMessages += "<div><p class=" + "foldedText" + "><span class=" + "messageHeaderP" + ">" + m.Headline + "</span> " + m.Message + "</p></div>";
+                Debug.WriteLine(ex);
             }
-            messagesDiv.InnerHtml = "<h2>Meddelanden</h2>" + showMessages + "<hr />";
+            finally
+            {
+                conn.Close();
+            }
+
 
 
             if (!IsPostBack)
