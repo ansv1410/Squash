@@ -27,7 +27,7 @@ namespace Squash
         public void BuildSchedule(List<Days> DayList, int noOfDays)
         {
             DateTime bookingDate = DateTime.Now.Date;
-            int todayNo = Convert.ToInt16(DateTime.Now.DayOfWeek.ToString("d", new CultureInfo("sv-SE")));
+            int todayNo = Convert.ToInt16(DateTime.Now.DayOfWeek.ToString("d"));
             
             int counter = 0;
             bool drawtimes = true;
