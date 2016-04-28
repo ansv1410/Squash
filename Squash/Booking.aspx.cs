@@ -105,10 +105,9 @@ namespace Squash
                             HtmlGenericControl staticDayDiv = new HtmlGenericControl("div");
                             staticDayDiv.Attributes.Add("class", "staticDayDiv");
 
-                            string thisDayIs = method.FixName(DateTime.Now.AddDays(counter - 1).ToString("dddd", new CultureInfo("sv-SE")));
-                            string thisDayIsDate = method.FixName(DateTime.Now.AddDays(counter - 1).ToString("d", new CultureInfo("sv-SE")));
-                            string thisDayIsMonth = DateTime.Now.AddDays(counter - 1).ToString("%M", new CultureInfo("sv-SE"));
-                            staticDayDiv.InnerHtml = thisDayIs + "<br />" + thisDayIsDate + "/" + thisDayIsMonth;
+                            string thisDayIsDate = method.FixName(DateTime.Now.AddDays(counter - 1).ToString("dddd d", new CultureInfo("sv-SE")));
+                            string thisDayIsMonth = DateTime.Now.AddDays(counter - 1).ToString("%M");
+                            staticDayDiv.InnerHtml =thisDayIsDate + "/" + thisDayIsMonth;
 
                             dayDiv.Controls.Add(staticDayDiv);
 
