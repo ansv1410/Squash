@@ -423,8 +423,10 @@ h4{
 /*BOKNINGSSIDA*/
 #MainContent_scheduleDiv{
     display:table;
+    /*width:96%;*/
     padding-left:2%;
-    border-right:1px solid black;
+    padding-right:2%;
+    /*border-right:1px solid black;*/
     /*margin:0 auto;*/
 }
 
