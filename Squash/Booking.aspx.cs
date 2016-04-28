@@ -29,16 +29,16 @@ namespace Squash
             //string todayIs = DateTime.Now.DayOfWeek.ToString();
             //Thread.CurrentThread.CurrentCulture = new CultureInfo("sv-SE");
             //Thread.CurrentThread.CurrentUICulture = new CultureInfo("sv-SE");
-            string todayIs = method.FixName(DateTime.Now.ToString("dddd", new CultureInfo("sv-SE")));
+            //string todayIs = method.FixName(DateTime.Now.ToString("dddd", new CultureInfo("sv-SE")));
             DateTime bookingDate = DateTime.Now.Date;
-            int todayNo = 0;
-            foreach (Days D in DayList)
-            {
-                if (D.Description == todayIs)
-                {
-                    todayNo = D.DayId;
-                }
-            }
+            int todayNo = Convert.ToInt16(DateTime.Now.DayOfWeek.ToString("d"));
+            //foreach (Days D in DayList)
+            //{
+            //    if (D.Description == todayIs)
+            //    {
+            //        todayNo = D.DayId;
+            //    }
+            //}
 
             
             int counter = 0;
@@ -121,7 +121,12 @@ namespace Squash
                             HtmlGenericControl staticDayDiv = new HtmlGenericControl("div");
                             staticDayDiv.Attributes.Add("class", "staticDayDiv");
                             //staticDayDiv.Style.Add("margin", "5px");
-                            staticDayDiv.InnerHtml = D.Description;
+
+                            //string thisDayIs = method.FixName((DateTime.Now.AddDays(D.DayId - Convert.ToInt16(DateTime.Now.DayOfWeek.ToString("d")))).ToString("dddd", new CultureInfo("sv-SE")));
+
+                            string thisDayIsDate = method.FixName(DateTime.Now.AddDays(counter - 1).ToString("dddd d", new CultureInfo("sv-SE")));
+                            string thisDayIsMonth = DateTime.Now.AddDays(counter - 1).ToString("%M");
+                            staticDayDiv.InnerHtml =thisDayIsDate + "/" + thisDayIsMonth;
 
                             dayDiv.Controls.Add(staticDayDiv);
 
