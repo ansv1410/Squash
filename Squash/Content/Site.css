@@ -467,6 +467,7 @@ h4{
 .courtDivs{
     /*background-color:lightgreen;*/
     /*margin:5px;*/
+    background-color:lightgreen;
     margin-top:0px;
     margin-bottom:0px;
     margin-right:0px;
@@ -509,11 +510,17 @@ h4{
     height:50px;
 }
 
-[id='4-7-1']{
+/*[id='4-7-1']{
     background-color:lightblue;
 }
 [id='4-7-2']{
     background-color:pink;
+}*/
+.bookedCourt{
+    background-color:lightblue;
+}
+.subscribedCourt{
+    background-color:lightcoral;
 }
 
 /*SLUT - BOKNINGSSIDA*/

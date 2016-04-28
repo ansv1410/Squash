@@ -7,5 +7,16 @@
         <div id="scheduleDiv" runat="server">
 
         </div>
+    <script>
+        function confirm_clicked(ct, mId, fullDate) {
+            var i = 2;
+            
+            if(i < 4)
+            {
+                alert(ct + " " + mId + " " + fullDate);
+            }
+        }
+
+    </script>
     </div>
 </asp:Content>

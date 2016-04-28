@@ -18,17 +18,25 @@ namespace Squash
     {
         static Methods method = new Methods();
         MySqlConnection conn = method.myConn();
+        LoggedInPerson lip;
         protected void Page_Load(object sender, EventArgs e)
         {
+            lip = (LoggedInPerson)Session["lip"];
+            
             //"8" är antalet dagar som metoden ska hämta, dynamiskt och kan ändras. 
             BuildSchedule(GetDayList(),8);
-            
+
+
         }
         public void BuildSchedule(List<Days> DayList, int noOfDays)
         {
             DateTime bookingDate = DateTime.Now.Date;
             int todayNo = Convert.ToInt16(DateTime.Now.DayOfWeek.ToString("d"));
-            
+
+            List<Subscriptions> allSubscriptions = GetSubscriptionList();
+
+
+
             int counter = 0;
             bool drawtimes = true;
             for (int i = todayNo; i <= noOfDays; i++)
@@ -109,6 +117,7 @@ namespace Squash
                             string thisDayIsDate = method.FixName(DateTime.Now.AddDays(counter - 1).ToString("%d", new CultureInfo("sv-SE")));
                             string thisDayIsMonth = DateTime.Now.AddDays(counter - 1).ToString("%M", new CultureInfo("sv-SE"));
                             staticDayDiv.InnerHtml = thisDayIs + "<br />" + thisDayIsDate + "/" + thisDayIsMonth;
+                            string thisDayIsFullDate = DateTime.Now.AddDays(counter - 1).ToString("yyyy-MM-dd", new CultureInfo("sv-SE"));
 
                             dayDiv.Controls.Add(staticDayDiv);
 
@@ -121,10 +130,35 @@ namespace Squash
                                 foreach (Courts C in D.Courts)
                                 {
                                     HtmlGenericControl courtDiv = new HtmlGenericControl("div");
-                                    courtDiv.Attributes.Add("id", ""+ D.DayId + "-" + CT.CourtTimeId + "-" + C.CourtId +"");
+                                    courtDiv.Attributes.Add("id", D.DayId + "-" + CT.CourtTimeId + "-" + C.CourtId + "-" + thisDayIsFullDate);
                                     courtDiv.Attributes.Add("class", "courtDivs");
-                                    courtDiv.Attributes.Add("onclick", "confirm_clicked();");
-                                    courtDiv.InnerHtml = "" + D.DayId + "-" + CT.CourtTimeId + "-" + C.CourtId + "";
+                                    string thisDayIsFullTime = "";
+
+                                    if (CT.StartHour < 10)
+                                    {
+                                        thisDayIsFullTime = "0" + CT.StartHour + ":00:00";
+
+                                    }
+                                    else
+                                    {
+                                        thisDayIsFullTime = CT.StartHour + ":00:00";
+                                    }
+
+
+                                    foreach (Subscriptions sub in allSubscriptions)
+                                    {
+                                        if(sub.CourtId == C.CourtId && sub.CourtTimeId == CT.CourtTimeId && sub.DayId == D.DayId)
+                                        {
+                                            courtDiv.Attributes.Add("class", "courtDivs subscribedCourt");
+                                        }
+                                    }
+
+
+                                    if(Session["lip"] != null)
+                                    {
+                                        courtDiv.Attributes.Add("onclick", "confirm_clicked('" + C.CourtId + "','" + lip.member.MemberId + "','" + thisDayIsFullDate + " " + thisDayIsFullTime + "')");
+                                    }
+                                    //courtDiv.InnerHtml = D.DayId + "-" + CT.CourtTimeId + "-" + C.CourtId + " " + thisDayIsFullDate + " " + thisDayIsFullTime;
                                     hourDiv.Controls.Add(courtDiv);
                                 }
                                 dayDiv.Controls.Add(hourDiv);
@@ -171,6 +205,8 @@ namespace Squash
                 }
 
             }
+            conn.Close();
+
             query = "SELECT * FROM courttimes WHERE Active = 1";
             dr = method.myReader(query, conn);
             while (dr.Read())
@@ -185,7 +221,30 @@ namespace Squash
                 }
 
             }
+            conn.Close();
             return DayList;
         }
+
+        public List<Subscriptions> GetSubscriptionList()
+        {
+            List<Subscriptions> subscriptionList = new List<Subscriptions>();
+
+            string query = "SELECT * FROM subscriptions";
+
+            MySqlDataReader dr = method.myReader(query, conn);
+
+            while (dr.Read())
+            {
+                Subscriptions s = new Subscriptions();
+                s.CourtId = Convert.ToInt16(dr["CourtId"]);
+                s.CourtTimeId = Convert.ToInt16(dr["CourtTimeId"]);
+                s.DayId = Convert.ToInt16(dr["DayId"]);
+                s.MemberId = Convert.ToInt16(dr["MemberId"]);
+                subscriptionList.Add(s);
+            }
+
+            return subscriptionList;
+        }
+
     }
 }
