@@ -423,66 +423,97 @@ h4{
 /*BOKNINGSSIDA*/
 #MainContent_scheduleDiv{
     display:table;
+    /*width:96%;*/
     padding-left:2%;
+    padding-right:2%;
+    /*border-right:1px solid black;*/
     /*margin:0 auto;*/
 }
 
 .dayDiv{
     /*background-color:forestgreen;*/
     float:left;
-    border:1px solid black;
+    /*max-width:113.85px;*/
+    /*border:1px solid black;*/
+    /*border-right:1px solid black;*/
+    /*border-left:1px solid black;*/
+    /*border-top:1px solid black;*/
+    border-bottom:1px solid black;
+    border-left:1px solid black;
 }
 .staticDayDiv{
     /*background-color:grey;*/
     /*margin:5px;*/
-    margin-top:5px;
-    margin-bottom:5px;
+    padding-top:5px;
+    padding-bottom:5px;
     text-align:center;
+    font-weight:bold;
+    background-color:#ddd;
+    border-top:1px solid black;
+    /*border-left:1px solid black;*/
 }
 
 .hourDivs{
     /*background-color:blueviolet;*/
-    height:45px;
-    border-bottom:1px solid black;
+    height:50px;
+    width:100%;
+    /*border-bottom:1px solid black;*/
     border-top: 1px solid black;
     margin-top:0px;
-    margin-bottom:5px;
+    /*margin-bottom:5px;*/
+    padding-top:0px;
+    font-size:70%;
 }
 .courtDivs{
     /*background-color:lightgreen;*/
     /*margin:5px;*/
-    margin-top:1px;
+    margin-top:0px;
     margin-bottom:0px;
-    margin-right:5px;
-    margin-left:5px;
+    margin-right:0px;
+    margin-left:0px;
+    height:50%;
+    width:100%;
+    padding-bottom:10px;
+    padding-left:1px;
+    padding-right:1px;
+    overflow:hidden;
+    /*white-space:nowrap;*/
 }
 
 #staticTimesDiv{
     /*background-color:white;*/
     float:left;
-    border: 1px solid black;
-    padding-top:30px;
+    /*border: 1px solid black;*/
+    border-top:1px solid white;
+    margin-top:30px;
+    font-weight:bold;
+    background-color:#ddd;
+    border-bottom:1px solid black;
+    border-left:1px solid black;
+    width:6%;
+
 }
 .staticHourDiv{
     /*background-color:cornflowerblue;*/
     /*margin-left:5px;
     margin-right:5px;*/
     margin-top:0px;
-    margin-bottom:5px;
+    /*margin-bottom:5px;*/
     /*margin:5px;*/
-    padding-top:9px;
-    padding-bottom:14px;
+    padding-top:14.5px;
+    padding-bottom:14.5px;
     /*height:40px;*/
     text-align:center;
     border-top:1px solid black;
-    border-bottom:1px solid black;
+    /*border-bottom:1px solid black;*/
+    height:50px;
 }
 
-[id='3-7-1']{
-    /*background-color:lightblue;*/
+[id='4-7-1']{
+    background-color:lightblue;
 }
-[id='3-7-2']{
-    /*background-color:pink;*/
+[id='4-7-2']{
+    background-color:pink;
 }
 
 /*SLUT - BOKNINGSSIDA*/
@@ -505,6 +536,7 @@ h4{
 
 
 @media screen and (min-width: 992px){
+    
     #startPageDiv{
         margin-top:2%;
     }
@@ -518,6 +550,12 @@ h4{
         padding: 0;
         padding-top:100px;
     }
+    /*NYTT*/
+    #MainContent_scheduleDiv{
+        width:100%;
+    }
+    
+    /*SLUT NYTT*/
 }
 
 @media screen and (max-width: 360px){
