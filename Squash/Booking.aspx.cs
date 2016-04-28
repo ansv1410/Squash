@@ -25,6 +25,7 @@ namespace Squash
         public void BuildSchedule(List<Days> DayList, int noOfDays)
         {
             string todayIs = DateTime.Now.DayOfWeek.ToString();
+            DateTime bookingDate = DateTime.Now.Date;
             int todayNo = 0;
             foreach (Days D in DayList)
             {
@@ -53,8 +54,8 @@ namespace Squash
                         HtmlGenericControl staticTimesDiv = new HtmlGenericControl("div");
                         staticTimesDiv.Attributes.Add("id", "staticTimesDiv");
                         //staticTimesDiv.Attributes.Add("class", "")
-                        string width = ((621 / (noOfDays + 1)) - 1).ToString() + "px";
-                        staticTimesDiv.Style.Add("width", width);
+                        //string width = ((621 / (noOfDays + 1)) - 1).ToString() + "px";
+                        //staticTimesDiv.Style.Add("width", width);
                         //staticTimesDiv.Style.Add("float", "left");
                         //staticTimesDiv.Style.Add("border", "1px solid black");
 
@@ -64,12 +65,12 @@ namespace Squash
                             if(CT.StartHour < 10)
                             {
                                 staticHourDiv.Attributes.Add("class", "staticHourDiv");
-                                staticHourDiv.InnerHtml = "0" + CT.StartHour +":00" + " " + CT.CourtTimeId;
+                                staticHourDiv.InnerHtml = "0" + CT.StartHour +":00";
                             }
                             else
                             {
                                 staticHourDiv.Attributes.Add("class", "staticHourDiv");
-                                staticHourDiv.InnerHtml = CT.StartHour +":00" + " " + CT.CourtTimeId;
+                                staticHourDiv.InnerHtml = CT.StartHour +":00";
                             }
 
 
@@ -80,15 +81,34 @@ namespace Squash
 
 
                     }
-
+                double d = 94;
+                double n = Convert.ToDouble(noOfDays);
                     foreach (Days D in DayList)
                     {
                         if (D.DayId == i)
                         {
+                            
+
                             HtmlGenericControl dayDiv = new HtmlGenericControl("div");
                             dayDiv.Attributes.Add("id", "day" + D.Description);
                             dayDiv.Attributes.Add("class", "dayDiv");
-                            string width = ((702/(noOfDays +1)) - 1).ToString() +"px";
+                            //string width = (d/n).ToString() +"%"; //((scheduleDiv.midth - 68px) / noOfDays)
+                            double dn = d / n;
+
+                            string wid = dn.ToString() + "%";
+                            string width = "";
+                            foreach (Char c in wid)
+                            {
+                                if (c.ToString() == ",")
+                                {
+                                    width += ".";
+                                }
+                                else
+                                {
+                                    width += c;
+                                }
+                            }
+
                             dayDiv.Style.Add("width", width);
                             //dayDiv.Style.Add("float", "left");
                             //dayDiv.Style.Add("border", "1px solid black");
