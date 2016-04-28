@@ -123,6 +123,7 @@ namespace Squash
                                     HtmlGenericControl courtDiv = new HtmlGenericControl("div");
                                     courtDiv.Attributes.Add("id", ""+ D.DayId + "-" + CT.CourtTimeId + "-" + C.CourtId +"");
                                     courtDiv.Attributes.Add("class", "courtDivs");
+                                    courtDiv.Attributes.Add("onclick", "confirm_clicked();");
                                     courtDiv.InnerHtml = "" + D.DayId + "-" + CT.CourtTimeId + "-" + C.CourtId + "";
                                     hourDiv.Controls.Add(courtDiv);
                                 }
