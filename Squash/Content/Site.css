@@ -448,7 +448,13 @@ h4{
     padding-bottom:5px;
     text-align:center;
     font-weight:bold;
-    background-color:#ddd;
+    /*background-color:#ddd;*/
+    background: #ffffff;
+    background-image: -webkit-linear-gradient(top, #ffffff, #dedede);
+    background-image: -moz-linear-gradient(top, #ffffff, #dedede);
+    background-image: -ms-linear-gradient(top, #ffffff, #dedede);
+    background-image: -o-linear-gradient(top, #ffffff, #dedede);
+    background-image: linear-gradient(to bottom, #ffffff, #dedede);
     border-top:1px solid black;
     /*border-left:1px solid black;*/
 }
@@ -488,7 +494,12 @@ h4{
     border-top:1px solid white;
     margin-top:50px;
     font-weight:bold;
-    background-color:#ddd;
+    /*background-color:#ddd;*/
+    background-image: -webkit-linear-gradient(left, #ffffff, #dedede);
+    background-image: -moz-linear-gradient(left, #ffffff, #dedede);
+    background-image: -ms-linear-gradient(left, #ffffff, #dedede);
+    background-image: -o-linear-gradient(left, #ffffff, #dedede);
+    background-image: linear-gradient(to right, #ffffff, #dedede);
     border-bottom:1px solid black;
     border-left:1px solid black;
     width:6%;

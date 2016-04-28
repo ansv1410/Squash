@@ -145,19 +145,22 @@ namespace Squash
                                     }
 
 
+                                    bool booked = false;
                                     foreach (Subscriptions sub in allSubscriptions)
                                     {
                                         if(sub.CourtId == C.CourtId && sub.CourtTimeId == CT.CourtTimeId && sub.DayId == D.DayId)
                                         {
+                                            booked = true;
                                             courtDiv.Attributes.Add("class", "courtDivs subscribedCourt");
+                                            courtDiv.InnerHtml = sub.FullMemberName;
                                         }
                                     }
 
-
-                                    if(Session["lip"] != null)
+                                    if(Session["lip"] != null && booked == false)
                                     {
                                         courtDiv.Attributes.Add("onclick", "confirm_clicked('" + C.CourtId + "','" + lip.member.MemberId + "','" + thisDayIsFullDate + " " + thisDayIsFullTime + "')");
                                     }
+
                                     //courtDiv.InnerHtml = D.DayId + "-" + CT.CourtTimeId + "-" + C.CourtId + " " + thisDayIsFullDate + " " + thisDayIsFullTime;
                                     hourDiv.Controls.Add(courtDiv);
                                 }
@@ -229,7 +232,11 @@ namespace Squash
         {
             List<Subscriptions> subscriptionList = new List<Subscriptions>();
 
-            string query = "SELECT * FROM subscriptions";
+            string query = "SELECT s.CourtID, s.CourtTimeId, s.DayId, s.MemberId, u.Firstname, u.Surname FROM  subscriptions s "
+                         + "JOIN members m "
+                         + "ON m.MemberId = s.MemberId "
+                         + "JOIN users u "
+                         + "ON u.UserID = m.UserID;";
 
             MySqlDataReader dr = method.myReader(query, conn);
 
@@ -240,6 +247,7 @@ namespace Squash
                 s.CourtTimeId = Convert.ToInt16(dr["CourtTimeId"]);
                 s.DayId = Convert.ToInt16(dr["DayId"]);
                 s.MemberId = Convert.ToInt16(dr["MemberId"]);
+                s.FullMemberName = method.FixName(dr["Firstname"].ToString() + " " + dr["Surname"].ToString());
                 subscriptionList.Add(s);
             }
 
