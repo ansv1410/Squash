@@ -9,6 +9,8 @@ using System.Diagnostics;
 using Squash.Classes;
 using MySql.Data.MySqlClient;
 using System.Configuration;
+using System.Globalization;
+using System.Threading;
 
 namespace Squash
 {
@@ -24,7 +26,9 @@ namespace Squash
         }
         public void BuildSchedule(List<Days> DayList, int noOfDays)
         {
-            string todayIs = DateTime.Now.DayOfWeek.ToString();
+            //Thread.CurrentThread.CurrentCulture = new CultureInfo("sv-SE");
+            //Thread.CurrentThread.CurrentUICulture = new CultureInfo("sv-SE");
+            string todayIs = method.FixName(DateTime.Now.ToString("dddd", new CultureInfo("sv-SE")));
             int todayNo = 0;
             foreach (Days D in DayList)
             {
