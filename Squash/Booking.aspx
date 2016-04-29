@@ -5,7 +5,7 @@
         <h2><%: Title %></h2>
         <%--CONTENT HÄR!--%>
         <div id="scheduleDiv" runat="server">
-
+            <div class="toolTip">Klicka för att boka tid</div>
         </div>
     <script>
         function confirm_clicked(ct, mId, fullDate) {
@@ -17,6 +17,31 @@
             }
         }
 
+
+
+        var mouseX;
+        var mouseY;
+        $(document).mousemove(function (e) {
+            mouseX = e.pageX;
+            mousey = e.pageY;
+        });
+        $(".freeCourt").mouseover(function () {
+            $('.toolTip').offset({top: mousey, left: mouseX }).fadeIn('slow');
+        });
+        $(".freeCourt").mouseout(function () {
+            $('.toolTip').fadeout('slow');
+        });
+
     </script>
+
+
+
+    <script>
+        
+    </script>
+
+
+
+
     </div>
 </asp:Content>

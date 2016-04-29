@@ -158,6 +158,7 @@ namespace Squash
 
                                     if(Session["lip"] != null && booked == false)
                                     {
+                                        courtDiv.Attributes.Add("class", "courtDivs freeCourt");
                                         courtDiv.Attributes.Add("onclick", "confirm_clicked('" + C.CourtId + "','" + lip.member.MemberId + "','" + thisDayIsFullDate + " " + thisDayIsFullTime + "')");
                                     }
 

@@ -533,6 +533,18 @@ h4{
 .subscribedCourt{
     background-color:lightcoral;
 }
+.toolTip{
+    display:none;
+    position:absolute;
+    background-color:mediumpurple;
+}
+.freeCourt{
+    cursor:pointer;
+}
+/*.freeCourt:hover + .toolTip{
+    display:block;
+}*/
+
 
 /*SLUT - BOKNINGSSIDA*/
 
