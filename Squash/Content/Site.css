@@ -469,11 +469,12 @@ h4{
     /*margin-bottom:5px;*/
     padding-top:0px;
     font-size:70%;
+    background: #cfffd2;
+
 }
 .courtDivs{
     /*background-color:lightgreen;*/
     /*margin:5px;*/
-    background-color:lightgreen;
     margin-top:0px;
     margin-bottom:0px;
     margin-right:0px;
@@ -485,6 +486,7 @@ h4{
     padding-right:1px;
     overflow:hidden;
     /*white-space:nowrap;*/
+
 }
 
 #staticTimesDiv{
@@ -531,7 +533,13 @@ h4{
     background-color:lightblue;
 }
 .subscribedCourt{
-    background-color:lightcoral;
+    /*background-color:lightcoral;*/
+  background: #fac5c5;
+  background-image: -webkit-linear-gradient(top, #fac5c5, #d46868);
+  background-image: -moz-linear-gradient(top, #fac5c5, #d46868);
+  background-image: -ms-linear-gradient(top, #fac5c5, #d46868);
+  background-image: -o-linear-gradient(top, #fac5c5, #d46868);
+  background-image: linear-gradient(to bottom, #fac5c5, #d46868);
 }
 /*.toolTip{
     display:none;
@@ -557,6 +565,12 @@ h4{
 
 .freeCourt{
     cursor:pointer;
+    background: #cfffd2;
+      background-image: -webkit-linear-gradient(left, #cfffd2, #bdffbc);
+      background-image: -moz-linear-gradient(left, #cfffd2, #bdffbc);
+      background-image: -ms-linear-gradient(left, #cfffd2, #bdffbc);
+      background-image: -o-linear-gradient(left, #cfffd2, #bdffbc);
+      background-image: linear-gradient(to right, #cfffd2, #bdffbc);
 }
 /*.freeCourt:hover + .toolTip{
     display:block;
