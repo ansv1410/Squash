@@ -158,7 +158,13 @@ namespace Squash
 
                                     if(Session["lip"] != null && booked == false)
                                     {
-                                        courtDiv.Attributes.Add("onclick", "confirm_clicked('" + C.CourtId + "','" + lip.member.MemberId + "','" + thisDayIsFullDate + " " + thisDayIsFullTime + "')");
+                                        string bookingDivId = C.CourtId.ToString() + thisDayIsFullDate + "-" + thisDayIsFullTime;
+
+                                        courtDiv.Attributes.Add("onclick", "confirm_clicked('" + C.CourtId + "','" + lip.member.MemberId + "','" + thisDayIsFullDate + " " + thisDayIsFullTime + "','" + bookingDivId + ")");
+                                        HtmlGenericControl bookingDiv = new HtmlGenericControl();
+                                        bookingDiv.Attributes.Add("id", bookingDivId);
+                                        bookingOverlay.Controls.Add(bookingDiv);
+                                        
                                     }
 
                                     //courtDiv.InnerHtml = D.DayId + "-" + CT.CourtTimeId + "-" + C.CourtId + " " + thisDayIsFullDate + " " + thisDayIsFullTime;

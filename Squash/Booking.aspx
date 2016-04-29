@@ -4,11 +4,12 @@
     <div class="pageDiv">
         <h2><%: Title %></h2>
         <%--CONTENT HÄR!--%>
+        <div id="bookingOverlay" runat="server"></div>       
         <div id="scheduleDiv" runat="server">
-
+            
         </div>
     <script>
-        function confirm_clicked(ct, mId, fullDate) {
+        function confirm_clicked(ct, mId, fullDate, bookingDivId) {
             var i = 2;
             
             if(i < 4)
