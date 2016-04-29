@@ -132,6 +132,7 @@ namespace Squash
                                     HtmlGenericControl courtDiv = new HtmlGenericControl("div");
                                     courtDiv.Attributes.Add("id", D.DayId + "-" + CT.CourtTimeId + "-" + C.CourtId + "-" + thisDayIsFullDate);
                                     courtDiv.Attributes.Add("class", "courtDivs");
+                                    
                                     string thisDayIsFullTime = "";
 
                                     if (CT.StartHour < 10)
@@ -159,16 +160,36 @@ namespace Squash
 
                                     if(Session["lip"] != null && booked == false)
                                     {
-                                        string bookingDivId = C.CourtId.ToString() + thisDayIsFullDate + "-" + thisDayIsFullTime;
+                                        string shortTime = thisDayIsFullTime[0].ToString() + thisDayIsFullTime[1].ToString();
+                                        string bookingDivId = C.CourtId.ToString() + "_" + thisDayIsFullDate + "_" + shortTime;
 
-                                        courtDiv.Attributes.Add("onclick", "confirm_clicked('" + C.CourtId + "','" + lip.member.MemberId + "','" + thisDayIsFullDate + " " + thisDayIsFullTime + "','" + bookingDivId + ")");
-                                        HtmlGenericControl bookingDiv = new HtmlGenericControl();
+                                        HtmlGenericControl bookingDiv = new HtmlGenericControl("div");
                                         bookingDiv.Attributes.Add("id", bookingDivId);
-                                        bookingOverlay.Controls.Add(bookingDiv);
-                                        
-                                        courtDiv.Attributes.Add("title", "Klicka för att boka");
+                                        bookingDiv.Attributes.Add("class", "bookingDiv");
+                                        bookingDiv.InnerHtml = bookingDivId;
+
+                                        HtmlGenericControl bookCortDiv = new HtmlGenericControl("div");
+                                        HtmlGenericControl cortImgDiv = new HtmlGenericControl("div");
+                                        cortImgDiv.Attributes.Add("class", "cortImgDiv");
+                                        cortImgDiv.InnerHtml = "<img class='courtImg' src='Images/squashB1NoBackgroundFlor.svg' />";
+                                        bookCortDiv.Controls.Add(cortImgDiv);
+                                        bookingDiv.Controls.Add(bookCortDiv);
+
+                                        Button btnBook = new Button();
+                                        bookingDiv.Controls.Add(btnBook);
+
+
+                                        bookingOverlayMessage.Controls.Add(bookingDiv);
+
+                                        //courtDiv.Attributes.Add("onclick", "confirm_clicked('" + C.CourtId + "','" + lip.member.MemberId + "','" + thisDayIsFullDate + " " + thisDayIsFullTime + "','" + bookingDivId + ")");
+                                        courtDiv.Attributes.Add("onclick", "OpenBookingOverlay('"+ bookingDivId +"')");
                                         courtDiv.Attributes.Add("class", "courtDivs freeCourt masterTiptool");
-                                        courtDiv.Attributes.Add("onclick", "confirm_clicked('" + C.CourtId + "','" + lip.member.MemberId + "','" + thisDayIsFullDate + " " + thisDayIsFullTime + "')");
+                                        courtDiv.Attributes.Add("title", "Klicka för att boka Bana " + C.CourtId.ToString() + ", " + thisDayIs + " " + thisDayIsDate + "/" + thisDayIsMonth);
+                                    }
+                                    else if (booked == false)
+                                    {
+                                        courtDiv.Attributes.Add("class", "courtDivs freeCourt");
+
                                     }
 
                                     //courtDiv.InnerHtml = D.DayId + "-" + CT.CourtTimeId + "-" + C.CourtId + " " + thisDayIsFullDate + " " + thisDayIsFullTime;

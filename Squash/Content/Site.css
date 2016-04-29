@@ -572,6 +572,55 @@ h4{
       background-image: -o-linear-gradient(left, #cfffd2, #bdffbc);
       background-image: linear-gradient(to right, #cfffd2, #bdffbc);
 }
+.freeCourt:hover{
+    cursor:pointer;
+    background: #bdffbc;
+      background-image: -webkit-linear-gradient(left, #bdffbc, #71f56e);
+      background-image: -moz-linear-gradient(left, #bdffbc, #71f56e);
+      background-image: -ms-linear-gradient(left, #bdffbc, #71f56e);
+      background-image: -o-linear-gradient(left, #bdffbc, #71f56e);
+      background-image: linear-gradient(to right, #bdffbc, #71f56e);
+}
+.booking-overlay-container{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color:transparent;
+    z-index: 1499;
+    display: none;
+}
+.booking-page-overlay{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: rgba(51,51,51,0.7);
+    z-index: 1500;
+}
+.booking-overlay-message {
+    position:relative;
+     margin: 0 auto;
+     margin-top: 110px;
+     padding: 1em;
+     z-index: 1501;
+     background: white;
+     max-width: 500px;
+ /*display:none;*/
+ /*text-align: center;*/
+}
+.bookingDiv{
+    display:none;
+}
+.cortImgDiv{
+    max-width:50%;
+    background-color:lightgreen;
+}
+.courtImg{
+    width:100%;
+}
 /*.freeCourt:hover + .toolTip{
     display:block;
 }*/
