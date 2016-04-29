@@ -1,14 +1,17 @@
 ﻿<%@ Page Title="Spelschema" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Booking.aspx.cs" Inherits="Squash.Booking" %>
 
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    
     <div class="pageDiv">
         <h2><%: Title %></h2>
         <%--CONTENT HÄR!--%>
         <div id="bookingOverlay" runat="server"></div>       
         <div id="scheduleDiv" runat="server">
-            
+
         </div>
-    <script>
+
+    <script type="text/javascript">
         function confirm_clicked(ct, mId, fullDate, bookingDivId) {
             var i = 2;
             
@@ -19,5 +22,8 @@
         }
 
     </script>
+
+
+
     </div>
 </asp:Content>

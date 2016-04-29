@@ -17,6 +17,7 @@
     <%--<link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />--%>
     <%--    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>--%>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
@@ -167,5 +168,31 @@
             $(this).addClass("current-menu-item");
         }
     });
+
+
+
+
+            $(document).ready(function() {
+                // Tooltip only Text
+                $('.masterTiptool').hover(function(){
+                    // Hover over code
+                    var title = $(this).attr('title');
+                    $(this).data('tipText', title).removeAttr('title');
+                    $('<p class="tiptool"></p>')
+                    .text(title)
+                    .appendTo('body')
+                    .delay(600).fadeIn();
+                    
+                }, function() {
+                    // Hover out code
+                    $(this).attr('title', $(this).data('tipText'));
+                    $('.tiptool').remove();
+                }).mousemove(function(e) {
+                    var mousex = e.pageX + 20; //Get X coordinates
+                    var mousey = e.pageY + 10; //Get Y coordinates
+                    $('.tiptool')
+                    .css({ top: mousey, left: mousex })
+                });
+            });
 
 </script>

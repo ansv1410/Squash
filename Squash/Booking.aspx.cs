@@ -151,7 +151,8 @@ namespace Squash
                                         if(sub.CourtId == C.CourtId && sub.CourtTimeId == CT.CourtTimeId && sub.DayId == D.DayId)
                                         {
                                             booked = true;
-                                            courtDiv.Attributes.Add("class", "courtDivs subscribedCourt");
+                                            courtDiv.Attributes.Add("title", "Redan bokad av " + sub.FullMemberName);
+                                            courtDiv.Attributes.Add("class", "courtDivs subscribedCourt masterTiptool");
                                             courtDiv.InnerHtml = sub.FullMemberName;
                                         }
                                     }
@@ -165,6 +166,9 @@ namespace Squash
                                         bookingDiv.Attributes.Add("id", bookingDivId);
                                         bookingOverlay.Controls.Add(bookingDiv);
                                         
+                                        courtDiv.Attributes.Add("title", "Klicka för att boka");
+                                        courtDiv.Attributes.Add("class", "courtDivs freeCourt masterTiptool");
+                                        courtDiv.Attributes.Add("onclick", "confirm_clicked('" + C.CourtId + "','" + lip.member.MemberId + "','" + thisDayIsFullDate + " " + thisDayIsFullTime + "')");
                                     }
 
                                     //courtDiv.InnerHtml = D.DayId + "-" + CT.CourtTimeId + "-" + C.CourtId + " " + thisDayIsFullDate + " " + thisDayIsFullTime;
