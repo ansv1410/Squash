@@ -533,11 +533,28 @@ h4{
 .subscribedCourt{
     background-color:lightcoral;
 }
-.toolTip{
+/*.toolTip{
     display:none;
     position:absolute;
     background-color:mediumpurple;
+    z-index:500;
+}*/
+
+
+.tiptool {
+    display:none;
+	position:absolute;
+	border:1px solid #333;
+	background-color:#161616;
+	border-radius:5px;
+	padding:10px;
+	color:#fff;
+	font-size:12px;
+    opacity:0.8;
+    /*z-index:2000;*/
 }
+
+
 .freeCourt{
     cursor:pointer;
 }
