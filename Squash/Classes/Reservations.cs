@@ -13,5 +13,6 @@ namespace Squash.Classes
         public int HandledBy { get; set; }
         public int ReservationType { get; set; }
 
+        public string FullMemberName { get; set; }
     }
 }

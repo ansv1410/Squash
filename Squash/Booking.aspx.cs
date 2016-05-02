@@ -34,8 +34,7 @@ namespace Squash
             int todayNo = Convert.ToInt16(DateTime.Now.DayOfWeek.ToString("d"));
 
             List<Subscriptions> allSubscriptions = GetSubscriptionList();
-
-
+            List<Reservations> allReservations = GetReservationsList();
 
             int counter = 0;
             bool drawtimes = true;
@@ -313,6 +312,45 @@ namespace Squash
 
             return subscriptionList;
         }
+
+        public List<Reservations> GetReservationsList()
+        {
+            List<Reservations> reservationsList = new List<Reservations>();
+
+            string query = "SELECT r.CourtId, r.MemberId, r.StartDate, r.HandledBy, r.ReservationType, u.Firstname, u.Surname FROM reservations r "
+                         + "INNER JOIN members m ON m.MemberId = r.MemberId "
+                         + "INNER JOIN users u ON u.UserId = m.UserId;";
+                         
+            MySqlDataReader dr = method.myReader(query, conn);
+
+            while (dr.Read())
+            {
+                Reservations r = new Reservations();
+                r.CourtId = Convert.ToInt16(dr["CourtId"]);
+                r.MemberId = Convert.ToInt16(dr["MemberId"]);
+                r.StartDate = Convert.ToDateTime(dr["StartDate"]);
+                //if (dr["HandledBy"] != DBNull.Value)
+                //{
+                //    r.HandledBy = Convert.ToInt16(dr["HandledBy"]);
+                //}
+                //else
+                //{
+                //    r.HandledBy = 0;
+                //}
+                if (dr["ReservationType"] != DBNull.Value)
+                {
+                    r.ReservationType = Convert.ToInt16(dr["ReservationType"]);
+                }
+                else
+                {
+                    r.ReservationType = 0;
+                }
+                r.FullMemberName = method.FixName(dr["Firstname"].ToString() + " " + dr["Surname"].ToString());
+                reservationsList.Add(r);
+            }
+            return reservationsList;
+        }
+            
 
     }
 }
