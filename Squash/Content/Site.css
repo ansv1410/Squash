@@ -613,11 +613,12 @@ h4{
  /*text-align: center;*/
 }
 .hourBookingDiv{
+    display:none;
     width:100%;
     overflow:auto;
 }
 .bookingDiv{
-    display:none;
+    display:block;
     max-width: 48%;
     float: left;
     margin-left: 1.5%;

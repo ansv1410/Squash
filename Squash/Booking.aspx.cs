@@ -127,32 +127,37 @@ namespace Squash
                                 hourDiv.Attributes.Add("id", "" + D.DayId + CT.CourtTimeId +"");
                                 hourDiv.Attributes.Add("class", "hourDivs");
 
+                                string thisDayIsFullTime = "";
+
+                                if (CT.StartHour < 10)
+                                {
+                                    thisDayIsFullTime = "0" + CT.StartHour + ":00:00";
+
+                                }
+                                else
+                                {
+                                    thisDayIsFullTime = CT.StartHour + ":00:00";
+                                }
+                                string shortTime = thisDayIsFullTime[0].ToString() + thisDayIsFullTime[1].ToString();
+                                string hourBookingDivId = thisDayIsFullDate + "_" + shortTime;
+
+
                                 HtmlGenericControl hourBookingDiv = new HtmlGenericControl("div");
                                 hourBookingDiv.Attributes.Add("class", "hourBookingDiv");
+                                hourBookingDiv.Attributes.Add("id", hourBookingDivId);
 
                                 foreach (Courts C in D.Courts)
                                 {
                                     HtmlGenericControl courtDiv = new HtmlGenericControl("div");
                                     courtDiv.Attributes.Add("id", D.DayId + "-" + CT.CourtTimeId + "-" + C.CourtId + "-" + thisDayIsFullDate);
                                     courtDiv.Attributes.Add("class", "courtDivs");
-                                    
-                                    string thisDayIsFullTime = "";
 
-                                    if (CT.StartHour < 10)
-                                    {
-                                        thisDayIsFullTime = "0" + CT.StartHour + ":00:00";
-
-                                    }
-                                    else
-                                    {
-                                        thisDayIsFullTime = CT.StartHour + ":00:00";
-                                    }
 
 
                                     bool booked = false;
                                     foreach (Subscriptions sub in allSubscriptions)
                                     {
-                                        if(sub.CourtId == C.CourtId && sub.CourtTimeId == CT.CourtTimeId && sub.DayId == D.DayId)
+                                        if (sub.CourtId == C.CourtId && sub.CourtTimeId == CT.CourtTimeId && sub.DayId == D.DayId)
                                         {
                                             booked = true;
                                             courtDiv.Attributes.Add("title", "Redan bokad av " + sub.FullMemberName);
@@ -161,9 +166,8 @@ namespace Squash
                                         }
                                     }
 
-                                    if(Session["lip"] != null)
+                                    if (Session["lip"] != null)
                                     {
-                                        string shortTime = thisDayIsFullTime[0].ToString() + thisDayIsFullTime[1].ToString();
                                         string bookingDivId = C.CourtId.ToString() + "_" + thisDayIsFullDate + "_" + shortTime;
 
                                         HtmlGenericControl bookingDiv = new HtmlGenericControl("div");
@@ -173,33 +177,34 @@ namespace Squash
 
                                         HtmlGenericControl bookCortDiv = new HtmlGenericControl("div");
                                         HtmlGenericControl cortImgDiv = new HtmlGenericControl("div");
-                                        
-                                        cortImgDiv.InnerHtml = "<img class='courtImg' src='Images/squashB"+C.CourtId.ToString()+"NoBackgroundFlor.svg' />";
+
+                                        cortImgDiv.InnerHtml = "<img class='courtImg' src='Images/squashB" + C.CourtId.ToString() + "NoBackgroundFlor.svg' />";
                                         RadioButton rdbBook = new RadioButton();
 
 
                                         //courtDiv.Attributes.Add("onclick", "confirm_clicked('" + C.CourtId + "','" + lip.member.MemberId + "','" + thisDayIsFullDate + " " + thisDayIsFullTime + "','" + bookingDivId + ")");
                                         if (booked == false)
                                         {
-                                            if (C.CourtId == 1)
-                                            {
-                                                string otherDivId = "2" + "_" + thisDayIsFullDate + "_" + shortTime;
-                                                courtDiv.Attributes.Add("onclick", "OpenBookingOverlay('" + bookingDivId + "', '" + otherDivId + "')");
+                                            courtDiv.Attributes.Add("onclick", "OpenBookingOverlay('" + hourBookingDivId + "')");
+                                            //if (C.CourtId == 1)
+                                            //{
+                                            //    string otherDivId = "2" + "_" + thisDayIsFullDate + "_" + shortTime;
+                                            //    courtDiv.Attributes.Add("onclick", "OpenBookingOverlay('" + hourBookingDivId + "', '" + bookingDivId + "', '" + otherDivId + "')");
 
-                                            }
-                                            else if (C.CourtId ==2)
-                                            {
-                                                string otherDivId = "1" + "_" + thisDayIsFullDate + "_" + shortTime;
-                                                courtDiv.Attributes.Add("onclick", "OpenBookingOverlay('" + otherDivId + "', '" + bookingDivId + "')");
-                                                //courtDiv.Attributes.Add("onclick", "OpenBookingOverlay('"+ bookingDivId +"')");
+                                            //}
+                                            //else if (C.CourtId == 2)
+                                            //{
+                                            //    string otherDivId = "1" + "_" + thisDayIsFullDate + "_" + shortTime;
+                                            //    courtDiv.Attributes.Add("onclick", "OpenBookingOverlay('" + hourBookingDivId + "', '" + otherDivId + "', '" + bookingDivId + "')");
+                                            //    //courtDiv.Attributes.Add("onclick", "OpenBookingOverlay('"+ bookingDivId +"')");
 
-                                            }
+                                            //}
                                             cortImgDiv.Attributes.Add("class", "cortImgDivFree");
                                             courtDiv.Attributes.Add("class", "courtDivs freeCourt masterTiptool");
                                             courtDiv.Attributes.Add("title", "Klicka för att boka Bana " + C.CourtId.ToString() + ", " + thisDayIs + " " + thisDayIsDate + "/" + thisDayIsMonth);
 
                                         }
-                                        else if(booked == true) 
+                                        else if (booked == true)
                                         {
                                             cortImgDiv.Attributes.Add("class", "cortImgDivBooked");
                                             rdbBook.Attributes.Add("disabled", "true");
@@ -212,7 +217,6 @@ namespace Squash
 
                                         bookingDiv.Controls.Add(bookCortDiv);
                                         hourBookingDiv.Controls.Add(bookingDiv);
-                                        bookingOverlayMessage.Controls.Add(hourBookingDiv);
 
                                     }
                                     else if (booked == false)
@@ -224,6 +228,13 @@ namespace Squash
                                     //courtDiv.InnerHtml = D.DayId + "-" + CT.CourtTimeId + "-" + C.CourtId + " " + thisDayIsFullDate + " " + thisDayIsFullTime;
                                     hourDiv.Controls.Add(courtDiv);
                                 }
+                                RadioButton rdbBookAll = new RadioButton();
+                                Button btnBook = new Button();
+                                btnBook.Text = "Boka";
+                                hourBookingDiv.Controls.Add(rdbBookAll);
+                                hourBookingDiv.Controls.Add(btnBook);
+
+                                bookingOverlayMessage.Controls.Add(hourBookingDiv);
                                 dayDiv.Controls.Add(hourDiv);
                             }
                             scheduleDiv.Controls.Add(dayDiv);

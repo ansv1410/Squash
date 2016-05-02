@@ -30,13 +30,16 @@
 
 
 
-            function OpenBookingOverlay(firstDiv, secondDiv) {
-                var id1 = "#" + firstDiv
-                var id2 = "#" + secondDiv
+            function OpenBookingOverlay(hourBookingDiv) {
+                //var id1 = "#" + firstDiv
+                //var id2 = "#" + secondDiv
+                var id3 = "#" + hourBookingDiv
                 $('.booking-overlay-container').fadeIn('slow');
-                $('.bookingDiv').hide();
-                $(id1).show();
-                $(id2).show();
+                //$('.bookingDiv').hide();
+                $('.hourBookingDiv').hide();
+                //$(id1).show();
+                //$(id2).show();
+                $(id3).show();
                 //document.getElementById('hfShowLogin').setAttribute('Value', '1')
                 return false;
             }
@@ -54,6 +57,7 @@
 
             $(document).ready(function () {
                 $(".bookingDiv input:radio").attr("name", "bookingRdbGroup");
+                $(".hourBookingDiv input:radio").attr("name", "bookingRdbGroup");
             });
 
         </script>
