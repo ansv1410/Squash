@@ -624,11 +624,15 @@ h4{
     margin-left: 1.5%;
 
 }
-.cortImgDivFree{
+.courtImgDivFree{
     max-width:100%;
     background-color:lightgreen;
 }
-.cortImgDivBooked{
+.courtImgDivBooked{
+    max-width:100%;
+    background-color:lightcoral;
+}
+.courtImgReserved{
     max-width:100%;
     background-color:lightcoral;
 }

@@ -198,14 +198,14 @@ namespace Squash
                                             //    //courtDiv.Attributes.Add("onclick", "OpenBookingOverlay('"+ bookingDivId +"')");
 
                                             //}
-                                            cortImgDiv.Attributes.Add("class", "cortImgDivFree");
+                                            cortImgDiv.Attributes.Add("class", "courtImgDivFree");
                                             courtDiv.Attributes.Add("class", "courtDivs freeCourt masterTiptool");
                                             courtDiv.Attributes.Add("title", "Klicka för att boka Bana " + C.CourtId.ToString() + ", " + thisDayIs + " " + thisDayIsDate + "/" + thisDayIsMonth);
 
                                         }
                                         else if (booked == true)
                                         {
-                                            cortImgDiv.Attributes.Add("class", "cortImgDivBooked");
+                                            cortImgDiv.Attributes.Add("class", "courtImgDivBooked");
                                             rdbBook.Attributes.Add("disabled", "true");
                                         }
 
