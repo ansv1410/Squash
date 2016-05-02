@@ -3,10 +3,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-    <div class="pageDiv">
-        <h2><%: Title %></h2>
-        <%--CONTENT HÄR!--%>
-
+    <div class="pageDiv" id="bookingPageDivcc" runat="server">
+        <h2>Spelschema</h2>
 
         <div class="booking-overlay-container" runat="server">
             <div class="booking-page-overlay" runat="server" onclick="CloseBookingOverlay()">
@@ -60,14 +58,14 @@
                 $(".hourBookingDiv input:radio").attr("name", "bookingRdbGroup");
             });
 
-            function chosenCourt(hfID) {
+            function chosenCourt(hfID, courtId) {
                 var id = "MainContent_" + hfID;
                 var chosenOrNot = document.getElementById(id).getAttribute('Value')
                 //var court = document.getElementById('MainContent_hfChosenCourts').getAttribute('value');
                 //var courts = court + chosenCourtId;
                 if (chosenOrNot == 0) {
 
-                document.getElementById(id).setAttribute('Value', "1");
+                document.getElementById(id).setAttribute('Value', courtId);
                 }
                 else {
 
@@ -82,4 +80,5 @@
 
 
     </div>
+
 </asp:Content>
