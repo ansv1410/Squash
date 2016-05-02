@@ -22,7 +22,7 @@ namespace Squash
         protected void Page_Load(object sender, EventArgs e)
         {
             lip = (LoggedInPerson)Session["lip"];
-            
+            //hfChosenCourts.Value = "0";
             //"8" är antalet dagar som metoden ska hämta, dynamiskt och kan ändras. 
             BuildSchedule(GetDayList(),8);
 
@@ -168,18 +168,26 @@ namespace Squash
 
                                     if (Session["lip"] != null)
                                     {
-                                        string bookingDivId = C.CourtId.ToString() + "_" + thisDayIsFullDate + "_" + shortTime;
+                                        string bookingDivId = thisDayIsFullDate + "_" + shortTime + "_" + C.CourtId.ToString();
+
+                                        HiddenFieldWithClass hf = new HiddenFieldWithClass();
+                                        hf.ID = "hf" + bookingDivId;
+                                        hf.CssClass = "BookingHf";
+                                        hf.Value = "0";
 
                                         HtmlGenericControl bookingDiv = new HtmlGenericControl("div");
                                         bookingDiv.Attributes.Add("id", bookingDivId);
                                         bookingDiv.Attributes.Add("class", "bookingDiv");
                                         bookingDiv.InnerHtml = bookingDivId;
+                                        bookingDiv.Controls.Add(hf);
 
                                         HtmlGenericControl bookCortDiv = new HtmlGenericControl("div");
                                         HtmlGenericControl cortImgDiv = new HtmlGenericControl("div");
 
                                         cortImgDiv.InnerHtml = "<img class='courtImg' src='Images/squashB" + C.CourtId.ToString() + "NoBackgroundFlor.svg' />";
+                                        cortImgDiv.Attributes.Add("onclick", "chosenCourt('" + "hf" + bookingDivId + "')");
                                         RadioButton rdbBook = new RadioButton();
+                                        rdbBook.Attributes.Add("id", "rdb" + bookingDivId);
 
 
                                         //courtDiv.Attributes.Add("onclick", "confirm_clicked('" + C.CourtId + "','" + lip.member.MemberId + "','" + thisDayIsFullDate + " " + thisDayIsFullTime + "','" + bookingDivId + ")");
@@ -229,8 +237,12 @@ namespace Squash
                                     hourDiv.Controls.Add(courtDiv);
                                 }
                                 RadioButton rdbBookAll = new RadioButton();
+                                rdbBookAll.Attributes.Add("id", "rdb" + hourBookingDivId);
                                 Button btnBook = new Button();
                                 btnBook.Text = "Boka";
+                                btnBook.CommandArgument = hourBookingDivId;
+                                btnBook.Click += btnBook_Click;
+                                
                                 hourBookingDiv.Controls.Add(rdbBookAll);
                                 hourBookingDiv.Controls.Add(btnBook);
 
@@ -325,5 +337,12 @@ namespace Squash
             return subscriptionList;
         }
 
+        protected void btnBook_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+
+            Response.Write("<script>alert('" + btn.CommandArgument.ToString() +"') </script>");
+        }
+            
     }
 }

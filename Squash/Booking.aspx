@@ -16,7 +16,6 @@
         </div>
         <div id="scheduleDiv" runat="server">
         </div>
-
         <script type="text/javascript">
             function confirm_clicked(ct, mId, fullDate, bookingDivId) {
                 var i = 2;
@@ -33,7 +32,7 @@
             function OpenBookingOverlay(hourBookingDiv) {
                 //var id1 = "#" + firstDiv
                 //var id2 = "#" + secondDiv
-                var id3 = "#" + hourBookingDiv
+                var id3 = "#" + hourBookingDiv;
                 $('.booking-overlay-container').fadeIn('slow');
                 //$('.bookingDiv').hide();
                 $('.hourBookingDiv').hide();
@@ -46,6 +45,7 @@
             function CloseBookingOverlay() {
                 //document.getElementById('hfShowLogin').setAttribute('Value', '0')
                 $('.booking-overlay-container').fadeOut('slow');
+                $('.BookingHf').val('0');
             }
             //function ReopenBookingOverlay() {
             //    var oneOrZero = document.getElementById('hfShowLogin').getAttribute('Value')
@@ -59,6 +59,23 @@
                 $(".bookingDiv input:radio").attr("name", "bookingRdbGroup");
                 $(".hourBookingDiv input:radio").attr("name", "bookingRdbGroup");
             });
+
+            function chosenCourt(hfID) {
+                var id = "MainContent_" + hfID;
+                var chosenOrNot = document.getElementById(id).getAttribute('Value')
+                //var court = document.getElementById('MainContent_hfChosenCourts').getAttribute('value');
+                //var courts = court + chosenCourtId;
+                if (chosenOrNot == 0) {
+
+                document.getElementById(id).setAttribute('Value', "1");
+                }
+                else {
+
+                document.getElementById(id).setAttribute('Value', "0");
+                }
+
+                alert(document.getElementById(id).getAttribute('Value'));
+            }
 
         </script>
 
