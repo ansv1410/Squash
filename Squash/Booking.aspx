@@ -10,9 +10,8 @@
 
         <div class="booking-overlay-container" runat="server">
             <div class="booking-page-overlay" runat="server" onclick="CloseBookingOverlay()">
-                <div id="bookingOverlayMessage" class="booking-overlay-message" runat="server">
-                    
-                </div>
+            </div>
+            <div id="bookingOverlayMessage" class="booking-overlay-message" runat="server">
             </div>
         </div>
         <div id="scheduleDiv" runat="server">
@@ -31,11 +30,13 @@
 
 
 
-            function OpenBookingOverlay(bookingDivId) {
-                var id = "#" + bookingDivId
+            function OpenBookingOverlay(firstDiv, secondDiv) {
+                var id1 = "#" + firstDiv
+                var id2 = "#" + secondDiv
                 $('.booking-overlay-container').fadeIn('slow');
                 $('.bookingDiv').hide();
-                $(id).show();
+                $(id1).show();
+                $(id2).show();
                 //document.getElementById('hfShowLogin').setAttribute('Value', '1')
                 return false;
             }
@@ -51,6 +52,9 @@
 
             //ReopenOverlay();
 
+            $(document).ready(function () {
+                $(".bookingDiv input:radio").attr("name", "bookingRdbGroup");
+            });
 
         </script>
 

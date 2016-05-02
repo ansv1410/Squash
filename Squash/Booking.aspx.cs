@@ -127,6 +127,9 @@ namespace Squash
                                 hourDiv.Attributes.Add("id", "" + D.DayId + CT.CourtTimeId +"");
                                 hourDiv.Attributes.Add("class", "hourDivs");
 
+                                HtmlGenericControl hourBookingDiv = new HtmlGenericControl("div");
+                                hourBookingDiv.Attributes.Add("class", "hourBookingDiv");
+
                                 foreach (Courts C in D.Courts)
                                 {
                                     HtmlGenericControl courtDiv = new HtmlGenericControl("div");
@@ -158,7 +161,7 @@ namespace Squash
                                         }
                                     }
 
-                                    if(Session["lip"] != null && booked == false)
+                                    if(Session["lip"] != null)
                                     {
                                         string shortTime = thisDayIsFullTime[0].ToString() + thisDayIsFullTime[1].ToString();
                                         string bookingDivId = C.CourtId.ToString() + "_" + thisDayIsFullDate + "_" + shortTime;
@@ -170,21 +173,47 @@ namespace Squash
 
                                         HtmlGenericControl bookCortDiv = new HtmlGenericControl("div");
                                         HtmlGenericControl cortImgDiv = new HtmlGenericControl("div");
-                                        cortImgDiv.Attributes.Add("class", "cortImgDiv");
-                                        cortImgDiv.InnerHtml = "<img class='courtImg' src='Images/squashB1NoBackgroundFlor.svg' />";
-                                        bookCortDiv.Controls.Add(cortImgDiv);
-                                        bookingDiv.Controls.Add(bookCortDiv);
+                                        
+                                        cortImgDiv.InnerHtml = "<img class='courtImg' src='Images/squashB"+C.CourtId.ToString()+"NoBackgroundFlor.svg' />";
+                                        RadioButton rdbBook = new RadioButton();
 
-                                        Button btnBook = new Button();
-                                        bookingDiv.Controls.Add(btnBook);
-
-
-                                        bookingOverlayMessage.Controls.Add(bookingDiv);
 
                                         //courtDiv.Attributes.Add("onclick", "confirm_clicked('" + C.CourtId + "','" + lip.member.MemberId + "','" + thisDayIsFullDate + " " + thisDayIsFullTime + "','" + bookingDivId + ")");
-                                        courtDiv.Attributes.Add("onclick", "OpenBookingOverlay('"+ bookingDivId +"')");
-                                        courtDiv.Attributes.Add("class", "courtDivs freeCourt masterTiptool");
-                                        courtDiv.Attributes.Add("title", "Klicka för att boka Bana " + C.CourtId.ToString() + ", " + thisDayIs + " " + thisDayIsDate + "/" + thisDayIsMonth);
+                                        if (booked == false)
+                                        {
+                                            if (C.CourtId == 1)
+                                            {
+                                                string otherDivId = "2" + "_" + thisDayIsFullDate + "_" + shortTime;
+                                                courtDiv.Attributes.Add("onclick", "OpenBookingOverlay('" + bookingDivId + "', '" + otherDivId + "')");
+
+                                            }
+                                            else if (C.CourtId ==2)
+                                            {
+                                                string otherDivId = "1" + "_" + thisDayIsFullDate + "_" + shortTime;
+                                                courtDiv.Attributes.Add("onclick", "OpenBookingOverlay('" + otherDivId + "', '" + bookingDivId + "')");
+                                                //courtDiv.Attributes.Add("onclick", "OpenBookingOverlay('"+ bookingDivId +"')");
+
+                                            }
+                                            cortImgDiv.Attributes.Add("class", "cortImgDivFree");
+                                            courtDiv.Attributes.Add("class", "courtDivs freeCourt masterTiptool");
+                                            courtDiv.Attributes.Add("title", "Klicka för att boka Bana " + C.CourtId.ToString() + ", " + thisDayIs + " " + thisDayIsDate + "/" + thisDayIsMonth);
+
+                                        }
+                                        else if(booked == true) 
+                                        {
+                                            cortImgDiv.Attributes.Add("class", "cortImgDivBooked");
+                                            rdbBook.Attributes.Add("disabled", "true");
+                                        }
+
+
+                                        bookCortDiv.Controls.Add(cortImgDiv);
+
+                                        bookCortDiv.Controls.Add(rdbBook);
+
+                                        bookingDiv.Controls.Add(bookCortDiv);
+                                        hourBookingDiv.Controls.Add(bookingDiv);
+                                        bookingOverlayMessage.Controls.Add(hourBookingDiv);
+
                                     }
                                     else if (booked == false)
                                     {

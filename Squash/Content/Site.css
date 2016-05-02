@@ -608,15 +608,28 @@ h4{
      z-index: 1501;
      background: white;
      max-width: 500px;
+     overflow:auto;
  /*display:none;*/
  /*text-align: center;*/
 }
+.hourBookingDiv{
+    width:100%;
+    overflow:auto;
+}
 .bookingDiv{
     display:none;
+    max-width: 48%;
+    float: left;
+    margin-left: 1.5%;
+
 }
-.cortImgDiv{
-    max-width:50%;
+.cortImgDivFree{
+    max-width:100%;
     background-color:lightgreen;
+}
+.cortImgDivBooked{
+    max-width:100%;
+    background-color:lightcoral;
 }
 .courtImg{
     width:100%;
