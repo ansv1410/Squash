@@ -234,7 +234,7 @@ namespace Squash
                                     HtmlGenericControl bookCourtDiv = new HtmlGenericControl("div");
                                     HtmlGenericControl courtImgDiv = new HtmlGenericControl("div");
 
-                                    courtImgDiv.InnerHtml = "<img class='courtImg' src='Images/squashB" + C.CourtId.ToString() + "NoBackgroundFlor.svg' />";
+                                    courtImgDiv.InnerHtml = "<img class='courtImg' src='Images/squashB" + C.CourtId.ToString() + "lightgreen.svg' />";
                                     
                                     
                                     
@@ -253,14 +253,14 @@ namespace Squash
                                     else if (booked == true && reserved == false)
                                     {
                                         courtImgDiv.Attributes.Add("class", "courtImgDivBooked");
-                                        courtImgDiv.InnerHtml = "<img class='courtImg CourtImgGray' src='Images/squashB" + C.CourtId.ToString() + "NoBackgroundFlor.svg' />";
+                                        courtImgDiv.InnerHtml = "<img class='courtImg CourtImgGray' src='Images/squashB" + C.CourtId.ToString() + "lightcoral.svg' />";
                                         bookCourtDiv.Controls.Add(pBookedBy);
                                     }
 
                                     else if (booked == false && reserved == true)
                                     {
                                         courtImgDiv.Attributes.Add("class", "courtImgReserved");
-                                        courtImgDiv.InnerHtml = "<img class='courtImg CourtImgGray' src='Images/squashB" + C.CourtId.ToString() + "NoBackgroundFlor.svg' />";
+                                        courtImgDiv.InnerHtml = "<img class='courtImg CourtImgGray' src='Images/squashB" + C.CourtId.ToString() + "lightblue.svg' />";
                                         bookCourtDiv.Controls.Add(pBookedBy);
                                     }
 
