@@ -1,5 +1,7 @@
-﻿    body{
+﻿/*MASTER*/
+body{
     background-image:url("../Images/background/BG.jpg");
+    padding-bottom: 0px;
 }
 
 .body-content{
@@ -19,59 +21,53 @@
     max-width:1200px;
     margin:0 auto;
 }
-.shadowDiv{
-    box-shadow:0px 50px 20px black;
+
+.navbar-brand{
+    font-size:190%;
 }
 
+.navbar-brand:hover{
 
-
-
-p, a{
-    font-family: Tahoma,Verdana,Segoe,sans-serif;
-    font-size:90%;
-}
-h4{
-    font-family: Tahoma,Verdana,Segoe,sans-serif;
-    font-size:130%;
-}
-h5{
-    font-family: Tahoma,Verdana,Segoe,sans-serif;
-    font-size:110%;
 }
 
-
-.form-group{
-    font-family: Tahoma,Verdana,Segoe,sans-serif;
-    font-size:90%;
-    width:98%;
-    padding-left:2%;
+.navbar-inverse .navbar-nav > li > a{ /*BORDER PÅ HÖGER SIDA I MENYN*/
+    /*border-right:1px solid black;*/
 }
 
-.subscriptionHeaders{
-    display:inline-block;
-    margin-top:20px;
+.navbar-inverse .navbar-nav > li > a:focus{
+    /*color:yellow;*/
+}
+
+.navbar-inverse .navbar-nav > li > .current-menu-item{
+    background-color:lightgreen;
+}
+
+.navbar-inverse .menu-sites > li > a{
     font-size:105%;
-    font-weight:bold;
 }
-
-.pageDiv{
-    max-width:1000px;
-    margin: 0 auto;
+.navbar-inverse .navbar-toggle:hover .icon-bar{
+    background-color:#dc3838;
 }
-#startPageDiv .row {
-    padding-left:2%;
-    width:100%;
-}
-.contentPaddingLeft{
-    padding-left:2%;
+.navbar-inverse .navbar-toggle:hover{
+    background-color:white;
 }
 
 
-body {
-    /*padding-top: 50px;*/
-    padding-bottom: 0px;
+.navbar-inverse .navbar-toggle:target{
+    /*border:0px solid white;*/
+    /*background-color:white;*/
+}
+.navbar-inverse .navbar-toggle:target .icon-bar{
+    background-color:#dc3838;
 }
 
+.collapsed{
+    background-color:#dc3838;
+}
+
+.collapsed:target{
+    /*background-color:#dc3838;*/
+}
 footer{
     margin:0 auto;
     text-align:right;
@@ -106,136 +102,68 @@ footer a:hover{
     /*color:#cccccc;*/
     text-decoration:none;
 }
-
-.navbar-brand{
-    font-size:190%;
+#margincorrection{
+    margin:0 auto;
+    height:auto;
+    overflow:auto;
+    max-width:1001px;
 }
-
-.navbar-brand:hover{
-
+#rightFloat{
+    float:right;
 }
-
-.navbar-inverse .navbar-nav > li > a{ /*BORDER PÅ HÖGER SIDA I MENYN*/
-    /*border-right:1px solid black;*/
+#logoImg{
+    /*margin-left:10%;*/
+    height:100%;
+    width:100%;
+    max-height:100px;
+    max-width:100px;
+    float:left;
+    /*clear:none;*/
 }
-
-.navbar-inverse .navbar-nav > li > a:focus{
-    /*color:yellow;*/
+.container{
+    overflow:auto;
 }
-
-.navbar-inverse .navbar-nav > li > .current-menu-item{
-    background-color:lightgreen;
+#mContainer{
+    /*margin: 0 auto;*/
+    /*margin-left: -5%;*/
+    max-width: 1000px;
+    float:left;
 }
-
-.navbar-inverse .menu-sites > li > a{
-    font-size:105%;
-}
-
-
-.body-content {
-
-}
-
-#MainContent{
-}
+/*MASTER - SLUT*/
 
 
-.dl-horizontal dt {
-    white-space: normal;
-}
-
-.navbar-inverse .navbar-toggle:hover .icon-bar{
-    background-color:#dc3838;
-}
-.navbar-inverse .navbar-toggle:hover{
-    background-color:white;
-}
 
 
-.navbar-inverse .navbar-toggle:target{
-    /*border:0px solid white;*/
-    /*background-color:white;*/
-}
-.navbar-inverse .navbar-toggle:target .icon-bar{
-    background-color:#dc3838;
-}
-
-.collapsed{
-    background-color:#dc3838;
-}
-
-.collapsed:target{
-    /*background-color:#dc3838;*/
-}
-.overlay-container{
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-    background-color:transparent;
-    z-index: 1499;
-    display: none;
-}
-.page-overlay{
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-    background: rgba(51,51,51,0.7);
-    z-index: 1500;
-}
-.overlay-message {
-    position:relative;
-     margin: 0 auto;
-     margin-top: 110px;
-     padding: 1em;
-     z-index: 1501;
-     background: white;
-     max-width: 500px;
- /*display:none;*/
- /*text-align: center;*/
-}
-.lbtnLogin:hover{
-    cursor:pointer;
-}
-#col-md-8-loginForm{
-    width:95%;
-}
-
-/*#privAcc{
-    display: none;
-    display:
-}*/
-/*nav.navbar-nav.navbar-right.HideClass{
-    display:none;
-}
-.ShowClass{
-    display:block;
-}*/
 
 
-#myinfo{
-    /*float:left;*/
-    /*text-align:left;*/
-    /*width:10%;*/
-}
-.my-info-label-div{
-    font-weight:bold;
-}
-.my-info-label{
-    /*text-align:left;*/
-    /*color:red;*/
-}
-.btn-update-info{
-    margin-top:10px;
-}
-.my-info-label-div{
-    margin-bottom:12px;
-}
 
 
+
+/*GENOMGÅENDE*/
+p, a{
+    font-family: Tahoma,Verdana,Segoe,sans-serif;
+    font-size:90%;
+}
+h4{
+    font-family: Tahoma,Verdana,Segoe,sans-serif;
+    font-size:130%;
+}
+h5{
+    font-family: Tahoma,Verdana,Segoe,sans-serif;
+    font-size:110%;
+}
+
+.form-group{
+    font-family: Tahoma,Verdana,Segoe,sans-serif;
+    font-size:90%;
+    width:98%;
+    padding-left:2%;
+}
+
+.pageDiv{
+    max-width:1000px;
+    margin: 0 auto;
+}
 
 input[type="text"],
 input[type="password"],
@@ -244,32 +172,21 @@ input[type="tel"],
 input[type="select"] {
     max-width: 280px;
 }
-
-
-
-
-/*STARTSIDA*/
-.messageHeaderP{
-    text-decoration:underline;
-    font-size:120%;
+.form-horizontal h2{
+    padding-left:2%;
 }
-.paragraphInline{
-    display:inline;
-}
-#MainContent_messagesDiv{
-    word-wrap:break-word;
-}
-#MainContent_newsDiv{
-    border-left:1px solid lightgrey;
-}
-#MainContent_presentationDiv{
-    overflow:hidden;
-}
+/*GENOMGÅENDE - SLUT*/
 
 
 
 
-/*INFOSIDA*/
+/*INFO*/
+.subscriptionHeaders{
+    display:inline-block;
+    margin-top:20px;
+    font-size:105%;
+    font-weight:bold;
+}
 #infoDiv{
     padding-top:0%;
     color:#444444;
@@ -323,73 +240,31 @@ h4{
 #userInfoDiv{
     padding-left:2%;
 }
+/*INFO - SLUT*/
 
 
 
-/*KONTAKTSIDA*/
-.mapDiv{
-    width: 100%;
-    overflow: hidden;
-    height: 400px;
-    max-width: 100%;
+
+/*DEFAULT*/
+#startPageDiv .row {
     padding-left:2%;
-    padding-right:2%;
-}
-
-#gmap_display{
-    height: 100%;
-    width: 100%;
-    max-width: 100%;
-}
-#iframeMap{
-    height: 100%;
-    width: 100%;
-    border: 0;
-}
-
-.form-horizontal h2{
-    padding-left:2%;
-}
-#logoDiv{
-
-
-}
-#logoImg{
-    /*margin-left:10%;*/
-    height:100%;
     width:100%;
-    max-height:100px;
-    max-width:100px;
-    float:left;
-    /*clear:none;*/
 }
-#logoCont{
-
-    float:left;
-    clear:none;
-    width:100px;
+.messageHeaderP{
+    text-decoration:underline;
+    font-size:120%;
 }
-.container{
-    overflow:auto;
+.paragraphInline{
+    display:inline;
 }
-#mContainer{
-    /*margin: 0 auto;*/
-    /*margin-left: -5%;*/
-    max-width: 1000px;
-
-    float:left;
+#MainContent_messagesDiv{
+    word-wrap:break-word;
 }
-/*.navbar-collapse.collapse{
-    float:left;
-}*/
-#rightFloat{
-    float:right;
+#MainContent_newsDiv{
+    border-left:1px solid lightgrey;
 }
-#margincorrection{
-    margin:0 auto;
-    height:auto;
-    overflow:auto;
-    max-width:1001px;
+#MainContent_presentationDiv{
+    overflow:hidden;
 }
 .socialMediaIcon{
     width: 30%;
@@ -409,18 +284,116 @@ h4{
     padding-left:2%;
     padding-right:2%;
 }
+/*DEFAULT - SLUT*/
+
+
+
+
+/*MYPAGE*/
+.contentPaddingLeft{
+    padding-left:2%;
+}
+#myinfo{
+    /*float:left;*/
+    /*text-align:left;*/
+    /*width:10%;*/
+}
+.my-info-label-div{
+    font-weight:bold;
+}
+.my-info-label{
+    /*text-align:left;*/
+    /*color:red;*/
+}
+.btn-update-info{
+    margin-top:10px;
+}
+.my-info-label-div{
+    margin-bottom:12px;
+}
+/*MYPAGE - SLUT*/
+
+
+
+
+
+/*LOGIN*/
+.overlay-container{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color:transparent;
+    z-index: 1499;
+    display: none;
+}
+.page-overlay{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: rgba(51,51,51,0.7);
+    z-index: 1500;
+}
+.overlay-message {
+    position:relative;
+     margin: 0 auto;
+     margin-top: 110px;
+     padding: 1em;
+     z-index: 1501;
+     background: white;
+     max-width: 500px;
+ /*display:none;*/
+ /*text-align: center;*/
+}
+.lbtnLogin:hover{
+    cursor:pointer;
+}
+#col-md-8-loginForm{
+    width:95%;
+}
 #loginForm .col-md-2{
     width:auto;
 }
 #loginForm .col-md-10{
     width:100%;
 }
+/*LOGIN - SLUT*/
 
 
 
 
 
-/*BOKNINGSSIDA*/
+
+/*CONTACT*/
+.mapDiv{
+    width: 100%;
+    overflow: hidden;
+    height: 400px;
+    max-width: 100%;
+    padding-left:2%;
+    padding-right:2%;
+}
+
+#gmap_display{
+    height: 100%;
+    width: 100%;
+    max-width: 100%;
+}
+#iframeMap{
+    height: 100%;
+    width: 100%;
+    border: 0;
+}
+/*CONTACT - SLUT*/
+
+
+
+
+
+/*BOOKING*/
 #MainContent_scheduleDiv{
     display:table;
     /*width:96%;*/
@@ -667,23 +640,34 @@ h4{
     /*margin: 0 auto;*/
 }
 
-
-
 .book-btn{
     width:58px;
-    margin-left: 43.3%;
-    margin-right: 43.3%;
+    margin-left:43%;
+    margin-right:43%;
+    /*margin-left: calc(100% - 58px);
+    margin-right: calc(100% - 58px);*/
     margin-top: 10px;
 }
-
-
-/*SLUT - BOKNINGSSIDA*/
-
+/*BOOKING - SLUT*/
 
 
 
 
 
+/*OKLART*/
+.shadowDiv{
+    box-shadow:0px 50px 20px black;
+}
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+#logoCont{
+    float:left;
+    clear:none;
+    width:100px;
+}
+/*OKLART - SLUT*/
 
 
 
@@ -711,12 +695,9 @@ h4{
         padding: 0;
         padding-top:100px;
     }
-    /*NYTT*/
     #MainContent_scheduleDiv{
         width:100%;
     }
-    
-    /*SLUT NYTT*/
 }
 
 @media screen and (max-width: 360px){
@@ -727,18 +708,13 @@ h4{
         padding-right:0px;  
         font-size:160%;
     }
-/*@media screen and (max-width: 320px) {
-    a.navbar-brand {
-        font-size:170%;
-    }
-}*/
 
     .headerDiv{
     font-size:130%;
     padding-top:2%;
     margin-bottom:0;
     font-weight:bold;
-}
+    }
 
 }
 @media screen and (max-width: 550px){
