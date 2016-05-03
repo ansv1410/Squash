@@ -1,4 +1,4 @@
-﻿body{
+﻿    body{
     background-image:url("../Images/background/BG.jpg");
 }
 
@@ -539,7 +539,40 @@ h4{
   background-image: linear-gradient(to bottom, #fac5c5, #d46868);
 }
 .reservedCourt{
-    background-color:lightblue;
+    /*background-color:lightblue;*/
+  /*background: #bce9f7;
+  background-image: -webkit-linear-gradient(top, #bce9f7, #7acde6);
+  background-image: -moz-linear-gradient(top, #bce9f7, #7acde6);
+  background-image: -ms-linear-gradient(top, #bce9f7, #7acde6);
+  background-image: -o-linear-gradient(top, #bce9f7, #7acde6);
+  background-image: linear-gradient(to bottom, #bce9f7, #7acde6);*/
+
+    /*background: #bce9f7;
+  background-image: -webkit-linear-gradient(top, #bce9f7, #75cee6);
+  background-image: -moz-linear-gradient(top, #bce9f7, #75cee6);
+  background-image: -ms-linear-gradient(top, #bce9f7, #75cee6);
+  background-image: -o-linear-gradient(top, #bce9f7, #75cee6);
+  background-image: linear-gradient(to bottom, #bce9f7, #75cee6);*/
+      /*background: #ccebf5;
+  background-image: -webkit-linear-gradient(top, #ccebf5, #6ecee6);
+  background-image: -moz-linear-gradient(top, #ccebf5, #6ecee6);
+  background-image: -ms-linear-gradient(top, #ccebf5, #6ecee6);
+  background-image: -o-linear-gradient(top, #ccebf5, #6ecee6);
+  background-image: linear-gradient(to bottom, #ccebf5, #6ecee6);*/
+
+    /*background: #ccebf5;
+  background-image: -webkit-linear-gradient(top, #ccebf5, #55c9e6);
+  background-image: -moz-linear-gradient(top, #ccebf5, #55c9e6);
+  background-image: -ms-linear-gradient(top, #ccebf5, #55c9e6);
+  background-image: -o-linear-gradient(top, #ccebf5, #55c9e6);
+  background-image: linear-gradient(to bottom, #ccebf5, #55c9e6);*/
+
+    background: #ccebf5;
+  background-image: -webkit-linear-gradient(top, #ccebf5, #35c0e3);
+  background-image: -moz-linear-gradient(top, #ccebf5, #35c0e3);
+  background-image: -ms-linear-gradient(top, #ccebf5, #35c0e3);
+  background-image: -o-linear-gradient(top, #ccebf5, #35c0e3);
+  background-image: linear-gradient(to bottom, #ccebf5, #35c0e3);
 }
 /*.toolTip{
     display:none;
@@ -619,30 +652,67 @@ h4{
 }
 .bookingDiv{
     display:block;
-    max-width: 48%;
+    max-width: 47%;
     float: left;
-    margin-left: 1.5%;
+    margin-left: 2%;
+    padding:1%;
+    border:3px solid white;
+}
 
+.selectedCourt{
+    border:3px solid forestgreen;
+    box-shadow: 1px 2px 6px 5px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24), 0 4px 4px rgba(0, 0, 0, 0.36);
 }
+
 .courtImgDivFree{
-    max-width:100%;
+    width: 206px;
+    height: 158px;
     background-color:lightgreen;
+    /*border:3px solid white;*/
 }
+/*.courtImgDivFree:active{
+    border-color:forestgreen;
+
+box-shadow: 1px 2px 6px 5px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24), 0 4px 4px rgba(0, 0, 0, 0.36);
+}*/
+
 .courtImgDivBooked{
-    max-width:100%;
+    width: 206px;
+    height: 158px;
     background-color:lightcoral;
+    /*border:3px solid white;*/
 }
+/*.courtImgDivBooked:active{
+    border-color:indianred;
+    box-shadow: 1px 2px 6px 5px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24), 0 4px 4px rgba(0, 0, 0, 0.36);
+}*/
+
 .courtImgReserved{
-    max-width:100%;
+    width: 206px;
+    height: 158px;
     background-color:lightblue;
+    /*border:3px solid white;*/
 }
+/*.courtImgReserved:active{
+    border-color: cornflowerblue;
+    box-shadow: 1px 2px 6px 5px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24), 0 4px 4px rgba(0, 0, 0, 0.36);
+}*/
+
 .courtImg{
-    width:100%;
+    width: 206px;
+    height: 158px;
+    margin: 0 auto;
 }
 /*.freeCourt:hover + .toolTip{
     display:block;
 }*/
 
+.book-btn{
+    width:58px;
+    margin-left: 43.85%;
+    margin-right: 43.85%;
+    margin-top: 10px;
+}
 
 /*SLUT - BOKNINGSSIDA*/
 

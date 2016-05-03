@@ -53,26 +53,24 @@
 
             //ReopenOverlay();
 
-            $(document).ready(function () {
-                $(".bookingDiv input:radio").attr("name", "bookingRdbGroup");
-                $(".hourBookingDiv input:radio").attr("name", "bookingRdbGroup");
-            });
 
-            function chosenCourt(hfID, courtId) {
+            function chosenCourt(hfID, courtId, bookingDivID) {
                 var id = "MainContent_" + hfID;
                 var chosenOrNot = document.getElementById(id).getAttribute('Value')
                 //var court = document.getElementById('MainContent_hfChosenCourts').getAttribute('value');
                 //var courts = court + chosenCourtId;
                 if (chosenOrNot == 0) {
 
-                document.getElementById(id).setAttribute('Value', courtId);
+                    document.getElementById(id).setAttribute('Value', courtId);
+
+                    $("#" + bookingDivID).addClass("selectedCourt");
                 }
                 else {
 
-                document.getElementById(id).setAttribute('Value', "0");
+                    document.getElementById(id).setAttribute('Value', "0");
+                    $("#" + bookingDivID).removeClass("selectedCourt");
                 }
 
-                alert(document.getElementById(id).getAttribute('Value'));
             }
 
         </script>

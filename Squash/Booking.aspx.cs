@@ -146,6 +146,7 @@ namespace Squash
                             HtmlGenericControl hourBookingDiv = new HtmlGenericControl("div");
                             hourBookingDiv.Attributes.Add("class", "hourBookingDiv");
                             hourBookingDiv.Attributes.Add("id", hourBookingDivId);
+                            hourBookingDiv.InnerHtml = "<h3>Boka - " + thisDayIsFullDate + " "+shortTime+":00</h3><p>Klicka på önskade banor.</p><hr />";
 
                             foreach (Courts C in D.Courts)
                             {
@@ -192,15 +193,13 @@ namespace Squash
                                     HtmlGenericControl bookingDiv = new HtmlGenericControl("div");
                                     bookingDiv.Attributes.Add("id", bookingDivId);
                                     bookingDiv.Attributes.Add("class", "bookingDiv");
-                                    bookingDiv.InnerHtml = bookingDivId;
                                     bookingPageDivcc.Controls.Add(hf);
 
                                     HtmlGenericControl bookCourtDiv = new HtmlGenericControl("div");
                                     HtmlGenericControl courtImgDiv = new HtmlGenericControl("div");
 
                                     courtImgDiv.InnerHtml = "<img class='courtImg' src='Images/squashB" + C.CourtId.ToString() + "NoBackgroundFlor.svg' />";
-                                    RadioButton rdbBook = new RadioButton();
-                                    rdbBook.Attributes.Add("id", "rdb" + bookingDivId);
+                                    
 
 
                                     //courtDiv.Attributes.Add("onclick", "confirm_clicked('" + C.CourtId + "','" + lip.member.MemberId + "','" + thisDayIsFullDate + " " + thisDayIsFullTime + "','" + bookingDivId + ")");
@@ -208,7 +207,7 @@ namespace Squash
                                     {
                                         courtDiv.Attributes.Add("onclick", "OpenBookingOverlay('" + hourBookingDivId + "')");
                                         courtImgDiv.Attributes.Add("class", "courtImgDivFree");
-                                        courtImgDiv.Attributes.Add("onclick", "chosenCourt('" + "hf" + bookingDivId + "','" + C.CourtId.ToString() + "')");
+                                        courtImgDiv.Attributes.Add("onclick", "chosenCourt('" + "hf" + bookingDivId + "','" + C.CourtId.ToString() + "','" + bookingDivId + "')");
                                         courtDiv.Attributes.Add("class", "courtDivs freeCourt masterTiptool");
                                         courtDiv.Attributes.Add("title", "Klicka för att boka Bana " + C.CourtId.ToString() + ", " + thisDayIs + " " + thisDayIsDate + "/" + thisDayIsMonth);
 
@@ -216,7 +215,6 @@ namespace Squash
                                     else if (booked == true && reserved == false)
                                     {
                                         courtImgDiv.Attributes.Add("class", "courtImgDivBooked");
-                                        rdbBook.Attributes.Add("disabled", "true");
                                     }
 
                                     else if (booked == false && reserved == true)
@@ -226,8 +224,6 @@ namespace Squash
 
 
                                     bookCourtDiv.Controls.Add(courtImgDiv);
-
-                                    bookCourtDiv.Controls.Add(rdbBook);
 
                                     bookingDiv.Controls.Add(bookCourtDiv);
                                     hourBookingDiv.Controls.Add(bookingDiv);
@@ -242,14 +238,13 @@ namespace Squash
                                 //courtDiv.InnerHtml = D.DayId + "-" + CT.CourtTimeId + "-" + C.CourtId + " " + thisDayIsFullDate + " " + thisDayIsFullTime;
                                 hourDiv.Controls.Add(courtDiv);
                             }
-                            RadioButton rdbBookAll = new RadioButton();
-                            rdbBookAll.Attributes.Add("id", "rdb" + hourBookingDivId);
+                            
                             Button btnBook = new Button();
                             btnBook.Text = "Boka";
+                            btnBook.Attributes.Add("class", "btn btn-default book-btn");
                             btnBook.CommandArgument = hourBookingDivId;
                             btnBook.Click += btnBook_Click;
 
-                            hourBookingDiv.Controls.Add(rdbBookAll);
                             hourBookingDiv.Controls.Add(btnBook);
 
                             bookingOverlayMessage.Controls.Add(hourBookingDiv);
