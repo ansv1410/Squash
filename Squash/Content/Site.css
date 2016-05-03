@@ -438,8 +438,8 @@ h4{
     /*border-right:1px solid black;*/
     /*border-left:1px solid black;*/
     /*border-top:1px solid black;*/
-    border-bottom:1px solid black;
-    border-left:1px solid black;
+    border-bottom:1px solid #A0A0A0;
+    border-left:1px solid #A0A0A0;
 }
 .staticDayDiv{
     /*background-color:grey;*/
@@ -455,7 +455,7 @@ h4{
     background-image: -ms-linear-gradient(top, #ffffff, #dedede);
     background-image: -o-linear-gradient(top, #ffffff, #dedede);
     background-image: linear-gradient(to bottom, #ffffff, #dedede);
-    border-top:1px solid black;
+    border-top:1px solid #A0A0A0;
     /*border-left:1px solid black;*/
 }
 
@@ -464,7 +464,7 @@ h4{
     height:50px;
     width:100%;
     /*border-bottom:1px solid black;*/
-    border-top: 1px solid black;
+    border-top: 1px solid #A0A0A0;
     margin-top:0px;
     /*margin-bottom:5px;*/
     padding-top:0px;
@@ -502,8 +502,8 @@ h4{
     background-image: -ms-linear-gradient(left, #ffffff, #dedede);
     background-image: -o-linear-gradient(left, #ffffff, #dedede);
     background-image: linear-gradient(to right, #ffffff, #dedede);
-    border-bottom:1px solid black;
-    border-left:1px solid black;
+    border-bottom:1px solid #A0A0A0;
+    border-left:1px solid #A0A0A0;
     width:6%;
 
 }
@@ -518,7 +518,7 @@ h4{
     padding-bottom:14.5px;
     /*height:40px;*/
     text-align:center;
-    border-top:1px solid black;
+    border-top:1px solid #A0A0A0;
     /*border-bottom:1px solid black;*/
     height:50px;
 }
@@ -539,49 +539,32 @@ h4{
   background-image: linear-gradient(to bottom, #fac5c5, #d46868);
 }
 .reservedCourt{
-    /*background-color:lightblue;*/
-  /*background: #bce9f7;
-  background-image: -webkit-linear-gradient(top, #bce9f7, #7acde6);
-  background-image: -moz-linear-gradient(top, #bce9f7, #7acde6);
-  background-image: -ms-linear-gradient(top, #bce9f7, #7acde6);
-  background-image: -o-linear-gradient(top, #bce9f7, #7acde6);
-  background-image: linear-gradient(to bottom, #bce9f7, #7acde6);*/
-
-    /*background: #bce9f7;
-  background-image: -webkit-linear-gradient(top, #bce9f7, #75cee6);
-  background-image: -moz-linear-gradient(top, #bce9f7, #75cee6);
-  background-image: -ms-linear-gradient(top, #bce9f7, #75cee6);
-  background-image: -o-linear-gradient(top, #bce9f7, #75cee6);
-  background-image: linear-gradient(to bottom, #bce9f7, #75cee6);*/
-      /*background: #ccebf5;
-  background-image: -webkit-linear-gradient(top, #ccebf5, #6ecee6);
-  background-image: -moz-linear-gradient(top, #ccebf5, #6ecee6);
-  background-image: -ms-linear-gradient(top, #ccebf5, #6ecee6);
-  background-image: -o-linear-gradient(top, #ccebf5, #6ecee6);
-  background-image: linear-gradient(to bottom, #ccebf5, #6ecee6);*/
-
-    /*background: #ccebf5;
-  background-image: -webkit-linear-gradient(top, #ccebf5, #55c9e6);
-  background-image: -moz-linear-gradient(top, #ccebf5, #55c9e6);
-  background-image: -ms-linear-gradient(top, #ccebf5, #55c9e6);
-  background-image: -o-linear-gradient(top, #ccebf5, #55c9e6);
-  background-image: linear-gradient(to bottom, #ccebf5, #55c9e6);*/
-
-    background: #ccebf5;
+  background: #ccebf5;
   background-image: -webkit-linear-gradient(top, #ccebf5, #35c0e3);
   background-image: -moz-linear-gradient(top, #ccebf5, #35c0e3);
   background-image: -ms-linear-gradient(top, #ccebf5, #35c0e3);
   background-image: -o-linear-gradient(top, #ccebf5, #35c0e3);
   background-image: linear-gradient(to bottom, #ccebf5, #35c0e3);
 }
-/*.toolTip{
-    display:none;
-    position:absolute;
-    background-color:mediumpurple;
-    z-index:500;
-}*/
+.mySubscribedCourt{
+    background: #d46868;
+    background-image: -webkit-linear-gradient(top, #d46868, #dc3838);
+    background-image: -moz-linear-gradient(top, #d46868, #dc3838);
+    background-image: -ms-linear-gradient(top, #d46868, #dc3838);
+    background-image: -o-linear-gradient(top, #d46868, #dc3838);
+    background-image: linear-gradient(to bottom, #d46868, #dc3838);
+    color:white;
 
-
+}
+.myReservedCourt{
+    background: #35c0e3;
+    background-image: -webkit-linear-gradient(top, #35c0e3, #3636e3);
+    background-image: -moz-linear-gradient(top, #35c0e3, #3636e3);
+    background-image: -ms-linear-gradient(top, #35c0e3, #3636e3);
+    background-image: -o-linear-gradient(top, #35c0e3, #3636e3);
+    background-image: linear-gradient(to bottom, #35c0e3, #3636e3);
+    color:white;
+}
 .tiptool {
     display:none;
 	position:absolute;
@@ -592,10 +575,7 @@ h4{
 	color:#fff;
 	font-size:12px;
     opacity:0.8;
-    /*z-index:2000;*/
 }
-
-
 .freeCourt{
     cursor:pointer;
     background: #cfffd2;
