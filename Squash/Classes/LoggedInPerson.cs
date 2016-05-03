@@ -10,5 +10,6 @@ namespace Squash.Classes
         public Users user { get; set; }
         public Members member { get; set; }
         public Logins logins { get; set; }
+        public Companies company { get; set; }
     }
 }

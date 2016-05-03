@@ -103,7 +103,15 @@ namespace Squash
             {
                 LoggedInPerson lip = (LoggedInPerson)Session["lip"];
                 privAcc.Visible = true;
-                myPageLink.InnerText = lip.user.FirstName + " " + lip.user.SurName; 
+                
+                if((lip.member.MemberType == 2 || lip.member.MemberType == 3) && lip.company.Name != null)
+                {
+                    myPageLink.InnerText = lip.company.Name;
+                }
+                else
+                {
+                    myPageLink.InnerText = lip.user.FirstName + " " + lip.user.SurName; 
+                }
 
             }
             else

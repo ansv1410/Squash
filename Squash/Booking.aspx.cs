@@ -154,6 +154,7 @@ namespace Squash
                                 courtDiv.Attributes.Add("id", D.DayId + "-" + CT.CourtTimeId + "-" + C.CourtId + "-" + thisDayIsFullDate);
                                 courtDiv.Attributes.Add("class", "courtDivs");
 
+                                HtmlGenericControl pBookedBy = new HtmlGenericControl("p");
 
                                 bool booked = false;
                                 bool reserved = false;
@@ -166,6 +167,8 @@ namespace Squash
                                         courtDiv.Attributes.Add("title", "Redan bokad av " + sub.FullMemberName);
                                         courtDiv.Attributes.Add("class", "courtDivs subscribedCourt masterTiptool");
                                         courtDiv.InnerHtml = sub.FullMemberName;
+
+                                        pBookedBy.InnerHtml = "Bokad av " + sub.FullMemberName;
                                     }
                                 }
 
@@ -177,6 +180,8 @@ namespace Squash
                                         courtDiv.Attributes.Add("title", "Redan bokad av " + res.FullMemberName);
                                         courtDiv.Attributes.Add("class", "courtDivs reservedCourt masterTiptool");
                                         courtDiv.InnerHtml = res.FullMemberName;
+
+                                        pBookedBy.InnerHtml = "Bokad av " + res.FullMemberName;
                                     }
                                 }
 
@@ -200,7 +205,8 @@ namespace Squash
 
                                     courtImgDiv.InnerHtml = "<img class='courtImg' src='Images/squashB" + C.CourtId.ToString() + "NoBackgroundFlor.svg' />";
                                     
-
+                                    
+                                    
 
                                     //courtDiv.Attributes.Add("onclick", "confirm_clicked('" + C.CourtId + "','" + lip.member.MemberId + "','" + thisDayIsFullDate + " " + thisDayIsFullTime + "','" + bookingDivId + ")");
                                     if (booked == false && reserved == false)
@@ -216,12 +222,14 @@ namespace Squash
                                     {
                                         courtImgDiv.Attributes.Add("class", "courtImgDivBooked");
                                         courtImgDiv.InnerHtml = "<img class='courtImg CourtImgGray' src='Images/squashB" + C.CourtId.ToString() + "NoBackgroundFlor.svg' />";
+                                        bookCourtDiv.Controls.Add(pBookedBy);
                                     }
 
                                     else if (booked == false && reserved == true)
                                     {
                                         courtImgDiv.Attributes.Add("class", "courtImgReserved");
                                         courtImgDiv.InnerHtml = "<img class='courtImg CourtImgGray' src='Images/squashB" + C.CourtId.ToString() + "NoBackgroundFlor.svg' />";
+                                        bookCourtDiv.Controls.Add(pBookedBy);
                                     }
 
 

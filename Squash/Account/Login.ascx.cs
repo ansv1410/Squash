@@ -103,10 +103,27 @@ namespace Squash.Account
                             m.SessionId = dr3["SessionId"].ToString();
                             m.MemberType = Convert.ToInt32(dr3["MemberType"].ToString());
 
+
+                            Companies c = new Companies();
+                            if(m.MemberType == 2 || m.MemberType == 3)
+                            {
+                                string query = "SELECT * FROM companies c "
+                                               + "INNER JOIN membercompany mc ON c.ID = mc.CompanyId "
+                                               + "INNER JOIN members m ON mc.MemberId = m.MemberId "
+                                               + "WHERE m.MemberId = "+m.MemberId+";";
+
+                                MySqlDataReader dr4 = method.myReader(query, conn);
+
+                                if(dr4.Read())
+                                {
+                                    c.Id = Convert.ToInt16(dr4["Id"]);
+                                    c.Name = dr4["Name"].ToString();
+                                }
+                            }
+                            
                             
                             int memberId = m.MemberId;
                             conn.Close();
-
 
                             Logins l = new Logins();
                             l.MemberId = memberId;
@@ -121,15 +138,17 @@ namespace Squash.Account
                             cmdInsertLogins.Parameters.AddWithValue("ip", l.IPAddress);
                             conn.Open();
                             cmdInsertLogins.ExecuteNonQuery();
-
-                            
                             
                             conn.Close();
+
+
+
 
                             LoggedInPerson lip = new LoggedInPerson();
                             lip.user = u;
                             lip.member = m;
                             lip.logins = l;
+                            lip.company = c;
 
                             Session["lip"] = lip;
 
