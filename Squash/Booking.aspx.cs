@@ -215,11 +215,13 @@ namespace Squash
                                     else if (booked == true && reserved == false)
                                     {
                                         courtImgDiv.Attributes.Add("class", "courtImgDivBooked");
+                                        courtImgDiv.InnerHtml = "<img class='courtImg CourtImgGray' src='Images/squashB" + C.CourtId.ToString() + "NoBackgroundFlor.svg' />";
                                     }
 
                                     else if (booked == false && reserved == true)
                                     {
                                         courtImgDiv.Attributes.Add("class", "courtImgReserved");
+                                        courtImgDiv.InnerHtml = "<img class='courtImg CourtImgGray' src='Images/squashB" + C.CourtId.ToString() + "NoBackgroundFlor.svg' />";
                                     }
 
 
