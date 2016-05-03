@@ -665,55 +665,37 @@ h4{
 }
 
 .courtImgDivFree{
-    width: 206px;
-    height: 158px;
+    width: 100%;
     background-color:lightgreen;
     /*border:3px solid white;*/
 }
-/*.courtImgDivFree:active{
-    border-color:forestgreen;
-
-box-shadow: 1px 2px 6px 5px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24), 0 4px 4px rgba(0, 0, 0, 0.36);
-}*/
 
 .courtImgDivBooked{
-    width: 206px;
-    height: 158px;
+    width: 100%;
     background-color:lightcoral;
     /*border:3px solid white;*/
 }
-/*.courtImgDivBooked:active{
-    border-color:indianred;
-    box-shadow: 1px 2px 6px 5px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24), 0 4px 4px rgba(0, 0, 0, 0.36);
-}*/
 
-.courtImgReserved{
-    width: 206px;
-    height: 158px;
+.courtImgDivReserved{
+    width: 100%;
     background-color:lightblue;
     /*border:3px solid white;*/
 }
-/*.courtImgReserved:active{
-    border-color: cornflowerblue;
-    box-shadow: 1px 2px 6px 5px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24), 0 4px 4px rgba(0, 0, 0, 0.36);
-}*/
 
 .courtImg{
-    width: 206px;
-    height: 158px;
-    margin: 0 auto;
+    width: 100%;
+    /*margin: 0 auto;*/
 }
-/*.freeCourt:hover + .toolTip{
-    display:block;
-}*/
+
 
 
 .book-btn{
     width:58px;
-    margin-left: 43.85%;
-    margin-right: 43.85%;
+    margin-left: 43.3%;
+    margin-right: 43.3%;
     margin-top: 10px;
 }
+
 
 /*SLUT - BOKNINGSSIDA*/
 
@@ -860,5 +842,39 @@ box-shadow: 1px 2px 6px 5px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24), 
     .navbar-inverse .navbar-nav > li > a{
         font-size:135%;
     }
+    #MainContent_bookingOverlayMessage{
+        width:90%;
+    }
 
+    /*.hourBookingDiv{
+        width:100%;
+        margin:0;
+    }
+    .bookingDiv{
+        display:block;
+        max-width: 47%;
+        float: left;
+        margin-left: 2%;
+        padding:1%;
+        border:3px solid white;
+    }
+       
+
+    .courtImgDivFree, .courtImgDivBooked, .courtImgReserved{
+        width: 206px;
+        height: 158px;
+    }
+    .courtImg{
+        width: 154.5px;
+        height: 158px;
+        width:100%;
+        height:auto;
+    }
+
+    .book-btn{
+        width:58px;
+        margin-left: 43%;
+        margin-right: 43%;
+        margin-top: 10px;
+    }*/
 }
