@@ -91,7 +91,7 @@ namespace Squash
                         dayDiv.Attributes.Add("class", "dayDiv");
                         if (counter == noOfDays)
                         {
-                            dayDiv.Style.Add("border-right", "1px solid black");
+                            dayDiv.Style.Add("border-right", "1px solid #A0A0A0");
                         }
                         double dn = d / n;
 
@@ -155,6 +155,7 @@ namespace Squash
                                 courtDiv.Attributes.Add("class", "courtDivs");
 
                                 HtmlGenericControl pBookedBy = new HtmlGenericControl("p");
+                                pBookedBy.InnerHtml = "Ledig tid";
 
                                 bool booked = false;
                                 bool reserved = false;
@@ -164,10 +165,25 @@ namespace Squash
                                     if (sub.CourtId == C.CourtId && sub.CourtTimeId == CT.CourtTimeId && sub.DayId == D.DayId)
                                     {
                                         booked = true;
-                                        courtDiv.Attributes.Add("title", "Redan bokad av " + sub.FullMemberName);
-                                        courtDiv.Attributes.Add("class", "courtDivs subscribedCourt masterTiptool");
+                                        if (Session["lip"] != null)
+                                        {
+                                            if (sub.MemberId == lip.member.MemberId)
+                                            {
+                                                courtDiv.Attributes.Add("class", "courtDivs subscribedCourt mySubscribedCourt masterTiptool ");
+                                            }
+                                            else
+                                            {
+                                                courtDiv.Attributes.Add("class", "courtDivs subscribedCourt masterTiptool");
+                                            }
+                                        }
+                                        else
+                                        {
+                                            courtDiv.Attributes.Add("class", "courtDivs subscribedCourt masterTiptool");
+
+                                        }
                                         courtDiv.InnerHtml = sub.FullMemberName;
 
+                                        courtDiv.Attributes.Add("title", "Redan bokad av " + sub.FullMemberName);
                                         pBookedBy.InnerHtml = "Bokad av " + sub.FullMemberName;
                                     }
                                 }
@@ -177,8 +193,23 @@ namespace Squash
                                     if (res.CourtId == C.CourtId && res.StartDate == Convert.ToDateTime((thisDayIsFullDate + " " + thisDayIsFullTime)))
                                     {
                                         reserved = true;
+                                        if (Session["lip"] != null)
+                                        {
+                                            if (res.MemberId == lip.member.MemberId)
+                                            {
+                                                courtDiv.Attributes.Add("class", "courtDivs reservedCourt myReservedCourt masterTiptool");
+                                            }
+                                            else
+                                            {
+                                                courtDiv.Attributes.Add("class", "courtDivs reservedCourt masterTiptool");
+                                            }
+                                        }
+                                        else
+                                        {
+                                            courtDiv.Attributes.Add("class", "courtDivs reservedCourt masterTiptool");
+
+                                        }
                                         courtDiv.Attributes.Add("title", "Redan bokad av " + res.FullMemberName);
-                                        courtDiv.Attributes.Add("class", "courtDivs reservedCourt masterTiptool");
                                         courtDiv.InnerHtml = res.FullMemberName;
 
                                         pBookedBy.InnerHtml = "Bokad av " + res.FullMemberName;
@@ -216,6 +247,7 @@ namespace Squash
                                         courtImgDiv.Attributes.Add("onclick", "chosenCourt('" + "hf" + bookingDivId + "','" + C.CourtId.ToString() + "','" + bookingDivId + "')");
                                         courtDiv.Attributes.Add("class", "courtDivs freeCourt masterTiptool");
                                         courtDiv.Attributes.Add("title", "Klicka för att boka Bana " + C.CourtId.ToString() + ", " + thisDayIs + " " + thisDayIsDate + "/" + thisDayIsMonth);
+                                        bookCourtDiv.Controls.Add(pBookedBy);
 
                                     }
                                     else if (booked == true && reserved == false)
