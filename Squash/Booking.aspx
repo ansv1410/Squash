@@ -12,10 +12,11 @@
             <div id="bookingOverlayMessage" class="booking-overlay-message" runat="server">
             </div>
         </div>
-        <div id="scheduleDiv" runat="server">
-        </div>
+        <div id="selectorDiv" runat="server"></div>
+        <div id="scheduleDiv" runat="server"></div>
 
         <asp:HiddenField ID="hfWidthOfDayDivs" runat="server" />
+        <asp:HiddenField ID="hfWidthOfDaySelectors" runat="server" />
 
 
         <script type="text/javascript">
@@ -60,7 +61,7 @@
 
             function chosenCourt(hfID, courtId, bookingDivID) {
                 var id = "MainContent_" + hfID;
-                var chosenOrNot = document.getElementById(id).getAttribute('Value')
+                var chosenOrNot = document.getElementById(id).getAttribute('Value');
                 //var court = document.getElementById('MainContent_hfChosenCourts').getAttribute('value');
                 //var courts = court + chosenCourtId;
                 if (chosenOrNot == 0) {
@@ -77,23 +78,34 @@
 
             }
 
-
+            function ShowMobileDayDiv(dayDivId) {
+                var id = "#" + dayDivId;
+                $('.dayDiv').hide();
+                $(id).show();
+            }
 
             /*Justerar bredden på dayDivarna från mobilläge och tillbaka.*/
             function fixWidth() {
                 var browserWidth = window.innerWidth;
                 var id = "MainContent_hfWidthOfDayDivs";
-
+                var id2 = "MainContent_hfWidthOfDaySelectors";
                 var widthOfDayDivs = document.getElementById(id).getAttribute('Value');
+                var widthOfDaySelectors = document.getElementById(id2).getAttribute('Value');
+
+                $(".daySelector").each(function () {
+                    this.style.width = widthOfDaySelectors;
+                });
 
                 if (browserWidth < 768) {
                     $(".dayDiv").each(function () {
                         this.style.width = "100%";
+                        ShowMobileDayDiv('1_day')
                     });
                 }
                 else {
                     $(".dayDiv").each(function () {
                         this.style.width = widthOfDayDivs;
+                        this.style.display = "block";
                     });
                 }
 
