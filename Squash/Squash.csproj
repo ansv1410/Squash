@@ -212,6 +212,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Account\Web.config" />
+    <Content Include="Images\B1background.png" />
+    <Content Include="Images\B2background.png" />
     <Content Include="Images\background\3905277-paper-background-plenty-of-copy-space-for-your-text-tiles-seamless-as-a-pattern1.jpg" />
     <Content Include="Images\background\BG.jpg" />
     <Content Include="Images\background\tumblr_mps8cpjZnq1rebw0do8_400.jpg" />
