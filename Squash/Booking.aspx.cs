@@ -367,6 +367,9 @@ namespace Squash
                 }
             }
         }
+
+
+        //HÄMTAR ALLA DAGAR OCH LÄGRAR DESSA I EN LISTA INNEHÅLLANDE DAGID, DAGENS NAMN, EN LISTA AV BANOR, EN LISTA AV BANTIDER
         public List<Days> GetDayList()
         {
             List<Days> DayList = new List<Days>();
@@ -419,6 +422,7 @@ namespace Squash
             return DayList;
         }
 
+        //HÄMTAR ALLA ABONNEMANGSBOKNINGAR OCH LAGRAR DESSA I EN LISTA
         public List<Subscriptions> GetSubscriptionList()
         {
             List<Subscriptions> subscriptionList = new List<Subscriptions>();
@@ -445,6 +449,7 @@ namespace Squash
             return subscriptionList;
         }
 
+        //HÄMTAR ALLA RESERVATIONER OCH LAGRAR DESSA I EN LISTA
         public List<Reservations> GetReservationsList()
         {
             List<Reservations> reservationsList = new List<Reservations>();
@@ -483,6 +488,7 @@ namespace Squash
             return reservationsList;
         }
 
+        //HÄMTAR ALLA FÖRETAG OCH LAGRAR DESSA I EN LISTA.
         public List<Companies> GetCompanyList()
         {
             List<Companies> companiesList = new List<Companies>();
@@ -503,7 +509,8 @@ namespace Squash
             return companiesList;
 
         }
-
+        
+        //HÄMTAR ALLA RADER FRÅN MEMBERCOMPANY OCH LAGRAR DESSA I EN LISTA.
         public List<MemberCompany> GetMemberCompanyList()
         {
             List<MemberCompany> memberCompanyList = new List<MemberCompany>();
