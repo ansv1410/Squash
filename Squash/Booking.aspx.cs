@@ -40,11 +40,18 @@ namespace Squash
             List<Companies> allCompanies = GetCompanyList();
             List<MemberCompany> allMemberCompany = GetMemberCompanyList();
 
+            List<HtmlGenericControl> daySelectorList = new List<HtmlGenericControl>();
+
             int counter = 0;
             bool drawtimes = true;
             for (int i = todayNo; i <= noOfDays; i++)
             {
                 counter++;
+                HtmlGenericControl daySelector = new HtmlGenericControl("div");
+                daySelector.Attributes.Add("id", counter.ToString() + "_daySelector");
+                daySelector.Attributes.Add("class", "daySelector");
+                daySelector.Attributes.Add("onclick", "ShowMobileDayDiv('" + counter.ToString() + "_day')");
+                
                 if (counter > noOfDays)
                 {
                     break;
@@ -89,16 +96,19 @@ namespace Squash
 
 
                         HtmlGenericControl dayDiv = new HtmlGenericControl("div");
-                        dayDiv.Attributes.Add("id", "day" + D.Description);
+                        dayDiv.Attributes.Add("id", counter.ToString() +"_day");
                         dayDiv.Attributes.Add("class", "dayDiv");
                         if (counter == noOfDays)
                         {
                             dayDiv.Style.Add("border-right", "1px solid #A0A0A0");
                         }
                         double dn = d / n;
+                        double dn2 = 100 / n;
 
                         string wid = dn.ToString() + "%";
+                        string wid2 = dn2.ToString() + "%";
                         string width = "";
+                        string width2 = "";
                         foreach (Char c in wid)
                         {
                             if (c.ToString() == ",")
@@ -110,6 +120,18 @@ namespace Squash
                                 width += c;
                             }
                         }
+                        foreach (Char c in wid2)
+                        {
+                            if (c.ToString() == ",")
+                            {
+                                width2 += ".";
+                            }
+                            else
+                            {
+                                width2 += c;
+                            }
+                        }
+                        hfWidthOfDaySelectors.Value = width2;
                         hfWidthOfDayDivs.Value = width;
 
                         //dayDiv.Style.Add("width", width);
@@ -125,9 +147,11 @@ namespace Squash
                         string thisDayIs = method.FixName(DateTime.Now.AddDays(counter - 1).ToString("dddd", new CultureInfo("sv-SE")));
                         string thisDayIsDate = method.FixName(DateTime.Now.AddDays(counter - 1).ToString("%d", new CultureInfo("sv-SE")));
                         string thisDayIsMonth = DateTime.Now.AddDays(counter - 1).ToString("%M", new CultureInfo("sv-SE"));
+                        daySelector.InnerHtml = thisDayIs + "<br />" + thisDayIsDate + "/" + thisDayIsMonth;
                         staticDayDiv.InnerHtml = thisDayIs + "<br />" + thisDayIsDate + "/" + thisDayIsMonth;
                         string thisDayIsFullDate = DateTime.Now.AddDays(counter - 1).ToString("yyyy-MM-dd", new CultureInfo("sv-SE"));
 
+                        selectorDiv.Controls.Add(daySelector);
                         dayDiv.Controls.Add(staticDayDiv);
 
                         foreach (CourtTimes CT in D.CourtTimes)

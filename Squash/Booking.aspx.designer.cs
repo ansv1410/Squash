@@ -31,6 +31,15 @@ namespace Squash {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl bookingOverlayMessage;
         
         /// <summary>
+        /// selectorDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl selectorDiv;
+        
+        /// <summary>
         /// scheduleDiv control.
         /// </summary>
         /// <remarks>
@@ -47,5 +56,14 @@ namespace Squash {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hfWidthOfDayDivs;
+        
+        /// <summary>
+        /// hfWidthOfDaySelectors control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfWidthOfDaySelectors;
     }
 }
