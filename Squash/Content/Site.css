@@ -458,6 +458,8 @@ h4{
     padding-left:1px;
     padding-right:1px;
     overflow:hidden;
+    background-image:url("../Images/Gplus.svg");
+    background-image:none;
     /*white-space:nowrap;*/
 
 }
@@ -662,6 +664,26 @@ h4{
     background-image: -o-linear-gradient(right, #ffffff, #dedede);
     background-image: linear-gradient(to left, #ffffff, #dedede);
 }
+
+        /*MOBIL*/
+        /* .hourDiv, greyDiv
+          height:100%;
+          width:100%;
+          border-right: 1px solid #A0A0A0;
+        
+            .dayDiv
+            width:100%;
+            
+            .staticDayDiv
+            border-right:1px solid #A0A0A0;
+
+
+
+            */
+        
+
+
+
 
 /*BOOKING - SLUT*/
 
