@@ -469,7 +469,7 @@ h4{
     border-top:1px solid white;
     margin-top:50px;
     font-weight:bold;
-    /*background-color:#ddd;*/
+    background-color:#ddd;
     background-image: -webkit-linear-gradient(left, #ffffff, #dedede);
     background-image: -moz-linear-gradient(left, #ffffff, #dedede);
     background-image: -ms-linear-gradient(left, #ffffff, #dedede);
@@ -648,6 +648,21 @@ h4{
     margin-right: calc(100% - 58px);*/
     margin-top: 10px;
 }
+.greyDiv{
+    height:50px;
+    width:100%;
+    border-top: 1px solid #A0A0A0;
+    margin-top:0px;
+    padding-top:0px;
+    font-size:70%;
+    background-color:#ffffff;
+    background-image: -webkit-linear-gradient(right, #ffffff, #dedede);
+    background-image: -moz-linear-gradient(right, #ffffff, #dedede);
+    background-image: -ms-linear-gradient(right, #ffffff, #dedede);
+    background-image: -o-linear-gradient(right, #ffffff, #dedede);
+    background-image: linear-gradient(to left, #ffffff, #dedede);
+}
+
 /*BOOKING - SLUT*/
 
 

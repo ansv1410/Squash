@@ -37,6 +37,8 @@ namespace Squash
 
             List<Subscriptions> allSubscriptions = GetSubscriptionList();
             List<Reservations> allReservations = GetReservationsList();
+            List<Companies> allCompanies = GetCompanyList();
+            List<MemberCompany> allMemberCompany = GetMemberCompanyList();
 
             int counter = 0;
             bool drawtimes = true;
@@ -150,6 +152,8 @@ namespace Squash
 
                             foreach (Courts C in D.Courts)
                             {
+
+
                                 HtmlGenericControl courtDiv = new HtmlGenericControl("div");
                                 courtDiv.Attributes.Add("id", D.DayId + "-" + CT.CourtTimeId + "-" + C.CourtId + "-" + thisDayIsFullDate);
                                 courtDiv.Attributes.Add("class", "courtDivs");
@@ -185,6 +189,23 @@ namespace Squash
 
                                         courtDiv.Attributes.Add("title", "Redan bokad av " + sub.FullMemberName);
                                         pBookedBy.InnerHtml = "Bokad av " + sub.FullMemberName;
+
+                                        foreach (MemberCompany mc in allMemberCompany)
+                                        {
+                                            if (mc.MemberId == sub.MemberId)
+                                            {
+                                                foreach (Companies c in allCompanies)
+                                                {
+                                                    if (mc.CompanyId == c.Id)
+                                                    {
+                                                        courtDiv.Attributes.Add("title", "Redan bokad av " + c.Name);
+                                                        courtDiv.InnerHtml = c.Name;
+
+                                                        pBookedBy.InnerHtml = "Bokad av " + c.Name;
+                                                    }
+                                                }
+                                            }
+                                        }
                                     }
                                 }
 
@@ -209,10 +230,30 @@ namespace Squash
                                             courtDiv.Attributes.Add("class", "courtDivs reservedCourt masterTiptool");
 
                                         }
+
                                         courtDiv.Attributes.Add("title", "Redan bokad av " + res.FullMemberName);
                                         courtDiv.InnerHtml = res.FullMemberName;
 
                                         pBookedBy.InnerHtml = "Bokad av " + res.FullMemberName;
+                                        
+                                        foreach(MemberCompany mc in allMemberCompany)
+                                        {
+                                            if(mc.MemberId == res.MemberId)
+                                            {
+                                                foreach(Companies c in allCompanies)
+                                                {
+                                                    if(mc.CompanyId == c.Id)
+                                                    {
+                                                        courtDiv.Attributes.Add("title", "Redan bokad av " + c.Name);
+                                                        courtDiv.InnerHtml = c.Name;
+
+                                                        pBookedBy.InnerHtml = "Bokad av " + c.Name;
+                                                    }
+                                                }
+                                            }
+                                        }
+
+
                                     }
                                 }
 
@@ -273,12 +314,30 @@ namespace Squash
                                 }
                                 else if (booked == false && reserved == false)
                                 {
-                                    courtDiv.Attributes.Add("class", "courtDivs freeCourt");
+                                    courtDiv.Attributes.Add("class", "courtDivs freeCourt masterTiptool");
+                                    courtDiv.Attributes.Add("title", "Logga in eller bli medlem för att boka.");
 
                                 }
 
                                 //courtDiv.InnerHtml = D.DayId + "-" + CT.CourtTimeId + "-" + C.CourtId + " " + thisDayIsFullDate + " " + thisDayIsFullTime;
-                                hourDiv.Controls.Add(courtDiv);
+                                int thisHour = Convert.ToInt16(DateTime.Now.Hour);
+                                string nowDate = DateTime.Now.ToString("yyyy-MM-dd", new CultureInfo("sv-SE"));
+
+                                if (thisDayIsFullDate != nowDate)
+                                {
+                                    hourDiv.Controls.Add(courtDiv);
+                                }
+                                else
+                                {
+                                    if (thisHour <= CT.StartHour)
+                                    {
+                                        hourDiv.Controls.Add(courtDiv);
+                                    }
+                                    else
+                                    {
+                                        hourDiv.Attributes.Add("class", "greyDiv");
+                                    }
+                                }
                             }
                             
                             Button btnBook = new Button();
@@ -418,6 +477,47 @@ namespace Squash
             return reservationsList;
         }
 
+        public List<Companies> GetCompanyList()
+        {
+            List<Companies> companiesList = new List<Companies>();
+            string query = "SELECT Id, Name FROM companies";
+
+            MySqlDataReader dr = method.myReader(query, conn);
+
+            while(dr.Read())
+            {
+                Companies c = new Companies();
+                c.Id = Convert.ToInt16(dr["Id"]);
+                c.Name = dr["Name"].ToString();
+
+                companiesList.Add(c);
+            }
+            conn.Close();
+
+            return companiesList;
+
+        }
+
+        public List<MemberCompany> GetMemberCompanyList()
+        {
+            List<MemberCompany> memberCompanyList = new List<MemberCompany>();
+            string query = "SELECT mc.MemberId, mc.CompanyId FROM membercompany mc";
+
+            MySqlDataReader dr = method.myReader(query, conn);
+
+            while(dr.Read())
+            {
+                MemberCompany mc = new MemberCompany();
+                mc.MemberId = Convert.ToInt16(dr["MemberId"]);
+                mc.CompanyId = Convert.ToInt16(dr["CompanyId"]);
+                memberCompanyList.Add(mc);
+            }
+            conn.Close();
+
+            return memberCompanyList;
+        }
+
+
         protected void btnBook_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
@@ -483,6 +583,10 @@ namespace Squash
             
             foreach(HiddenFieldWithClass hf in hfwcList)
             {
+                //IF MEMBERTYPE == 3
+                //AND IF lip.member.MemberId INTE HAR NÅGON TID DENNA VECKA
+                //RESERVATIONTYPE = 3
+
                 query += "(" + Convert.ToInt16(hf.Value) + ", " + lip.member.MemberId + ", '" + Convert.ToDateTime(corrStartTime) + "', NULL, 1),";
             }
 

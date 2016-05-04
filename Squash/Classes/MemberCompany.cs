@@ -9,6 +9,5 @@ namespace Squash.Classes
     {
         public int MemberId { get; set; }
         public int CompanyId { get; set; }
-
     }
 }
