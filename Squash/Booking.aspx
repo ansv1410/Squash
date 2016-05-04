@@ -82,6 +82,9 @@
                 var id = "#" + dayDivId;
                 $('.dayDiv').hide();
                 $(id).show();
+
+                $('.daySelector').removeClass('selectedMobileDay');
+                $(id+"Selector").addClass('selectedMobileDay')
             }
 
             /*Justerar bredden på dayDivarna från mobilläge och tillbaka.*/

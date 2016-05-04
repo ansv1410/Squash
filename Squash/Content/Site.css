@@ -664,6 +664,17 @@ h4{
     background-image: -o-linear-gradient(right, #ffffff, #dedede);
     background-image: linear-gradient(to left, #ffffff, #dedede);
 }
+#MainContent_selectorDiv{
+    width:96.2%;
+    margin-left:1.8%;
+    height:auto;
+    overflow:auto;
+    font-size:140%;
+    border-left:1px solid #A0A0A0;
+    border-right:1px solid #A0A0A0;
+    /*height:41px;
+    font-size:75%;*/
+}
 .daySelector{
     padding-top:5px;
     padding-bottom:5px;
@@ -680,11 +691,21 @@ h4{
     float:left;
     width:auto;
 }
-#MainContent_selectorDiv{
-    width: 100%;
-    padding:0 2% 0 2%;
-    height:51px;
-    overflow:auto;
+
+.daySelector:hover{
+    cursor:pointer;
+    background-image:none;
+    background-color:#dedede;
+}
+
+.daySelector:active{
+    background-image:none;
+    background-color:darkgrey;
+}
+
+.selectedMobileDay{
+    background-image:none;
+    background-color:#C7C7C7;
 }
 /*BOOKING - SLUT*/
 
@@ -736,6 +757,9 @@ h4{
     #MainContent_scheduleDiv{
         width:100%;
     }
+    #MainContent_selectorDiv{
+        display:none;
+    }
 }
 
 
@@ -756,7 +780,6 @@ h4{
     margin-bottom:0;
     font-weight:bold;
     }
-
 }
 @media screen and (max-width: 550px){
     .overlay-message{
@@ -870,11 +893,13 @@ h4{
     background-image:url(../Images/B1background.png);
     background-size:contain;
     background-repeat:no-repeat;
-    
-    
     /*white-space:nowrap;*/
+    }
+    #MainContent_selectorDiv{
+        overflow:hidden;
+        /*word-break:break-all;*/
+    }
 
-}
 
      /*MOBIL*/
         /* .hourDiv, greyDiv
