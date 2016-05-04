@@ -110,8 +110,14 @@ namespace Squash
                                 width += c;
                             }
                         }
+                        hfWidthOfDayDivs.Value = width;
 
-                        dayDiv.Style.Add("width", width);
+                        //dayDiv.Style.Add("width", width);
+                        //dayDiv.Style.Add("width", "@media screen and (min-width: 768px){width:'" + width + "'%;};");
+                        //dayDiv.Attributes["media"] = "screen and(min-width: 768px){width:'" + width + "'%;};";
+                        //dayDiv.Style.Add("media", "screen and(min-width: 768px){width:"+width+")");
+                        //dayDiv.Style.Add("width", "@media screen and (min-width: 768px){width:"+width+";}");
+
 
                         HtmlGenericControl staticDayDiv = new HtmlGenericControl("div");
                         staticDayDiv.Attributes.Add("class", "staticDayDiv");

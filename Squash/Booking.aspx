@@ -14,6 +14,10 @@
         </div>
         <div id="scheduleDiv" runat="server">
         </div>
+
+        <asp:HiddenField ID="hfWidthOfDayDivs" runat="server" />
+
+
         <script type="text/javascript">
             function confirm_clicked(ct, mId, fullDate, bookingDivId) {
                 var i = 2;
@@ -73,10 +77,42 @@
 
             }
 
+
+
+            /*Justerar bredden på dayDivarna från mobilläge och tillbaka.*/
+            function fixWidth() {
+                var browserWidth = window.innerWidth;
+                var id = "MainContent_hfWidthOfDayDivs";
+
+                var widthOfDayDivs = document.getElementById(id).getAttribute('Value');
+
+                if (browserWidth < 768) {
+                    $(".dayDiv").each(function () {
+                        this.style.width = "100%";
+                    });
+                }
+                else {
+                    $(".dayDiv").each(function () {
+                        this.style.width = widthOfDayDivs;
+                    });
+                }
+
+            }
+
+            window.addEventListener('resize', function (event){
+                fixWidth();
+            });
+
+            /*Document.ready för att startskärmen skall vara korrekt.*/
+            $(document).ready(fixWidth());
+            
+            
+
+
         </script>
 
 
 
+    
     </div>
-
 </asp:Content>
