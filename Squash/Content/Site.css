@@ -707,6 +707,51 @@ h4{
     background-image:none;
     background-color:#C7C7C7;
 }
+
+
+
+
+#MainContent_myBookingsDiv{
+    margin: 0 auto;
+    width:80%;
+
+}
+#myBookingsH3{
+    text-align:center;
+    font-size:180%;
+}
+
+#MainContent_bookingsTable{
+    margin:0 auto;
+    width:100%;
+    border-top:1px solid #A0A0A0;
+    border-left: 1px solid #A0A0A0;
+}
+
+.myBookingsTH{
+    font-weight:bold;
+    font-size:110%;
+    text-align:center;
+    border-right: 1px solid #A0A0A0;
+    background: #ffffff;
+    background-image: -webkit-linear-gradient(top, #ffffff, #dedede);
+    background-image: -moz-linear-gradient(top, #ffffff, #dedede);
+    background-image: -ms-linear-gradient(top, #ffffff, #dedede);
+    background-image: -o-linear-gradient(top, #ffffff, #dedede);
+    background-image: linear-gradient(to bottom, #ffffff, #dedede);
+}
+.myBookingsTR{
+    border-bottom:1px solid #A0A0A0;
+    text-align:center;
+}
+.myBookingsTD{
+    border-right: 1px solid #A0A0A0;
+    font-size:110%;
+}
+
+
+
+
 /*BOOKING - SLUT*/
 
 
@@ -765,27 +810,8 @@ h4{
 
 
 
-@media screen and (max-width: 360px){
-    a.navbar-brand{
-        margin-left:0px;
-        padding-top:15px;
-        padding-left:15px;
-        padding-right:0px;  
-        font-size:160%;
-    }
 
-    .headerDiv{
-    font-size:130%;
-    padding-top:2%;
-    margin-bottom:0;
-    font-weight:bold;
-    }
-}
-@media screen and (max-width: 550px){
-    .overlay-message{
-    width: 95%
-    }
-}
+
 
 @media screen and (max-width: 992px){
     .navbar{
@@ -828,6 +854,7 @@ h4{
     }
 }
 
+/*MOBILLÄGE NÄR MENYN BYTS ETC*/
 @media screen and (max-width: 767px){
     #infoDiv{
         margin-left:-15px;
@@ -900,6 +927,11 @@ h4{
         /*word-break:break-all;*/
     }
 
+    #MainContent_myBookingsDiv{
+        width:80%;
+    }
+    
+
 
      /*MOBIL*/
         /* .hourDiv, greyDiv
@@ -950,4 +982,34 @@ h4{
         margin-right: 43%;
         margin-top: 10px;
     }*/
+}
+@media screen and (max-width: 550px){
+    .overlay-message{
+    width: 95%
+    }
+    #MainContent_myBookingsDiv{
+        width:90%;
+    }
+}
+@media screen and (max-width: 440px) {
+    #MainContent_myBookingsDiv{
+        width:100%;
+    }
+}
+
+@media screen and (max-width: 360px){
+    a.navbar-brand{
+        margin-left:0px;
+        padding-top:15px;
+        padding-left:15px;
+        padding-right:0px;  
+        font-size:160%;
+    }
+
+    .headerDiv{
+    font-size:130%;
+    padding-top:2%;
+    margin-bottom:0;
+    font-weight:bold;
+    }
 }

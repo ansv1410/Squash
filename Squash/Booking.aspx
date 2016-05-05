@@ -4,6 +4,23 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <div class="pageDiv" id="bookingPageDivcc" runat="server">
+
+        <div id="myBookingsDiv" runat="server" visible ="false">
+        <h3 id="myBookingsH3">Mina bokningar</h3>
+            <table id="bookingsTable" runat="server">
+                <tr class="myBookingsTR">
+                    <td class="myBookingsTH">Datum</td>
+                    <td class="myBookingsTH">Tid</td>
+                    <td class="myBookingsTH">Bana</td>
+                    <td class="myBookingsTH">Pris</td>
+                    <td class="myBookingsTH">PIN-Kod</td>
+                </tr>
+            </table>
+        </div>
+
+
+
+
         <h2>Spelschema</h2>
 
         <div class="booking-overlay-container" runat="server">
@@ -84,7 +101,7 @@
                 $(id).show();
 
                 $('.daySelector').removeClass('selectedMobileDay');
-                $(id+"Selector").addClass('selectedMobileDay')
+                $(id + "Selector").addClass('selectedMobileDay')
             }
 
             /*Justerar bredden på dayDivarna från mobilläge och tillbaka.*/
@@ -114,20 +131,20 @@
 
             }
 
-            window.addEventListener('resize', function (event){
+            window.addEventListener('resize', function (event) {
                 fixWidth();
             });
 
             /*Document.ready för att startskärmen skall vara korrekt.*/
             $(document).ready(fixWidth());
-            
-            
+
+
 
 
         </script>
 
 
 
-    
+
     </div>
 </asp:Content>

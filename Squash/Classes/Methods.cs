@@ -207,5 +207,15 @@ namespace Squash.Classes
 
         #endregion
 
+
+        #region LoggedInBookingTable
+
+        public void ShowMyBookings()
+        {
+
+        }
+
+        #endregion
+
     }
 }

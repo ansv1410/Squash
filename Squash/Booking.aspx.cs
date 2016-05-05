@@ -24,7 +24,11 @@ namespace Squash
             lip = (LoggedInPerson)Session["lip"];
             //hfChosenCourts.Value = "0";
             //"8" är antalet dagar som metoden ska hämta, dynamiskt och kan ändras. 
-            
+
+            if(Session["lip"] != null)
+            {
+                ShowMyReservations();
+            }
             
             BuildSchedule(GetDayList(), 8);
 
@@ -291,6 +295,21 @@ namespace Squash
 
                                 if (Session["lip"] != null)
                                 {
+
+                                    
+
+
+
+
+
+
+
+
+
+
+
+
+
                                     string bookingDivId = thisDayIsFullDate + "_" + shortTime + "_" + C.CourtId.ToString();
 
                                     HiddenFieldWithClass hf = new HiddenFieldWithClass();
@@ -554,6 +573,220 @@ namespace Squash
 
             return memberCompanyList;
         }
+
+
+        public void ShowMyReservations()
+        {
+            List<Reservations> loggedInReservationsList = new List<Reservations>();
+            List<Tuple<Reservations, Courts, ReservationTypes>> bookingInfoList = new List<Tuple<Reservations, Courts, ReservationTypes>>();
+
+            string query = "SELECT r.StartDate, c.Description AS courtName, c.CourtId, rt.Description AS resType FROM reservations r "
+                           + "INNER JOIN courts c ON c.CourtId = r.CourtId "
+                           + "INNER JOIN reservationtypes rt ON rt.ReservationTypeId = r.ReservationType "
+                           + "WHERE r.MemberId = '" + lip.member.MemberId + "' AND StartDate > NOW() ORDER BY StartDate;";
+
+            MySqlDataReader dr = method.myReader(query, conn);
+
+            while (dr.Read())
+            {
+                Reservations r = new Reservations();
+                r.StartDate = Convert.ToDateTime(dr["StartDate"]);
+                //if (dr["ReservationType"] != DBNull.Value)
+                //{
+                //    r.ReservationType = Convert.ToInt16(dr["ReservationType"]);
+                //}
+                //else
+                //{
+                //    r.ReservationType = 0;
+                //}
+
+                Courts c = new Courts();
+                c.CourtId = Convert.ToInt16(dr["CourtId"]);
+                c.Description = dr["courtName"].ToString();
+
+
+                ReservationTypes rt = new ReservationTypes();
+                rt.Description = dr["resType"].ToString();
+
+                Tuple<Reservations, Courts, ReservationTypes> tupleList = new Tuple<Reservations, Courts, ReservationTypes>(r, c, rt);
+                bookingInfoList.Add(tupleList);
+
+                loggedInReservationsList.Add(r);
+            }
+
+            //List<HtmlGenericControl> trList = new List<HtmlGenericControl>();
+            List<HtmlTableRow> trList = new List<HtmlTableRow>();
+            //foreach (HtmlGenericControl t in trList)
+            //{
+            //}
+            //for (int x = 0; x < 5; x++)
+            //{
+            //    HtmlGenericControl td = new HtmlGenericControl("td");
+            //    td.Attributes.Add("class", "myBookingsTD");
+            //    td.InnerHtml = "TD";
+
+            //}
+            //foreach (Reservations r in loggedInReservationsList)
+            //{
+            //    HtmlTableRow tr = new HtmlTableRow();
+            //    tr.Attributes.Add("class", "myBookingsTR");
+            //    trList.Add(tr);
+
+            //    foreach (HtmlTableRow t in trList)
+            //    {
+            //        HtmlTableCell td = new HtmlTableCell();
+            //        td.InnerText = "HEJ";
+            //    }
+
+            //    //for (int x = 0; x < 5; x++)
+            //    //{
+
+            //    //}
+
+            //    bookingsTable.Rows.Add(tr);
+            //}
+
+            foreach (Tuple<Reservations, Courts, ReservationTypes> t in bookingInfoList)
+            {
+                HtmlTableRow tr = new HtmlTableRow();
+                tr.Attributes.Add("class", "myBookingsTR");
+                trList.Add(tr);
+
+                for (int x = 0; x < 5; x++)
+                {
+                    HtmlTableCell td = new HtmlTableCell();
+                    td.Attributes.Add("class", "myBookingsTD");
+                    if (x == 0)
+                    {
+                        td.InnerText = t.Item1.StartDate.ToShortDateString();
+                    }
+                    if (x == 1)
+                    {
+                        td.InnerText = t.Item1.StartDate.ToShortTimeString();
+                    }
+                    if (x == 2)
+                    {
+                        td.InnerText = t.Item2.Description.ToString();
+                    }
+                    if (x == 3)
+                    {
+                        td.InnerText = t.Item3.Description.ToString();
+                    }
+                    if (x == 4)
+                    {
+                        td.InnerText = "1234";
+                    }
+
+                    tr.Controls.Add(td);
+                }
+                bookingsTable.Rows.Add(tr);
+                myBookingsDiv.Visible = true;
+            }
+
+
+            //foreach (Reservations r in loggedInReservationsList)
+            //{
+            //    HtmlTableRow tr = new HtmlTableRow();
+            //    tr.Attributes.Add("class", "myBookingsTR");
+            //    trList.Add(tr);
+
+            //    for (int x = 0; x < 5; x++)
+            //    {
+            //        HtmlTableCell td = new HtmlTableCell();
+            //        td.Attributes.Add("class", "myBookingsTD");
+            //        if (x == 0)
+            //        {
+            //            td.InnerText = r.StartDate.Date.ToString();
+            //        }
+            //        if (x == 1)
+            //        {
+            //            td.InnerText = r.StartDate.TimeOfDay.ToString();
+            //        }
+            //        if (x == 2)
+            //        {
+            //            td.InnerText = r.CourtId.ToString();
+            //        }
+            //        if (x == 3)
+            //        {
+            //            td.InnerText = "Handled By";
+            //        }
+            //        if (x == 4)
+            //        {
+            //            td.InnerText = r.ReservationType.ToString();
+            //        }
+
+            //        tr.Controls.Add(td);
+            //    }
+            //    bookingsTable.Rows.Add(tr);
+
+            //}
+
+
+            /*foreach (Reservations r in loggedInReservationsList)
+                Add new row to table                                     
+                foreach row add 5 cells
+                for int i = 0; i <5; i++
+             * if i == 0 add courtID
+             * if i == 1 add memberId
+             * if i == 2 add date
+             * typ så.
+             */
+
+
+
+
+
+
+            //HtmlTableRow row = new HtmlTableRow();
+            //HtmlTableCell cell = new HtmlTableCell();
+            //cell.InnerText = "Datum";
+            //row.Cells.Add(cell);
+            //bookingsTable.Rows.Add(row);
+
+
+
+
+
+
+            //HtmlGenericControl table = new HtmlGenericControl("table");
+
+            //HtmlGenericControl th = new HtmlGenericControl("th");
+            //th.Attributes.Add("class", "myBookingsTH");
+            //th.InnerHtml = "Datum";
+            //table.Controls.Add(th);
+
+            //HtmlGenericControl th2 = new HtmlGenericControl("th");
+            //th2.Attributes.Add("class", "myBookingsTH");
+            //th2.InnerHtml = "Tid";
+            //table.Controls.Add(th2);
+
+            //HtmlGenericControl th3 = new HtmlGenericControl("th");
+            //th3.Attributes.Add("class", "myBookingsTH");
+            //th3.InnerHtml = "Bana";
+            //table.Controls.Add(th3);
+
+            //HtmlGenericControl th4 = new HtmlGenericControl("th");
+            //th4.Attributes.Add("class", "myBookingsTH");
+            //th4.InnerHtml = "Pris";
+            //table.Controls.Add(th4);
+
+            //HtmlGenericControl th5 = new HtmlGenericControl("th");
+            //th5.Attributes.Add("class", "myBookingsTH");
+            //th5.InnerHtml = "PIN-kod";
+            //table.Controls.Add(th5);
+
+
+            //myBookingsDiv.Controls.Add(table);
+
+            //foreach(Reservations r in loggedInReservationsList)
+            //{
+            //    HtmlGenericControl tr = new HtmlGenericControl("tr");
+            //    tr.Attributes.Add("class", "myBookingsTR");
+
+            //    //foreach row. add 5 tds
+            //}
+        }
+
 
 
         protected void btnBook_Click(object sender, EventArgs e)
