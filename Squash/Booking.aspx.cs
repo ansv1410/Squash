@@ -181,14 +181,28 @@ namespace Squash
                             string shortTime = thisDayIsFullTime[0].ToString() + thisDayIsFullTime[1].ToString();
                             string hourBookingDivId = thisDayIsFullDate + "_" + shortTime;
 
+                            HtmlGenericControl pTime = new HtmlGenericControl("p");
+                            pTime.Attributes.Add("class", "pTime");
+                            pTime.InnerHtml = shortTime+":00";
+
+                            hourDiv.Controls.Add(pTime);
 
                             HtmlGenericControl hourBookingDiv = new HtmlGenericControl("div");
                             hourBookingDiv.Attributes.Add("class", "hourBookingDiv");
                             hourBookingDiv.Attributes.Add("id", hourBookingDivId);
                             hourBookingDiv.InnerHtml = "<h3>Boka - " + thisDayIsFullDate + " "+shortTime+":00</h3><p>Klicka på önskade banor.</p><hr />";
 
+                            HtmlGenericControl bookingDescriptionDiv = new HtmlGenericControl("div");
+                            bookingDescriptionDiv.Attributes.Add("id", "bookingDescriptionDiv"+CT.CourtTimeId);
+                            bookingDescriptionDiv.Attributes.Add("class", "bookingDescriptionDiv");
+                            bookingDescriptionDiv.Attributes.Add("runat", "server");
+
+                            hourBookingDiv.Controls.Add(bookingDescriptionDiv);
+
                             foreach (Courts C in D.Courts)
                             {
+                                HtmlGenericControl descriptionDiv = new HtmlGenericControl("div");
+                                descriptionDiv.Attributes.Add("class", "descriptionDiv");
 
 
                                 HtmlGenericControl courtDiv = new HtmlGenericControl("div");
@@ -298,20 +312,6 @@ namespace Squash
                                 if (Session["lip"] != null)
                                 {
 
-                                    
-
-
-
-
-
-
-
-
-
-
-
-
-
                                     string bookingDivId = thisDayIsFullDate + "_" + shortTime + "_" + C.CourtId.ToString();
 
                                     HiddenFieldWithClass hf = new HiddenFieldWithClass();
@@ -340,23 +340,23 @@ namespace Squash
                                         courtImgDiv.Attributes.Add("onclick", "chosenCourt('" + "hf" + bookingDivId + "','" + C.CourtId.ToString() + "','" + bookingDivId + "')");
                                         courtDiv.Attributes.Add("class", "courtDivs freeCourt masterTiptool B" + C.CourtId);
                                         courtDiv.Attributes.Add("title", "Klicka för att boka Bana " + C.CourtId.ToString() + ", " + thisDayIs + " " + thisDayIsDate + "/" + thisDayIsMonth);
-                                        bookCourtDiv.Controls.Add(pBookedBy);
+                                        descriptionDiv.Controls.Add(pBookedBy);
 
                                     }
                                     else if (booked == true && reserved == false)
                                     {
                                         courtImgDiv.Attributes.Add("class", "courtImgDivBooked B" + C.CourtId);
                                         courtImgDiv.InnerHtml = "<img class='courtImg CourtImgGray' src='Images/squashB" + C.CourtId.ToString() + "lightcoral.svg' />";
-                                        bookCourtDiv.Controls.Add(pBookedBy);
+                                        descriptionDiv.Controls.Add(pBookedBy);
                                     }
 
                                     else if (booked == false && reserved == true)
                                     {
                                         courtImgDiv.Attributes.Add("class", "courtImgDivReserved B" + C.CourtId);
                                         courtImgDiv.InnerHtml = "<img class='courtImg CourtImgGray' src='Images/squashB" + C.CourtId.ToString() + "lightblue.svg' />";
-                                        bookCourtDiv.Controls.Add(pBookedBy);
+                                        descriptionDiv.Controls.Add(pBookedBy);
                                     }
-
+                                    bookingDescriptionDiv.Controls.Add(descriptionDiv);
 
                                     bookCourtDiv.Controls.Add(courtImgDiv);
 

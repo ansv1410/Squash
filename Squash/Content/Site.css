@@ -635,9 +635,10 @@ h4{
 }
 
 .book-btn{
-    width:58px;
-    margin-left:43%;
-    margin-right:43%;
+    width:25%;
+    /*max-width:58px;*/
+    margin-left:37.5%;
+    margin-right:37.5%;
     /*margin-left: calc(100% - 58px);
     margin-right: calc(100% - 58px);*/
     margin-top: 10px;
@@ -740,8 +741,18 @@ h4{
     border-right: 1px solid #A0A0A0;
     font-size:110%;
 }
+.bookingDescriptionDiv{
+    width:100%;
+    padding-left:3%;
+    height:auto;
+    display:table;
 
+}
 
+.descriptionDiv{
+    float:left;
+    width:49%;
+}
 
 
 
@@ -806,6 +817,9 @@ h4{
       background-image: -ms-linear-gradient(left, #bdffbc, #71f56e);
       background-image: -o-linear-gradient(left, #bdffbc, #71f56e);
       background-image: linear-gradient(to right, #bdffbc, #71f56e);
+    }
+    .pTime{
+        display:none;
     }
 }
 
@@ -902,6 +916,7 @@ h4{
         border: 1px solid #A0A0A0;
         border-radius: 4px;
         overflow:hidden;
+        text-align:center;
     }
     .dayDiv{
         width:100%;
@@ -932,6 +947,9 @@ h4{
         background-repeat:no-repeat;
         text-align:left;
         border-right: 1px solid rgba(0, 0, 0, 0.12);
+        padding-left:10px;
+        padding-bottom:0px;
+        padding-top:5px;
     }
     .B2{
         background-image:url(../Images/B2background.png);
@@ -939,6 +957,9 @@ h4{
         background-repeat:no-repeat;
         background-position-x:right;
         text-align:right;
+        padding-right:10px;
+        padding-bottom:0px;
+        padding-top:5px;
     }
     #MainContent_selectorDiv{
         overflow:hidden;
@@ -955,26 +976,33 @@ h4{
     .staticDayDiv{
         display:none;
     }
+    .pTime {
+        font-size: 300%;
+        font-weight: bold;
+        color: rgba(0,0,0,0.5);
+        position: absolute;
+        left: 50%;
+        margin-top: 29px;
+        margin-bottom: 29px;
+        -moz-transform: translate(-50%);
+        -ms-transform: translate(-50%);
+        -webkit-transform: translate(-50%);
+        transform: translate(-50%);
+        /*text-align:center;
+        font-size:300%;
+        font-weight:bold;
+        color:rgba(0,0,0,0.5);
+        margin-left:calc(50% - 67px);
+        /*margin-right:42%;
+        margin-top:5%;*/
+        /*margin-left:calc(44.2% - 42.7815px);*/
+        /*margin-right:calc(44.2% - 42.7815px);*/
+        /*z-index:1028;
+        position:absolute;
+        display:block*/
+    }
 
     
-
-
-     /*MOBIL*/
-        /* .hourDiv, greyDiv
-          height:100%;
-          width:100%;
-          border-right: 1px solid #A0A0A0;
-        
-            .dayDiv
-            width:100%;
-            
-            .staticDayDiv
-            border-right:1px solid #A0A0A0;
-
-            */
-
-
-
 
 
     /*.hourBookingDiv{
@@ -1023,6 +1051,26 @@ h4{
     }
 }
 
+@media screen and (max-height: 570px){
+    .overlay-message h2{
+    font-size:170%;
+    margin-top:5px;
+    margin-bottom:0px;
+    }
+    #loginForm > .form-horizontal > hr{
+        margin-top:5px;
+        margin-bottom:5px;
+    }
+
+    #loginForm > .form-horizontal > #MyLoginControll_pnlDefaultButton > .form-group{
+        margin-bottom:0px;
+    }
+
+    #emailPwLogin{
+        display:none;
+    }
+}
+
 @media screen and (max-width: 360px){
     a.navbar-brand{
         margin-left:0px;
@@ -1038,4 +1086,6 @@ h4{
     margin-bottom:0;
     font-weight:bold;
     }
+   
+
 }
