@@ -345,14 +345,14 @@ namespace Squash
                                     }
                                     else if (booked == true && reserved == false)
                                     {
-                                        courtImgDiv.Attributes.Add("class", "courtImgDivBooked B" + C.CourtId);
+                                        courtImgDiv.Attributes.Add("class", "courtImgDivBooked");
                                         courtImgDiv.InnerHtml = "<img class='courtImg CourtImgGray' src='Images/squashB" + C.CourtId.ToString() + "lightcoral.svg' />";
                                         bookCourtDiv.Controls.Add(pBookedBy);
                                     }
 
                                     else if (booked == false && reserved == true)
                                     {
-                                        courtImgDiv.Attributes.Add("class", "courtImgDivReserved B" + C.CourtId);
+                                        courtImgDiv.Attributes.Add("class", "courtImgDivReserved");
                                         courtImgDiv.InnerHtml = "<img class='courtImg CourtImgGray' src='Images/squashB" + C.CourtId.ToString() + "lightblue.svg' />";
                                         bookCourtDiv.Controls.Add(pBookedBy);
                                     }

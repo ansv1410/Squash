@@ -613,19 +613,19 @@ h4{
 
 .courtImgDivFree{
     width: 100%;
-    background-color:lightgreen;
+    /*background-color:lightgreen;*/
     /*border:3px solid white;*/
 }
 
 .courtImgDivBooked{
     width: 100%;
-    background-color:lightcoral;
+    /*background-color:lightcoral;*/
     /*border:3px solid white;*/
 }
 
 .courtImgDivReserved{
     width: 100%;
-    background-color:lightblue;
+    /*background-color:lightblue;*/
     /*border:3px solid white;*/
 }
 
