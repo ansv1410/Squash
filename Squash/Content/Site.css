@@ -930,6 +930,7 @@ h4{
         background-image:url(../Images/B2background.png);
         background-size:contain;
         background-repeat:no-repeat;
+        background-position-x:right;
     }
     #MainContent_selectorDiv{
         overflow:hidden;
