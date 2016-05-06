@@ -560,15 +560,7 @@ h4{
       background-image: -o-linear-gradient(left, #cfffd2, #bdffbc);
       background-image: linear-gradient(to right, #cfffd2, #bdffbc);
 }
-.freeCourt:hover{
-    cursor:pointer;
-    background: #bdffbc;
-      background-image: -webkit-linear-gradient(left, #bdffbc, #71f56e);
-      background-image: -moz-linear-gradient(left, #bdffbc, #71f56e);
-      background-image: -ms-linear-gradient(left, #bdffbc, #71f56e);
-      background-image: -o-linear-gradient(left, #bdffbc, #71f56e);
-      background-image: linear-gradient(to right, #bdffbc, #71f56e);
-}
+
 .booking-overlay-container{
     position: fixed;
     width: 100%;
@@ -805,6 +797,15 @@ h4{
     }
     #MainContent_selectorDiv{
         display:none;
+    }
+    .freeCourt:hover{
+      cursor:pointer;
+      background: #bdffbc;
+      background-image: -webkit-linear-gradient(left, #bdffbc, #71f56e);
+      background-image: -moz-linear-gradient(left, #bdffbc, #71f56e);
+      background-image: -ms-linear-gradient(left, #bdffbc, #71f56e);
+      background-image: -o-linear-gradient(left, #bdffbc, #71f56e);
+      background-image: linear-gradient(to right, #bdffbc, #71f56e);
     }
 }
 
