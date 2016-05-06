@@ -9,7 +9,7 @@
     <div id="col-md-8-loginForm" class="col-md-8">
         <section id="loginForm">
             <div class="form-horizontal">
-                <h4>Ange e-post och lösenord.</h4>
+                <h4 id="emailPwLogin">Ange e-post och lösenord.</h4>
                 <hr />
                 <asp:Panel ID="pnlDefaultButton" runat="server" DefaultButton="btnLogin">
                     <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
@@ -43,7 +43,7 @@
                 </div>--%>
                     <div class="form-group">
                         <div class="col-md-10">
-                            <asp:Button ID="btnLogin" runat="server" OnClick="LogIn" OnClientClick="reopenOverlay()" Text="Log in" CssClass="btn btn-default" ValidationGroup="Login" />
+                            <asp:Button ID="btnLogin" runat="server" OnClick="LogIn" OnClientClick="reopenOverlay()" Text="Logga in" CssClass="btn btn-default" ValidationGroup="Login" />
                             <asp:Label ID="LoginFail" runat="server"></asp:Label>
                         </div>
                     </div>
