@@ -191,7 +191,7 @@ namespace Squash
 
                                 HtmlGenericControl courtDiv = new HtmlGenericControl("div");
                                 courtDiv.Attributes.Add("id", D.DayId + "-" + CT.CourtTimeId + "-" + C.CourtId + "-" + thisDayIsFullDate);
-                                courtDiv.Attributes.Add("class", "courtDivs");
+                                courtDiv.Attributes.Add("class", "courtDivs B"+C.CourtId);
 
                                 HtmlGenericControl pBookedBy = new HtmlGenericControl("p");
                                 pBookedBy.InnerHtml = "Ledig tid";
@@ -208,16 +208,16 @@ namespace Squash
                                         {
                                             if (sub.MemberId == lip.member.MemberId)
                                             {
-                                                courtDiv.Attributes.Add("class", "courtDivs subscribedCourt mySubscribedCourt masterTiptool ");
+                                                courtDiv.Attributes.Add("class", "courtDivs subscribedCourt mySubscribedCourt masterTiptool B" + C.CourtId);
                                             }
                                             else
                                             {
-                                                courtDiv.Attributes.Add("class", "courtDivs subscribedCourt masterTiptool");
+                                                courtDiv.Attributes.Add("class", "courtDivs subscribedCourt masterTiptool B" + C.CourtId);
                                             }
                                         }
                                         else
                                         {
-                                            courtDiv.Attributes.Add("class", "courtDivs subscribedCourt masterTiptool");
+                                            courtDiv.Attributes.Add("class", "courtDivs subscribedCourt masterTiptool B" + C.CourtId);
 
                                         }
                                         courtDiv.InnerHtml = sub.FullMemberName;
@@ -253,16 +253,16 @@ namespace Squash
                                         {
                                             if (res.MemberId == lip.member.MemberId)
                                             {
-                                                courtDiv.Attributes.Add("class", "courtDivs reservedCourt myReservedCourt masterTiptool");
+                                                courtDiv.Attributes.Add("class", "courtDivs reservedCourt myReservedCourt masterTiptool B" + C.CourtId);
                                             }
                                             else
                                             {
-                                                courtDiv.Attributes.Add("class", "courtDivs reservedCourt masterTiptool");
+                                                courtDiv.Attributes.Add("class", "courtDivs reservedCourt masterTiptool B" + C.CourtId);
                                             }
                                         }
                                         else
                                         {
-                                            courtDiv.Attributes.Add("class", "courtDivs reservedCourt masterTiptool");
+                                            courtDiv.Attributes.Add("class", "courtDivs reservedCourt masterTiptool B" + C.CourtId);
 
                                         }
 
@@ -336,21 +336,21 @@ namespace Squash
                                         courtDiv.Attributes.Add("onclick", "OpenBookingOverlay('" + hourBookingDivId + "')");
                                         courtImgDiv.Attributes.Add("class", "courtImgDivFree");
                                         courtImgDiv.Attributes.Add("onclick", "chosenCourt('" + "hf" + bookingDivId + "','" + C.CourtId.ToString() + "','" + bookingDivId + "')");
-                                        courtDiv.Attributes.Add("class", "courtDivs freeCourt masterTiptool");
+                                        courtDiv.Attributes.Add("class", "courtDivs freeCourt masterTiptool B" + C.CourtId);
                                         courtDiv.Attributes.Add("title", "Klicka för att boka Bana " + C.CourtId.ToString() + ", " + thisDayIs + " " + thisDayIsDate + "/" + thisDayIsMonth);
                                         bookCourtDiv.Controls.Add(pBookedBy);
 
                                     }
                                     else if (booked == true && reserved == false)
                                     {
-                                        courtImgDiv.Attributes.Add("class", "courtImgDivBooked");
+                                        courtImgDiv.Attributes.Add("class", "courtImgDivBooked B" + C.CourtId);
                                         courtImgDiv.InnerHtml = "<img class='courtImg CourtImgGray' src='Images/squashB" + C.CourtId.ToString() + "lightcoral.svg' />";
                                         bookCourtDiv.Controls.Add(pBookedBy);
                                     }
 
                                     else if (booked == false && reserved == true)
                                     {
-                                        courtImgDiv.Attributes.Add("class", "courtImgDivReserved");
+                                        courtImgDiv.Attributes.Add("class", "courtImgDivReserved B" + C.CourtId);
                                         courtImgDiv.InnerHtml = "<img class='courtImg CourtImgGray' src='Images/squashB" + C.CourtId.ToString() + "lightblue.svg' />";
                                         bookCourtDiv.Controls.Add(pBookedBy);
                                     }
@@ -364,7 +364,7 @@ namespace Squash
                                 }
                                 else if (booked == false && reserved == false)
                                 {
-                                    courtDiv.Attributes.Add("class", "courtDivs freeCourt masterTiptool");
+                                    courtDiv.Attributes.Add("class", "courtDivs freeCourt masterTiptool B" + C.CourtId);
                                     courtDiv.Attributes.Add("title", "Logga in eller bli medlem för att boka.");
 
                                 }

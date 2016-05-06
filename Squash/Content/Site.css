@@ -752,6 +752,7 @@ h4{
 
 
 
+
 /*BOOKING - SLUT*/
 
 
@@ -908,19 +909,27 @@ h4{
         display:none;
     }
     .courtDivs{
-    /*background-color:lightgreen;*/
-    /*margin:5px;*/
-    height:100%;
-    width:50%;
-    padding-bottom:10px;
-    padding-left:1px;
-    padding-right:1px;
-    overflow:hidden;
-    float: left;
-    background-image:url(../Images/B1background.png);
-    background-size:contain;
-    background-repeat:no-repeat;
-    /*white-space:nowrap;*/
+        /*background-color:lightgreen;*/
+        /*margin:5px;*/
+        height:100%;
+        width:50%;
+        padding-bottom:10px;
+        padding-left:1px;
+        padding-right:1px;
+        overflow:hidden;
+        float: left;
+
+        /*white-space:nowrap;*/
+    }
+    .B1{
+        background-image:url(../Images/B1background.png);
+        background-size:contain;
+        background-repeat:no-repeat;
+    }
+    .B2{
+        background-image:url(../Images/B2background.png);
+        background-size:contain;
+        background-repeat:no-repeat;
     }
     #MainContent_selectorDiv{
         overflow:hidden;
