@@ -577,7 +577,6 @@ namespace Squash
 
         public void ShowMyReservations()
         {
-            List<Reservations> loggedInReservationsList = new List<Reservations>();
             List<Tuple<Reservations, Courts, ReservationTypes>> bookingInfoList = new List<Tuple<Reservations, Courts, ReservationTypes>>();
 
             string query = "SELECT r.StartDate, c.Description AS courtName, c.CourtId, rt.Description AS resType FROM reservations r "
@@ -611,7 +610,7 @@ namespace Squash
                 Tuple<Reservations, Courts, ReservationTypes> tupleList = new Tuple<Reservations, Courts, ReservationTypes>(r, c, rt);
                 bookingInfoList.Add(tupleList);
 
-                loggedInReservationsList.Add(r);
+                //loggedInReservationsList.Add(r);
             }
 
             //List<HtmlGenericControl> trList = new List<HtmlGenericControl>();
