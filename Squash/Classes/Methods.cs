@@ -217,5 +217,67 @@ namespace Squash.Classes
 
         #endregion
 
+        #region DesignMethods
+
+        public string DivideWidth(double percentToDivide, double noOfElements)
+        {
+            double width = percentToDivide / noOfElements;
+            string widthString = width.ToString();
+            string widthInPercent = "";
+
+            foreach (Char c in widthString)
+            {
+                if (c.ToString() == ",")
+                {
+                    widthInPercent += ".";
+                }
+                else
+                {
+                    widthInPercent += c;
+                }
+            }
+
+            return widthInPercent + "%";
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="oneToZeroHour"></param>
+        /// <param name="onlyHour">true för format: "06" eller false för: 06:00:00</param>
+        /// <returns></returns>
+        public string ConvertToFullTime(int oneToZeroHour, bool onlyHour)
+        {
+            string fullTime = "";
+            if (onlyHour)
+            {
+                if (oneToZeroHour < 10)
+                {
+                    fullTime = "0" + oneToZeroHour.ToString();
+
+                }
+                else
+                {
+                    fullTime = oneToZeroHour.ToString();
+                }
+            }
+            else
+            {
+                if (oneToZeroHour < 10)
+                {
+                    fullTime = "0" + oneToZeroHour.ToString() + ":00:00";
+
+                }
+                else
+                {
+                    fullTime = oneToZeroHour.ToString() + ":00:00";
+                }
+            }
+            
+            return fullTime;
+
+        }
+
+        #endregion
+
     }
 }

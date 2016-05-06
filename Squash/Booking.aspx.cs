@@ -29,16 +29,20 @@ namespace Squash
             {
                 ShowMyReservations();
             }
-            
-            BuildSchedule(GetDayList(), 8);
 
+            BuildSchedule(8);
 
         }
-        public void BuildSchedule(List<Days> DayList, int noOfDays)
+        /// <summary>
+        /// Loopar all bokningsdata data och genererar ett dynamiskt schema för det valda antalet dagar(nOfDays)
+        /// </summary>
+        /// <param name="noOfDays">Antalet dagar att visa</param>
+        public void BuildSchedule(int noOfDays)
         {
             DateTime bookingDate = DateTime.Now.Date;
             int todayNo = Convert.ToInt16(DateTime.Now.DayOfWeek.ToString("d"));
 
+            List<Days> DayList = GetDayList();
             List<Subscriptions> allSubscriptions = GetSubscriptionList();
             List<Reservations> allReservations = GetReservationsList();
             List<Companies> allCompanies = GetCompanyList();
@@ -48,6 +52,8 @@ namespace Squash
 
             int counter = 0;
             bool drawtimes = true;
+
+            //Startar loopen på dagens "todayNo", ex. Måndag = 1 eller Fredag = 5.
             for (int i = todayNo; i <= noOfDays; i++)
             {
                 counter++;
@@ -62,6 +68,7 @@ namespace Squash
                 }
                 if (counter <= noOfDays)
                 {
+                    //Loopar ut den vänstra titelkolumnen för aktiva starttider som hämtats från servern.
                     if (i == todayNo && drawtimes == true)
                     {
                         drawtimes = false;
@@ -91,14 +98,12 @@ namespace Squash
 
 
                 }
-                double d = 94;
-                double n = Convert.ToDouble(noOfDays);
+
+                //Loopar veckans dagar enligt de dagar som specificerats i databasen skapar element för dessa.
                 foreach (Days D in DayList)
                 {
                     if (D.DayId == i)
                     {
-
-
                         HtmlGenericControl dayDiv = new HtmlGenericControl("div");
                         dayDiv.Attributes.Add("id", counter.ToString() +"_day");
                         dayDiv.Attributes.Add("class", "dayDiv");
@@ -106,44 +111,9 @@ namespace Squash
                         {
                             dayDiv.Style.Add("border-right", "1px solid #A0A0A0");
                         }
-                        double dn = d / n;
-                        double dn2 = 100 / n;
-
-                        string wid = dn.ToString() + "%";
-                        string wid2 = dn2.ToString() + "%";
-                        string width = "";
-                        string width2 = "";
-                        foreach (Char c in wid)
-                        {
-                            if (c.ToString() == ",")
-                            {
-                                width += ".";
-                            }
-                            else
-                            {
-                                width += c;
-                            }
-                        }
-                        foreach (Char c in wid2)
-                        {
-                            if (c.ToString() == ",")
-                            {
-                                width2 += ".";
-                            }
-                            else
-                            {
-                                width2 += c;
-                            }
-                        }
-                        hfWidthOfDaySelectors.Value = width2;
-                        hfWidthOfDayDivs.Value = width;
-
-                        //dayDiv.Style.Add("width", width);
-                        //dayDiv.Style.Add("width", "@media screen and (min-width: 768px){width:'" + width + "'%;};");
-                        //dayDiv.Attributes["media"] = "screen and(min-width: 768px){width:'" + width + "'%;};";
-                        //dayDiv.Style.Add("media", "screen and(min-width: 768px){width:"+width+")");
-                        //dayDiv.Style.Add("width", "@media screen and (min-width: 768px){width:"+width+";}");
-
+                        
+                        hfWidthOfDaySelectors.Value = method.DivideWidth(100, Convert.ToDouble(noOfDays));
+                        hfWidthOfDayDivs.Value = method.DivideWidth(94, Convert.ToDouble(noOfDays));
 
                         HtmlGenericControl staticDayDiv = new HtmlGenericControl("div");
                         staticDayDiv.Attributes.Add("class", "staticDayDiv");
@@ -151,8 +121,6 @@ namespace Squash
                         string thisDayIs = method.FixName(DateTime.Now.AddDays(counter - 1).ToString("dddd", new CultureInfo("sv-SE")));
                         string thisDayIsDate = method.FixName(DateTime.Now.AddDays(counter - 1).ToString("%d", new CultureInfo("sv-SE")));
                         string thisDayIsMonth = DateTime.Now.AddDays(counter - 1).ToString("%M", new CultureInfo("sv-SE"));
-                        //daySelector.InnerHtml = thisDayIs + "<br />" + thisDayIsDate + "/" + thisDayIsMonth;
-                        //daySelector.InnerHtml = thisDayIsDate + "/" + thisDayIsMonth;
                         string shortDayIs = thisDayIs.Substring(0, 3);
                         daySelector.InnerHtml = shortDayIs + "<br />" + thisDayIsDate + "/" + thisDayIsMonth;
                         staticDayDiv.InnerHtml = thisDayIs + "<br />" + thisDayIsDate + "/" + thisDayIsMonth;
@@ -161,24 +129,15 @@ namespace Squash
                         selectorDiv.Controls.Add(daySelector);
                         dayDiv.Controls.Add(staticDayDiv);
 
+                        //Loopar alla starttider för den aktuella dagen och skapar element för dessa.
                         foreach (CourtTimes CT in D.CourtTimes)
                         {
                             HtmlGenericControl hourDiv = new HtmlGenericControl("div");
                             hourDiv.Attributes.Add("id", "" + D.DayId + CT.CourtTimeId + "");
                             hourDiv.Attributes.Add("class", "hourDivs");
 
-                            string thisDayIsFullTime = "";
-
-                            if (CT.StartHour < 10)
-                            {
-                                thisDayIsFullTime = "0" + CT.StartHour + ":00:00";
-
-                            }
-                            else
-                            {
-                                thisDayIsFullTime = CT.StartHour + ":00:00";
-                            }
-                            string shortTime = thisDayIsFullTime[0].ToString() + thisDayIsFullTime[1].ToString();
+                            string thisDayIsFullTime = method.ConvertToFullTime(CT.StartHour, false);
+                            string shortTime = method.ConvertToFullTime(CT.StartHour, true);
                             string hourBookingDivId = thisDayIsFullDate + "_" + shortTime;
 
                             HtmlGenericControl pTime = new HtmlGenericControl("p");
@@ -199,6 +158,7 @@ namespace Squash
 
                             hourBookingDiv.Controls.Add(bookingDescriptionDiv);
 
+                            //Loopar alla banor för den aktuella starttiden och genererar element för dessa.
                             foreach (Courts C in D.Courts)
                             {
                                 HtmlGenericControl descriptionDiv = new HtmlGenericControl("div");
@@ -212,14 +172,15 @@ namespace Squash
                                 HtmlGenericControl pBookedBy = new HtmlGenericControl("p");
                                 pBookedBy.InnerHtml = "Ledig tid";
 
-                                bool booked = false;
+                                bool subscribed = false;
                                 bool reserved = false;
 
+                                //Loopar och jämför varje bana+tid och sätter ev. bokningstatus För abonnemangstider.
                                 foreach (Subscriptions sub in allSubscriptions)
                                 {
                                     if (sub.CourtId == C.CourtId && sub.CourtTimeId == CT.CourtTimeId && sub.DayId == D.DayId)
                                     {
-                                        booked = true;
+                                        subscribed = true;
                                         if (Session["lip"] != null)
                                         {
                                             if (sub.MemberId == lip.member.MemberId)
@@ -260,6 +221,7 @@ namespace Squash
                                     }
                                 }
 
+                                //Loopar och jämför varje bana+tid och sätter ev. bokningstatus För strötider.
                                 foreach (Reservations res in allReservations)
                                 {
                                     if (res.CourtId == C.CourtId && res.StartDate == Convert.ToDateTime((thisDayIsFullDate + " " + thisDayIsFullTime)))
@@ -308,17 +270,21 @@ namespace Squash
                                     }
                                 }
 
-
+                                //Om användaren är inloggad
                                 if (Session["lip"] != null)
                                 {
 
                                     string bookingDivId = thisDayIsFullDate + "_" + shortTime + "_" + C.CourtId.ToString();
 
+                                    //"hf" associeras till den klickbara div som symboliserar den bana och tid som ska bokas, via IDt hf + bookingDivId. Värdet initieras till 0 och sätts till 1 vid klick i JavaScript-funktionen "chosenCourt"
                                     HiddenFieldWithClass hf = new HiddenFieldWithClass();
                                     hf.ID = "hf" + bookingDivId;
                                     hf.CssClass = "BookingHf";
                                     hf.Value = "0";
 
+
+                                    //Dessa element läggs till i bokningsoverlayen som visas efter klick på ledig bana.
+                                    //---------------------------------------
                                     HtmlGenericControl bookingDiv = new HtmlGenericControl("div");
                                     bookingDiv.Attributes.Add("id", bookingDivId);
                                     bookingDiv.Attributes.Add("class", "bookingDiv");
@@ -328,12 +294,11 @@ namespace Squash
                                     HtmlGenericControl courtImgDiv = new HtmlGenericControl("div");
 
                                     courtImgDiv.InnerHtml = "<img class='courtImg' src='Images/squashB" + C.CourtId.ToString() + "lightgreen.svg' />";
-                                    
+                                    //----------------------------------------
                                     
                                     
 
-                                    //courtDiv.Attributes.Add("onclick", "confirm_clicked('" + C.CourtId + "','" + lip.member.MemberId + "','" + thisDayIsFullDate + " " + thisDayIsFullTime + "','" + bookingDivId + ")");
-                                    if (booked == false && reserved == false)
+                                    if (subscribed == false && reserved == false)
                                     {
                                         courtDiv.Attributes.Add("onclick", "OpenBookingOverlay('" + hourBookingDivId + "')");
                                         courtImgDiv.Attributes.Add("class", "courtImgDivFree");
@@ -343,14 +308,14 @@ namespace Squash
                                         descriptionDiv.Controls.Add(pBookedBy);
 
                                     }
-                                    else if (booked == true && reserved == false)
+                                    else if (subscribed == true && reserved == false)
                                     {
                                         courtImgDiv.Attributes.Add("class", "courtImgDivBooked");
                                         courtImgDiv.InnerHtml = "<img class='courtImg CourtImgGray' src='Images/squashB" + C.CourtId.ToString() + "lightcoral.svg' />";
                                         descriptionDiv.Controls.Add(pBookedBy);
                                     }
 
-                                    else if (booked == false && reserved == true)
+                                    else if (subscribed == false && reserved == true)
                                     {
                                         courtImgDiv.Attributes.Add("class", "courtImgDivReserved");
                                         courtImgDiv.InnerHtml = "<img class='courtImg CourtImgGray' src='Images/squashB" + C.CourtId.ToString() + "lightblue.svg' />";
@@ -364,7 +329,7 @@ namespace Squash
                                     hourBookingDiv.Controls.Add(bookingDiv);
 
                                 }
-                                else if (booked == false && reserved == false)
+                                else if (subscribed == false && reserved == false)
                                 {
                                     courtDiv.Attributes.Add("class", "courtDivs freeCourt masterTiptool B" + C.CourtId);
                                     courtDiv.Attributes.Add("title", "Logga in eller bli medlem för att boka.");

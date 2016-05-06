@@ -618,6 +618,9 @@ h4{
     /*background-color:lightgreen;*/
     /*border:3px solid white;*/
 }
+.courtImgDivFree:hover{
+    cursor:pointer;
+}
 
 .courtImgDivBooked{
     width: 100%;
