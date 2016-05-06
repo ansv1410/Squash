@@ -607,8 +607,10 @@ h4{
 }
 
 .selectedCourt{
-    border:3px solid forestgreen;
-    box-shadow: 1px 2px 6px 5px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24), 0 4px 4px rgba(0, 0, 0, 0.36);
+    /*border:3px solid forestgreen;*/
+    border-radius:4px;
+    box-shadow: 1px 2px 6px 5px rgba(34, 139, 34, 0.12), 0 1px 4px rgba(34, 139, 34, 0.24), 0 4px 4px rgba(34, 139, 34, 0.36);
+    /*-webkit-box-shadow: inset*/ 
 }
 
 .courtImgDivFree{
