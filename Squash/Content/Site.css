@@ -662,8 +662,8 @@ h4{
     height:auto;
     overflow:auto;
     font-size:100%;
-    border-left:1px solid #A0A0A0;
-    border-right:1px solid #A0A0A0;
+    border:1px solid #A0A0A0;
+    border-radius: 4px;
     /*height:41px;
     font-size:75%;*/
 }
@@ -679,7 +679,7 @@ h4{
     background-image: -ms-linear-gradient(top, #ffffff, #dedede);
     background-image: -o-linear-gradient(top, #ffffff, #dedede);
     background-image: linear-gradient(to bottom, #ffffff, #dedede);
-    border-top:1px solid #A0A0A0;
+    /*border-top:1px solid #A0A0A0;*/
     float:left;
     width:auto;
 }
@@ -898,10 +898,14 @@ h4{
     .hourDivs, .greyDiv{
         height:100px;
         width:100%;
-        border-right: 1px solid #A0A0A0;
+        margin-top: 1%;
+        border: 1px solid #A0A0A0;
+        border-radius: 4px;
+        overflow:hidden;
     }
     .dayDiv{
         width:100%;
+        border:none;
     }
     .staticDayDiv{
         border-right:1px solid #A0A0A0;
@@ -927,6 +931,7 @@ h4{
         background-size:contain;
         background-repeat:no-repeat;
         text-align:left;
+        border-right: 1px solid rgba(0, 0, 0, 0.12);
     }
     .B2{
         background-image:url(../Images/B2background.png);
@@ -937,6 +942,7 @@ h4{
     }
     #MainContent_selectorDiv{
         overflow:hidden;
+        
         /*word-break:break-all;*/
     }
 
