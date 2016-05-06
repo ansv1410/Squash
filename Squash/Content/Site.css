@@ -669,7 +669,7 @@ h4{
     margin-left:1.8%;
     height:auto;
     overflow:auto;
-    font-size:140%;
+    font-size:100%;
     border-left:1px solid #A0A0A0;
     border-right:1px solid #A0A0A0;
     /*height:41px;
@@ -918,19 +918,21 @@ h4{
         padding-right:1px;
         overflow:hidden;
         float: left;
-
+        font-size:180%;
         /*white-space:nowrap;*/
     }
     .B1{
         background-image:url(../Images/B1background.png);
         background-size:contain;
         background-repeat:no-repeat;
+        text-align:left;
     }
     .B2{
         background-image:url(../Images/B2background.png);
         background-size:contain;
         background-repeat:no-repeat;
         background-position-x:right;
+        text-align:right;
     }
     #MainContent_selectorDiv{
         overflow:hidden;
@@ -940,6 +942,13 @@ h4{
     #MainContent_myBookingsDiv{
         width:80%;
     }
+    .greyDiv{
+        display:none;
+    }
+    .staticDayDiv{
+        display:none;
+    }
+
     
 
 
