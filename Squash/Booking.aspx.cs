@@ -621,7 +621,51 @@ namespace Squash
                     }
                     if (x == 4)
                     {
-                        td.InnerText = "1234";
+                        //td.InnerText = "1234";
+
+                        //visa det högsta datumet från CodeLock om det inte är senare än reservationsdatumet, då är det nästa.
+                        List<CodeLock> codeLockList = new List<CodeLock>();
+                        string queryGetCodeLocks = "SELECT CodeLockId, CodeLock, DateOfChange FROM codelock ORDER BY DateOfChange DESC;";
+
+                        MySqlDataReader dr2 = method.myReader(queryGetCodeLocks, conn);
+
+                        while(dr2.Read())
+                        {
+                            CodeLock cl = new CodeLock();
+                            cl.CodeLockId = Convert.ToInt16(dr2["CodeLockId"]);
+                            cl.Code = dr2["CodeLock"].ToString();
+                            cl.DateOfChange = Convert.ToDateTime(dr2["DateOfChange"]);
+
+                            codeLockList.Add(cl);
+                        }
+
+
+                        foreach(CodeLock codelock in codeLockList)
+                        {
+                            if(codelock.DateOfChange > t.Item1.StartDate == false)
+                            {
+                                DateTime d = DateTime.Now.AddHours(1).AddMinutes(1);
+                                if (DateTime.Now.AddHours(1).AddMinutes(1) > t.Item1.StartDate)
+                                {
+                                    td.InnerText = codelock.Code;
+                                }
+                                else
+                                {
+                                    HyperLink h = new HyperLink();
+                                    h.Text = "Visa PIN-kod";
+                                    h.NavigateUrl = "http://www.nba.com";
+                                    td.InnerText = h.Text;
+                                    Page.Controls.Add(h);
+                                }
+                                break;
+                            }
+
+                            //else
+                            //{
+                            //    td.InnerText = "EXPIRED";
+                            //}
+                        }
+
                     }
 
                     tr.Controls.Add(td);
@@ -639,7 +683,7 @@ namespace Squash
 
             string query = "SELECT d.Description, ct.StartHour, s.CourtId FROM subscriptions s "
                             + "INNER JOIN courts c ON s.CourtId = c.CourtId "
-                            + "INNER JOIN courttimes ct ON s.CourtTimeId = ct.COurtTimeId "
+                            + "INNER JOIN courttimes ct ON s.CourtTimeId = ct.CourtTimeId "
                             + "INNER JOIN days d ON s.DayId = d.DayId "
                             + "WHERE s.MemberId = " + lip.member.MemberId + " ORDER BY s.DayId;";
 
