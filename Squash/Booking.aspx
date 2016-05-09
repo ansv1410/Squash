@@ -5,8 +5,8 @@
 
     <div class="pageDiv" id="bookingPageDivcc" runat="server">
 
-        <div id="myBookingsDiv" runat="server" visible ="false">
-        <h3 id="myBookingsH3">Mina bokningar</h3>
+        <div id="myBookingsDiv" runat="server" visible="false">
+            <h3 id="myBookingsH3">Mina bokningar</h3>
             <table id="bookingsTable" runat="server">
                 <tr class="myBookingsTR">
                     <td class="myBookingsTH">Datum</td>
@@ -34,6 +34,7 @@
 
         <asp:HiddenField ID="hfWidthOfDayDivs" runat="server" />
         <asp:HiddenField ID="hfWidthOfDaySelectors" runat="server" />
+        <asp:HiddenField ID="hfNoOfClickedCourts" runat="server" Value="0" />
 
 
         <script type="text/javascript">
@@ -47,25 +48,30 @@
 
             }
 
+            function bookBtnClickable() {
 
+                $('.book-btn').each(function () {
+                    this.removeAttribute('disabled');
+                });
+            }
+            function bookBtnUnclickable() {
+                $('.book-btn').each(function () {
+                    this.setAttribute('disabled', 'disabled');
+                });
+            }
 
             function OpenBookingOverlay(hourBookingDiv) {
-                //var id1 = "#" + firstDiv
-                //var id2 = "#" + secondDiv
                 var id3 = "#" + hourBookingDiv;
                 $('.booking-overlay-container').fadeIn('slow');
-                //$('.bookingDiv').hide();
                 $('.hourBookingDiv').hide();
-                //$(id1).show();
-                //$(id2).show();
                 $(id3).show();
-                //document.getElementById('hfShowLogin').setAttribute('Value', '1')
                 return false;
             }
             function CloseBookingOverlay() {
-                //document.getElementById('hfShowLogin').setAttribute('Value', '0')
                 $('.booking-overlay-container').fadeOut('slow');
                 $('.BookingHf').val('0');
+
+                bookBtnUnclickable()
             }
             //function ReopenBookingOverlay() {
             //    var oneOrZero = document.getElementById('hfShowLogin').getAttribute('Value')
@@ -79,18 +85,27 @@
             function chosenCourt(hfID, courtId, bookingDivID) {
                 var id = "MainContent_" + hfID;
                 var chosenOrNot = document.getElementById(id).getAttribute('Value');
-                //var court = document.getElementById('MainContent_hfChosenCourts').getAttribute('value');
-                //var courts = court + chosenCourtId;
+
+                var previousClicks = parseInt(document.getElementById("MainContent_hfNoOfClickedCourts").getAttribute('Value'));
+
                 if (chosenOrNot == 0) {
 
                     document.getElementById(id).setAttribute('Value', courtId);
-
                     $("#" + bookingDivID).addClass("selectedCourt");
+                    previousClicks += 1;
+                    document.getElementById("MainContent_hfNoOfClickedCourts").setAttribute('Value', previousClicks.toString())
+                    bookBtnClickable();
                 }
                 else {
 
                     document.getElementById(id).setAttribute('Value', "0");
                     $("#" + bookingDivID).removeClass("selectedCourt");
+                    previousClicks -= 1;
+                    document.getElementById("MainContent_hfNoOfClickedCourts").setAttribute('Value', previousClicks.toString())
+                    if (previousClicks < 1) {
+                        bookBtnUnclickable();
+                    }
+
                 }
 
             }

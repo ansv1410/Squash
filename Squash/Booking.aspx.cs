@@ -24,7 +24,7 @@ namespace Squash
             lip = (LoggedInPerson)Session["lip"];
             //hfChosenCourts.Value = "0";
             //"8" är antalet dagar som metoden ska hämta, dynamiskt och kan ändras. 
-
+            hfNoOfClickedCourts.Value = "0";
             if(Session["lip"] != null)
             {
                 ShowMyReservations();
@@ -363,6 +363,7 @@ namespace Squash
                             
                             Button btnBook = new Button();
                             btnBook.Text = "Boka";
+                            btnBook.Attributes.Add("disabled", "disabled");
                             btnBook.Attributes.Add("class", "btn btn-default book-btn");
                             btnBook.CommandArgument = hourBookingDivId;
                             btnBook.Click += btnBook_Click;
