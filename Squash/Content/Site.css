@@ -741,11 +741,26 @@ h4{
 .myBookingsTR{
     border-bottom:1px solid #A0A0A0;
     text-align:center;
+    background-color:#d6ebf2;
 }
 .myBookingsTD{
     border-right: 1px solid #A0A0A0;
     font-size:110%;
 }
+
+.mySubscriptionsTR{
+    border-bottom:1px solid #A0A0A0;
+    text-align:center;
+    background-color:#F1AFAF;
+}
+
+.mySubscriptionsTD{
+    border-right: 1px solid #A0A0A0;
+    font-size:110%;
+}
+
+
+
 .bookingDescriptionDiv{
     width:100%;
     padding-left:3%;
