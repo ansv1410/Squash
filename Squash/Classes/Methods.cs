@@ -280,5 +280,41 @@ namespace Squash.Classes
 
         #endregion
 
+
+        public string EngSweDaySwitch(string engDay)
+        {
+            string sweDay = null;
+
+            if(engDay == "Monday")
+            {
+                sweDay = "Måndag";
+            }
+            if(engDay == "Tuesday")
+            {
+                sweDay = "Tisdag";
+            }
+            if(engDay == "Wednesday")
+            {
+                sweDay = "Onsdag";
+            }
+            if(engDay == "Thursday")
+            {
+                sweDay = "Torsdag";
+            }
+            if(engDay == "Friday")
+            {
+                sweDay = "Fredag";
+            }
+            if(engDay == "Saturday")
+            {
+                sweDay = "Lördag";
+            }
+            if(engDay == "Sunday")
+            {
+                sweDay = "Söndag";
+            }
+
+            return sweDay;
+        }
     }
 }

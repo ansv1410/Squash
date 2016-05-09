@@ -641,7 +641,7 @@ namespace Squash
                             + "INNER JOIN courts c ON s.CourtId = c.CourtId "
                             + "INNER JOIN courttimes ct ON s.CourtTimeId = ct.COurtTimeId "
                             + "INNER JOIN days d ON s.DayId = d.DayId "
-                            + "WHERE s.MemberId = " + lip.member.MemberId + ";";
+                            + "WHERE s.MemberId = " + lip.member.MemberId + " ORDER BY s.DayId;";
 
             MySqlDataReader dr = method.myReader(query, conn);
 
@@ -675,7 +675,8 @@ namespace Squash
 
                     if(y == 0)
                     {
-                        td.InnerText = tup.Item3.Description+"s";
+                        td.InnerText = method.EngSweDaySwitch(tup.Item3.Description)+"ar";
+                        //td.InnerText = tup.Item3.Description+"s";
                     }
 
                     if(y == 1)
