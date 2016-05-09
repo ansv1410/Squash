@@ -70,8 +70,9 @@
             function CloseBookingOverlay() {
                 $('.booking-overlay-container').fadeOut('slow');
                 $('.BookingHf').val('0');
-
-                bookBtnUnclickable()
+                document.getElementById("MainContent_hfNoOfClickedCourts").setAttribute('Value', '0');
+                bookBtnUnclickable();
+                $('.bookingDiv').removeClass('selectedCourt');
             }
             //function ReopenBookingOverlay() {
             //    var oneOrZero = document.getElementById('hfShowLogin').getAttribute('Value')
@@ -93,7 +94,7 @@
                     document.getElementById(id).setAttribute('Value', courtId);
                     $("#" + bookingDivID).addClass("selectedCourt");
                     previousClicks += 1;
-                    document.getElementById("MainContent_hfNoOfClickedCourts").setAttribute('Value', previousClicks.toString())
+                    document.getElementById("MainContent_hfNoOfClickedCourts").setAttribute('Value', previousClicks.toString());
                     bookBtnClickable();
                 }
                 else {
