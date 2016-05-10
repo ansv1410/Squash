@@ -645,8 +645,8 @@ namespace Squash
                         {
                             if(codelock.DateOfChange > t.Item1.StartDate == false)
                             {
-                                DateTime d = DateTime.Now.AddHours(1).AddMinutes(1);
-                                if (DateTime.Now.AddHours(1).AddMinutes(1) > t.Item1.StartDate)
+                                DateTime d = DateTime.Now.AddHours(1);
+                                if (DateTime.Now.AddHours(1) > t.Item1.StartDate)
                                 {
                                     td.InnerText = codelock.Code;
 

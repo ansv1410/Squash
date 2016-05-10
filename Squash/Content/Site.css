@@ -129,6 +129,13 @@ footer a:hover{
     max-width: 1000px;
     float:left;
 }
+
+div#pin{
+    padding-top: 5px;
+    float: left;
+    text-align: center;
+}
+
 /*MASTER - SLUT*/
 
 
@@ -817,6 +824,7 @@ h4{
     #startPageDiv h2{
         margin-top:0;
     }
+
 }
 
 @media screen and (min-width: 768px) {
@@ -842,8 +850,18 @@ h4{
     .pTime{
         display:none;
     }
+    div#pin{
+    /*padding-left: 3%;*/
+    /*padding-top: 4px;*/
+    float: left;
+    text-align: center;
+    }
 }
-
+@media screen and (min-width: 361px) {
+    div#pin{
+    padding-left:3.9%;
+    }
+}
 
 
 
@@ -878,7 +896,7 @@ h4{
     }
 }
 
-@media screen and (max-width: 804px)
+@media screen and (max-width: 820px)
 {
     .navbar{
         width:100%;
@@ -1070,6 +1088,12 @@ h4{
     #MainContent_myBookingsDiv{
         width:100%;
     }
+    .navbar-brand{
+        margin-left:2px;
+        padding-right:0px;
+        font-size:160%;
+    }
+
 }
 
 @media screen and (max-height: 570px){
@@ -1094,11 +1118,15 @@ h4{
 
 @media screen and (max-width: 360px){
     a.navbar-brand{
-        margin-left:0px;
+        /*margin-left:0px;
         padding-top:15px;
         padding-left:15px;
         padding-right:0px;  
-        font-size:160%;
+        font-size:160%;*/
+        color:black;
+        margin-left:2px;
+        padding-right:0px;
+        font-size:145%;
     }
 
     .headerDiv{
@@ -1106,6 +1134,10 @@ h4{
     padding-top:2%;
     margin-bottom:0;
     font-weight:bold;
+    }
+    div#pin{
+        font-size:90%;
+        padding-top:10px;
     }
    
 

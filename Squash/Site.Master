@@ -62,7 +62,8 @@
 
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div id="margincorrection">
-                <a runat="server" href="~/Default"><img id="logoImg" runat="server" src="~\Images\logga.svg" /></a>
+                <a runat="server" href="~/Default">
+                    <img id="logoImg" runat="server" src="~\Images\logga.svg" /></a>
                 <div id="mContainer" class="container">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -71,6 +72,10 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a class="navbar-brand" runat="server" href="~/Default">Östersunds squash</a>
+                        <div id="pin">
+                            <div id="showPin" runat="server"><u>Dagens PIN</u><br /><a onclick="">Visa PIN</a></div>
+                            <div id="todaysPin" runat="server"><u>Dagens PIN</u><br /><a onclick="">1234</a></div>
+                        </div>
                     </div>
                     <div id="rightFloat" class="navbar-collapse collapse">
                         <asp:PlaceHolder ID="pubAcc" runat="server" Visible="false">
@@ -114,7 +119,7 @@
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
-        <br />
+            <br />
             <br />
         </div>
         <footer>
@@ -172,27 +177,27 @@
 
 
 
-            $(document).ready(function() {
-                // Tooltip only Text
-                $('.masterTiptool').hover(function(){
-                    // Hover over code
-                    var title = $(this).attr('title');
-                    $(this).data('tipText', title).removeAttr('title');
-                    $('<p class="tiptool"></p>')
-                    .text(title)
-                    .appendTo('body')
-                    .delay(600).fadeIn();
-                    
-                }, function() {
-                    // Hover out code
-                    $(this).attr('title', $(this).data('tipText'));
-                    $('.tiptool').remove();
-                }).mousemove(function(e) {
-                    var mousex = e.pageX + 20; //Get X coordinates
-                    var mousey = e.pageY + 10; //Get Y coordinates
-                    $('.tiptool')
-                    .css({ top: mousey, left: mousex })
-                });
-            });
+    $(document).ready(function () {
+        // Tooltip only Text
+        $('.masterTiptool').hover(function () {
+            // Hover over code
+            var title = $(this).attr('title');
+            $(this).data('tipText', title).removeAttr('title');
+            $('<p class="tiptool"></p>')
+            .text(title)
+            .appendTo('body')
+            .delay(600).fadeIn();
+
+        }, function () {
+            // Hover out code
+            $(this).attr('title', $(this).data('tipText'));
+            $('.tiptool').remove();
+        }).mousemove(function (e) {
+            var mousex = e.pageX + 20; //Get X coordinates
+            var mousey = e.pageY + 10; //Get Y coordinates
+            $('.tiptool')
+            .css({ top: mousey, left: mousex })
+        });
+    });
 
 </script>

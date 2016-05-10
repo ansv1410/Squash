@@ -99,6 +99,8 @@ namespace Squash
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            showPin.Visible = false;
+
             if (Session["lip"] != null)
             {
                 LoggedInPerson lip = (LoggedInPerson)Session["lip"];
