@@ -282,6 +282,7 @@ namespace Squash.Classes
         #endregion
 
 
+        #region BookingTable
         public HtmlTable MyBookingsTable(LoggedInPerson lip)
         {
             MySqlConnection conn = myConn();
@@ -475,14 +476,13 @@ namespace Squash.Classes
             return codeLockList;
         }
 
-
         public List<Tuple<Reservations, Courts, ReservationTypes>> GetResTuples(LoggedInPerson lip)
         {
             MySqlConnection conn = myConn();
 
             List<Tuple<Reservations, Courts, ReservationTypes>> reservationInfoList = new List<Tuple<Reservations, Courts, ReservationTypes>>();
 
-            string query = "SELECT r.StartDate, c.Description AS courtName, c.CourtId, rt.Description AS resType FROM reservations r "
+            string query = "SELECT r.CourtId AS RCourtId, r.MemberId AS RMemberId, r.StartDate, r.HandledBy, r.ReservationType AS RResType, c.CourtId AS CCourtId, c.Description AS courtName, rt.ReservationTypeId AS resTypeId, rt.Description AS resType FROM reservations r "
                            + "INNER JOIN courts c ON c.CourtId = r.CourtId "
                            + "INNER JOIN reservationtypes rt ON rt.ReservationTypeId = r.ReservationType "
                            + "WHERE r.MemberId = '" + lip.member.MemberId + "' AND DATE(StartDate) >= DATE(NOW()) ORDER BY StartDate;";
@@ -492,22 +492,33 @@ namespace Squash.Classes
             while (dr.Read())
             {
                 Reservations r = new Reservations();
+                r.CourtId = Convert.ToInt16(dr["RCourtId"]);
+                r.MemberId = Convert.ToInt16(dr["RMemberId"]);
                 r.StartDate = Convert.ToDateTime(dr["StartDate"]);
-                //if (dr["ReservationType"] != DBNull.Value)
-                //{
-                //    r.ReservationType = Convert.ToInt16(dr["ReservationType"]);
-                //}
-                //else
-                //{
-                //    r.ReservationType = 0;
-                //}
+                if (dr["HandledBy"] != DBNull.Value)
+                {
+                    r.HandledBy = Convert.ToInt16(dr["HandledBy"]);
+                }
+                else
+                {
+                    r.HandledBy = 0;
+                }
+                if (dr["RResType"] != DBNull.Value)
+                {
+                    r.ReservationType = Convert.ToInt16(dr["RResType"]);
+                }
+                else
+                {
+                    r.ReservationType = 0;
+                }
 
                 Courts c = new Courts();
-                c.CourtId = Convert.ToInt16(dr["CourtId"]);
+                c.CourtId = Convert.ToInt16(dr["CCourtId"]);
                 c.Description = dr["courtName"].ToString();
 
 
                 ReservationTypes rt = new ReservationTypes();
+                rt.ReservationTypeId = Convert.ToInt16(dr["resTypeId"]);
                 rt.Description = dr["resType"].ToString();
 
                 Tuple<Reservations, Courts, ReservationTypes> tupleResList = new Tuple<Reservations, Courts, ReservationTypes>(r, c, rt);
@@ -516,9 +527,6 @@ namespace Squash.Classes
             conn.Close();
             return reservationInfoList;
         }
-
-
-
 
         public List<Tuple<Subscriptions, CourtTimes, Days>> GetSubTuples(LoggedInPerson lip)
         {
@@ -561,7 +569,7 @@ namespace Squash.Classes
             return subscriptionInfoList;
 
         }
-
+        #endregion
 
 
         public string EngSweDaySwitch(string engDay)
