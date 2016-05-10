@@ -368,22 +368,7 @@ namespace Squash.Classes
                         //td.InnerText = "1234";
 
                         //visa det högsta datumet från CodeLock om det inte är senare än reservationsdatumet, då är det nästa.
-                        List<CodeLock> codeLockList = new List<CodeLock>();
-                        string queryGetCodeLocks = "SELECT CodeLockId, CodeLock, DateOfChange FROM codelock ORDER BY DateOfChange DESC;";
-
-                        
-                        MySqlDataReader dr2 = myReader(queryGetCodeLocks, conn);
-
-                        while (dr2.Read())
-                        {
-                            CodeLock cl = new CodeLock();
-                            cl.CodeLockId = Convert.ToInt16(dr2["CodeLockId"]);
-                            cl.Code = dr2["CodeLock"].ToString();
-                            cl.DateOfChange = Convert.ToDateTime(dr2["DateOfChange"]);
-
-                            codeLockList.Add(cl);
-                        }
-
+                        List<CodeLock> codeLockList = GetCodeLocks();
 
                         foreach (CodeLock codelock in codeLockList)
                         {
@@ -469,6 +454,26 @@ namespace Squash.Classes
 
 
         }
+        public List<CodeLock> GetCodeLocks()
+        {
+            MySqlConnection conn = myConn();
+            List<CodeLock> codeLockList = new List<CodeLock>();
+            string queryGetCodeLocks = "SELECT CodeLockId, CodeLock, DateOfChange FROM codelock ORDER BY DateOfChange DESC;";
+
+
+            MySqlDataReader dr2 = myReader(queryGetCodeLocks, conn);
+
+            while (dr2.Read())
+            {
+                CodeLock cl = new CodeLock();
+                cl.CodeLockId = Convert.ToInt16(dr2["CodeLockId"]);
+                cl.Code = dr2["CodeLock"].ToString();
+                cl.DateOfChange = Convert.ToDateTime(dr2["DateOfChange"]);
+
+                codeLockList.Add(cl);
+            }
+            return codeLockList;
+        }
 
 
         public List<Tuple<Reservations, Courts, ReservationTypes>> GetResTuples(LoggedInPerson lip)
@@ -480,7 +485,7 @@ namespace Squash.Classes
             string query = "SELECT r.StartDate, c.Description AS courtName, c.CourtId, rt.Description AS resType FROM reservations r "
                            + "INNER JOIN courts c ON c.CourtId = r.CourtId "
                            + "INNER JOIN reservationtypes rt ON rt.ReservationTypeId = r.ReservationType "
-                           + "WHERE r.MemberId = '" + lip.member.MemberId + "' AND StartDate > NOW() ORDER BY StartDate;";
+                           + "WHERE r.MemberId = '" + lip.member.MemberId + "' AND DATE(StartDate) >= DATE(NOW()) ORDER BY StartDate;";
 
             MySqlDataReader dr = myReader(query, conn);
 
@@ -521,7 +526,7 @@ namespace Squash.Classes
 
             List<Tuple<Subscriptions, CourtTimes, Days>> subscriptionInfoList = new List<Tuple<Subscriptions, CourtTimes, Days>>();
 
-            string query = "SELECT d.Description, ct.StartHour, s.CourtId FROM subscriptions s "
+            string query = "SELECT d.DayID, d.Description, ct.CourtTimeId, ct.StartHour, ct.Active, s.CourtId, s.CourtTimeId AS sCTId, s.DayId AS sDId, s.MemberId AS sMId FROM subscriptions s "
                             + "INNER JOIN courts c ON s.CourtId = c.CourtId "
                             + "INNER JOIN courttimes ct ON s.CourtTimeId = ct.CourtTimeId "
                             + "INNER JOIN days d ON s.DayId = d.DayId "
@@ -533,15 +538,21 @@ namespace Squash.Classes
             {
                 Subscriptions s = new Subscriptions();
                 s.CourtId = Convert.ToInt16(dr["CourtId"]);
+                s.CourtTimeId = Convert.ToInt16(dr["sCTId"]);
+                s.DayId = Convert.ToInt16(dr["sDId"]);
+                s.MemberId = Convert.ToInt16(dr["sMId"]);
+                
 
 
                 CourtTimes ct = new CourtTimes();
                 ct.StartHour = Convert.ToInt16(dr["StartHour"]);
+                ct.CourtTimeId = Convert.ToInt16(dr["CourtTimeId"]);
+                ct.Active = dr.GetBoolean(dr.GetOrdinal("Active"));
 
 
                 Days d = new Days();
                 d.Description = dr["Description"].ToString();
-
+                d.DayId = Convert.ToInt16(dr["DayId"]);
 
                 Tuple<Subscriptions, CourtTimes, Days> tupleSubList = new Tuple<Subscriptions, CourtTimes, Days>(s, ct, d);
                 subscriptionInfoList.Add(tupleSubList);

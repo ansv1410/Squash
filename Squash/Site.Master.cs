@@ -18,6 +18,7 @@ namespace Squash
 {
     public partial class SiteMaster : MasterPage
     {
+        LoggedInPerson lip;
         private const string AntiXsrfTokenKey = "__AntiXsrfToken";
         private const string AntiXsrfUserNameKey = "__AntiXsrfUserName";
         private string _antiXsrfTokenValue;
@@ -102,9 +103,9 @@ namespace Squash
 
             if (Session["lip"] != null)
             {
-                LoggedInPerson lip = (LoggedInPerson)Session["lip"];
+                lip = (LoggedInPerson)Session["lip"];
                 privAcc.Visible = true;
-                
+                                
                 if((lip.member.MemberType == 2 || lip.member.MemberType == 3) && lip.company.Name != null)
                 {
                     myPageLink.InnerText = lip.company.Name;
@@ -116,6 +117,7 @@ namespace Squash
                 }
 
 
+                pinDiv.Visible = ShowPinDiv();
                 
 
                 //Visa myBookingsDiv
@@ -145,6 +147,93 @@ namespace Squash
         {
             Session.Abandon();
             Response.Redirect("~/Default");
+        }
+
+        public bool ShowPinDiv()
+        {
+            List<Tuple<Reservations, Courts, ReservationTypes>> resList = method.GetResTuples(lip);
+            
+            List<CodeLock> codeLockList = method.GetCodeLocks();
+
+            if (!ShowSubPin(codeLockList))
+            {
+                foreach (Tuple<Reservations, Courts, ReservationTypes> t in resList)
+                {
+                    if (t.Item1.StartDate.Date == DateTime.Now.Date)
+                    {
+                        foreach (CodeLock codelock in codeLockList)
+                        {
+                            if (codelock.DateOfChange > t.Item1.StartDate == false)
+                            {
+                                if (DateTime.Now.AddHours(1) > t.Item1.StartDate)
+                                {
+                                    todaysPin.InnerHtml = "Dagens PIN<br />" + codelock.Code;
+                                    todaysPin.Visible = true;
+                                }
+                                else
+                                {
+                                    string query = "SELECT COUNT(*) AS c FROM codelockrequests WHERE MemberId = " + lip.member.MemberId + " AND DATE(DateOfRequest) = CURDATE() ORDER BY DateOfRequest DESC";
+                                    MySqlDataReader dr = method.myReader(query, conn);
+
+                                    if (dr.Read() && Convert.ToInt16(dr["c"]) != 0)
+                                    {
+                                        todaysPin.InnerHtml = "Dagens PIN<br />" + codelock.Code;
+                                        todaysPin.Visible = true;
+                                    }
+                                    else
+                                    {
+                                        todaysPin.InnerHtml = "Dagens PIN<br />" + codelock.Code;
+                                        showPin.Visible = true;
+                                    }
+                                    conn.Close();
+                                }
+                                break;
+                            }
+
+
+                        }
+
+                        return true;
+                    }
+                }
+            }
+            else
+            {
+                return true;
+            }
+            
+            return false;
+
+        }
+        public bool ShowSubPin(List<CodeLock> codeLockList)
+        {
+            List<Tuple<Subscriptions, CourtTimes, Days>> subList = method.GetSubTuples(lip);
+
+            int todayNo = Convert.ToInt16(DateTime.Now.DayOfWeek.ToString("d"));
+
+            foreach (Tuple<Subscriptions, CourtTimes, Days> t in subList)
+            {
+                if (todayNo == t.Item3.DayId)
+                {
+
+                    foreach (CodeLock codelock in codeLockList)
+                    {
+
+                        if (DateTime.Now >= codelock.DateOfChange)
+                        {
+                            todaysPin.InnerHtml = "Dagens PIN<br />" + codelock.Code;
+                            todaysPin.Visible = true;
+                            return true;
+                        }
+
+                    }
+                }
+            }
+
+
+
+
+            return false;
         }
 
 
