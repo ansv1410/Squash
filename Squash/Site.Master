@@ -72,7 +72,7 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a class="navbar-brand" runat="server" href="~/Default">Östersunds squash</a>
-                        <div id="pin">
+                        <div id="pinDiv" runat="server" visible="false">
                             <div id="showPin" runat="server"><u>Dagens PIN</u><br /><a onclick="">Visa PIN</a></div>
                             <div id="todaysPin" runat="server"><u>Dagens PIN</u><br /><a onclick="">1234</a></div>
                         </div>

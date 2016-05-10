@@ -99,7 +99,6 @@ namespace Squash
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            showPin.Visible = false;
 
             if (Session["lip"] != null)
             {
@@ -109,15 +108,22 @@ namespace Squash
                 if((lip.member.MemberType == 2 || lip.member.MemberType == 3) && lip.company.Name != null)
                 {
                     myPageLink.InnerText = lip.company.Name;
+                    
                 }
                 else
                 {
                     myPageLink.InnerText = lip.user.FirstName + " " + lip.user.SurName; 
                 }
 
+
+                
+
+                //Visa myBookingsDiv
+
             }
             else
             {
+                pinDiv.Visible = false;
                 pubAcc.Visible = true;
             }
 

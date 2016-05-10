@@ -7,7 +7,7 @@
 
         <div id="myBookingsDiv" runat="server" visible="false">
             <h3 id="myBookingsH3">Mina bokningar</h3>
-            <table id="bookingsTable" runat="server">
+            <%--<table id="bookingsTable" runat="server">
                 <tr class="myBookingsTR">
                     <td class="myBookingsTH">Datum</td>
                     <td class="myBookingsTH">Tid</td>
@@ -15,7 +15,7 @@
                     <td class="myBookingsTH">Pris</td>
                     <td class="myBookingsTH">PIN-Kod</td>
                 </tr>
-            </table>
+            </table>--%>
         </div>
 
 
