@@ -24,7 +24,7 @@ namespace Squash
             lip = (LoggedInPerson)Session["lip"];
             //hfChosenCourts.Value = "0";
             //"8" är antalet dagar som metoden ska hämta, dynamiskt och kan ändras. 
-
+            hfNoOfClickedCourts.Value = "0";
             if(Session["lip"] != null)
             {
                 ShowMyReservations();
@@ -363,6 +363,7 @@ namespace Squash
                             
                             Button btnBook = new Button();
                             btnBook.Text = "Boka";
+                            btnBook.Attributes.Add("disabled", "disabled");
                             btnBook.Attributes.Add("class", "btn btn-default book-btn");
                             btnBook.CommandArgument = hourBookingDivId;
                             btnBook.Click += btnBook_Click;
@@ -776,7 +777,7 @@ namespace Squash
 
             //HiddenFieldWithClass a = new HiddenFieldWithClass();
 
-            string query = "INSERT INTO reservations VALUES ";
+            string insertQuery = "INSERT INTO reservations VALUES ";
 
             List<Control> controlList = new List<Control>();
             List<HiddenFieldWithClass> hfwcList = new List<HiddenFieldWithClass>();
@@ -813,28 +814,41 @@ namespace Squash
 
             }
 
-            
+            int allreadyBookedCounter = 0;
             foreach(HiddenFieldWithClass hf in hfwcList)
             {
                 //IF MEMBERTYPE == 3
                 //AND IF lip.member.MemberId INTE HAR NÅGON TID DENNA VECKA
                 //RESERVATIONTYPE = 3
+                string checkReservationQuery = "SELECT count(*) AS c FROM reservations WHERE CourtId = " + Convert.ToInt16(hf.Value) + " AND StartDate = '" + Convert.ToDateTime(corrStartTime) + "'; ";
+                MySqlDataReader dr = method.myReader(checkReservationQuery, conn);
 
-                query += "(" + Convert.ToInt16(hf.Value) + ", " + lip.member.MemberId + ", '" + Convert.ToDateTime(corrStartTime) + "', NULL, 1),";
+                if (dr.Read())
+                {
+                    int count = Convert.ToInt16(dr["c"]);
+                    if (count > 0)
+                    {
+                        allreadyBookedCounter += 1;
+                    }
+                    else
+                    {
+                        insertQuery += "(" + Convert.ToInt16(hf.Value) + ", " + lip.member.MemberId + ", '" + Convert.ToDateTime(corrStartTime) + "', NULL, 1),";
+                    }
+                }
             }
 
-
-
             char[] s = { ',' };
-            string finalQuery = query.TrimEnd(s);
+            string finalQuery = insertQuery.TrimEnd(s) + ";";
             
 
-            MySqlCommand cmdInsertRes = new MySqlCommand(finalQuery + ";", conn);
-            
+            MySqlCommand cmdInsertRes = new MySqlCommand(finalQuery, conn);
+
+            if(hfwcList.Count > allreadyBookedCounter){
             conn.Close();
             conn.Open();
             cmdInsertRes.ExecuteNonQuery();
             conn.Close();
+            }
 
 
             //TRY CATCH FINALLY
