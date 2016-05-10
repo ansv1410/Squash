@@ -648,6 +648,8 @@ namespace Squash
                                 if (DateTime.Now.AddHours(1).AddMinutes(1) > t.Item1.StartDate)
                                 {
                                     td.InnerText = codelock.Code;
+
+                                    //Adda ny cell med knapp för avbokning.
                                 }
                                 else
                                 {
