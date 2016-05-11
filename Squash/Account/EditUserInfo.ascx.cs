@@ -141,7 +141,7 @@ namespace Squash.Account
 
                     else
                     {
-                        Response.Write("<script>alert('" + "E-post finns redan i databasen, vänligen ange en ny." + "')</script>");
+                        lblMPMessage.Text = "E-post finns redan i databasen, vänligen ange en ny.";
                         //E-posten användaren angav finns redan i databasen, vänligen ange en ny.
                     }
 

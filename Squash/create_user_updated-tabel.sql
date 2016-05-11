@@ -45,4 +45,12 @@ ALTER TABLE messages
 ADD COLUMN Headline varchar(250),
 MODIFY Messages varchar(1000);
 
+ALTER TABLE reservationtypes
+ADD COLUMN Cost int(10);
+
+UPDATE reservationtypes SET Cost = 100 WHERE ReservationTypeId = 1;
+UPDATE reservationtypes SET Cost = 0 WHERE ReservationTypeId = 2;
+UPDATE reservationtypes SET Cost = 0 WHERE ReservationTypeId = 3;
+UPDATE reservationtypes SET Cost = 50 WHERE ReservationTypeId = 4;
+
 COMMIT;

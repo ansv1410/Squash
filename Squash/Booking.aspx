@@ -13,7 +13,7 @@
 
 
         <h2>Spelschema</h2>
-
+        <p id="bookingMessage" runat="server"></p>
         <div class="booking-overlay-container" runat="server">
             <div class="booking-page-overlay" runat="server" onclick="CloseBookingOverlay()">
             </div>
@@ -26,6 +26,8 @@
         <asp:HiddenField ID="hfWidthOfDayDivs" runat="server" />
         <asp:HiddenField ID="hfWidthOfDaySelectors" runat="server" />
         <asp:HiddenField ID="hfNoOfClickedCourts" runat="server" Value="0" />
+        <asp:HiddenField ID="hfShowBookingMessage" runat="server" Value="0" />
+        <asp:HiddenField ID="hfBookingMessage" runat="server" Value="0" />
 
 
         <script type="text/javascript">
@@ -33,7 +35,7 @@
                 var i = 2;
 
                 if (i < 4) {
-                    alert(ct + " " + mId + " " + fullDate);
+                    //alert(ct + " " + mId + " " + fullDate);
                 }
 
 

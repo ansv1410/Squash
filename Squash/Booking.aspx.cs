@@ -19,6 +19,7 @@ namespace Squash
         static Methods method = new Methods();
         MySqlConnection conn = method.myConn();
         LoggedInPerson lip;
+        bool showBookingMessage;
         protected void Page_Load(object sender, EventArgs e)
         {
             lip = (LoggedInPerson)Session["lip"];
@@ -35,6 +36,16 @@ namespace Squash
                 //ShowMyReservations();
 
                 //ShowMySubscriptions();
+                showBookingMessage = (bool)Session["showBookingMessage"];
+              
+                if (showBookingMessage)
+                {
+                    bookingMessage.Visible = true;
+                    bookingMessage.InnerText = (string)Session["bookingMessage"];
+
+                    Session["showBookingMessage"] = false;
+                }
+
 
             }
 
@@ -762,7 +773,7 @@ namespace Squash
 
             List<int> courtIdList = new List<int>(); 
 
-            Response.Write("<script>alert('" + btn.CommandArgument.ToString() +"') </script>");
+            
             string startTime = btn.CommandArgument.ToString();
             string corrStartTime = "";
 
@@ -818,7 +829,11 @@ namespace Squash
 
             }
 
+            
+            
+
             int allreadyBookedCounter = 0;
+            string bookingMessageString = "Du har bokat: ";
             foreach(HiddenFieldWithClass hf in hfwcList)
             {
                 //IF MEMBERTYPE == 3
@@ -837,6 +852,7 @@ namespace Squash
                     else
                     {
                         insertQuery += "(" + Convert.ToInt16(hf.Value) + ", " + lip.member.MemberId + ", '" + Convert.ToDateTime(corrStartTime) + "', NULL, 1),";
+                        bookingMessageString += "Bana " + hf.Value + ", Datum " + Convert.ToDateTime(corrStartTime).Date.ToString("dd-MM") + " Tid " + Convert.ToDateTime(corrStartTime).ToString("hh:mm") + ".";
                     }
                 }
             }
@@ -847,13 +863,22 @@ namespace Squash
 
             MySqlCommand cmdInsertRes = new MySqlCommand(finalQuery, conn);
 
-            if(hfwcList.Count > allreadyBookedCounter){
-            conn.Close();
-            conn.Open();
-            cmdInsertRes.ExecuteNonQuery();
-            conn.Close();
+            if(allreadyBookedCounter == 0)
+            {
+                conn.Close();
+                conn.Open();
+                cmdInsertRes.ExecuteNonQuery();
+                conn.Close();
+                
             }
-
+            else
+            {
+                bookingMessageString = "Hoppsan, någon hann före, en eller flera av dina valda bantider är redan bokad.";
+            }
+                
+                bool showBMessage = true;
+                Session["bookingMessage"] = bookingMessageString;
+                Session["showBookingMessage"] = showBMessage;
 
             //TRY CATCH FINALLY
             Response.Redirect("Booking.aspx");
