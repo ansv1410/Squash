@@ -150,7 +150,12 @@ namespace Squash.Account
                             lip.logins = l;
                             lip.company = c;
 
+                            bool showBookingMessage = false;
+                            string bookingMessage = "";
+
                             Session["lip"] = lip;
+                            Session["showBookingMessage"] = showBookingMessage;
+                            Session["bookingMessage"] = bookingMessage;
 
                             ((HiddenField)Page.Master.FindControl("hfShowLogin")).Value = "0";
 

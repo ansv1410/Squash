@@ -31,6 +31,15 @@ namespace Squash {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl myBookingsDiv;
         
         /// <summary>
+        /// bookingMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl bookingMessage;
+        
+        /// <summary>
         /// bookingOverlayMessage control.
         /// </summary>
         /// <remarks>
@@ -83,5 +92,23 @@ namespace Squash {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hfNoOfClickedCourts;
+        
+        /// <summary>
+        /// hfShowBookingMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfShowBookingMessage;
+        
+        /// <summary>
+        /// hfBookingMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfBookingMessage;
     }
 }
