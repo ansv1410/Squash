@@ -26,12 +26,47 @@ namespace Squash.Account
         MySqlConnection conn = method.myConn();
         LoggedInPerson lip;
         string pwFailed;
+        string emailUpdateFail;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             pwFailed = Request.QueryString["falsePw"];
+            emailUpdateFail = Request.QueryString["EmailExist"];
 
-            if (pwFailed != "1")
+            if (emailUpdateFail == "True")
+            {
+                myinfo.Visible = false;
+                changepw.Visible = false;
+
+                editinfo.Visible = true;
+
+
+
+                Label l = (Label)method.FindControlRecursive(this.Page, "lblMPMessage");
+                l.Visible = true;
+                l.Text = "E-post finns redan i databasen, vänligen ange en ny.<br />";
+
+                //foreach(Control c in Page.Controls)
+                //{
+                //    if (c.ID == "EditMyInfoControl")
+                //    {
+                //        UserControl uc = (UserControl)c;
+
+                //        Label l = (Label)uc.FindControl("lblMPMessage");
+
+                //        l.Text = "E-post finns redan i databasen, vänligen ange en ny.";
+                //    }
+                //}
+
+
+
+                //UserControl u = FindControl("EditMyInfoControl") as UserControl;
+                //Label l = u.FindControl("lblMPMessage") as Label;
+                //l.Text = "E-post finns redan i databasen, vänligen ange en ny.";
+                
+            }
+
+            else if (pwFailed != "1")
             {
                 //Response.Write("<script>alert('" + "Lösenordet lyckades ändras." + "')</script>");
 
@@ -67,6 +102,7 @@ namespace Squash.Account
                 //    Response.Write("<script>alert('" + lip.user.FirstName + " " + lip.member.MemberId + " " + lip.logins.IPAddress + "')</script>");
                 //}
             }
+
 
             else
             {

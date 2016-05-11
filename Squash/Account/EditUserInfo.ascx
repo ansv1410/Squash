@@ -59,9 +59,12 @@
     <div class="form-group">
         <asp:Label runat="server" AssociatedControlID="tbMPEmail" CssClass="col-md-2 control-label">E-post</asp:Label>
         <div class="col-md-10">
-            <asp:TextBox runat="server" ID="tbMPEmail" CssClass="form-control" TextMode="Email" />
+            <asp:TextBox runat="server" ID="tbMPEmail" CssClass="form-control" TextMode="Email" CausesValidation="true" />
             <asp:RequiredFieldValidator runat="server" ControlToValidate="tbMPEmail" ValidationGroup="UpdateInfo"
                 CssClass="text-danger" ErrorMessage="Fyll i e-post." />
+            <br />
+            <asp:Label ID="lblMPMessage" runat="server" CssClass="text-danger" Visible="false"></asp:Label>
+            <br />
         </div>
     </div>
     <%-- Radiobuttons för att godkänna lagring och eventuell visning i kontaktlista --%>
@@ -79,9 +82,17 @@
     </div>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <asp:Button ID="btnUpdateInfo" runat="server" OnClick="UpdateInfo_Click" Text="Uppdatera konto" CssClass="btn btn-default" ValidationGroup="UpdateInfo" />
+            <asp:Button ID="btnUpdateInfo" runat="server" OnClientClick="CheckEmailExist()" OnClick="UpdateInfo_Click" Text="Uppdatera konto" CssClass="btn btn-default" ValidationGroup="UpdateInfo" />
             <br />
-            <asp:Label ID="lblMPMessage" runat="server"></asp:Label>
         </div>
     </div>
+<%--    
+    <script>
+        function CheckEmailExist(){
+            document.getElementById("MainContent_hfEmailExist").setAttribute("Value", "0");
+        }
+
+    </script>--%>
+
+
 </asp:Panel>

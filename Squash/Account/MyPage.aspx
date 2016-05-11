@@ -59,5 +59,6 @@
 
 
         </div>
+        <asp:HiddenField ID="hfEmailExist" runat="server" Value="0"/>
     </div>
 </asp:Content>
