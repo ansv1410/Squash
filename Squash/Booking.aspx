@@ -13,7 +13,12 @@
 
 
         <h2>Spelschema</h2>
-        <p id="bookingMessage" runat="server"></p>
+        <div id="divBookMess" runat="server">
+            <p id="bookingConfirmationMessage" runat="server" class="successfulBookingMessage" visible="false"></p>
+            <p id="bookingErrorMessage" runat="server" class="failedBookingMessage" visible="false"></p>
+        </div>
+
+
         <div class="booking-overlay-container" runat="server">
             <div class="booking-page-overlay" runat="server" onclick="CloseBookingOverlay()">
             </div>
