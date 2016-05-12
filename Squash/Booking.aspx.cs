@@ -29,10 +29,11 @@ namespace Squash
             if(Session["lip"] != null)
             {
                 HtmlTable table = method.MyBookingsTable(lip);
-
-                myBookingsDiv.Controls.Add(table);
-                myBookingsDiv.Visible = true;
-
+                if (table != null)
+                {
+                    myBookingsDiv.Controls.Add(table);
+                    myBookingsDiv.Visible = true;
+                }
                 //ShowMyReservations();
 
                 //ShowMySubscriptions();
