@@ -236,6 +236,21 @@ namespace Squash
             return false;
         }
 
+        protected void lbtnShowPin_Click(object sender, EventArgs e)
+        {
+            //INSERT till codelockrequest
+            string query = "INSERT INTO codelockrequests (MemberId, DateOfRequest) VALUES(@mid, @date)";
+            MySqlCommand cmdInsertToCLR = new MySqlCommand(query, conn);
+            cmdInsertToCLR.Parameters.AddWithValue("mid", lip.member.MemberId);
+            cmdInsertToCLR.Parameters.AddWithValue("date", DateTime.Now);
+            conn.Open();
+            cmdInsertToCLR.ExecuteNonQuery();
+            conn.Close();
+
+            showPin.Visible = false;
+            ShowPinDiv();
+        }
+
 
     }
 }

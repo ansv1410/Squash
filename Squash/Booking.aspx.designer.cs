@@ -31,13 +31,31 @@ namespace Squash {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl myBookingsDiv;
         
         /// <summary>
-        /// bookingMessage control.
+        /// divBookMess control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl bookingMessage;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divBookMess;
+        
+        /// <summary>
+        /// bookingConfirmationMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl bookingConfirmationMessage;
+        
+        /// <summary>
+        /// bookingErrorMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl bookingErrorMessage;
         
         /// <summary>
         /// bookingOverlayMessage control.

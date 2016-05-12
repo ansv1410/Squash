@@ -787,6 +787,23 @@ h4{
 
 
 
+#MainContent_divBookMess{
+    margin-left:8%;
+    width:96%;
+    font-weight:bold;
+    font-size:120%;
+}
+.successfulBookingMessage{
+    color:rgb(69, 183, 23)
+}
+
+.failedBookingMessage{
+    color:red;
+}
+
+
+
+
 /*BOOKING - SLUT*/
 
 
@@ -1091,6 +1108,11 @@ h4{
         margin-right: 43%;
         margin-top: 10px;
     }*/
+
+    #MainContent_divBookMess{
+        margin-left:2%;
+    }
+
 }
 @media screen and (max-width: 550px){
     .overlay-message{

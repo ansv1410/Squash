@@ -41,8 +41,19 @@ namespace Squash
               
                 if (showBookingMessage)
                 {
-                    bookingMessage.Visible = true;
-                    bookingMessage.InnerText = (string)Session["bookingMessage"];
+                    if ((Session["bookingMessage"].ToString())[3].ToString() == "D")
+                    {
+                        bookingConfirmationMessage.Visible = true;
+                        bookingConfirmationMessage.InnerHtml = Session["bookingMessage"].ToString();
+                    }
+                    else
+                    {
+                        bookingErrorMessage.Visible = true;
+                        bookingErrorMessage.InnerHtml = Session["bookingMessage"].ToString();
+                    }
+
+                    //bookingMessage.Visible = true;
+                    //bookingMessage.InnerText = (string)Session["bookingMessage"];
 
                     Session["showBookingMessage"] = false;
                 }
@@ -834,7 +845,7 @@ namespace Squash
             
 
             int allreadyBookedCounter = 0;
-            string bookingMessageString = "Du har bokat: ";
+            string bookingMessageString = "<u>Du har bokat:</u> <br/>";
             foreach(HiddenFieldWithClass hf in hfwcList)
             {
                 //IF MEMBERTYPE == 3
@@ -853,7 +864,25 @@ namespace Squash
                     else
                     {
                         insertQuery += "(" + Convert.ToInt16(hf.Value) + ", " + lip.member.MemberId + ", '" + Convert.ToDateTime(corrStartTime) + "', NULL, 1),";
-                        bookingMessageString += "Bana " + hf.Value + ", Datum " + Convert.ToDateTime(corrStartTime).Date.ToString("dd-MM") + " Tid " + Convert.ToDateTime(corrStartTime).ToString("hh:mm") + ".";
+                        string theDate = Convert.ToDateTime(corrStartTime).ToString("%d",  new CultureInfo("sv-SE"));
+                        string theMonth = Convert.ToDateTime(corrStartTime).ToString("%M", new CultureInfo("sv-SE"));
+                        string theTime = corrStartTime.Substring(11, 5);
+
+                        bookingMessageString += "Bana " + hf.Value + ", " + theDate + "/" + theMonth + " " + theTime + ". <br />";
+
+                        //string BM = "Bana " + hf.Value + ", " + theDate + "/" + theMonth + " " + Convert.ToDateTime(corrStartTime).ToString("hh:mm") + ". ";
+                        //bookingMessageString += "Bana " + hf.Value + ", " + Convert.ToDateTime(corrStartTime).Date.ToString("dd-MM") + " " + Convert.ToDateTime(corrStartTime).ToString("hh:mm") + ". ";
+
+
+
+                        //string thisDayIs = method.FixName(DateTime.Now.AddDays(counter - 1).ToString("dddd", new CultureInfo("sv-SE")));
+                        //string thisDayIsDate = method.FixName(DateTime.Now.AddDays(counter - 1).ToString("%d", new CultureInfo("sv-SE")));
+                        //string thisDayIsMonth = DateTime.Now.AddDays(counter - 1).ToString("%M", new CultureInfo("sv-SE"));
+                        //string shortDayIs = thisDayIs.Substring(0, 3);
+                        //daySelector.InnerHtml = shortDayIs + "<br />" + thisDayIsDate + "/" + thisDayIsMonth;
+                        //staticDayDiv.InnerHtml = thisDayIs + "<br />" + thisDayIsDate + "/" + thisDayIsMonth;
+
+
                     }
                 }
             }
