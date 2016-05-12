@@ -872,16 +872,6 @@ namespace Squash
                         //string BM = "Bana " + hf.Value + ", " + theDate + "/" + theMonth + " " + Convert.ToDateTime(corrStartTime).ToString("hh:mm") + ". ";
                         //bookingMessageString += "Bana " + hf.Value + ", " + Convert.ToDateTime(corrStartTime).Date.ToString("dd-MM") + " " + Convert.ToDateTime(corrStartTime).ToString("hh:mm") + ". ";
 
-
-
-                        //string thisDayIs = method.FixName(DateTime.Now.AddDays(counter - 1).ToString("dddd", new CultureInfo("sv-SE")));
-                        //string thisDayIsDate = method.FixName(DateTime.Now.AddDays(counter - 1).ToString("%d", new CultureInfo("sv-SE")));
-                        //string thisDayIsMonth = DateTime.Now.AddDays(counter - 1).ToString("%M", new CultureInfo("sv-SE"));
-                        //string shortDayIs = thisDayIs.Substring(0, 3);
-                        //daySelector.InnerHtml = shortDayIs + "<br />" + thisDayIsDate + "/" + thisDayIsMonth;
-                        //staticDayDiv.InnerHtml = thisDayIs + "<br />" + thisDayIsDate + "/" + thisDayIsMonth;
-
-
                     }
                 }
             }
