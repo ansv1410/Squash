@@ -8,6 +8,7 @@
         <div id="myBookingsDiv" runat="server" visible="false">
             <h3 id="myBookingsH3">Mina bokningar</h3>
         </div>
+        <%--<input id="btnCancelRes" type="button" onclick="OpenCancelReservationOverlay()" class="btn" value="Avboka" disabled="disabled" />--%>
 
 
 
@@ -23,6 +24,15 @@
             <div class="booking-page-overlay" runat="server" onclick="CloseBookingOverlay()">
             </div>
             <div id="bookingOverlayMessage" class="booking-overlay-message" runat="server">
+                <div id="cancelReservationDiv" runat="server" display="none">
+                    <h4>Avboka följande?</h4>
+                    <div id="toCancelDiv">
+                    </div>
+                    <div id="cancelButtons">
+                        <asp:Button ID="btnCancelOK" runat="server" OnClientClick="sendCbIDs(this);" OnClick="btnCancelOK_Click" Text="OK" CssClass="btn btn-default" />
+                        <input id="btnNoCancel" type="button" onclick="CloseBookingOverlay()" class="btn btn-default" value="Avbryt" />
+                    </div>
+                </div>
             </div>
         </div>
         <div id="selectorDiv" runat="server"></div>
@@ -62,15 +72,19 @@
                 var id3 = "#" + hourBookingDiv;
                 $('.booking-overlay-container').fadeIn('slow');
                 $('.hourBookingDiv').hide();
+                $('#MainContent_cancelReservationDiv').hide();
                 $(id3).show();
                 return false;
             }
+
+
             function CloseBookingOverlay() {
                 $('.booking-overlay-container').fadeOut('slow');
                 $('.BookingHf').val('0');
                 document.getElementById("MainContent_hfNoOfClickedCourts").setAttribute('Value', '0');
                 bookBtnUnclickable();
                 $('.bookingDiv').removeClass('selectedCourt');
+                $('#MainContent_cancelReservationDiv').hide();
             }
             //function ReopenBookingOverlay() {
             //    var oneOrZero = document.getElementById('hfShowLogin').getAttribute('Value')
@@ -79,7 +93,6 @@
             //}
 
             //ReopenOverlay();
-
 
             function chosenCourt(hfID, courtId, bookingDivID) {
                 var id = "MainContent_" + hfID;
@@ -109,48 +122,141 @@
 
             }
 
-            function ShowMobileDayDiv(dayDivId) {
-                var id = "#" + dayDivId;
-                $('.dayDiv').hide();
-                $(id).show();
 
-                $('.daySelector').removeClass('selectedMobileDay');
-                $(id + "Selector").addClass('selectedMobileDay')
+            function OpenCancelReservationOverlay() {
+                $('.booking-overlay-container').fadeIn('slow');
+                $('.hourBookingDiv').hide();
+                loopForm()
+                $('#MainContent_cancelReservationDiv').show();
+                return false;
             }
 
-            /*Justerar bredden på dayDivarna från mobilläge och tillbaka.*/
-            function fixWidth() {
-                var browserWidth = window.innerWidth;
-                var id = "MainContent_hfWidthOfDayDivs";
-                var id2 = "MainContent_hfWidthOfDaySelectors";
-                var widthOfDayDivs = document.getElementById(id).getAttribute('Value');
-                var widthOfDaySelectors = document.getElementById(id2).getAttribute('Value');
+            function loopForm() {
 
-                $(".daySelector").each(function () {
-                    this.style.width = widthOfDaySelectors;
+                var table = document.getElementById("MainContent_myBookingsDiv");
+                
+                var cbResults = '';
+
+                //for (var i = 0; i < table.elements.length; i++) {
+
+                //    if (table.elements[i].type == 'checkbox') {
+
+                //        if (table.elements[i].checked == true) {
+
+                //            cbResults += "<br />" + table.elements[i].value + ' ';
+                //        }
+                                
+                //    }
+                //}
+                $('.cbCancelReservation').each(function () {
+                    if (this.getAttribute("checked") == "checked") {
+                        cbResults += this.getAttribute("value") + "<br />";
+                        
+                    }
                 });
 
-                if (browserWidth < 768) {
-                    $(".dayDiv").each(function () {
-                        this.style.width = "100%";
-                        ShowMobileDayDiv('1_day')
+                document.getElementById("toCancelDiv").innerHTML = cbResults;
+                
+            }
+            function checkOrUncheck(id) {
+                var cb = document.getElementById(id);
+
+                if (cb.getAttribute("checked") != null && cb.getAttribute("checked") == "checked") {
+                    document.getElementById(id).removeAttribute("checked")
+
+                    var counter = 0;
+                    $('.cbCancelReservation').each(function () {
+                        if (this.getAttribute("checked") == "checked") {
+                            counter++
+                        }
                     });
+                    if(counter == 0)
+                    {
+                        document.getElementById("btnCancelRes").setAttribute("disabled", "disabled");
+                    }
+
                 }
                 else {
-                    $(".dayDiv").each(function () {
-                        this.style.width = widthOfDayDivs;
-                        this.style.display = "block";
-                    });
+                    document.getElementById(id).setAttribute("checked", "checked")
+                    document.getElementById("btnCancelRes").removeAttribute("disabled");
                 }
+
+
 
             }
 
-            window.addEventListener('resize', function (event) {
-                fixWidth();
-            });
+            function sendCbIDs(obj) {
 
-            /*Document.ready för att startskärmen skall vara korrekt.*/
-            $(document).ready(fixWidth());
+                var cbCancelReservationIDs = "";
+
+                $('.cbCancelReservation').each(function () {
+                    if (this.getAttribute("checked") == "checked") {
+                        cbCancelReservationIDs += this.getAttribute("id") + ",";
+                    }
+                });
+                __doPostBack(obj.id, cbCancelReservationIDs);
+
+            }
+
+
+
+
+            <%--$("#MainContent_btnCancelOK").click(function () {
+                var cbCancelReservationIDs = "";
+
+                $('.cbCancelReservation').each(function () {
+                    if (this.getAttribute("checked") == "checked") {
+                        cbCancelReservationIDs += this.getAttribute("id") + ",";
+                    }
+                });
+                    __doPostBack("<%= btnCancelOK.UniqueID %>", cbCancelReservationIDs);
+            });--%>
+
+
+
+
+                function ShowMobileDayDiv(dayDivId) {
+                    var id = "#" + dayDivId;
+                    $('.dayDiv').hide();
+                    $(id).show();
+
+                    $('.daySelector').removeClass('selectedMobileDay');
+                    $(id + "Selector").addClass('selectedMobileDay')
+                }
+
+                /*Justerar bredden på dayDivarna från mobilläge och tillbaka.*/
+                function fixWidth() {
+                    var browserWidth = window.innerWidth;
+                    var id = "MainContent_hfWidthOfDayDivs";
+                    var id2 = "MainContent_hfWidthOfDaySelectors";
+                    var widthOfDayDivs = document.getElementById(id).getAttribute('Value');
+                    var widthOfDaySelectors = document.getElementById(id2).getAttribute('Value');
+
+                    $(".daySelector").each(function () {
+                        this.style.width = widthOfDaySelectors;
+                    });
+
+                    if (browserWidth < 768) {
+                        $(".dayDiv").each(function () {
+                            this.style.width = "100%";
+                            ShowMobileDayDiv('1_day')
+                        });
+                    }
+                    else {
+                        $(".dayDiv").each(function () {
+                            this.style.width = widthOfDayDivs;
+                            this.style.display = "block";
+                        });
+                    }
+
+                }
+
+                window.addEventListener('resize', function (event) {
+                    fixWidth();
+                });
+
+                /*Document.ready för att startskärmen skall vara korrekt.*/
+                $(document).ready(fixWidth());
 
 
 

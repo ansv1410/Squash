@@ -31,7 +31,19 @@ namespace Squash
                 HtmlTable table = method.MyBookingsTable(lip);
                 if (table != null)
                 {
+
+                    HtmlInputButton btnCancelRes = new HtmlInputButton();
+                    btnCancelRes.Attributes.Add("id", "btnCancelRes");
+                    btnCancelRes.Attributes.Add("type", "button");
+                    btnCancelRes.Attributes.Add("onclick", "OpenCancelReservationOverlay()");
+                    btnCancelRes.Attributes.Add("class", "btn btn-default");
+                    btnCancelRes.Attributes.Add("value", "Avboka");
+                    btnCancelRes.Attributes.Add("disabled", "disabled");
+
                     myBookingsDiv.Controls.Add(table);
+
+                    myBookingsDiv.Controls.Add(btnCancelRes);
+
                     myBookingsDiv.Visible = true;
                 }
                 //ShowMyReservations();
@@ -914,5 +926,116 @@ namespace Squash
             Response.Redirect("Booking.aspx");
         }
 
+        public void testarne()
+        {
+            HtmlInputCheckBox cb = new HtmlInputCheckBox();
+
+            if (cb.Checked == true)
+            {
+
+            }
+        }
+
+        protected void btnCancelOK_Click(object sender, EventArgs e)
+        {
+            string allIDs = Request.Form["__EVENTARGUMENT"].ToString();
+
+            string[] IDs = allIDs.Split(',');
+
+            List<string> IDList = new List<string>();
+
+            foreach (string s in IDs)
+            {
+                if (s != "")
+                {
+                    IDList.Add(s);
+                }
+            }
+            
+            List<Reservations> lr = new List<Reservations>();
+          
+            string query = "START TRANSACTION; ";
+
+            for (int i = 0; i < IDList.Count; i++)
+            {
+
+
+                Reservations r = new Reservations();
+                r.CourtId = Convert.ToInt16(IDs[i].Substring(3, 1));
+                string yyyymmddhhmmss = IDs[i].Substring(5, 10) + " ";
+                yyyymmddhhmmss += IDs[i].Substring(16) + ":00:00";
+                r.StartDate = Convert.ToDateTime((yyyymmddhhmmss));
+
+                lr.Add(r);
+
+                query += ("DELETE FROM reservations WHERE CourtId = @CID" + i.ToString() + " AND StartDate = @SD" + i.ToString() + "; ");
+
+            }
+            query += "COMMIT;";
+            MySqlConnection conn = method.myConn();
+            MySqlCommand cmd = new MySqlCommand(query, conn);
+            for (int i = 0; i < lr.Count; i++)
+            {
+                DateTime d = lr[i].StartDate;
+                
+
+                cmd.Parameters.AddWithValue("CID" + i.ToString(), lr[i].CourtId);
+                cmd.Parameters.AddWithValue("SD" + i.ToString(), d.ToString());
+            }
+
+            try
+            {
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            conn.Dispose();
+
+            }
+            catch (MySqlException ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+
+            Response.Redirect("Booking.aspx");
+        }
+
+        //protected void btnCancelOK_Command(object sender, CommandEventArgs e)
+        //{
+        //    string allIDs = e.CommandArgument.ToString();
+
+        //    string[] IDs = allIDs.Split(',');
+        //    List<Reservations> lr = new List<Reservations>();
+
+        //    string query = "START TRANSACTION;";
+
+        //    for (int i = 0; i < IDs.Length; i++)
+        //    {
+        //        Reservations r = new Reservations();
+        //        r.CourtId = Convert.ToInt16(IDs[i].Substring(3,1));
+        //        string yyyymmddhhmmss = IDs[i].Substring(5, 10);
+        //        yyyymmddhhmmss += IDs[i].Substring(16) + ":00:00";
+        //        r.StartDate = Convert.ToDateTime(yyyymmddhhmmss);
+
+        //        lr.Add(r);
+
+        //        query += "DELETE FROM reservations WHERE CourtId = @CID" + i.ToString() + ", AND StartDate = @SD" + i.ToString() + ";";
+
+        //    }
+        //    query += "COMMIT;";
+        //    MySqlConnection conn = method.myConn();
+        //    MySqlCommand cmd = new MySqlCommand(query, conn);
+        //    for (int i = 0; i < lr.Count; i++)
+        //    {
+        //        cmd.Parameters.AddWithValue("CID"+i.ToString(), lr[i].CourtId);
+        //        cmd.Parameters.AddWithValue("SD" + i.ToString(), lr[i].StartDate);
+        //    }
+
+        //    conn.Open();
+        //    cmd.ExecuteNonQuery();
+        //    conn.Close();
+        //    conn.Dispose();
+
+        //    Response.Redirect("Booking.aspx");
+        //}
     }
 }

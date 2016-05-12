@@ -413,6 +413,7 @@
     <Compile Include="Classes\CodeLock.cs" />
     <Compile Include="Classes\CodeLockRequests.cs" />
     <Compile Include="Classes\Companies.cs" />
+    <Compile Include="Classes\ControlUtility.cs" />
     <Compile Include="Classes\Courts.cs" />
     <Compile Include="Classes\CourtTimes.cs" />
     <Compile Include="Classes\Days.cs" />

@@ -338,6 +338,11 @@ namespace Squash.Classes
                     tr.Attributes.Add("class", "myBookingsTR");
                     //trList.Add(tr);
 
+                    string dayOfWeek = "";
+                    string shortDayName = "";
+                    string dateOfDate = "";
+                    string monthNumber = "";
+
                     for (int x = 0; x < 5; x++)
                     {
                         HtmlTableCell td = new HtmlTableCell();
@@ -345,10 +350,10 @@ namespace Squash.Classes
                         if (x == 0)
                         {
                             DateTime dateOfBooking = Convert.ToDateTime(t.Item1.StartDate.ToShortDateString());
-                            string dayOfWeek = dateOfBooking.ToString("dddd", new CultureInfo("sv-SE"));
-                            string shortDayName = FixName(dayOfWeek.Substring(0, 3));
-                            string dateOfDate = dateOfBooking.ToString("%d", new CultureInfo("sv-SE"));
-                            string monthNumber = dateOfBooking.ToString("%M", new CultureInfo("sv-SE"));
+                            dayOfWeek = dateOfBooking.ToString("dddd", new CultureInfo("sv-SE"));
+                            shortDayName = FixName(dayOfWeek.Substring(0, 3));
+                            dateOfDate = dateOfBooking.ToString("%d", new CultureInfo("sv-SE"));
+                            monthNumber = dateOfBooking.ToString("%M", new CultureInfo("sv-SE"));
 
                             td.InnerText = shortDayName + " " + dateOfDate + "/" + monthNumber;
 
@@ -364,44 +369,35 @@ namespace Squash.Classes
                         }
                         if (x == 3)
                         {
-                            td.InnerText = t.Item3.Description.ToString();
+                            td.InnerText = t.Item3.Cost.ToString() +":-";
                         }
                         if (x == 4)
                         {
-                            //td.InnerText = "1234";
 
-                            //visa det högsta datumet från CodeLock om det inte är senare än reservationsdatumet, då är det nästa.
-                            List<CodeLock> codeLockList = GetCodeLocks();
+                            string thisDayIsFullDate = t.Item1.StartDate.ToString("yyyy-MM-dd", new CultureInfo("sv-SE"));
+                            string shortTime = t.Item1.StartDate.ToString("hh", new CultureInfo("sv-SE"));
 
-                            foreach (CodeLock codelock in codeLockList)
-                            {
-                                if (codelock.DateOfChange > t.Item1.StartDate == false)
-                                {
-                                    DateTime d = DateTime.Now.AddHours(1);
-                                    if (DateTime.Now.AddHours(1) > t.Item1.StartDate)
-                                    {
-                                        td.InnerText = codelock.Code;
+                            string id = "cb_"+ t.Item1.CourtId.ToString() + "_" + thisDayIsFullDate + "_" + shortTime;
 
-                                        //Adda ny cell med knapp för avbokning.
-                                    }
-                                    else
-                                    {
+                            HtmlInputCheckBox cbCancelReservation = new HtmlInputCheckBox();
+                            cbCancelReservation.Attributes.Add("id", "cb_"+ t.Item1.CourtId.ToString() + "_" + thisDayIsFullDate + "_" + shortTime);
+                            cbCancelReservation.Attributes.Add("value", "Bana " + t.Item1.CourtId.ToString() + " " + shortDayName + " " + dateOfDate + "/" + monthNumber + " " + shortTime + ":00");
+                            cbCancelReservation.Attributes.Add("class", "cbCancelReservation");
+                            cbCancelReservation.Attributes.Add("onclick", "checkOrUncheck('" + id + "')");
+                            cbCancelReservation.Attributes.Add("runat", "server");
 
-                                    }
-                                    break;
-                                }
+                            td.Controls.Add(cbCancelReservation);
 
-                                //else
-                                //{
-                                //    td.InnerText = "EXPIRED";
-                                //}
-                            }
+                            
+
+
 
                         }
 
                         tr.Controls.Add(td);
                     }
                     bookingsTable.Rows.Add(tr);
+
                     //myBookingsDiv.Visible = true;
                 }
 
@@ -435,11 +431,11 @@ namespace Squash.Classes
                         }
                         if (y == 3)
                         {
-                            td.InnerText = "100 kr";
+                            td.InnerHtml = "<i>Abonnemang</i>";
                         }
                         if (y == 4)
                         {
-                            td.InnerText = "9876";
+                            
                         }
 
                         tr.Controls.Add(td);
@@ -487,7 +483,7 @@ namespace Squash.Classes
 
             List<Tuple<Reservations, Courts, ReservationTypes>> reservationInfoList = new List<Tuple<Reservations, Courts, ReservationTypes>>();
 
-            string query = "SELECT r.CourtId AS RCourtId, r.MemberId AS RMemberId, r.StartDate, r.HandledBy, r.ReservationType AS RResType, c.CourtId AS CCourtId, c.Description AS courtName, rt.ReservationTypeId AS resTypeId, rt.Description AS resType FROM reservations r "
+            string query = "SELECT r.CourtId AS RCourtId, r.MemberId AS RMemberId, r.StartDate, r.HandledBy, r.ReservationType AS RResType, c.CourtId AS CCourtId, c.Description AS courtName, rt.ReservationTypeId AS resTypeId, rt.Description AS resType, rt.Cost FROM reservations r "
                            + "INNER JOIN courts c ON c.CourtId = r.CourtId "
                            + "INNER JOIN reservationtypes rt ON rt.ReservationTypeId = r.ReservationType "
                            + "WHERE r.MemberId = '" + lip.member.MemberId + "' AND DATE(StartDate) >= DATE(NOW()) ORDER BY StartDate;";
@@ -525,6 +521,8 @@ namespace Squash.Classes
                 ReservationTypes rt = new ReservationTypes();
                 rt.ReservationTypeId = Convert.ToInt16(dr["resTypeId"]);
                 rt.Description = dr["resType"].ToString();
+                rt.Cost = Convert.ToInt16(dr["Cost"]);
+               
 
                 Tuple<Reservations, Courts, ReservationTypes> tupleResList = new Tuple<Reservations, Courts, ReservationTypes>(r, c, rt);
                 reservationInfoList.Add(tupleResList);
@@ -632,5 +630,28 @@ namespace Squash.Classes
 
             return null;
         }
+        //public Control FindControlsRecursive(Control root)
+        //{
+        //    if (root is HtmlInputCheckBox)
+        //    {
+        //        return root;
+        //    }
+        //    foreach (Htmlco c in root.Controls)
+        //    {
+        //        Control t = FindControlsRecursive(c);
+        //        if (t != null)
+        //        {
+        //            if (t is HtmlInputCheckBox)
+        //            {
+        //                return t;
+        //            }
+        //        }
+        //    }
+
+        //    return null;
+        //}
+
+
+
     }
 }

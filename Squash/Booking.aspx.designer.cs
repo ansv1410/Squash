@@ -67,6 +67,24 @@ namespace Squash {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl bookingOverlayMessage;
         
         /// <summary>
+        /// cancelReservationDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl cancelReservationDiv;
+        
+        /// <summary>
+        /// btnCancelOK control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCancelOK;
+        
+        /// <summary>
         /// selectorDiv control.
         /// </summary>
         /// <remarks>
