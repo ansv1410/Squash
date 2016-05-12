@@ -863,10 +863,11 @@ namespace Squash
                     else
                     {
                         insertQuery += "(" + Convert.ToInt16(hf.Value) + ", " + lip.member.MemberId + ", '" + Convert.ToDateTime(corrStartTime) + "', NULL, 1),";
-                        string theDate = Convert.ToDateTime(corrStartTime).ToString("%d");
-                        string theMonth = Convert.ToDateTime(corrStartTime).ToString("%M");
+                        string theDate = Convert.ToDateTime(corrStartTime).ToString("%d",  new CultureInfo("sv-SE"));
+                        string theMonth = Convert.ToDateTime(corrStartTime).ToString("%M", new CultureInfo("sv-SE"));
+                        string theTime = corrStartTime.Substring(11, 5);
 
-                        bookingMessageString += "Bana " + hf.Value + ", " + theDate + "/" + theMonth + " " + Convert.ToDateTime(corrStartTime).ToString("hh:mm") + ". <br />";
+                        bookingMessageString += "Bana " + hf.Value + ", " + theDate + "/" + theMonth + " " + theTime + ". <br />";
 
                         //string BM = "Bana " + hf.Value + ", " + theDate + "/" + theMonth + " " + Convert.ToDateTime(corrStartTime).ToString("hh:mm") + ". ";
                         //bookingMessageString += "Bana " + hf.Value + ", " + Convert.ToDateTime(corrStartTime).Date.ToString("dd-MM") + " " + Convert.ToDateTime(corrStartTime).ToString("hh:mm") + ". ";

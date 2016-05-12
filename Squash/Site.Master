@@ -73,7 +73,9 @@
                         </button>
                         <a class="navbar-brand" runat="server" href="~/Default">Östersunds squash</a>
                         <div id="pinDiv" runat="server" visible="false">
-                            <div id="showPin" runat="server" visible="false"><u>Dagens PIN</u><br /><a onclick="">Visa PIN</a></div>
+                            <div id="showPin" runat="server" visible="false">Dagens PIN<br />
+                                <asp:LinkButton ID="lbtnShowPin" runat="server" OnClick="lbtnShowPin_Click">Visa PIN</asp:LinkButton>
+                            </div>
                             <div id="todaysPin" runat="server" visible="false"></div>
                         </div>
                     </div>
