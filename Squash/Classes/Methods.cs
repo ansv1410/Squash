@@ -285,173 +285,178 @@ namespace Squash.Classes
         #region BookingTable
         public HtmlTable MyBookingsTable(LoggedInPerson lip)
         {
+            List<Tuple<Reservations, Courts, ReservationTypes>> bookingInfoList = GetResTuples(lip);
+            List<Tuple<Subscriptions, CourtTimes, Days>> subscriptionInfoList = GetSubTuples(lip);
             MySqlConnection conn = myConn();
 
-
-            HtmlTable bookingsTable = new HtmlTable();
-            bookingsTable.Attributes.Add("id", "bookingsTable");
-            
-            HtmlTableRow th = new HtmlTableRow();
-            th.Attributes.Add("class", "myBookingsTR");
-
-            for (int i = 0; i < 5; i++)
+            if (bookingInfoList.Count > 0 || subscriptionInfoList.Count > 0)
             {
-                HtmlTableCell td = new HtmlTableCell();
-                td.Attributes.Add("class", "myBookingsTH");
-                
-                if(i == 0)
-                {
-                    td.InnerText = "Datum";
-                }
-                if (i == 1)
-                {
-                    td.InnerText = "Tid";
-                }
-                if (i == 2)
-                {
-                    td.InnerText = "Bana";
-                }
-                if (i == 3)
-                {
-                    td.InnerText = "Pris";
-                }
-                if (i == 4)
-                {
-                    td.InnerText = "Avboka";
-                }
+                HtmlTable bookingsTable = new HtmlTable();
+                bookingsTable.Attributes.Add("id", "bookingsTable");
 
-                th.Controls.Add(td);
-            }
-            bookingsTable.Controls.Add(th);
+                HtmlTableRow th = new HtmlTableRow();
+                th.Attributes.Add("class", "myBookingsTR");
 
-            List<Tuple<Reservations, Courts, ReservationTypes>> bookingInfoList = GetResTuples(lip);
-
-
-            //List<HtmlTableRow> trList = new List<HtmlTableRow>();
-
-
-            foreach (Tuple<Reservations, Courts, ReservationTypes> t in bookingInfoList)
-            {
-                HtmlTableRow tr = new HtmlTableRow();
-                tr.Attributes.Add("class", "myBookingsTR");
-                //trList.Add(tr);
-
-                for (int x = 0; x < 5; x++)
+                for (int i = 0; i < 5; i++)
                 {
                     HtmlTableCell td = new HtmlTableCell();
-                    td.Attributes.Add("class", "myBookingsTD");
-                    if (x == 0)
-                    {
-                        DateTime dateOfBooking = Convert.ToDateTime(t.Item1.StartDate.ToShortDateString());
-                        string dayOfWeek = dateOfBooking.ToString("dddd", new CultureInfo("sv-SE"));
-                        string shortDayName = FixName(dayOfWeek.Substring(0, 3));
-                        string dateOfDate = dateOfBooking.ToString("%d", new CultureInfo("sv-SE"));
-                        string monthNumber = dateOfBooking.ToString("%M", new CultureInfo("sv-SE"));
+                    td.Attributes.Add("class", "myBookingsTH");
 
-                        td.InnerText = shortDayName + " " + dateOfDate + "/" + monthNumber;
+                    if (i == 0)
+                    {
+                        td.InnerText = "Datum";
+                    }
+                    if (i == 1)
+                    {
+                        td.InnerText = "Tid";
+                    }
+                    if (i == 2)
+                    {
+                        td.InnerText = "Bana";
+                    }
+                    if (i == 3)
+                    {
+                        td.InnerText = "Pris";
+                    }
+                    if (i == 4)
+                    {
+                        td.InnerText = "Avboka";
+                    }
 
-                        //td.InnerText = t.Item1.StartDate.ToShortDateString();
-                    }
-                    if (x == 1)
-                    {
-                        td.InnerText = t.Item1.StartDate.ToShortTimeString();
-                    }
-                    if (x == 2)
-                    {
-                        td.InnerText = t.Item2.CourtId.ToString();
-                    }
-                    if (x == 3)
-                    {
-                        td.InnerText = t.Item3.Description.ToString();
-                    }
-                    if (x == 4)
-                    {
-                        //td.InnerText = "1234";
+                    th.Controls.Add(td);
+                }
+                bookingsTable.Controls.Add(th);
 
-                        //visa det högsta datumet från CodeLock om det inte är senare än reservationsdatumet, då är det nästa.
-                        List<CodeLock> codeLockList = GetCodeLocks();
 
-                        foreach (CodeLock codelock in codeLockList)
+
+                //List<HtmlTableRow> trList = new List<HtmlTableRow>();
+
+
+                foreach (Tuple<Reservations, Courts, ReservationTypes> t in bookingInfoList)
+                {
+                    HtmlTableRow tr = new HtmlTableRow();
+                    tr.Attributes.Add("class", "myBookingsTR");
+                    //trList.Add(tr);
+
+                    for (int x = 0; x < 5; x++)
+                    {
+                        HtmlTableCell td = new HtmlTableCell();
+                        td.Attributes.Add("class", "myBookingsTD");
+                        if (x == 0)
                         {
-                            if (codelock.DateOfChange > t.Item1.StartDate == false)
+                            DateTime dateOfBooking = Convert.ToDateTime(t.Item1.StartDate.ToShortDateString());
+                            string dayOfWeek = dateOfBooking.ToString("dddd", new CultureInfo("sv-SE"));
+                            string shortDayName = FixName(dayOfWeek.Substring(0, 3));
+                            string dateOfDate = dateOfBooking.ToString("%d", new CultureInfo("sv-SE"));
+                            string monthNumber = dateOfBooking.ToString("%M", new CultureInfo("sv-SE"));
+
+                            td.InnerText = shortDayName + " " + dateOfDate + "/" + monthNumber;
+
+                            //td.InnerText = t.Item1.StartDate.ToShortDateString();
+                        }
+                        if (x == 1)
+                        {
+                            td.InnerText = t.Item1.StartDate.ToShortTimeString();
+                        }
+                        if (x == 2)
+                        {
+                            td.InnerText = t.Item2.CourtId.ToString();
+                        }
+                        if (x == 3)
+                        {
+                            td.InnerText = t.Item3.Description.ToString();
+                        }
+                        if (x == 4)
+                        {
+                            //td.InnerText = "1234";
+
+                            //visa det högsta datumet från CodeLock om det inte är senare än reservationsdatumet, då är det nästa.
+                            List<CodeLock> codeLockList = GetCodeLocks();
+
+                            foreach (CodeLock codelock in codeLockList)
                             {
-                                DateTime d = DateTime.Now.AddHours(1);
-                                if (DateTime.Now.AddHours(1) > t.Item1.StartDate)
+                                if (codelock.DateOfChange > t.Item1.StartDate == false)
                                 {
-                                    td.InnerText = codelock.Code;
+                                    DateTime d = DateTime.Now.AddHours(1);
+                                    if (DateTime.Now.AddHours(1) > t.Item1.StartDate)
+                                    {
+                                        td.InnerText = codelock.Code;
 
-                                    //Adda ny cell med knapp för avbokning.
-                                }
-                                else
-                                {
+                                        //Adda ny cell med knapp för avbokning.
+                                    }
+                                    else
+                                    {
 
+                                    }
+                                    break;
                                 }
-                                break;
+
+                                //else
+                                //{
+                                //    td.InnerText = "EXPIRED";
+                                //}
                             }
 
-                            //else
-                            //{
-                            //    td.InnerText = "EXPIRED";
-                            //}
                         }
 
+                        tr.Controls.Add(td);
                     }
-
-                    tr.Controls.Add(td);
+                    bookingsTable.Rows.Add(tr);
+                    //myBookingsDiv.Visible = true;
                 }
-                bookingsTable.Rows.Add(tr);
-                //myBookingsDiv.Visible = true;
-            }
 
 
-            List<Tuple<Subscriptions, CourtTimes, Days>> subscriptionInfoList = GetSubTuples(lip);
 
-            
 
-            foreach (Tuple<Subscriptions, CourtTimes, Days> tup in subscriptionInfoList)
-            {
-                HtmlTableRow tr = new HtmlTableRow();
-                tr.Attributes.Add("class", "mySubscriptionsTR");
 
-                for (int y = 0; y < 5; y++)
+                foreach (Tuple<Subscriptions, CourtTimes, Days> tup in subscriptionInfoList)
                 {
-                    HtmlTableCell td = new HtmlTableCell();
-                    td.Attributes.Add("class", "mySubscriptionsTD");
+                    HtmlTableRow tr = new HtmlTableRow();
+                    tr.Attributes.Add("class", "mySubscriptionsTR");
 
-                    if (y == 0)
+                    for (int y = 0; y < 5; y++)
                     {
-                        td.InnerText = EngSweDaySwitch(tup.Item3.Description) + "ar";
-                        //td.InnerText = tup.Item3.Description+"s";
-                    }
+                        HtmlTableCell td = new HtmlTableCell();
+                        td.Attributes.Add("class", "mySubscriptionsTD");
 
-                    if (y == 1)
-                    {
-                        td.InnerText = tup.Item2.StartHour + ":00";
-                    }
-                    if (y == 2)
-                    {
-                        td.InnerText = tup.Item1.CourtId.ToString();
-                    }
-                    if (y == 3)
-                    {
-                        td.InnerText = "100 kr";
-                    }
-                    if (y == 4)
-                    {
-                        td.InnerText = "9876";
-                    }
+                        if (y == 0)
+                        {
+                            td.InnerText = EngSweDaySwitch(tup.Item3.Description) + "ar";
+                            //td.InnerText = tup.Item3.Description+"s";
+                        }
 
-                    tr.Controls.Add(td);
+                        if (y == 1)
+                        {
+                            td.InnerText = tup.Item2.StartHour + ":00";
+                        }
+                        if (y == 2)
+                        {
+                            td.InnerText = tup.Item1.CourtId.ToString();
+                        }
+                        if (y == 3)
+                        {
+                            td.InnerText = "100 kr";
+                        }
+                        if (y == 4)
+                        {
+                            td.InnerText = "9876";
+                        }
+
+                        tr.Controls.Add(td);
+                    }
+                    bookingsTable.Rows.Add(tr);
                 }
-                bookingsTable.Rows.Add(tr);
+
+
+
+
+                return bookingsTable;
+
             }
-
-
-
-
-            return bookingsTable;
-
-
+            else
+            {
+                return null;
+            }
 
 
         }
