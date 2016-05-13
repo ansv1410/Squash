@@ -550,6 +550,11 @@ h4{
     background-image: linear-gradient(to bottom, #35c0e3, #3636e3);
     color:white;
 }
+.showPointer{
+    cursor:pointer;
+}
+
+
 .tiptool {
     display:none;
 	position:absolute;

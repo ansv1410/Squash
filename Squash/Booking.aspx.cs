@@ -274,34 +274,42 @@ namespace Squash
                                         {
                                             if (res.MemberId == lip.member.MemberId)
                                             {
-                                                DateTime dateOfBooking = Convert.ToDateTime(res.StartDate.ToShortDateString());
-                                                string dayOfWeek = dateOfBooking.ToString("dddd", new CultureInfo("sv-SE"));
-                                                string shortDayName = method.FixName(dayOfWeek.Substring(0, 3));
-                                                string dateOfDate = dateOfBooking.ToString("%d", new CultureInfo("sv-SE"));
-                                                string monthNumber = dateOfBooking.ToString("%M", new CultureInfo("sv-SE"));
+                                                if(res.StartDate > DateTime.Now.AddHours(1))
+                                                {
+                                                    DateTime dateOfBooking = Convert.ToDateTime(res.StartDate.ToShortDateString());
+                                                    string dayOfWeek = dateOfBooking.ToString("dddd", new CultureInfo("sv-SE"));
+                                                    string shortDayName = method.FixName(dayOfWeek.Substring(0, 3));
+                                                    string dateOfDate = dateOfBooking.ToString("%d", new CultureInfo("sv-SE"));
+                                                    string monthNumber = dateOfBooking.ToString("%M", new CultureInfo("sv-SE"));
 
-                                                string myResValue = C.Description +" "+ shortDayName + " " + dateOfDate + "/" + monthNumber + " " + shortTime + ":00";
+                                                    string myResValue = C.Description +" "+ shortDayName + " " + dateOfDate + "/" + monthNumber + " " + shortTime + ":00";
 
-                                                string cancelParameter = "cb_" + C.CourtId.ToString() + "_" + thisDayIsFullDate + "_" + shortTime;
-                                                courtDiv.Attributes.Add("onclick", "CancelThisRes('"+cancelParameter+"', '"+myResValue+"')");
+                                                    string cancelParameter = "cb_" + C.CourtId.ToString() + "_" + thisDayIsFullDate + "_" + shortTime;
+                                                    courtDiv.Attributes.Add("onclick", "CancelThisRes('"+cancelParameter+"', '"+myResValue+"')");
+                                                    courtDiv.Attributes.Add("title", "Klicka för att avboka din tid.");
+                                                    courtDiv.Attributes.Add("class", "courtDivs reservedCourt myReservedCourt showPointer masterTiptool B" + C.CourtId);
+                                                }
+
+                                                else
+                                                {
+                                                    courtDiv.Attributes.Add("class", "courtDivs reservedCourt myReservedCourt B" + C.CourtId);
+
+                                                }
 
 
-
-
-                                                courtDiv.Attributes.Add("class", "courtDivs reservedCourt myReservedCourt masterTiptool B" + C.CourtId);
                                             }
                                             else
                                             {
-                                                courtDiv.Attributes.Add("class", "courtDivs reservedCourt masterTiptool B" + C.CourtId);
+                                                courtDiv.Attributes.Add("class", "courtDivs reservedCourt showPointer masterTiptool B" + C.CourtId);
+                                                courtDiv.Attributes.Add("title", "Redan bokad av " + res.FullMemberName);
                                             }
                                         }
                                         else
                                         {
-                                            courtDiv.Attributes.Add("class", "courtDivs reservedCourt masterTiptool B" + C.CourtId);
-
+                                            courtDiv.Attributes.Add("class", "courtDivs reservedCourt showPointer masterTiptool B" + C.CourtId);
+                                            courtDiv.Attributes.Add("title", "Redan bokad av " + res.FullMemberName);
                                         }
 
-                                        courtDiv.Attributes.Add("title", "Redan bokad av " + res.FullMemberName);
                                         courtDiv.InnerHtml = res.FullMemberName;
 
                                         pBookedBy.InnerHtml = "Bokad av " + res.FullMemberName;

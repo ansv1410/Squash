@@ -373,21 +373,25 @@ namespace Squash.Classes
                         }
                         if (x == 4)
                         {
+                            if (t.Item1.StartDate > DateTime.Now.AddHours(1))
+                            {
+                                string thisDayIsFullDate = t.Item1.StartDate.ToString("yyyy-MM-dd", new CultureInfo("sv-SE"));
+                                string sTime = t.Item1.StartDate.ToShortTimeString();
+                                string shortTime = sTime.Substring(0, 2);
 
-                            string thisDayIsFullDate = t.Item1.StartDate.ToString("yyyy-MM-dd", new CultureInfo("sv-SE"));
-                            string sTime = t.Item1.StartDate.ToShortTimeString();
-                            string shortTime = sTime.Substring(0, 2);
+                                string id = "cb_"+ t.Item1.CourtId.ToString() + "_" + thisDayIsFullDate + "_" + shortTime;
 
-                            string id = "cb_"+ t.Item1.CourtId.ToString() + "_" + thisDayIsFullDate + "_" + shortTime;
+                                HtmlInputCheckBox cbCancelReservation = new HtmlInputCheckBox();
+                                cbCancelReservation.Attributes.Add("id", "cb_"+ t.Item1.CourtId.ToString() + "_" + thisDayIsFullDate + "_" + shortTime);
+                                cbCancelReservation.Attributes.Add("value", "Bana " + t.Item1.CourtId.ToString() + " " + shortDayName + " " + dateOfDate + "/" + monthNumber + " " + shortTime + ":00");
+                                cbCancelReservation.Attributes.Add("class", "cbCancelReservation");
+                                cbCancelReservation.Attributes.Add("onclick", "checkOrUncheck('" + id + "')");
+                                cbCancelReservation.Attributes.Add("runat", "server");
 
-                            HtmlInputCheckBox cbCancelReservation = new HtmlInputCheckBox();
-                            cbCancelReservation.Attributes.Add("id", "cb_"+ t.Item1.CourtId.ToString() + "_" + thisDayIsFullDate + "_" + shortTime);
-                            cbCancelReservation.Attributes.Add("value", "Bana " + t.Item1.CourtId.ToString() + " " + shortDayName + " " + dateOfDate + "/" + monthNumber + " " + shortTime + ":00");
-                            cbCancelReservation.Attributes.Add("class", "cbCancelReservation");
-                            cbCancelReservation.Attributes.Add("onclick", "checkOrUncheck('" + id + "')");
-                            cbCancelReservation.Attributes.Add("runat", "server");
+                                td.Controls.Add(cbCancelReservation);
+                            }
 
-                            td.Controls.Add(cbCancelReservation);
+
 
                             
 
@@ -483,6 +487,9 @@ namespace Squash.Classes
             MySqlConnection conn = myConn();
 
             List<Tuple<Reservations, Courts, ReservationTypes>> reservationInfoList = new List<Tuple<Reservations, Courts, ReservationTypes>>();
+
+            DateTime d = DateTime.Now.AddHours(-1);
+
 
             string query = "SELECT r.CourtId AS RCourtId, r.MemberId AS RMemberId, r.StartDate, r.HandledBy, r.ReservationType AS RResType, c.CourtId AS CCourtId, c.Description AS courtName, rt.ReservationTypeId AS resTypeId, rt.Description AS resType, rt.Cost FROM reservations r "
                            + "INNER JOIN courts c ON c.CourtId = r.CourtId "
