@@ -29,7 +29,7 @@
                     <div id="toCancelDiv">
                     </div>
                     <div id="cancelButtons">
-                        <asp:Button ID="btnCancelOK" runat="server" OnClientClick="sendCbIDs(this);" OnClick="btnCancelOK_Click" Text="OK" CssClass="btn btn-default" />
+                        <asp:Button ID="btnCancelOK" runat="server" OnClientClick="sendCbIDs(this, false, null);" OnClick="btnCancelOK_Click" Text="OK" CssClass="btn btn-default" />
                         <input id="btnNoCancel" type="button" onclick="CloseBookingOverlay()" class="btn btn-default" value="Avbryt" />
                     </div>
                 </div>
@@ -124,14 +124,19 @@
             }
 
 
-            function OpenCancelReservationOverlay() {
-                $('.booking-overlay-message').css('max-width', '300px');
+            function OpenCancelReservationOverlay(isSingleResId) {
 
+                if (isSingleResId == "false") {
+                    loopForm();
+                    document.getElementById("MainContent_btnCancelOK").setAttribute("onclick", "sendCbIDs(this, false, null)");
+                }
+
+                $('.booking-overlay-message').css('max-width', '300px');
                 $('.booking-overlay-container').fadeIn('slow');
                 $('.hourBookingDiv').hide();
-                loopForm()
                 $('#MainContent_cancelReservationDiv').show();
                 return false;
+                
             }
 
             function loopForm() {
@@ -140,17 +145,6 @@
                 
                 var cbResults = '';
 
-                //for (var i = 0; i < table.elements.length; i++) {
-
-                //    if (table.elements[i].type == 'checkbox') {
-
-                //        if (table.elements[i].checked == true) {
-
-                //            cbResults += "<br />" + table.elements[i].value + ' ';
-                //        }
-                                
-                //    }
-                //}
                 $('.cbCancelReservation').each(function () {
                     if (this.getAttribute("checked") == "checked") {
                         cbResults += this.getAttribute("value") + "<br />";
@@ -161,6 +155,7 @@
                 document.getElementById("toCancelDiv").innerHTML = cbResults;
                 
             }
+
             function checkOrUncheck(id) {
                 var cb = document.getElementById(id);
 
@@ -188,20 +183,33 @@
 
             }
 
-            function sendCbIDs(obj) {
+            function sendCbIDs(obj, isSingleId, singleResID) {
 
                 var cbCancelReservationIDs = "";
+                if (!isSingleId) {
+                    $('.cbCancelReservation').each(function () {
+                        if (this.getAttribute("checked") == "checked") {
+                            cbCancelReservationIDs += this.getAttribute("id") + ",";
+                        }
+                    });
 
-                $('.cbCancelReservation').each(function () {
-                    if (this.getAttribute("checked") == "checked") {
-                        cbCancelReservationIDs += this.getAttribute("id") + ",";
-                    }
-                });
-                __doPostBack(obj.id, cbCancelReservationIDs);
+                }
+
+                else {
+                    cbCancelReservationIDs = singleResID;
+                }
+                    
+                 __doPostBack(obj.id, cbCancelReservationIDs);
+
 
             }
 
+            function CancelThisRes(singelResId, singleResValue) {
 
+                document.getElementById("toCancelDiv").innerHTML = singleResValue;
+                OpenCancelReservationOverlay(true);
+                document.getElementById("MainContent_btnCancelOK").setAttribute("onclick", "sendCbIDs(this, true, '" + singelResId + "')");
+            }
 
 
             <%--$("#MainContent_btnCancelOK").click(function () {

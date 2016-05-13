@@ -31,11 +31,11 @@ namespace Squash
                 HtmlTable table = method.MyBookingsTable(lip);
                 if (table != null)
                 {
-
+                    bool f = false;
                     HtmlInputButton btnCancelRes = new HtmlInputButton();
                     btnCancelRes.Attributes.Add("id", "btnCancelRes");
                     btnCancelRes.Attributes.Add("type", "button");
-                    btnCancelRes.Attributes.Add("onclick", "OpenCancelReservationOverlay()");
+                    btnCancelRes.Attributes.Add("onclick", "OpenCancelReservationOverlay('false')");
                     btnCancelRes.Attributes.Add("class", "btn btn-default");
                     btnCancelRes.Attributes.Add("value", "Avboka ▲");
                     btnCancelRes.Attributes.Add("disabled", "disabled");
@@ -274,6 +274,20 @@ namespace Squash
                                         {
                                             if (res.MemberId == lip.member.MemberId)
                                             {
+                                                DateTime dateOfBooking = Convert.ToDateTime(res.StartDate.ToShortDateString());
+                                                string dayOfWeek = dateOfBooking.ToString("dddd", new CultureInfo("sv-SE"));
+                                                string shortDayName = method.FixName(dayOfWeek.Substring(0, 3));
+                                                string dateOfDate = dateOfBooking.ToString("%d", new CultureInfo("sv-SE"));
+                                                string monthNumber = dateOfBooking.ToString("%M", new CultureInfo("sv-SE"));
+
+                                                string myResValue = C.Description +" "+ shortDayName + " " + dateOfDate + "/" + monthNumber + " " + shortTime + ":00";
+
+                                                string cancelParameter = "cb_" + C.CourtId.ToString() + "_" + thisDayIsFullDate + "_" + shortTime;
+                                                courtDiv.Attributes.Add("onclick", "CancelThisRes('"+cancelParameter+"', '"+myResValue+"')");
+
+
+
+
                                                 courtDiv.Attributes.Add("class", "courtDivs reservedCourt myReservedCourt masterTiptool B" + C.CourtId);
                                             }
                                             else
@@ -916,15 +930,6 @@ namespace Squash
             Response.Redirect("Booking.aspx");
         }
 
-        public void testarne()
-        {
-            HtmlInputCheckBox cb = new HtmlInputCheckBox();
-
-            if (cb.Checked == true)
-            {
-
-            }
-        }
 
         protected void btnCancelOK_Click(object sender, EventArgs e)
         {
