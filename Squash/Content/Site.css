@@ -599,7 +599,7 @@ h4{
      background: white;
      max-width: 500px;
      overflow:auto;
-     
+     border-radius:4px;
  /*display:none;*/
  /*text-align: center;*/
 }
@@ -799,6 +799,49 @@ h4{
 
 .failedBookingMessage{
     color:red;
+}
+
+#btnCancelRes{
+    float:right;
+    margin-top:1%;
+}
+#spelSchemaH2{
+    margin-top:40px;
+}
+
+#MainContent_cancelReservationDiv{
+    margin-left:5%;
+    overflow:hidden;
+}
+
+#toCancelDiv{
+    margin-top:4%;
+    /*margin-bottom:4%;*/
+    margin-left:5%;
+}
+
+#cancelButtons{
+    margin-left:5%;
+    margin-right:5%;
+    margin-top:10%;
+    margin-bottom:4%;
+    display:table;
+    width:90%;
+
+}
+
+#MainContent_btnCancelOK{
+    float:left;
+    font-weight:bold;
+    width:71px;
+
+}
+#btnNoCancel{
+    width:71px;
+    float:right;
+    margin-right:10%;
+    /*margin-left:5%;*/
+    font-weight:bold;
 }
 
 

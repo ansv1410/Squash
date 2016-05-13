@@ -375,7 +375,8 @@ namespace Squash.Classes
                         {
 
                             string thisDayIsFullDate = t.Item1.StartDate.ToString("yyyy-MM-dd", new CultureInfo("sv-SE"));
-                            string shortTime = t.Item1.StartDate.ToString("hh", new CultureInfo("sv-SE"));
+                            string sTime = t.Item1.StartDate.ToShortTimeString();
+                            string shortTime = sTime.Substring(0, 2);
 
                             string id = "cb_"+ t.Item1.CourtId.ToString() + "_" + thisDayIsFullDate + "_" + shortTime;
 

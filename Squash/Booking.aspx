@@ -13,7 +13,7 @@
 
 
 
-        <h2>Spelschema</h2>
+        <h2 id="spelSchemaH2">Spelschema</h2>
         <div id="divBookMess" runat="server">
             <p id="bookingConfirmationMessage" runat="server" class="successfulBookingMessage" visible="false"></p>
             <p id="bookingErrorMessage" runat="server" class="failedBookingMessage" visible="false"></p>
@@ -70,6 +70,7 @@
 
             function OpenBookingOverlay(hourBookingDiv) {
                 var id3 = "#" + hourBookingDiv;
+                $('.booking-overlay-message').css('max-width', '500px');
                 $('.booking-overlay-container').fadeIn('slow');
                 $('.hourBookingDiv').hide();
                 $('#MainContent_cancelReservationDiv').hide();
@@ -124,6 +125,8 @@
 
 
             function OpenCancelReservationOverlay() {
+                $('.booking-overlay-message').css('max-width', '300px');
+
                 $('.booking-overlay-container').fadeIn('slow');
                 $('.hourBookingDiv').hide();
                 loopForm()
