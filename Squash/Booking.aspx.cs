@@ -84,6 +84,10 @@ namespace Squash
         {
             DateTime bookingDate = DateTime.Now.Date;
             int todayNo = Convert.ToInt16(DateTime.Now.DayOfWeek.ToString("d"));
+            if (todayNo == 0)
+            {
+                todayNo = 7;
+            }
 
             List<Days> DayList = GetDayList();
             List<Subscriptions> allSubscriptions = GetSubscriptionList();
@@ -96,9 +100,11 @@ namespace Squash
             int counter = 0;
             bool drawtimes = true;
 
+
             //Startar loopen på dagens "todayNo", ex. Måndag = 1 eller Fredag = 5.
             for (int i = todayNo; i <= noOfDays; i++)
             {
+
                 counter++;
                 HtmlGenericControl daySelector = new HtmlGenericControl("div");
                 daySelector.Attributes.Add("id", counter.ToString() + "_daySelector");
@@ -442,7 +448,9 @@ namespace Squash
                 {
                     i = 0;
                 }
+
             }
+
         }
 
 
