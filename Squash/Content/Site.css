@@ -870,6 +870,36 @@ h4{
     text-decoration: none;
 }
 
+.overlay-container-PIN{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color:transparent;
+    z-index: 1499;
+    display: none;
+}
+.page-overlay-PIN{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: rgba(51,51,51,0.7);
+    z-index: 1500;
+}
+.overlay-message-PIN {
+    position:relative;
+     margin: 0 auto;
+     margin-top: 110px;
+     padding: 1em;
+     z-index: 1501;
+     background: white;
+     max-width: 500px;
+ /*display:none;*/
+ /*te
+
 /*BOOKING - SLUT*/
 
 

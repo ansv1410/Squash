@@ -73,8 +73,10 @@
                         </button>
                         <a class="navbar-brand" runat="server" href="~/Default">Östersunds squash</a>
                         <div id="pinDiv" runat="server" visible="false">
-                            <div id="showPin" runat="server" visible="false">Dagens PIN<br />
-                                <asp:LinkButton ID="lbtnShowPin" runat="server" OnClick="lbtnShowPin_Click">Visa PIN</asp:LinkButton>
+                            <div id="showPin" runat="server" visible="false">
+                                Dagens PIN<br />
+                                <%--<asp:LinkButton ID="lbtnShowPin" runat="server" OnClick="lbtnShowPin_Click">Visa PIN</asp:LinkButton>--%>
+                                <a id="lbtnShowPin" onclick="OpenOverlayPIN()">Visa PIN</a>
                             </div>
                             <div id="todaysPin" runat="server" visible="false"></div>
                         </div>
@@ -106,18 +108,29 @@
                 </div>
             </div>
         </div>
+
         <div class="overlay-container">
             <div class="page-overlay" onclick="CloseOverlay()">
             </div>
             <div class="overlay-message">
-
-
                 <uc:MyLoginControl ID="MyLoginControll"
                     runat="server" />
-
             </div>
 
         </div>
+        <div class="overlay-container-PIN">
+            <div class="page-overlay-PIN" onclick="CloseOverlayPIN()">
+            </div>
+            <div class="overlay-message-PIN">
+                <div class="promptButtons">
+                    <h4>Visa PIN-kod?</h4>
+                    <p>Efter att pinkoden visats kan du inte avboka någon av dina tider idag.</p>
+                    <asp:Button ID="pinOK" CssClass="btn btn-default promptOK" runat="server" OnClick="lbtnShowPin_Click" Text="OK" />
+                    <input id="pinCancel" class="btn btn-default promptCancel" type="button" value="Avbryt" />
+                </div>
+            </div>
+        </div>
+
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
@@ -158,6 +171,17 @@
     }
 
     ReopenOverlay();
+
+    function OpenOverlayPIN() {
+        $('.overlay-container-PIN').fadeIn('slow');
+        //document.getElementById('hfShowLogin').setAttribute('Value', '1')
+        return false;
+    }
+
+    function CloseOverlayPIN() {
+        //document.getElementById('hfShowLogin').setAttribute('Value', '0')
+        $('.overlay-container-PIN').fadeOut('slow');
+    }
 
 
 </script>

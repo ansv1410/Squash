@@ -40,15 +40,6 @@ namespace Squash {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl showPin;
         
         /// <summary>
-        /// lbtnShowPin control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnShowPin;
-        
-        /// <summary>
         /// todaysPin control.
         /// </summary>
         /// <remarks>
@@ -101,6 +92,15 @@ namespace Squash {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Squash.Account.Login MyLoginControll;
+        
+        /// <summary>
+        /// pinOK control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button pinOK;
         
         /// <summary>
         /// MainContent control.
