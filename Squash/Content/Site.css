@@ -855,7 +855,7 @@ h4{
 
 
 #lbtnShowPin {
-    border: 2px groove grey;
+    border: 1px groove #e0e0e0;
     padding: 0px 4px 0px 4px;
     color: black;
     -webkit-border-radius: 4px;
@@ -870,12 +870,12 @@ h4{
     text-decoration: none;
 }
 #lbtnShowPin:hover{
-    background-color:lightcoral;
+    background-color:#efefef;
 	cursor:pointer;
-	color:black;
+	color:#dc3838;
 	box-shadow:none;
     border: none;
-    border: 2px groove #e0e0e0;
+    border: 1px groove #e0e0e0;
 }
 #lbtnShowPin:active{
     color:#e0e0e0;
