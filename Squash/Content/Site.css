@@ -893,7 +893,14 @@ input[type="checkbox"]{
     vertical-align:middle;
 }
 
+.bookingInfoTextDiv{
+    clear:both;
+}
 
+.bookingInfoText{
+    color:#B02C2C;
+    padding-top:10px;
+}
 
 
 /*BOOKING - SLUT*/
@@ -1213,6 +1220,10 @@ input[type="checkbox"]{
         margin-left:2%;
     }
 
+    #MainContent_bookingOverlayMessage{
+        margin-top:60px;
+    }
+
 }
 @media screen and (max-width: 550px){
     .overlay-message{
@@ -1279,6 +1290,7 @@ input[type="checkbox"]{
         /*color:yellow;*/
         padding-left:2%;
     }
+
 }
 @media screen and (max-width: 319px){
     a.navbar-brand{
