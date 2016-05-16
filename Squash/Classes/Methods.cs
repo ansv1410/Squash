@@ -373,7 +373,8 @@ namespace Squash.Classes
                         }
                         if (x == 4)
                         {
-                            if (t.Item1.StartDate > DateTime.Now.AddHours(1))
+                            
+                            if (t.Item1.StartDate > DateTime.Now.AddHours(1) && !HasCLRequest(lip))
                             {
                                 string thisDayIsFullDate = t.Item1.StartDate.ToString("yyyy-MM-dd", new CultureInfo("sv-SE"));
                                 string sTime = t.Item1.StartDate.ToShortTimeString();
@@ -389,6 +390,24 @@ namespace Squash.Classes
                                 cbCancelReservation.Attributes.Add("runat", "server");
 
                                 td.Controls.Add(cbCancelReservation);
+                            }
+                            else if (t.Item1.StartDate.Date >= DateTime.Now.Date.AddDays(1))
+                            {
+                                string thisDayIsFullDate = t.Item1.StartDate.ToString("yyyy-MM-dd", new CultureInfo("sv-SE"));
+                                string sTime = t.Item1.StartDate.ToShortTimeString();
+                                string shortTime = sTime.Substring(0, 2);
+
+                                string id = "cb_" + t.Item1.CourtId.ToString() + "_" + thisDayIsFullDate + "_" + shortTime;
+
+                                HtmlInputCheckBox cbCancelReservation = new HtmlInputCheckBox();
+                                cbCancelReservation.Attributes.Add("id", "cb_" + t.Item1.CourtId.ToString() + "_" + thisDayIsFullDate + "_" + shortTime);
+                                cbCancelReservation.Attributes.Add("value", "Bana " + t.Item1.CourtId.ToString() + " " + shortDayName + " " + dateOfDate + "/" + monthNumber + " " + shortTime + ":00");
+                                cbCancelReservation.Attributes.Add("class", "cbCancelReservation");
+                                cbCancelReservation.Attributes.Add("onclick", "checkOrUncheck('" + id + "')");
+                                cbCancelReservation.Attributes.Add("runat", "server");
+
+                                td.Controls.Add(cbCancelReservation);
+
                             }
 
 
@@ -658,6 +677,30 @@ namespace Squash.Classes
 
         //    return null;
         //}
+
+        public bool HasCLRequest(LoggedInPerson lip)
+        {
+            string query = "SELECT COUNT(*) AS c FROM codelockrequests WHERE MemberId = " + lip.member.MemberId + " AND DATE(DateOfRequest) = CURDATE() ORDER BY DateOfRequest DESC";
+            MySqlConnection conn = myConn();
+            MySqlDataReader dr = myReader(query, conn);
+
+            if (dr.Read() && Convert.ToInt16(dr["c"]) != 0)
+            {
+                dr.Close();
+                dr.Dispose();
+                conn.Close();
+                conn.Dispose();
+                return true;
+            }
+            else
+            {
+                dr.Close();
+                dr.Dispose();
+                conn.Close();
+                conn.Dispose();
+                return false;
+            }
+        }
 
 
 

@@ -154,7 +154,7 @@ namespace Squash
             List<Tuple<Reservations, Courts, ReservationTypes>> resList = method.GetResTuples(lip);
             
             List<CodeLock> codeLockList = method.GetCodeLocks();
-
+            
             if (!ShowSubPin(codeLockList))
             {
                 foreach (Tuple<Reservations, Courts, ReservationTypes> t in resList)
@@ -169,13 +169,25 @@ namespace Squash
                                 {
                                     todaysPin.InnerHtml = "Dagens PIN<br />" + codelock.Code;
                                     todaysPin.Visible = true;
+                                    if (!method.HasCLRequest(lip))
+                                    {
+                                        string query = "INSERT INTO codelockrequests (MemberId, DateOfRequest) VALUES(@mid, @date)";
+                                        MySqlCommand cmdInsertToCLR = new MySqlCommand(query, conn);
+                                        cmdInsertToCLR.Parameters.AddWithValue("mid", lip.member.MemberId);
+                                        cmdInsertToCLR.Parameters.AddWithValue("date", DateTime.Now);
+                                        conn.Open();
+                                        cmdInsertToCLR.ExecuteNonQuery();
+                                        conn.Close();
+
+                                    }
+                                   
                                 }
                                 else
                                 {
-                                    string query = "SELECT COUNT(*) AS c FROM codelockrequests WHERE MemberId = " + lip.member.MemberId + " AND DATE(DateOfRequest) = CURDATE() ORDER BY DateOfRequest DESC";
-                                    MySqlDataReader dr = method.myReader(query, conn);
+                                    //string query = "SELECT COUNT(*) AS c FROM codelockrequests WHERE MemberId = " + lip.member.MemberId + " AND DATE(DateOfRequest) = CURDATE() ORDER BY DateOfRequest DESC";
+                                    //MySqlDataReader dr = method.myReader(query, conn);
 
-                                    if (dr.Read() && Convert.ToInt16(dr["c"]) != 0)
+                                    if (method.HasCLRequest(lip))
                                     {
                                         todaysPin.InnerHtml = "Dagens PIN<br />" + codelock.Code;
                                         todaysPin.Visible = true;
@@ -210,11 +222,26 @@ namespace Squash
             List<Tuple<Subscriptions, CourtTimes, Days>> subList = method.GetSubTuples(lip);
 
             int todayNo = Convert.ToInt16(DateTime.Now.DayOfWeek.ToString("d"));
+            if (todayNo == 0)
+            {
+                todayNo = 7;
+            }
 
             foreach (Tuple<Subscriptions, CourtTimes, Days> t in subList)
             {
                 if (todayNo == t.Item3.DayId)
                 {
+                    if (!method.HasCLRequest(lip))
+                    {
+                        string query = "INSERT INTO codelockrequests (MemberId, DateOfRequest) VALUES(@mid, @date)";
+                        MySqlCommand cmdInsertToCLR = new MySqlCommand(query, conn);
+                        cmdInsertToCLR.Parameters.AddWithValue("mid", lip.member.MemberId);
+                        cmdInsertToCLR.Parameters.AddWithValue("date", DateTime.Now);
+                        conn.Open();
+                        cmdInsertToCLR.ExecuteNonQuery();
+                        conn.Close();
+
+                    }
 
                     foreach (CodeLock codelock in codeLockList)
                     {
