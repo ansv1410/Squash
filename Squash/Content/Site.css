@@ -825,7 +825,7 @@ h4{
     margin-left:5%;
 }
 
-#cancelButtons{
+.promptButtons{
     margin-left:5%;
     margin-right:5%;
     margin-top:10%;
@@ -835,13 +835,13 @@ h4{
 
 }
 
-#MainContent_btnCancelOK{
+.promptOK{
     float:left;
     font-weight:bold;
     width:71px;
 
 }
-#btnNoCancel{
+.promptCancel{
     width:71px;
     float:right;
     margin-right:10%;
@@ -982,7 +982,7 @@ input[type="checkbox"]{
 
     #showPin{
     }
-
+    
 
 }
 
