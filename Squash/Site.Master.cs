@@ -72,13 +72,23 @@ namespace Squash
 
         protected void master_Page_PreLoad(object sender, EventArgs e)
         {
-            
+            if (Session["lip"] != null)
+            {
+                lip = (LoggedInPerson)Session["lip"];
+                pinDiv.Visible = ShowPinDiv();
+
+            }
+
             if (!IsPostBack)
             {
                 // Set Anti-XSRF token
                 ViewState[AntiXsrfTokenKey] = Page.ViewStateUserKey;
                 ViewState[AntiXsrfUserNameKey] = Context.User.Identity.Name ?? String.Empty;
-                    
+
+
+
+
+
                 if (Session == null)
                 {
                     
@@ -117,7 +127,7 @@ namespace Squash
                 }
 
 
-                pinDiv.Visible = ShowPinDiv();
+                //pinDiv.Visible = ShowPinDiv();
                 
 
                 //Visa myBookingsDiv
@@ -274,8 +284,12 @@ namespace Squash
             cmdInsertToCLR.ExecuteNonQuery();
             conn.Close();
 
-            showPin.Visible = false;
+            //showPin.Visible = false;
             ShowPinDiv();
+
+            string url = HttpContext.Current.Request.RawUrl;
+            Response.Redirect(url);
+            
         }
 
 

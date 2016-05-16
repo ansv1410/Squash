@@ -279,6 +279,27 @@ namespace Squash.Classes
         }
 
 
+        public HtmlGenericControl BookingInfoMessage(LoggedInPerson lip, DateTime chosenDay)
+        {
+            HtmlGenericControl bookingInfoTextDiv = new HtmlGenericControl("div");
+            bookingInfoTextDiv.Attributes.Add("class", "bookingInfoTextDiv");
+
+            HtmlGenericControl bookingInfoText = new HtmlGenericControl("p");
+            bookingInfoText.Attributes.Add("class", "bookingInfoText");
+            if (HasCLRequest(lip, chosenDay))
+            {
+                bookingInfoText.InnerHtml = "• Eftersom du redan har sett dagens PIN-kod kommer du inte kunna avboka tiden.";
+            }
+            else
+            {
+                bookingInfoText.InnerHtml = "• Du kan avboka senast en timme i förväg. PIN-koden visas längst upp på sidan. <br /> • Vill du se koden nu trycker du på Visa PIN längst upp på sidan.";
+            }
+            
+            bookingInfoTextDiv.Controls.Add(bookingInfoText);
+
+            return bookingInfoTextDiv;
+        }
+
         #endregion
 
 
@@ -681,6 +702,30 @@ namespace Squash.Classes
         public bool HasCLRequest(LoggedInPerson lip)
         {
             string query = "SELECT COUNT(*) AS c FROM codelockrequests WHERE MemberId = " + lip.member.MemberId + " AND DATE(DateOfRequest) = CURDATE() ORDER BY DateOfRequest DESC";
+            MySqlConnection conn = myConn();
+            MySqlDataReader dr = myReader(query, conn);
+
+            if (dr.Read() && Convert.ToInt16(dr["c"]) != 0)
+            {
+                dr.Close();
+                dr.Dispose();
+                conn.Close();
+                conn.Dispose();
+                return true;
+            }
+            else
+            {
+                dr.Close();
+                dr.Dispose();
+                conn.Close();
+                conn.Dispose();
+                return false;
+            }
+        }
+
+        public bool HasCLRequest(LoggedInPerson lip, DateTime chosenDay)
+        {
+            string query = "SELECT COUNT(*) AS c FROM codelockrequests WHERE MemberId = " + lip.member.MemberId + " AND DATE(DateOfRequest) = DATE('"+chosenDay+"') ORDER BY DateOfRequest DESC";
             MySqlConnection conn = myConn();
             MySqlDataReader dr = myReader(query, conn);
 

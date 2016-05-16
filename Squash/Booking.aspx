@@ -24,7 +24,7 @@
             <div class="booking-page-overlay" runat="server" onclick="CloseBookingOverlay()">
             </div>
             <div id="bookingOverlayMessage" class="booking-overlay-message" runat="server">
-                <div id="cancelReservationDiv" runat="server" display="none">
+                <div id="cancelReservationDiv" runat="server">
                     <h4>Avboka följande?</h4>
                     <div id="toCancelDiv">
                     </div>

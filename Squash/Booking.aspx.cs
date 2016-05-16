@@ -178,6 +178,8 @@ namespace Squash
                         selectorDiv.Controls.Add(daySelector);
                         dayDiv.Controls.Add(staticDayDiv);
 
+
+
                         //Loopar alla starttider för den aktuella dagen och skapar element för dessa.
                         foreach (CourtTimes CT in D.CourtTimes)
                         {
@@ -290,10 +292,18 @@ namespace Squash
 
                                                     string myResValue = C.Description +" "+ shortDayName + " " + dateOfDate + "/" + monthNumber + " " + shortTime + ":00";
 
-                                                    string cancelParameter = "cb_" + C.CourtId.ToString() + "_" + thisDayIsFullDate + "_" + shortTime;
-                                                    courtDiv.Attributes.Add("onclick", "CancelThisRes('"+cancelParameter+"', '"+myResValue+"')");
-                                                    courtDiv.Attributes.Add("title", "Klicka för att avboka din tid.");
-                                                    courtDiv.Attributes.Add("class", "courtDivs reservedCourt myReservedCourt showPointer masterTiptool B" + C.CourtId);
+                                                    if(!method.HasCLRequest(lip, Convert.ToDateTime(thisDayIsFullDate)))
+                                                    {
+                                                        string cancelParameter = "cb_" + C.CourtId.ToString() + "_" + thisDayIsFullDate + "_" + shortTime;
+                                                        courtDiv.Attributes.Add("onclick", "CancelThisRes('"+cancelParameter+"', '"+myResValue+"')");
+                                                        courtDiv.Attributes.Add("title", "Klicka för att avboka din tid.");
+                                                        courtDiv.Attributes.Add("class", "courtDivs reservedCourt myReservedCourt showPointer masterTiptool B" + C.CourtId);
+                                                    }
+                                                    else
+                                                    {
+                                                        courtDiv.Attributes.Add("title", "PIN-kod visad, du kan inte avboka tiden.");
+                                                        courtDiv.Attributes.Add("class", "courtDivs reservedCourt myReservedCourt masterTiptool B" + C.CourtId);
+                                                    }
                                                 }
 
                                                 else
@@ -306,13 +316,13 @@ namespace Squash
                                             }
                                             else
                                             {
-                                                courtDiv.Attributes.Add("class", "courtDivs reservedCourt showPointer masterTiptool B" + C.CourtId);
+                                                courtDiv.Attributes.Add("class", "courtDivs reservedCourt masterTiptool B" + C.CourtId);
                                                 courtDiv.Attributes.Add("title", "Redan bokad av " + res.FullMemberName);
                                             }
                                         }
                                         else
                                         {
-                                            courtDiv.Attributes.Add("class", "courtDivs reservedCourt showPointer masterTiptool B" + C.CourtId);
+                                            courtDiv.Attributes.Add("class", "courtDivs reservedCourt masterTiptool B" + C.CourtId);
                                             courtDiv.Attributes.Add("title", "Redan bokad av " + res.FullMemberName);
                                         }
 
@@ -366,8 +376,8 @@ namespace Squash
 
                                     courtImgDiv.InnerHtml = "<img class='courtImg' src='Images/squashB" + C.CourtId.ToString() + "lightgreen.svg' />";
                                     //----------------------------------------
-                                    
-                                    
+
+
 
                                     if (subscribed == false && reserved == false)
                                     {
@@ -399,6 +409,9 @@ namespace Squash
                                     bookingDiv.Controls.Add(bookCourtDiv);
                                     hourBookingDiv.Controls.Add(bookingDiv);
 
+
+
+
                                 }
                                 else if (subscribed == false && reserved == false)
                                 {
@@ -428,14 +441,21 @@ namespace Squash
                                 }
                             }
 
-                            HtmlGenericControl bookingInfoTextDiv = new HtmlGenericControl("div");
-                            bookingInfoTextDiv.Attributes.Add("class", "bookingInfoTextDiv");
+                            //HtmlGenericControl bookingInfoTextDiv = new HtmlGenericControl("div");
+                            //bookingInfoTextDiv.Attributes.Add("class", "bookingInfoTextDiv");
 
-                            HtmlGenericControl bookingInfoText = new HtmlGenericControl("p");
-                            bookingInfoText.InnerHtml = "• Du kan avboka senast en timme i förväg. PIN-koden visas längs upp på sidan. <br /> • Vill du se koden nu trycker du på Visa PIN längst upp på sidan.";
-                            bookingInfoText.Attributes.Add("class", "bookingInfoText");
+                            //HtmlGenericControl bookingInfoText = new HtmlGenericControl("p");
+                            //if(method.HasCLRequest(lip))
+                            //{
+                            //    bookingInfoText.InnerHtml = "• Eftersom du redan har sett dagens PIN-kod kommer du inte kunna avboka tiden.";
+                            //}
+                            //else
+                            //{
+                            //    bookingInfoText.InnerHtml = "• Du kan avboka senast en timme i förväg. PIN-koden visas längst upp på sidan. <br /> • Vill du se koden nu trycker du på Visa PIN längst upp på sidan.";
+                            //}
+                            //bookingInfoText.Attributes.Add("class", "bookingInfoText");
 
-                            bookingInfoTextDiv.Controls.Add(bookingInfoText);
+                            //bookingInfoTextDiv.Controls.Add(bookingInfoText);
 
 
                             Button btnBook = new Button();
@@ -445,7 +465,11 @@ namespace Squash
                             btnBook.CommandArgument = hourBookingDivId;
                             btnBook.Click += btnBook_Click;
 
-                            hourBookingDiv.Controls.Add(bookingInfoTextDiv);
+                            if(Session["lip"] != null)
+                            {
+                                hourBookingDiv.Controls.Add(method.BookingInfoMessage(lip, Convert.ToDateTime(thisDayIsFullDate)));
+                            }
+
                             hourBookingDiv.Controls.Add(btnBook);
 
                             bookingOverlayMessage.Controls.Add(hourBookingDiv);
@@ -949,12 +973,13 @@ namespace Squash
                 bookingMessageString = "Hoppsan, någon hann före, en eller flera av dina valda bantider är redan bokad.";
             }
                 
-                bool showBMessage = true;
-                Session["bookingMessage"] = bookingMessageString;
-                Session["showBookingMessage"] = showBMessage;
+            bool showBMessage = true;
+            Session["bookingMessage"] = bookingMessageString;
+            Session["showBookingMessage"] = showBMessage;
 
             //TRY CATCH FINALLY
             Response.Redirect("Booking.aspx");
+            
         }
 
 
