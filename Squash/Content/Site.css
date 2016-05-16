@@ -767,7 +767,7 @@ h4{
 .mySubscriptionsTR{
     border-bottom:1px solid #A0A0A0;
     text-align:center;
-    background-color:#F1AFAF;
+    background-color:#FDDADA;
 }
 
 .mySubscriptionsTD{
@@ -825,7 +825,7 @@ h4{
     margin-left:5%;
 }
 
-#cancelButtons{
+.promptButtons{
     margin-left:5%;
     margin-right:5%;
     margin-top:10%;
@@ -835,13 +835,13 @@ h4{
 
 }
 
-#MainContent_btnCancelOK{
+.promptOK{
     float:left;
     font-weight:bold;
     width:71px;
 
 }
-#btnNoCancel{
+.promptCancel{
     width:71px;
     float:right;
     margin-right:10%;
@@ -856,19 +856,52 @@ h4{
 
 #lbtnShowPin {
     border: 2px groove grey;
-    padding: 2px 3px 2px 3px;
+    padding: 0px 4px 0px 4px;
     color: black;
-    /*-webkit-border-radius: 4px;
-    -moz-border-radius: 4px;*/
-    /*border-radius: 4px;*/
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
-    /*-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);*/
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
-    background: #4479BA;
-    color: #FFF;
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 1px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 1px rgba(0, 0, 0, 0.2);
+    background: #dc3838;
+    color: #e0e0e0;
     text-decoration: none;
 }
+#lbtnShowPin:hover{
+    background-color:lightcoral;
+	cursor:pointer;
+	color:black;
+	box-shadow:none;
+    border: none;
+    border: 2px groove #e0e0e0;
+}
+#lbtnShowPin:active{
+    color:#e0e0e0;
+}
+
+
+
+input[type="checkbox"]{
+    border:3px solid red;
+    cursor:pointer;
+    width:20px;
+    height:20px;
+    margin-top:2px;
+    margin-bottom:2px;
+    vertical-align:middle;
+}
+
+.bookingInfoTextDiv{
+    clear:both;
+}
+
+.bookingInfoText{
+    color:#B02C2C;
+    padding-top:10px;
+}
+
 
 .overlay-container-PIN{
     position: fixed;
@@ -979,7 +1012,7 @@ h4{
 
     #showPin{
     }
-
+    
 
 }
 
@@ -1217,6 +1250,10 @@ h4{
         margin-left:2%;
     }
 
+    #MainContent_bookingOverlayMessage{
+        margin-top:60px;
+    }
+
 }
 @media screen and (max-width: 550px){
     .overlay-message{
@@ -1283,6 +1320,15 @@ h4{
         /*color:yellow;*/
         padding-left:2%;
     }
-   
+
+}
+@media screen and (max-width: 319px){
+    a.navbar-brand{
+        font-size:120%;
+    }
+    #pinDiv{
+        font-size:80%;
+        text-shadow:none;
+    }
 
 }

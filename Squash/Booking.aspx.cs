@@ -198,7 +198,7 @@ namespace Squash
                             HtmlGenericControl hourBookingDiv = new HtmlGenericControl("div");
                             hourBookingDiv.Attributes.Add("class", "hourBookingDiv");
                             hourBookingDiv.Attributes.Add("id", hourBookingDivId);
-                            hourBookingDiv.InnerHtml = "<h3>Boka - " + thisDayIsFullDate + " "+shortTime+":00</h3><p>Klicka på önskade banor.</p><hr />";
+                            hourBookingDiv.InnerHtml = "<h3>Boka - " + shortDayIs + " " + thisDayIsDate + "/" + thisDayIsMonth + " " + shortTime + ":00</h3><p>Klicka på önskade banor.</p><hr />";
 
                             HtmlGenericControl bookingDescriptionDiv = new HtmlGenericControl("div");
                             bookingDescriptionDiv.Attributes.Add("id", "bookingDescriptionDiv"+CT.CourtTimeId);
@@ -219,7 +219,7 @@ namespace Squash
                                 courtDiv.Attributes.Add("class", "courtDivs B"+C.CourtId);
 
                                 HtmlGenericControl pBookedBy = new HtmlGenericControl("p");
-                                pBookedBy.InnerHtml = "Ledig tid";
+                                //pBookedBy.InnerHtml = "Ledig tid";
 
                                 bool subscribed = false;
                                 bool reserved = false;
@@ -427,7 +427,17 @@ namespace Squash
                                     }
                                 }
                             }
-                            
+
+                            HtmlGenericControl bookingInfoTextDiv = new HtmlGenericControl("div");
+                            bookingInfoTextDiv.Attributes.Add("class", "bookingInfoTextDiv");
+
+                            HtmlGenericControl bookingInfoText = new HtmlGenericControl("p");
+                            bookingInfoText.InnerHtml = "• Du kan avboka senast en timme i förväg. PIN-koden visas längs upp på sidan. <br /> • Vill du se koden nu trycker du på Visa PIN längst upp på sidan.";
+                            bookingInfoText.Attributes.Add("class", "bookingInfoText");
+
+                            bookingInfoTextDiv.Controls.Add(bookingInfoText);
+
+
                             Button btnBook = new Button();
                             btnBook.Text = "Boka";
                             btnBook.Attributes.Add("disabled", "disabled");
@@ -435,6 +445,7 @@ namespace Squash
                             btnBook.CommandArgument = hourBookingDivId;
                             btnBook.Click += btnBook_Click;
 
+                            hourBookingDiv.Controls.Add(bookingInfoTextDiv);
                             hourBookingDiv.Controls.Add(btnBook);
 
                             bookingOverlayMessage.Controls.Add(hourBookingDiv);

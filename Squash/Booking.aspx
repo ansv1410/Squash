@@ -28,9 +28,9 @@
                     <h4>Avboka följande?</h4>
                     <div id="toCancelDiv">
                     </div>
-                    <div id="cancelButtons">
-                        <asp:Button ID="btnCancelOK" runat="server" OnClientClick="sendCbIDs(this, false, null);" OnClick="btnCancelOK_Click" Text="OK" CssClass="btn btn-default" />
-                        <input id="btnNoCancel" type="button" onclick="CloseBookingOverlay()" class="btn btn-default" value="Avbryt" />
+                    <div id="cancelButtons" class="promptButtons">
+                        <asp:Button ID="btnCancelOK" runat="server" OnClientClick="sendCbIDs(this, false, null);" OnClick="btnCancelOK_Click" Text="OK" CssClass="btn btn-default promptOK" />
+                        <input id="btnNoCancel" type="button" onclick="CloseBookingOverlay()" class="btn btn-default promptCancel" value="Avbryt" />
                     </div>
                 </div>
             </div>
