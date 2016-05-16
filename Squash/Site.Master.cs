@@ -287,8 +287,8 @@ namespace Squash
             //showPin.Visible = false;
             ShowPinDiv();
 
-            string url = HttpContext.Current.Request.RawUrl;
-            Response.Redirect(url);
+            //string url = HttpContext.Current.Request.RawUrl;
+            Response.Redirect(Request.RawUrl);
             
         }
 
