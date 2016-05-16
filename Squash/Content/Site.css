@@ -355,6 +355,7 @@ h4{
      z-index: 1501;
      background: white;
      max-width: 500px;
+     border-radius:4px;
  /*display:none;*/
  /*text-align: center;*/
 }
@@ -923,15 +924,15 @@ input[type="checkbox"]{
     z-index: 1500;
 }
 .overlay-message-PIN {
-    position:relative;
-     margin: 0 auto;
-     margin-top: 110px;
-     padding: 1em;
-     z-index: 1501;
-     background: white;
-     max-width: 500px;
- /*display:none;*/
- /*te
+    position: relative;
+    margin: 0 auto;
+    margin-top: 110px;
+    padding: 1em;
+    z-index: 1501;
+    background: white;
+    max-width: 300px;
+    border-radius:4px;
+}
 
 /*BOOKING - SLUT*/
 
