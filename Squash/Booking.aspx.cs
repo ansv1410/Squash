@@ -89,11 +89,11 @@ namespace Squash
                 todayNo = 7;
             }
 
-            List<Days> DayList = GetDayList();
-            List<Subscriptions> allSubscriptions = GetSubscriptionList();
-            List<Reservations> allReservations = GetReservationsList();
-            List<Companies> allCompanies = GetCompanyList();
-            List<MemberCompany> allMemberCompany = GetMemberCompanyList();
+            List<Days> DayList = method.GetDayList();
+            List<Subscriptions> allSubscriptions = method.GetSubscriptionList();
+            List<Reservations> allReservations = method.GetReservationsList();
+            List<Companies> allCompanies = method.GetCompanyList();
+            List<MemberCompany> allMemberCompany = method.GetMemberCompanyList();
 
             List<HtmlGenericControl> daySelectorList = new List<HtmlGenericControl>();
 
@@ -179,6 +179,8 @@ namespace Squash
                         dayDiv.Controls.Add(staticDayDiv);
 
 
+                        DateTime FullDateTime = new DateTime();
+
 
                         //Loopar alla starttider för den aktuella dagen och skapar element för dessa.
                         foreach (CourtTimes CT in D.CourtTimes)
@@ -190,6 +192,8 @@ namespace Squash
                             string thisDayIsFullTime = method.ConvertToFullTime(CT.StartHour, false);
                             string shortTime = method.ConvertToFullTime(CT.StartHour, true);
                             string hourBookingDivId = thisDayIsFullDate + "_" + shortTime;
+
+                            FullDateTime = Convert.ToDateTime(thisDayIsFullDate + " " + thisDayIsFullTime);
 
                             HtmlGenericControl pTime = new HtmlGenericControl("p");
                             pTime.Attributes.Add("class", "pTime");
@@ -467,7 +471,7 @@ namespace Squash
 
                             if(Session["lip"] != null)
                             {
-                                hourBookingDiv.Controls.Add(method.BookingInfoMessage(lip, Convert.ToDateTime(thisDayIsFullDate)));
+                                hourBookingDiv.Controls.Add(method.BookingInfoMessage(lip, FullDateTime));
                             }
 
                             hourBookingDiv.Controls.Add(btnBook);
@@ -490,165 +494,7 @@ namespace Squash
 
 
         //HÄMTAR ALLA DAGAR OCH LÄGRAR DESSA I EN LISTA INNEHÅLLANDE DAGID, DAGENS NAMN, EN LISTA AV BANOR, EN LISTA AV BANTIDER
-        public List<Days> GetDayList()
-        {
-            List<Days> DayList = new List<Days>();
-
-            string query = "SELECT * FROM days";
-
-            MySqlDataReader dr = method.myReader(query, conn);
-
-            while (dr.Read())
-            {
-                Days day = new Days();
-                day.DayId = Convert.ToInt16(dr["DayId"]);
-                day.Description = dr["Description"].ToString();
-                day.Courts = new List<Courts>();
-                day.CourtTimes = new List<CourtTimes>();
-                DayList.Add(day);
-            }
-            conn.Close();
-
-            query = "SELECT * FROM courts";
-            dr = method.myReader(query, conn);
-            while (dr.Read())
-            {
-                foreach (Days D in DayList)
-                {
-                    Courts court = new Courts();
-                    court.CourtId = Convert.ToInt16(dr["CourtId"]);
-                    court.Description = dr["Description"].ToString();
-                    D.Courts.Add(court);
-                }
-
-            }
-            conn.Close();
-
-            query = "SELECT * FROM courttimes WHERE Active = 1";
-            dr = method.myReader(query, conn);
-            while (dr.Read())
-            {
-                foreach (Days D in DayList)
-                {
-                    CourtTimes courtTime = new CourtTimes();
-                    courtTime.CourtTimeId = Convert.ToInt16(dr["CourtTimeId"]);
-                    courtTime.StartHour = Convert.ToInt16(dr["StartHour"]);
-                    courtTime.Active = dr.GetBoolean(dr.GetOrdinal("Active"));
-                    D.CourtTimes.Add(courtTime);
-                }
-
-            }
-            conn.Close();
-            return DayList;
-        }
-
-        //HÄMTAR ALLA ABONNEMANGSBOKNINGAR OCH LAGRAR DESSA I EN LISTA
-        public List<Subscriptions> GetSubscriptionList()
-        {
-            List<Subscriptions> subscriptionList = new List<Subscriptions>();
-
-            string query = "SELECT s.CourtID, s.CourtTimeId, s.DayId, s.MemberId, u.Firstname, u.Surname FROM  subscriptions s "
-                         + "JOIN members m "
-                         + "ON m.MemberId = s.MemberId "
-                         + "JOIN users u "
-                         + "ON u.UserID = m.UserID;";
-
-            MySqlDataReader dr = method.myReader(query, conn);
-
-            while (dr.Read())
-            {
-                Subscriptions s = new Subscriptions();
-                s.CourtId = Convert.ToInt16(dr["CourtId"]);
-                s.CourtTimeId = Convert.ToInt16(dr["CourtTimeId"]);
-                s.DayId = Convert.ToInt16(dr["DayId"]);
-                s.MemberId = Convert.ToInt16(dr["MemberId"]);
-                s.FullMemberName = method.FixName(dr["Firstname"].ToString() + " " + dr["Surname"].ToString());
-                subscriptionList.Add(s);
-            }
-
-            return subscriptionList;
-        }
-
-        //HÄMTAR ALLA RESERVATIONER OCH LAGRAR DESSA I EN LISTA
-        public List<Reservations> GetReservationsList()
-        {
-            List<Reservations> reservationsList = new List<Reservations>();
-
-            string query = "SELECT r.CourtId, r.MemberId, r.StartDate, r.HandledBy, r.ReservationType, u.Firstname, u.Surname FROM reservations r "
-                         + "INNER JOIN members m ON m.MemberId = r.MemberId "
-                         + "INNER JOIN users u ON u.UserId = m.UserId;";
-
-            MySqlDataReader dr = method.myReader(query, conn);
-
-            while (dr.Read())
-            {
-                Reservations r = new Reservations();
-                r.CourtId = Convert.ToInt16(dr["CourtId"]);
-                r.MemberId = Convert.ToInt16(dr["MemberId"]);
-                r.StartDate = Convert.ToDateTime(dr["StartDate"]);
-                //if (dr["HandledBy"] != DBNull.Value)
-                //{
-                //    r.HandledBy = Convert.ToInt16(dr["HandledBy"]);
-                //}
-                //else
-                //{
-                //    r.HandledBy = 0;
-                //}
-                if (dr["ReservationType"] != DBNull.Value)
-                {
-                    r.ReservationType = Convert.ToInt16(dr["ReservationType"]);
-                }
-                else
-                {
-                    r.ReservationType = 0;
-                }
-                r.FullMemberName = method.FixName(dr["Firstname"].ToString() + " " + dr["Surname"].ToString());
-                reservationsList.Add(r);
-            }
-            return reservationsList;
-        }
-
-        //HÄMTAR ALLA FÖRETAG OCH LAGRAR DESSA I EN LISTA.
-        public List<Companies> GetCompanyList()
-        {
-            List<Companies> companiesList = new List<Companies>();
-            string query = "SELECT Id, Name FROM companies";
-
-            MySqlDataReader dr = method.myReader(query, conn);
-
-            while(dr.Read())
-            {
-                Companies c = new Companies();
-                c.Id = Convert.ToInt16(dr["Id"]);
-                c.Name = dr["Name"].ToString();
-
-                companiesList.Add(c);
-            }
-            conn.Close();
-
-            return companiesList;
-
-        }
-        
-        //HÄMTAR ALLA RADER FRÅN MEMBERCOMPANY OCH LAGRAR DESSA I EN LISTA.
-        public List<MemberCompany> GetMemberCompanyList()
-        {
-            List<MemberCompany> memberCompanyList = new List<MemberCompany>();
-            string query = "SELECT mc.MemberId, mc.CompanyId FROM membercompany mc";
-
-            MySqlDataReader dr = method.myReader(query, conn);
-
-            while(dr.Read())
-            {
-                MemberCompany mc = new MemberCompany();
-                mc.MemberId = Convert.ToInt16(dr["MemberId"]);
-                mc.CompanyId = Convert.ToInt16(dr["CompanyId"]);
-                memberCompanyList.Add(mc);
-            }
-            conn.Close();
-
-            return memberCompanyList;
-        }
+ 
 
 
         //public void ShowMyReservations()
@@ -959,7 +805,14 @@ namespace Squash
                     }
                     else
                     {
-                        cmd.Parameters.AddWithValue("RT", 1);
+                        if (method.IsSubscriber(lip) && Convert.ToDateTime(corrStartTime).AddHours(-6) < DateTime.Now && lip.member.MemberType == 1)
+                        {
+                            cmd.Parameters.AddWithValue("RT", 4);
+                        }
+                        else
+                        {
+                            cmd.Parameters.AddWithValue("RT", 1);
+                        }
                     }
 
                     //insertQuery += "(" + Convert.ToInt16(hf.Value) + ", " + lip.member.MemberId + ", '" + Convert.ToDateTime(corrStartTime) + "', NULL, 1),";
