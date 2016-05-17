@@ -209,10 +209,38 @@ namespace Squash.Classes
         #endregion
 
 
-        #region LoggedInBookingTable
+        #region BookingMethods
 
-        public void ShowMyBookings()
+        public int HasFloatReservation(DateTime dateToCheck, LoggedInPerson lip)
         {
+            int NoOfFloatResLeft = lip.memberfloatable.NoTimesWeek;
+
+            int todayNo = Convert.ToInt16(dateToCheck.DayOfWeek.ToString("d"));
+            if (todayNo == 0)
+            {
+                todayNo = 7;
+            }
+
+            int startDay = todayNo - 1;
+            int endDay = 7 - todayNo +1;
+
+            DateTime startDayOfWeek = dateToCheck.AddDays(-startDay);
+            DateTime endDayOfWeek = dateToCheck.AddDays(endDay);
+
+            string query = "SELECT COUNT(*) AS NoRes FROM reservations WHERE (StartDate BETWEEN DATE('"+startDayOfWeek+"') AND DATE('"+endDayOfWeek+"')) AND ReservationType = 3 AND MemberId = "+lip.member.MemberId+";";
+            MySqlConnection conn = myConn();
+            MySqlDataReader dr = myReader(query, conn);
+
+            if (dr.Read())
+            {
+                NoOfFloatResLeft -= Convert.ToInt16(dr["NoRes"]);
+                int test = Convert.ToInt16(dr["NoRes"]);
+            }
+            return NoOfFloatResLeft;
+            //KOLLA stardatum på veckan. todayno - 1; För att veta hur många dagar vi ska gå tillbaka (måndag).
+            //7-todayNo → så många dagar vi ska gå framåt.
+
+
 
         }
 

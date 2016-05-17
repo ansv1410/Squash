@@ -881,7 +881,7 @@ namespace Squash
 
             //HiddenFieldWithClass a = new HiddenFieldWithClass();
 
-            string insertQuery = "INSERT INTO reservations VALUES ";
+            string insertQuery = "INSERT INTO reservations(CourtId, MemberId, StartDate, ReservationType) VALUES(@CID, @MID, @SD, @RT)";
 
             List<Control> controlList = new List<Control>();
             List<HiddenFieldWithClass> hfwcList = new List<HiddenFieldWithClass>();
@@ -923,14 +923,11 @@ namespace Squash
 
             int allreadyBookedCounter = 0;
             string bookingMessageString = "<u>Du har bokat:</u> <br/>";
-            foreach(HiddenFieldWithClass hf in hfwcList)
+
+            foreach (HiddenFieldWithClass hf in hfwcList)
             {
-                //IF MEMBERTYPE == 3
-                //AND IF lip.member.MemberId INTE HAR NÅGON TID DENNA VECKA
-                //RESERVATIONTYPE = 3
                 string checkReservationQuery = "SELECT count(*) AS c FROM reservations WHERE CourtId = " + Convert.ToInt16(hf.Value) + " AND StartDate = '" + Convert.ToDateTime(corrStartTime) + "'; ";
                 MySqlDataReader dr = method.myReader(checkReservationQuery, conn);
-
                 if (dr.Read())
                 {
                     int count = Convert.ToInt16(dr["c"]);
@@ -938,40 +935,58 @@ namespace Squash
                     {
                         allreadyBookedCounter += 1;
                     }
-                    else
-                    {
-                        insertQuery += "(" + Convert.ToInt16(hf.Value) + ", " + lip.member.MemberId + ", '" + Convert.ToDateTime(corrStartTime) + "', NULL, 1),";
-                        string theDate = Convert.ToDateTime(corrStartTime).ToString("%d",  new CultureInfo("sv-SE"));
-                        string theMonth = Convert.ToDateTime(corrStartTime).ToString("%M", new CultureInfo("sv-SE"));
-                        string theTime = corrStartTime.Substring(11, 5);
-
-                        bookingMessageString += "Bana " + hf.Value + ", " + theDate + "/" + theMonth + " " + theTime + ". <br />";
-
-                        //string BM = "Bana " + hf.Value + ", " + theDate + "/" + theMonth + " " + Convert.ToDateTime(corrStartTime).ToString("hh:mm") + ". ";
-                        //bookingMessageString += "Bana " + hf.Value + ", " + Convert.ToDateTime(corrStartTime).Date.ToString("dd-MM") + " " + Convert.ToDateTime(corrStartTime).ToString("hh:mm") + ". ";
-
-                    }
                 }
             }
 
-            char[] s = { ',' };
-            string finalQuery = insertQuery.TrimEnd(s) + ";";
-            
 
-            MySqlCommand cmdInsertRes = new MySqlCommand(finalQuery, conn);
-
-            if(allreadyBookedCounter == 0)
+            if (allreadyBookedCounter == 0)
             {
-                conn.Close();
-                conn.Open();
-                cmdInsertRes.ExecuteNonQuery();
-                conn.Close();
-                
+                foreach (HiddenFieldWithClass hf in hfwcList)
+                {
+                    //IF MEMBERTYPE == 3 @CID, @MID, @SD, @RT
+                    //AND IF lip.member.MemberId INTE HAR NÅGON TID DENNA VECKA
+                    //RESERVATIONTYPE = 3
+                    MySqlCommand cmd = new MySqlCommand(insertQuery, conn);
+                    cmd.Parameters.AddWithValue("CID", Convert.ToInt16(hf.Value));
+                    cmd.Parameters.AddWithValue("MID", lip.member.MemberId);
+                    cmd.Parameters.AddWithValue("SD", Convert.ToDateTime(corrStartTime));
+
+                    int playHour = Convert.ToInt16(corrStartTime.Substring(11,2));
+
+                    if (lip.member.MemberType == 3 && (playHour >= 6 && playHour <= 16) && method.HasFloatReservation(Convert.ToDateTime(corrStartTime), lip) > 0)
+                    {
+                        cmd.Parameters.AddWithValue("RT", 3);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("RT", 1);
+                    }
+
+                    //insertQuery += "(" + Convert.ToInt16(hf.Value) + ", " + lip.member.MemberId + ", '" + Convert.ToDateTime(corrStartTime) + "', NULL, 1),";
+                    string theDate = Convert.ToDateTime(corrStartTime).ToString("%d", new CultureInfo("sv-SE"));
+                    string theMonth = Convert.ToDateTime(corrStartTime).ToString("%M", new CultureInfo("sv-SE"));
+                    string theTime = corrStartTime.Substring(11, 5);
+
+                    bookingMessageString += "Bana " + hf.Value + ", " + theDate + "/" + theMonth + " " + theTime + ". <br />";
+
+                    //string BM = "Bana " + hf.Value + ", " + theDate + "/" + theMonth + " " + Convert.ToDateTime(corrStartTime).ToString("hh:mm") + ". ";
+                    //bookingMessageString += "Bana " + hf.Value + ", " + Convert.ToDateTime(corrStartTime).Date.ToString("dd-MM") + " " + Convert.ToDateTime(corrStartTime).ToString("hh:mm") + ". ";
+                    conn.Close();
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                    conn.Dispose();
+
+                }
             }
             else
             {
-                bookingMessageString = "Hoppsan, någon hann före, en eller flera av dina valda bantider är redan bokad.";
+              bookingMessageString = "Hoppsan, någon hann före, en eller flera av dina valda bantider är redan bokad.";
             }
+
+           
+            
+
                 
             bool showBMessage = true;
             Session["bookingMessage"] = bookingMessageString;
@@ -1046,43 +1061,6 @@ namespace Squash
             Response.Redirect("Booking.aspx");
         }
 
-        //protected void btnCancelOK_Command(object sender, CommandEventArgs e)
-        //{
-        //    string allIDs = e.CommandArgument.ToString();
-
-        //    string[] IDs = allIDs.Split(',');
-        //    List<Reservations> lr = new List<Reservations>();
-
-        //    string query = "START TRANSACTION;";
-
-        //    for (int i = 0; i < IDs.Length; i++)
-        //    {
-        //        Reservations r = new Reservations();
-        //        r.CourtId = Convert.ToInt16(IDs[i].Substring(3,1));
-        //        string yyyymmddhhmmss = IDs[i].Substring(5, 10);
-        //        yyyymmddhhmmss += IDs[i].Substring(16) + ":00:00";
-        //        r.StartDate = Convert.ToDateTime(yyyymmddhhmmss);
-
-        //        lr.Add(r);
-
-        //        query += "DELETE FROM reservations WHERE CourtId = @CID" + i.ToString() + ", AND StartDate = @SD" + i.ToString() + ";";
-
-        //    }
-        //    query += "COMMIT;";
-        //    MySqlConnection conn = method.myConn();
-        //    MySqlCommand cmd = new MySqlCommand(query, conn);
-        //    for (int i = 0; i < lr.Count; i++)
-        //    {
-        //        cmd.Parameters.AddWithValue("CID"+i.ToString(), lr[i].CourtId);
-        //        cmd.Parameters.AddWithValue("SD" + i.ToString(), lr[i].StartDate);
-        //    }
-
-        //    conn.Open();
-        //    cmd.ExecuteNonQuery();
-        //    conn.Close();
-        //    conn.Dispose();
-
-        //    Response.Redirect("Booking.aspx");
-        //}
+ 
     }
 }
