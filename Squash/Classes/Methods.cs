@@ -565,6 +565,31 @@ namespace Squash.Classes
             return bookingInfoTextDiv;
         }
 
+
+        public DataTable PlayerStats(DateTime startDate, DateTime endDate)
+        {
+            MySqlConnection conn = myConn();
+            DataTable dt = new DataTable();
+
+            string query = "SELECT CONCAT(u.Firstname, ' ', u.Surname) AS name, COUNT(*) as NoOfReservations FROM reservations r, users u "
+                            + "INNER JOIN members m ON m.UserId = u.UserId "
+                            + "WHERE r.StartDate BETWEEN DATE('" + startDate + "') AND DATE('" + endDate + "') AND r.ReservationType != 3 AND r.MemberId = m.MemberId "
+                            + "GROUP BY r.MemberId "
+                            + "ORDER BY NoOfReservations DESC, Surname ASC, Firstname ASC LIMIT 5; ";
+
+
+
+            conn.Open();
+            MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
+            da.Fill(dt);
+            conn.Close();
+            conn.Dispose();
+            da.Dispose();
+
+            return dt;
+        }
+
+
         #endregion
 
 
