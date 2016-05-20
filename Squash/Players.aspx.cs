@@ -39,33 +39,54 @@ namespace Squash
                 //Response.Write("<script>alert('" + "Du är inte inloggad." + "')</script>");
             }
 
-            int monthNumber = DateTime.Now.Month;
 
-            for (int i = 1; i < 7; i++)
+            BuildCharts(6);
+        }
+
+
+        public void BuildCharts(int noOfMonths)
+        {
+
+            for (int i = 1; i < noOfMonths+1; i++)
             {
                 DateTime queryMonth = DateTime.Now.AddMonths(1-i);
                 DateTime toMonth = queryMonth.AddMonths(1);
 
+                string titleMonth = method.FixName(queryMonth.ToString("MMMM", new CultureInfo("sv-SE")));
+                string titleShortMonth = method.FixName(queryMonth.ToString("MMM", new CultureInfo("sv-SE")));
+                string titleYear = queryMonth.ToString("yyyy", new CultureInfo("sv-SE"));
+                string selectorId = "month" + i.ToString();
+                string chartDivId = "chartDiv" + i.ToString();;
+
+
+
+                HtmlGenericControl monthSelector = new HtmlGenericControl("div");
+                monthSelector.Attributes.Add("id", selectorId);
+                monthSelector.Attributes.Add("class", "monthSelector");
+                monthSelector.Style.Add("width", method.DivideWidth(100, noOfMonths));
+                monthSelector.InnerHtml = titleShortMonth + "<br />" + titleYear;
+                monthSelector.Attributes.Add("onclick", "MonthVisible('" + chartDivId + "', '" + selectorId + "')");
+                
 
                 HtmlGenericControl chartDiv = new HtmlGenericControl("div");
-                chartDiv.Attributes.Add("id", "chartDiv" + i);
+                chartDiv.Attributes.Add("id", chartDivId);
                 if (i == 1)
                 {
-                    chartDiv.Attributes.Add("class", "chartDivs chartVisible");
-
+                    monthSelector.Attributes.Add("class", "monthSelector activeMonth");
+                    chartDiv.Attributes.Add("class", "chartDiv chartVisible");
                 }
                 else
                 {
-                    chartDiv.Attributes.Add("class", "chartDivs");
+                    chartDiv.Attributes.Add("class", "chartDiv");
 
                 }
 
-                string titleMonth = method.FixName(queryMonth.ToString("MMMM", new CultureInfo("sv-SE")));
-                string titleYear = queryMonth.ToString("yyyy", new CultureInfo("sv-SE"));
+                monthPickerDiv.Controls.Add(monthSelector);
+
 
 
                 Chart chart = new Chart();
-                chart.Titles.Add(new Title(titleMonth + " - " + titleYear, Docking.Top, new Font("Tahoma", 20f, FontStyle.Bold), Color.Black));
+                //chart.Titles.Add(new Title(titleMonth + " - " + titleYear, Docking.Top, new Font("Tahoma", 20f, FontStyle.Bold), Color.Black));
 
                 chart.Series.Add("Series1");
                 chart.Attributes.Add("class", "monthChart");
@@ -102,45 +123,7 @@ namespace Squash
                 chartDiv.Controls.Add(chart);
                 statsDiv.Controls.Add(chartDiv);
             }
-
-
-
-
-
-
-            //Chart chPlayers = new Chart();
-
-            //MySqlDataReader dr = method.myReader(query, conn);
-            
-                
-            //Series s = new Series("mySeries");
-            //chPlayers.Series.Add(s);
-
-            //while (dr.Read())
-            //{
-            //    PlayerStats PS = new PlayerStats();
-            //    PS.fullName = dr["name"].ToString();
-            //    PS.resCount = Convert.ToInt16(dr["NoOfReservations"]);
-            //    PSList.Add(PS);
-
-
-
-            //    chPlayers.Series["mySeries"].Points.AddXY(dr["name"].ToString(), dr["NoOfReservations"].ToString());
-
-                    
-            //}
-
-            //chPlayers.DataSource = PSList;
-            //Series s = new Series("mySeries");
-
-            //chPlayers.Series.Add(s);
-            //chPlayers.Series["mySeries"].XValueMember = "fullName";
-            //chPlayers.Series["mySeries"].YValueMembers = "resCount";
-            //chPlayers.DataBind();
-
-            //chartDiv.Controls.Add(chPlayers);
-
-                
         }
+
     }
 }

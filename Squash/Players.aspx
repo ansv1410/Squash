@@ -12,7 +12,6 @@
             <div id="monthPickerDiv" runat="server">
 
             </div>
-
         </div>
 
 
@@ -23,4 +22,21 @@
 
 
     </div>
+
+
+    <script>
+        function MonthVisible(chartId, selectorId) {
+            var id = "#" + chartId;
+            var sId = "#" + selectorId;
+
+            $('.chartDiv').removeClass('chartVisible');
+            $(id).addClass('chartVisible')
+
+            $('.monthSelector').removeClass('activeMonth');
+            $(sId).addClass('activeMonth')
+        };
+    </script>
+
+
+
 </asp:Content>
