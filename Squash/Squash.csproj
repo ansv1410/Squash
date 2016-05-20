@@ -435,6 +435,7 @@
     <Compile Include="Classes\ReservationTypes.cs" />
     <Compile Include="Classes\StatusCodes.cs" />
     <Compile Include="Classes\Subscriptions.cs" />
+    <Compile Include="Classes\TitleWithToString.cs" />
     <Compile Include="Classes\Users.cs" />
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>

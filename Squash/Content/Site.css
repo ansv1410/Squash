@@ -945,7 +945,21 @@ input[type="checkbox"]{
 
 /*BOOKING - SLUT*/
 
+/*PLAYERS*/
 
+#MainContent_statsDiv{
+    width: 100%;
+}
+.chartDiv{
+    width: 100%;
+}
+.monthChart{
+    width: 100% !important;
+    height: auto !important;
+    
+}
+
+/*PLAYERS - SLUT*/
 
 
 

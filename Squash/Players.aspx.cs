@@ -18,6 +18,7 @@ using System.Net;
 using System.IO;
 using System.Globalization;
 using System.Data;
+using System.Drawing;
 
 namespace Squash
 {
@@ -42,20 +43,56 @@ namespace Squash
 
             for (int i = 1; i < 7; i++)
             {
+                DateTime queryMonth = DateTime.Now.AddMonths(1-i);
+                DateTime toMonth = queryMonth.AddMonths(1);
+
+
                 HtmlGenericControl chartDiv = new HtmlGenericControl("div");
                 chartDiv.Attributes.Add("id", "chartDiv" + i);
-                chartDiv.Attributes.Add("class", "chartDivs");
+                if (i == 1)
+                {
+                    chartDiv.Attributes.Add("class", "chartDivs chartVisible");
 
+                }
+                else
+                {
+                    chartDiv.Attributes.Add("class", "chartDivs");
+
+                }
+
+                string titleMonth = method.FixName(queryMonth.ToString("MMMM", new CultureInfo("sv-SE")));
+                string titleYear = queryMonth.ToString("yyyy", new CultureInfo("sv-SE"));
 
 
                 Chart chart = new Chart();
+                chart.Titles.Add(new Title(titleMonth + " - " + titleYear, Docking.Top, new Font("Tahoma", 20f, FontStyle.Bold), Color.Black));
+
                 chart.Series.Add("Series1");
-                chart.ChartAreas.Add("ChartArea1");
-                
+                chart.Attributes.Add("class", "monthChart");
+
+                ChartArea ChartArea1 = new ChartArea("ChartArea1");
+                //chart.ChartAreas.Add("ChartArea1");
+
+
+                //System.Web.UI.DataVisualization.Charting.Title bokos = new System.Web.UI.DataVisualization.Charting.Title("Los Bokos", Docking.Top, new Font("Verdana", 12f, FontStyle.Bold), Color.Black);
+                ChartArea1.AxisY = new Axis { LabelStyle = new LabelStyle() { Font = new Font("Tahoma", 15.5f) } };
+                ChartArea1.AxisY.LabelAutoFitStyle = LabelAutoFitStyles.None;
+
+                ChartArea1.AxisY.Title = "Bokningar";
+                ChartArea1.AxisY.TitleFont = new Font("Tahoma", 15f);
+
+                ChartArea1.AxisX = new Axis { LabelStyle = new LabelStyle() { Font = new Font("Tahoma", 15.5f) } };
+                ChartArea1.AxisX.LabelAutoFitStyle = LabelAutoFitStyles.None;
+
+
                 
 
-                DateTime queryMonth = DateTime.Now.AddMonths(1-i);
-                DateTime toMonth = queryMonth.AddMonths(1);
+                chart.ChartAreas.Add(ChartArea1);
+                chart.Width = 1000;
+                chart.Height = 500;
+                chart.Palette = ChartColorPalette.BrightPastel;
+                
+
 
                 DataView dv = method.PlayerStats(queryMonth, toMonth).DefaultView;
 
