@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.DataVisualization.Charting;
 using Squash.Models;
 using Microsoft.AspNet.Identity;
@@ -39,14 +40,30 @@ namespace Squash
 
             int monthNumber = DateTime.Now.Month;
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 1; i < 7; i++)
             {
-                DateTime queryMonth = DateTime.Now.AddMonths(-i);
+                HtmlGenericControl chartDiv = new HtmlGenericControl("div");
+                chartDiv.Attributes.Add("id", "chartDiv" + i);
+                chartDiv.Attributes.Add("class", "chartDivs");
+
+
+
+                Chart chart = new Chart();
+                chart.Series.Add("Series1");
+                chart.ChartAreas.Add("ChartArea1");
+                
+                
+
+                DateTime queryMonth = DateTime.Now.AddMonths(1-i);
                 DateTime toMonth = queryMonth.AddMonths(1);
 
                 DataView dv = method.PlayerStats(queryMonth, toMonth).DefaultView;
 
-                chPlayers.Series["Series1"].Points.DataBindXY(dv, "name", dv, "NoOfReservations");
+                chart.Series["Series1"].Points.DataBindXY(dv, "name", dv, "NoOfReservations");
+
+
+                chartDiv.Controls.Add(chart);
+                statsDiv.Controls.Add(chartDiv);
             }
 
 
@@ -84,7 +101,7 @@ namespace Squash
             //chPlayers.Series["mySeries"].YValueMembers = "resCount";
             //chPlayers.DataBind();
 
-            chartDiv.Controls.Add(chPlayers);
+            //chartDiv.Controls.Add(chPlayers);
 
                 
         }

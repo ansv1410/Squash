@@ -571,9 +571,13 @@ namespace Squash.Classes
             MySqlConnection conn = myConn();
             DataTable dt = new DataTable();
 
+            DateTime startMonth = Convert.ToDateTime(startDate.ToString("yyyy-MM"));
+            DateTime endMonth = Convert.ToDateTime(endDate.ToString("yyyy-MM"));
+
+
             string query = "SELECT CONCAT(u.Firstname, ' ', u.Surname) AS name, COUNT(*) as NoOfReservations FROM reservations r, users u "
                             + "INNER JOIN members m ON m.UserId = u.UserId "
-                            + "WHERE r.StartDate BETWEEN DATE('" + startDate + "') AND DATE('" + endDate + "') AND r.ReservationType != 3 AND r.MemberId = m.MemberId "
+                            + "WHERE r.StartDate BETWEEN '" + startMonth + "' AND DATE('" + endMonth + "') AND r.ReservationType != 3 AND r.MemberId = m.MemberId "
                             + "GROUP BY r.MemberId "
                             + "ORDER BY NoOfReservations DESC, Surname ASC, Firstname ASC LIMIT 5; ";
 

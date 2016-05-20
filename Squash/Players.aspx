@@ -6,16 +6,21 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="pageDiv">
-        <div id="chartDiv" runat="server">
-            <asp:Chart ID="chPlayers" runat="server">
-                <Series>
-                    <asp:Series Name="Series1"></asp:Series>
-                </Series>
-                <ChartAreas>
-                    <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
-                </ChartAreas>
-            </asp:Chart>
+        
+        
+        <div id="statsDiv" runat="server">
+            <div id="monthPickerDiv" runat="server">
+
+            </div>
+
         </div>
+
+
+
+        <div id="addressListDiv" runat="server">
+
+        </div>
+
 
     </div>
 </asp:Content>

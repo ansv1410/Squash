@@ -13,21 +13,30 @@ namespace Squash {
     public partial class Players {
         
         /// <summary>
-        /// chartDiv control.
+        /// statsDiv control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl chartDiv;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl statsDiv;
         
         /// <summary>
-        /// chPlayers control.
+        /// monthPickerDiv control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.DataVisualization.Charting.Chart chPlayers;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl monthPickerDiv;
+        
+        /// <summary>
+        /// addressListDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl addressListDiv;
     }
 }
