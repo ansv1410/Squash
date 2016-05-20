@@ -66,8 +66,7 @@ namespace Squash.Account
             {
                 if (dr.Read())
                 {
-                    //if(dr.HasRows)
-                    //{
+                    
                     Users u = new Users();
                     u.Id = Convert.ToInt32(dr["Id"].ToString());
                     u.UserId = Convert.ToInt32(dr["UserId"].ToString());
@@ -121,9 +120,9 @@ namespace Squash.Account
                                 }
                             }
                             
+                            conn.Close();
                             
                             int memberId = m.MemberId;
-                            conn.Close();
 
                             Logins l = new Logins();
                             l.MemberId = memberId;
@@ -149,7 +148,10 @@ namespace Squash.Account
                             lip.member = m;
                             lip.logins = l;
                             lip.company = c;
-
+                            if (lip.member.MemberType == 3)
+                            {
+                                lip.memberfloatable = lip.IsMF();
+                            }
                             bool showBookingMessage = false;
                             string bookingMessage = "";
 

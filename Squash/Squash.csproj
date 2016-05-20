@@ -430,6 +430,7 @@
     <Compile Include="Classes\Messages.cs" />
     <Compile Include="Classes\Methods.cs" />
     <Compile Include="Classes\News.cs" />
+    <Compile Include="Classes\PlayerStats.cs" />
     <Compile Include="Classes\Reservations.cs" />
     <Compile Include="Classes\ReservationTypes.cs" />
     <Compile Include="Classes\StatusCodes.cs" />

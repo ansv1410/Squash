@@ -209,11 +209,209 @@ namespace Squash.Classes
         #endregion
 
 
-        #region LoggedInBookingTable
+        #region BookingMethods
 
-        public void ShowMyBookings()
+        public int HasFloatReservation(DateTime dateToCheck, LoggedInPerson lip)
         {
+            int NoOfFloatResLeft = lip.memberfloatable.NoTimesWeek;
 
+            int todayNo = Convert.ToInt16(dateToCheck.DayOfWeek.ToString("d"));
+            if (todayNo == 0)
+            {
+                todayNo = 7;
+            }
+
+            int startDay = todayNo - 1;
+            int endDay = 7 - todayNo +1;
+
+            DateTime startDayOfWeek = dateToCheck.AddDays(-startDay);
+            DateTime endDayOfWeek = dateToCheck.AddDays(endDay);
+
+            string query = "SELECT COUNT(*) AS NoRes FROM reservations WHERE (StartDate BETWEEN DATE('"+startDayOfWeek+"') AND DATE('"+endDayOfWeek+"')) AND ReservationType = 3 AND MemberId = "+lip.member.MemberId+";";
+            MySqlConnection conn = myConn();
+            MySqlDataReader dr = myReader(query, conn);
+
+            if (dr.Read())
+            {
+                NoOfFloatResLeft -= Convert.ToInt16(dr["NoRes"]);
+                int test = Convert.ToInt16(dr["NoRes"]);
+            }
+            return NoOfFloatResLeft;
+            //KOLLA stardatum på veckan. todayno - 1; För att veta hur många dagar vi ska gå tillbaka (måndag).
+            //7-todayNo → så många dagar vi ska gå framåt.
+
+
+
+        }
+        public bool IsSubscriber(LoggedInPerson lip)
+        {
+            foreach (Subscriptions sub in GetSubscriptionList())
+            {
+                if (sub.MemberId == lip.member.MemberId)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        public List<Days> GetDayList()
+        {
+            List<Days> DayList = new List<Days>();
+
+            string query = "SELECT * FROM days";
+            MySqlConnection conn = myConn();
+            MySqlDataReader dr = myReader(query, conn);
+
+            while (dr.Read())
+            {
+                Days day = new Days();
+                day.DayId = Convert.ToInt16(dr["DayId"]);
+                day.Description = dr["Description"].ToString();
+                day.Courts = new List<Courts>();
+                day.CourtTimes = new List<CourtTimes>();
+                DayList.Add(day);
+            }
+            conn.Close();
+
+            query = "SELECT * FROM courts";
+            dr = myReader(query, conn);
+            while (dr.Read())
+            {
+                foreach (Days D in DayList)
+                {
+                    Courts court = new Courts();
+                    court.CourtId = Convert.ToInt16(dr["CourtId"]);
+                    court.Description = dr["Description"].ToString();
+                    D.Courts.Add(court);
+                }
+
+            }
+            conn.Close();
+
+            query = "SELECT * FROM courttimes WHERE Active = 1";
+            dr = myReader(query, conn);
+            while (dr.Read())
+            {
+                foreach (Days D in DayList)
+                {
+                    CourtTimes courtTime = new CourtTimes();
+                    courtTime.CourtTimeId = Convert.ToInt16(dr["CourtTimeId"]);
+                    courtTime.StartHour = Convert.ToInt16(dr["StartHour"]);
+                    courtTime.Active = dr.GetBoolean(dr.GetOrdinal("Active"));
+                    D.CourtTimes.Add(courtTime);
+                }
+
+            }
+            conn.Close();
+            return DayList;
+        }
+
+        //HÄMTAR ALLA ABONNEMANGSBOKNINGAR OCH LAGRAR DESSA I EN LISTA
+        public List<Subscriptions> GetSubscriptionList()
+        {
+            List<Subscriptions> subscriptionList = new List<Subscriptions>();
+
+            string query = "SELECT s.CourtID, s.CourtTimeId, s.DayId, s.MemberId, u.Firstname, u.Surname FROM  subscriptions s "
+                         + "JOIN members m "
+                         + "ON m.MemberId = s.MemberId "
+                         + "JOIN users u "
+                         + "ON u.UserID = m.UserID;";
+            MySqlConnection conn = myConn();
+            MySqlDataReader dr = myReader(query, conn);
+
+            while (dr.Read())
+            {
+                Subscriptions s = new Subscriptions();
+                s.CourtId = Convert.ToInt16(dr["CourtId"]);
+                s.CourtTimeId = Convert.ToInt16(dr["CourtTimeId"]);
+                s.DayId = Convert.ToInt16(dr["DayId"]);
+                s.MemberId = Convert.ToInt16(dr["MemberId"]);
+                s.FullMemberName = FixName(dr["Firstname"].ToString() + " " + dr["Surname"].ToString());
+                subscriptionList.Add(s);
+            }
+
+            return subscriptionList;
+        }
+
+        //HÄMTAR ALLA RESERVATIONER OCH LAGRAR DESSA I EN LISTA
+        public List<Reservations> GetReservationsList()
+        {
+            List<Reservations> reservationsList = new List<Reservations>();
+
+            string query = "SELECT r.CourtId, r.MemberId, r.StartDate, r.HandledBy, r.ReservationType, u.Firstname, u.Surname FROM reservations r "
+                         + "INNER JOIN members m ON m.MemberId = r.MemberId "
+                         + "INNER JOIN users u ON u.UserId = m.UserId;";
+            MySqlConnection conn = myConn();
+            MySqlDataReader dr = myReader(query, conn);
+
+            while (dr.Read())
+            {
+                Reservations r = new Reservations();
+                r.CourtId = Convert.ToInt16(dr["CourtId"]);
+                r.MemberId = Convert.ToInt16(dr["MemberId"]);
+                r.StartDate = Convert.ToDateTime(dr["StartDate"]);
+                //if (dr["HandledBy"] != DBNull.Value)
+                //{
+                //    r.HandledBy = Convert.ToInt16(dr["HandledBy"]);
+                //}
+                //else
+                //{
+                //    r.HandledBy = 0;
+                //}
+                if (dr["ReservationType"] != DBNull.Value)
+                {
+                    r.ReservationType = Convert.ToInt16(dr["ReservationType"]);
+                }
+                else
+                {
+                    r.ReservationType = 0;
+                }
+                r.FullMemberName = FixName(dr["Firstname"].ToString() + " " + dr["Surname"].ToString());
+                reservationsList.Add(r);
+            }
+            return reservationsList;
+        }
+
+        //HÄMTAR ALLA FÖRETAG OCH LAGRAR DESSA I EN LISTA.
+        public List<Companies> GetCompanyList()
+        {
+            List<Companies> companiesList = new List<Companies>();
+            string query = "SELECT Id, Name FROM companies";
+            MySqlConnection conn = myConn();
+            MySqlDataReader dr = myReader(query, conn);
+
+            while (dr.Read())
+            {
+                Companies c = new Companies();
+                c.Id = Convert.ToInt16(dr["Id"]);
+                c.Name = dr["Name"].ToString();
+
+                companiesList.Add(c);
+            }
+            conn.Close();
+
+            return companiesList;
+
+        }
+
+        //HÄMTAR ALLA RADER FRÅN MEMBERCOMPANY OCH LAGRAR DESSA I EN LISTA.
+        public List<MemberCompany> GetMemberCompanyList()
+        {
+            List<MemberCompany> memberCompanyList = new List<MemberCompany>();
+            string query = "SELECT mc.MemberId, mc.CompanyId FROM membercompany mc";
+            MySqlConnection conn = myConn();
+            MySqlDataReader dr = myReader(query, conn);
+
+            while (dr.Read())
+            {
+                MemberCompany mc = new MemberCompany();
+                mc.MemberId = Convert.ToInt16(dr["MemberId"]);
+                mc.CompanyId = Convert.ToInt16(dr["CompanyId"]);
+                memberCompanyList.Add(mc);
+            }
+            conn.Close();
+
+            return memberCompanyList;
         }
 
         #endregion
@@ -286,19 +484,111 @@ namespace Squash.Classes
 
             HtmlGenericControl bookingInfoText = new HtmlGenericControl("p");
             bookingInfoText.Attributes.Add("class", "bookingInfoText");
+
+            string divText = "";
+
             if (HasCLRequest(lip, chosenDay))
             {
-                bookingInfoText.InnerHtml = "• Eftersom du redan har sett dagens PIN-kod kommer du inte kunna avboka tiden.";
+                divText += "• Eftersom Ni redan har sett dagens PIN-kod kommer du inte kunna avboka tiden. <br />";
+
+                if (lip.member.MemberType == 2)
+                {
+                    divText += "• Fullpris debiteras kontoansvarig.";
+                }
+                else if (lip.member.MemberType == 3)
+                {
+                    string onlyDate = chosenDay.ToString("yyyy-MM-dd");
+                    DateTime floatableStart = Convert.ToDateTime(onlyDate + " 06:00:00");
+                    DateTime floatableEnd = Convert.ToDateTime(onlyDate + " 16:00:00");
+                    if(chosenDay >= floatableStart && chosenDay <= floatableEnd)
+                    {
+                        int resLeft = HasFloatReservation(chosenDay, lip);
+                    
+                        if (resLeft > 0)
+                        {
+                            divText += "• Ni har <strong>" + resLeft + "</strong> fria bokningar kvar för den valda veckan, övriga bokningar debiteras fullpris.";
+                        }
+                        else
+                        {
+                            divText += "• Ni har <strong>inga</strong> fria bokningar kvar för den valda veckan, vid bokning debiteras fullpris.";
+                        }
+                    }
+                    else
+                    {
+                        divText += "• Tiden ligger utanför abonnemangets tidsintervall (<strong>6 - 16</strong>) och debiteras fullpris.";
+                    }
+
+                }
             }
             else
             {
-                bookingInfoText.InnerHtml = "• Du kan avboka senast en timme i förväg. PIN-koden visas längst upp på sidan. <br /> • Vill du se koden nu trycker du på Visa PIN längst upp på sidan.";
+                divText += "• Ni kan avboka senast en timme i förväg. PIN-koden visas längst upp på sidan. <br />";
+                if (lip.member.MemberType == 1)
+                {
+                    divText += "• Vill du se koden nu trycker du på Visa PIN längst upp på sidan.";
+                }
+                else if (lip.member.MemberType == 2)
+                {
+                    divText += "• Fullpris debiteras kontoansvarig.";
+                }
+                else if (lip.member.MemberType == 3)
+                {
+                    string onlyDate = chosenDay.ToString("yyyy-MM-dd");
+                    DateTime floatableStart = Convert.ToDateTime(onlyDate + " 06:00:00");
+                    DateTime floatableEnd = Convert.ToDateTime(onlyDate + " 16:00:00");
+                    if(chosenDay >= floatableStart && chosenDay <= floatableEnd)
+                    {
+                        int resLeft = HasFloatReservation(chosenDay, lip);
+                    
+                        if (resLeft > 0)
+                        {
+                            divText += "• Ni har <strong>" + resLeft + "</strong> fria bokningar kvar för den valda veckan, övriga bokningar debiteras fullpris.";
+                        }
+                        else
+                        {
+                            divText += "• Ni har <strong>inga</strong> fria bokningar kvar för den valda veckan, vid bokning debiteras fullpris.";
+                        }
+                    }
+                    else
+                    {
+                        divText += "• Tiden ligger utanför abonnemangets tidsintervall (<strong>6 - 16</strong>) och debiteras fullpris.";
+                    }
+
+                }
             }
+
+            bookingInfoText.InnerHtml = divText;
+
             
             bookingInfoTextDiv.Controls.Add(bookingInfoText);
 
             return bookingInfoTextDiv;
         }
+
+
+        public DataTable PlayerStats(DateTime startDate, DateTime endDate)
+        {
+            MySqlConnection conn = myConn();
+            DataTable dt = new DataTable();
+
+            string query = "SELECT CONCAT(u.Firstname, ' ', u.Surname) AS name, COUNT(*) as NoOfReservations FROM reservations r, users u "
+                            + "INNER JOIN members m ON m.UserId = u.UserId "
+                            + "WHERE r.StartDate BETWEEN DATE('" + startDate + "') AND DATE('" + endDate + "') AND r.ReservationType != 3 AND r.MemberId = m.MemberId "
+                            + "GROUP BY r.MemberId "
+                            + "ORDER BY NoOfReservations DESC, Surname ASC, Firstname ASC LIMIT 5; ";
+
+
+
+            conn.Open();
+            MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
+            da.Fill(dt);
+            conn.Close();
+            conn.Dispose();
+            da.Dispose();
+
+            return dt;
+        }
+
 
         #endregion
 
