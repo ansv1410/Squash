@@ -388,7 +388,16 @@ namespace Squash
                                         courtDiv.Attributes.Add("onclick", "OpenBookingOverlay('" + hourBookingDivId + "')");
                                         courtImgDiv.Attributes.Add("class", "courtImgDivFree");
                                         courtImgDiv.Attributes.Add("onclick", "chosenCourt('" + "hf" + bookingDivId + "','" + C.CourtId.ToString() + "','" + bookingDivId + "')");
-                                        courtDiv.Attributes.Add("class", "courtDivs freeCourt masterTiptool B" + C.CourtId);
+
+                                        if (lip.member.MemberType == 3 && CT.StartHour < 6 || CT.StartHour > 16) 
+                                        {
+                                            courtDiv.Attributes.Add("class", "freeCourt fcsDivs courtDivs masterTiptool B" + C.CourtId); 
+                                        }
+                                        else
+                                        {
+                                            courtDiv.Attributes.Add("class", "courtDivs freeCourt masterTiptool B" + C.CourtId);
+                                        }
+
                                         courtDiv.Attributes.Add("title", "Klicka för att boka Bana " + C.CourtId.ToString() + ", " + thisDayIs + " " + thisDayIsDate + "/" + thisDayIsMonth);
                                         descriptionDiv.Controls.Add(pBookedBy);
 
