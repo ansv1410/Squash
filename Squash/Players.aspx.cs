@@ -133,10 +133,13 @@ namespace Squash
             {
                 if(u.PublicAddres != 0)
                 {
-                string liObject = "<p class='listName'>"+u.FirstName+ " " +u.SurName+"</p> <p class='listStreet'>"+u.StreatAddress+"</p> <p class='listZip'>"+u.ZipCode+"</p> <p class='listCity'>"+u.City+"</p> <p class='listPhone'>"+u.Phone+"</p>";
+                    string liObject = "<h5 class='listName'>" + u.FirstName + " " + u.SurName + "</h5><p class='listStreet'>" + u.StreatAddress + "</p><br /><p class='listZip'>" + u.ZipCode + " </p> <p class='listCity'>" + u.City + "</p><br /><p class='listPhone'>" + u.Phone + "</p><hr />";
                 HtmlGenericControl li = new HtmlGenericControl("li");
                 li.InnerHtml = liObject;
                 userList.Controls.Add(li);
+
+
+
                 }
             }
 

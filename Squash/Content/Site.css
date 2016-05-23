@@ -1053,9 +1053,20 @@ input[type="checkbox"]{
     background-color:#C7C7C7;
 }
 
-
+#tbSearchUser{
+    border-radius:4px;
+    margin-bottom:1%;
+}
+#MainContent_userList{
+    padding: 0px;
+}
 #MainContent_userList > li > p{
     display:inline;
+}
+#MainContent_userList > li{
+    /*margin-bottom:5%;*/
+    /*border-bottom:1px groove grey;*/
+    list-style-type: none;
 }
 
 
@@ -1159,6 +1170,10 @@ input[type="checkbox"]{
     #scheduleH4{
         margin-left:8%;
         padding-left:0%;
+    }
+    #MainContent_addressListDiv{
+        width: 93%;
+        margin: 0 auto;
     }
 }
 @media screen and (min-width: 992px){

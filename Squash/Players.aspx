@@ -18,11 +18,7 @@
         <div id="addressListDiv" runat="server">
             <div id="users">
 
-                <input class="search" placeholder="Search" />
-                <button class="sort" data-sort="name">
-                    Sort
-                </button>
-
+                <input id="tbSearchUser" class="search" placeholder="Sök" />
                 <ul id="userList" class="list" runat="server">
                  
                 </ul>
