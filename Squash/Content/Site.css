@@ -857,8 +857,11 @@ h4{
     float:right;
     margin-top:1%;
 }
-#spelSchemaH2{
+#scheduleH2{
     margin-top:40px;
+}
+#scheduleH4{
+    padding-left:2%;
 }
 
 #MainContent_cancelReservationDiv{
@@ -1145,7 +1148,11 @@ input[type="checkbox"]{
     .navbar-brand{
         margin-right:0%;
     }
-    #spelSchemaH2{
+    #scheduleH2{
+        margin-left:8%;
+        padding-left:0%;
+    }
+    #scheduleH4{
         margin-left:8%;
         padding-left:0%;
     }
