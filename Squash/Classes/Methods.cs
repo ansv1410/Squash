@@ -203,7 +203,27 @@ namespace Squash.Classes
 
         public string FixName(string text)
         {
-            return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(text);
+            string correctName = "";
+            int count = 0;
+
+            foreach(char c in text)
+            {
+                count++;
+                if (count == 1 && c.ToString() == " ")
+                {
+                    correctName += "";
+                }
+                else
+                {
+                    correctName += c;
+                }
+            }
+
+            CultureInfo ci = new CultureInfo("sv-SE");
+
+            return ci.TextInfo.ToTitleCase(correctName);
+
+            //return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(text);
         }
 
         #endregion
