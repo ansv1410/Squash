@@ -17,6 +17,7 @@
         <div id="divBookMess" runat="server">
             <p id="bookingConfirmationMessage" runat="server" class="successfulBookingMessage" visible="false"></p>
             <p id="bookingErrorMessage" runat="server" class="failedBookingMessage" visible="false"></p>
+            <p id="preBookingInfo" runat="server" class="bookingInfoText" visible="false"></p>
         </div>
 
 

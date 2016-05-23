@@ -1112,6 +1112,10 @@ input[type="checkbox"]{
     .navbar-brand{
         margin-right:0%;
     }
+    #spelSchemaH2{
+        margin-left:8%;
+        padding-left:0%;
+    }
 }
 @media screen and (min-width: 992px){
     
@@ -1121,6 +1125,7 @@ input[type="checkbox"]{
     #startPageDiv h2{
         margin-top:0;
     }
+
 
 }
 

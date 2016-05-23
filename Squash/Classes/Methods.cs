@@ -564,6 +564,33 @@ namespace Squash.Classes
 
             return bookingInfoTextDiv;
         }
+        public string BookingInfoString(LoggedInPerson lip)
+        {
+
+            DateTime chosenDay = DateTime.Now;
+            string divText = "";
+
+                if (lip.member.MemberType == 2)
+                {
+                    divText += "• Fullpris för ströbokningar debiteras kontoansvarig.";
+                }
+                else if (lip.member.MemberType == 3)
+                {
+                    int resLeft = HasFloatReservation(chosenDay, lip);
+
+                    if (resLeft > 0)
+                    {
+                        divText += "• Ni har <strong>" + resLeft + "</strong> fria bokningar kvar för nuvarande vecka, dagtid mellan <strong>6 - 16</strong>. Övriga bokningar debiteras fullpris.";
+
+                    }
+                    else
+                    {
+                        divText += "• Ni har <strong>inga</strong> fria bokningar kvar för nuvarande veckan, vid bokning debiteras fullpris.";
+                    }
+                }
+
+            return divText;
+        }
 
 
         public DataTable PlayerStats(DateTime startDate, DateTime endDate)

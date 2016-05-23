@@ -56,18 +56,27 @@ namespace Squash
                     if ((Session["bookingMessage"].ToString())[3].ToString() == "D")
                     {
                         bookingConfirmationMessage.Visible = true;
+                        preBookingInfo.Visible = true;
                         bookingConfirmationMessage.InnerHtml = Session["bookingMessage"].ToString();
+                        preBookingInfo.InnerHtml = method.BookingInfoString(lip);
                     }
                     else
                     {
                         bookingErrorMessage.Visible = true;
+                        preBookingInfo.Visible = true;
                         bookingErrorMessage.InnerHtml = Session["bookingMessage"].ToString();
+                        preBookingInfo.InnerHtml = method.BookingInfoString(lip);
                     }
 
                     //bookingMessage.Visible = true;
                     //bookingMessage.InnerText = (string)Session["bookingMessage"];
 
                     Session["showBookingMessage"] = false;
+                }
+                else
+                {
+                    preBookingInfo.Visible = true;
+                    preBookingInfo.InnerHtml = method.BookingInfoString(lip);
                 }
 
 
