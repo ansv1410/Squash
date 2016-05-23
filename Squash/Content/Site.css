@@ -185,6 +185,10 @@ input[type="select"] {
 .form-horizontal h2{
     padding-left:2%;
 }
+
+.form-horizontal{
+    /*display:table;*/
+}
 /*GENOMGÅENDE - SLUT*/
 
 
@@ -401,6 +405,29 @@ h4{
 
 .directionsText{
     padding-left:2%;
+    padding-top:30px;
+    clear:both;
+}
+
+.contactInfoDiv{
+    /*width:33.3%;*/
+    float:left;
+    padding-left:2%;
+}
+
+#Telephone{
+    /*background-color:lightcoral;*/
+    width:30%
+}
+
+#Email{
+    /*background-color:lightpink;*/
+    width:40%;
+}
+
+#Address{
+    /*background-color:violet;*/
+    width:30%;
 }
 /*CONTACT - SLUT*/
 
@@ -1155,6 +1182,9 @@ input[type="checkbox"]{
     #infoDiv .form-horizontal{
         padding-right:0;
     }
+    #contactDiv .form-horizontal{
+        padding-right:0;
+    }
 }
 
 @media screen and (max-width: 820px)
@@ -1168,6 +1198,7 @@ input[type="checkbox"]{
     footer{
         width:100%;
     }
+
 }
 
 /*MOBILLÄGE NÄR MENYN BYTS ETC*/
@@ -1349,7 +1380,34 @@ input[type="checkbox"]{
         margin-top:60px;
     }
 
+
+
 }
+
+@media screen and (max-width: 650px){
+    #Email{
+        padding-left:6%;
+    }
+}
+
+@media screen and (max-width: 560px){
+    .contactInfoDiv{
+       /*width:100%;*/
+       padding-left:0;
+    }
+
+    #Telephone{
+        width:100%;
+    }
+    #Email{
+        width:100%;
+        padding-left:0;
+    }
+    #Address{
+        width:100%;
+    }
+}
+
 @media screen and (max-width: 550px){
     .overlay-message{
     width: 95%
