@@ -102,6 +102,12 @@ footer a:hover{
     /*color:#cccccc;*/
     text-decoration:none;
 }
+
+footer a:focus{
+    color:#1e1e1e;
+    text-decoration:none;
+}
+
 #margincorrection{
     margin:0 auto;
     height:auto;
@@ -835,7 +841,7 @@ h4{
 
 #MainContent_divBookMess{
     margin-left:8%;
-    width:96%;
+    width:92%;
     font-weight:bold;
     font-size:120%;
 }
