@@ -389,7 +389,7 @@ namespace Squash
                                         courtImgDiv.Attributes.Add("class", "courtImgDivFree");
                                         courtImgDiv.Attributes.Add("onclick", "chosenCourt('" + "hf" + bookingDivId + "','" + C.CourtId.ToString() + "','" + bookingDivId + "')");
 
-                                        if (lip.member.MemberType == 3 && CT.StartHour < 6 || CT.StartHour > 16) 
+                                        if ((lip.member.MemberType == 3) && (CT.StartHour < 6 || CT.StartHour > 16)) 
                                         {
                                             courtDiv.Attributes.Add("class", "freeCourt fcsDivs courtDivs masterTiptool B" + C.CourtId); 
                                         }
