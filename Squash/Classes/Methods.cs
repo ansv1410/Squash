@@ -525,7 +525,7 @@ namespace Squash.Classes
                 divText += "• Ni kan avboka senast en timme i förväg. PIN-koden visas längst upp på sidan. <br />";
                 if (lip.member.MemberType == 1)
                 {
-                    divText += "• Vill du se koden nu trycker du på Visa PIN längst upp på sidan.";
+                    divText += "• Vill du se PIN-koden nu trycker du på Visa PIN längst upp på sidan.";
                 }
                 else if (lip.member.MemberType == 2)
                 {

@@ -4,11 +4,11 @@
     <div id="infoDiv" class="pageDiv">
     <h2><%: Title %></h2>
         <div class="form-horizontal">
-            <h4>Bokning, kodlås och abonnemang</h4>
+            <h4>Bokning, PIN-kod och abonnemang</h4>
             <hr />
             <p class="foldedText" id="shortInfo">Squashhallen i Östersund drivs ideellt av Östersunds squashförening. Det innebär att vi inte har möjlighet att ha någon personal anställd. 
                 För att detta ska fungera krävs att samtliga spelare som utnyttjar någon av våra banor tar ansvar och följer de regler som vill tillsammans satt upp. <br /><br />
-            Vi vill också påminna dig om att det är den som bokar en tid som är personligt ansvarig. Det innebär att du inte under några omständigheter ska lämna ifrån dig koden eller dina inloggningsuppgifter till någon annan.
+            Vi vill också påminna dig om att det är den som bokar en tid som är personligt ansvarig. Det innebär att du inte under några omständigheter ska lämna ifrån dig PIN-koden eller dina inloggningsuppgifter till någon annan.
             Det är även du som har bokat tiden som är ansvarig för att tiden betalas direkt i anslutning till att du spelar.
             Om vi ser att någon missbrukar detta ansvar, så har vi rätten att stänga av spelare från vidare spel i hallen.
             </p>
@@ -29,16 +29,16 @@
             </div>
 
             <div id="codeLockFold" class="headerDiv" onclick="toggleSection('codeLock')">
-                <p class="infoHeaders">Kodlås</p>
+                <p class="infoHeaders">PIN-kod</p>
             </div>
             <div id="codeLock" class="foldDiv">
                 <p class="foldedText">
-                    För att komma in i squashhallen behöver du den aktuella koden. Koden är personlig, du får av den anledningen inte under några omständigheter lämna ifrån dig koden till någon annan.<br /><br />
-                    Koden byts med jämna mellanrum. Vi har inga fasta tider då vi byter kod. Vi har även gått ifrån systemet med fasta koder för dem som har abonnemang. 
-                    Det innebär att du alltid ska kontrollera koden innan du åker iväg och spelar. <br /><br />
-                    Du får enbart tillgång till koden om du har en tid bokad den aktuella dagen. 
-                    Det innebär att du inte kan gå in dagen före aktuell speltid och kontrollera kod. Om du väljer att gå in och kontrollera koden, så förbrukas din möjlighet att gå in och avboka tiden. 
-                    Har du bokat en tid och väljer att titta på koden, så är du skyldig att betala för den bokade tiden.
+                    För att komma in i squashhallen behöver du den aktuella PIN-koden. PIN-koden är personlig, du får av den anledningen inte under några omständigheter lämna ifrån dig PIN-koden till någon annan.<br /><br />
+                    PIN-koden byts med jämna mellanrum. Vi har inga fasta tider då vi byter PIN-kod. Vi har även gått ifrån systemet med fasta PIN-koder för dem som har abonnemang. 
+                    Det innebär att du alltid ska kontrollera PIN-koden innan du åker iväg och spelar. <br /><br />
+                    Du får enbart tillgång till PIN-koden om du har en tid bokad den aktuella dagen. 
+                    Det innebär att du inte kan gå in dagen före aktuell speltid och kontrollera PIN-kod. Om du väljer att gå in och kontrollera PIN-koden, så förbrukas din möjlighet att gå in och avboka tiden. 
+                    Har du bokat en tid och väljer att titta på PIN-koden, så är du skyldig att betala för den bokade tiden.
                 </p>
             </div>
 
@@ -106,7 +106,7 @@
 
                     <span class="subscriptionHeaders">Strötider</span><br />
 
-                    Har du inte ett abonnemang eller vill du spela fler gånger i veckan. Då kan du utnyttja de strötider som finns. Mer information om det finns under fliken Bokning och kodlås.
+                    Har du inte ett abonnemang eller vill du spela fler gånger i veckan. Då kan du utnyttja de strötider som finns. Mer information om det finns under menyvalet Information.
                     <br />
                     Kostnaden för en strötid är: 100 kr per bana och timme.
                 </p>

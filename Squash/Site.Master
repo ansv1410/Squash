@@ -124,7 +124,7 @@
             <div class="overlay-message-PIN">
 
                 <h4>Visa PIN-kod?</h4>
-                <p>Efter att pinkoden visats kan du inte avboka någon av dina tider idag.</p>
+                <p>Efter att PIN-koden visats kan du inte avboka någon av dina tider idag.</p>
                 <div class="promptButtons">
                     <asp:Button ID="pinOK" CssClass="btn btn-default promptOK" runat="server" OnClick="lbtnShowPin_Click" Text="OK" />
                     <input id="pinCancel" class="btn btn-default promptCancel" type="button" value="Avbryt" />
