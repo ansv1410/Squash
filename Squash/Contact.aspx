@@ -43,7 +43,6 @@
                                                                                                                              </style>--%>
 
         </div>
-        <%--<script src="https://www.dog-checks.com/google-maps-authorization.js?id=8157918d-1d21-93b0-d0c4-c6c69ebdc5bb&c=embedded-map-html&u=1461581258" defer="defer" async="async"></script>--%>
     </div>
 
 </asp:Content>

@@ -41,6 +41,7 @@ namespace Squash
 
 
             BuildCharts(6);
+            BuildUserList();
         }
 
 
@@ -124,6 +125,25 @@ namespace Squash
                 statsDiv.Controls.Add(chartDiv);
             }
         }
+        public void BuildUserList()
+        {
+            List<Users> uList = method.GetUserList();
+            //List<Users> sortedList = uList.OrderBy(u => u.FirstName).ThenBy(u=> u.SurName).ToList();
+            foreach (Users u in uList)
+            {
+                if(u.PublicAddres != 0)
+                {
+                string liObject = "<p class='listName'>"+u.FirstName+ " " +u.SurName+"</p> <p class='listStreet'>"+u.StreatAddress+"</p> <p class='listZip'>"+u.ZipCode+"</p> <p class='listCity'>"+u.City+"</p> <p class='listPhone'>"+u.Phone+"</p>";
+                HtmlGenericControl li = new HtmlGenericControl("li");
+                li.InnerHtml = liObject;
+                userList.Controls.Add(li);
+                }
+            }
 
+
+
+
+
+        }
     }
 }

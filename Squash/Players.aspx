@@ -23,23 +23,8 @@
                     Sort
                 </button>
 
-                <ul class="list">
-                    <li>
-                        <h3 class="name">Jonny Stromberg</h3>
-                        <p class="born">1986</p>
-                    </li>
-                    <li>
-                        <h3 class="name">Jonas Arnklint</h3>
-                        <p class="born">1985</p>
-                    </li>
-                    <li>
-                        <h3 class="name">Martina Elm</h3>
-                        <p class="born">1986</p>
-                    </li>
-                    <li>
-                        <h3 class="name">Gustaf Lindqvist</h3>
-                        <p class="born">1983</p>
-                    </li>
+                <ul id="userList" class="list" runat="server">
+                 
                 </ul>
 
             </div>
@@ -63,7 +48,7 @@
 
 
         var options = {
-            valueNames: ['name', 'born']
+            valueNames: ['listName', 'listStreet', 'listZip', 'listCity', 'listPhone']
         };
 
         var userList = new List('users', options);

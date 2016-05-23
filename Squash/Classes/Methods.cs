@@ -943,6 +943,46 @@ namespace Squash.Classes
         }
         #endregion
 
+        #region UserManagemet
+
+        public List<Users> GetUserList()
+        {
+            MySqlConnection conn = myConn();
+            string query = "SELECT * FROM users_updated ORDER BY Firstname ASC";
+            MySqlDataReader dr = myReader(query, conn);
+            List<Users> uList = new List<Users>();
+
+            try
+            {
+                while (dr.Read())
+                {
+                    Users u = new Users();
+                    u.Id = Convert.ToInt16(dr["Id"]);
+                    u.UserId = Convert.ToInt16(dr["UserId"]);
+                    u.FirstName = FixName(dr["Firstname"].ToString());
+                    u.SurName = FixName(dr["Surname"].ToString());
+                    u.Phone = FixNumber(dr["Phone"].ToString());
+                    u.EMail = dr["EMail"].ToString();
+                    u.StreatAddress = FixName(dr["StreetAddress"].ToString());
+                    u.ZipCode = FixNumber(dr["ZipCode"].ToString());
+                    u.City = FixName(dr["City"].ToString());
+                    u.Password = dr["Password"].ToString();
+                    u.Cellular = dr["Cellular"].ToString();
+                    u.PublicAddres = Convert.ToInt32(dr["PublicAddress"].ToString());
+
+                    uList.Add(u);
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+
+            List<Users> sortedList = uList.OrderBy(u => u.FirstName).ThenBy(u => u.SurName).ToList();
+            return sortedList;
+        }
+
+        #endregion
 
         public string EngSweDaySwitch(string engDay)
         {
