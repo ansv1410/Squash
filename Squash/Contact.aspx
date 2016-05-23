@@ -23,6 +23,14 @@
                 <h4>E-Post</h4>
                 <p class="foldedText">Maila oss på: <a href="mailto:info@ostersundssquash.se">info@ostersundssquash.se</a></p>
             </div>
+            <br />
+
+            <div id="Address">
+                <h4>Adress</h4>
+                <p class="foldedText">Storsjöstråket 15 <br /> 831 34 Östersund</p>
+            </div>
+            <br />
+            <p class="directionsText"><i>Vägbeskrivning från Rådhuset.</i></p>
         </div>
         <div class="mapDiv">
             <div id="gmap_display">
