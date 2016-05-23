@@ -5,7 +5,7 @@
         <div class="form-horizontal">
             <h2><%: Title %>info</h2>
             <br />
-            <div id="Telephone">
+            <div id="Telephone" class="contactInfoDiv">
                 <h4>Telefon</h4>
                 <p class="foldedText">
                     <u>Alexander Berggren</u>
@@ -17,15 +17,13 @@
                     070-691 43 86
                 </p>
             </div>
-            <br />
 
-            <div id="Email">
+            <div id="Email" class="contactInfoDiv">
                 <h4>E-Post</h4>
                 <p class="foldedText">Maila oss på: <a href="mailto:info@ostersundssquash.se">info@ostersundssquash.se</a></p>
             </div>
-            <br />
 
-            <div id="Address">
+            <div id="Address" class="contactInfoDiv">
                 <h4>Adress</h4>
                 <p class="foldedText">Storsjöstråket 15 <br /> 831 34 Östersund</p>
             </div>
