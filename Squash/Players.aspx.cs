@@ -47,9 +47,9 @@ namespace Squash
         public void BuildCharts(int noOfMonths)
         {
 
-            for (int i = 1; i < noOfMonths+1; i++)
+            for (int i = noOfMonths; i > 0; i--)
             {
-                DateTime queryMonth = DateTime.Now.AddMonths(1-i);
+                DateTime queryMonth = DateTime.Now.AddMonths(-i+1);
                 DateTime toMonth = queryMonth.AddMonths(1);
 
                 string titleMonth = method.FixName(queryMonth.ToString("MMMM", new CultureInfo("sv-SE")));

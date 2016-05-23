@@ -6,18 +6,43 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="pageDiv">
-        
-        
+
+
         <div id="statsDiv" runat="server">
             <div id="monthPickerDiv" runat="server">
-
             </div>
         </div>
 
 
 
         <div id="addressListDiv" runat="server">
+            <div id="users">
 
+                <input class="search" placeholder="Search" />
+                <button class="sort" data-sort="name">
+                    Sort
+                </button>
+
+                <ul class="list">
+                    <li>
+                        <h3 class="name">Jonny Stromberg</h3>
+                        <p class="born">1986</p>
+                    </li>
+                    <li>
+                        <h3 class="name">Jonas Arnklint</h3>
+                        <p class="born">1985</p>
+                    </li>
+                    <li>
+                        <h3 class="name">Martina Elm</h3>
+                        <p class="born">1986</p>
+                    </li>
+                    <li>
+                        <h3 class="name">Gustaf Lindqvist</h3>
+                        <p class="born">1983</p>
+                    </li>
+                </ul>
+
+            </div>
         </div>
 
 
@@ -35,6 +60,15 @@
             $('.monthSelector').removeClass('activeMonth');
             $(sId).addClass('activeMonth')
         };
+
+
+        var options = {
+            valueNames: ['name', 'born']
+        };
+
+        var userList = new List('users', options);
+
+
     </script>
 
 
