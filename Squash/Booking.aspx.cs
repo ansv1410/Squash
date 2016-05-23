@@ -73,7 +73,7 @@ namespace Squash
 
                     Session["showBookingMessage"] = false;
                 }
-                else
+                else if(lip.member.MemberType != 1)
                 {
                     preBookingInfo.Visible = true;
                     preBookingInfo.InnerHtml = method.BookingInfoString(lip);
