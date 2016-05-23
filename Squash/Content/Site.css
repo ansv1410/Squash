@@ -1053,13 +1053,40 @@ input[type="checkbox"]{
     background-color:#C7C7C7;
 }
 
+#users{
+    margin-top:50px;
+}
+
 #tbSearchUser{
     border-radius:4px;
     margin-bottom:1%;
 }
+
+#MainContent_addressListDiv{
+    overflow:hidden;
+    text-align:justify;
+}
+
 #MainContent_userList{
     padding: 0px;
+    max-height:400px;
+    overflow:auto;
+    margin:10px -300px 0px 0px;
+    padding-right:280px;
 }
+
+/*::-webkit-scrollbar{
+    display:none;
+}*/
+
+/*#MainContent_userList::-webkit-scrollbar { width: 0 !important }
+
+#MainContent_userList{ -ms-overflow-style: none; }
+
+#MainContent_userList { overflow: -moz-scrollbars-none; }*/
+
+
+
 #MainContent_userList > li > p{
     display:inline;
 }
