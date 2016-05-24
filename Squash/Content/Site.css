@@ -13,7 +13,7 @@ body{
     padding-left: 15px;
     padding-right: 15px;
     /*background-color:blue;*/
-    min-height: calc(100vh - 100px);
+    min-height: calc(100vh - 99px);
     /*height: calc(.body-content - 150px);*/
 }
 .navbar{
