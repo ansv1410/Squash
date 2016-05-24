@@ -115,15 +115,75 @@ namespace Squash
                 lip = (LoggedInPerson)Session["lip"];
                 privAcc.Visible = true;
                 postitnote.Visible = false;
-                                
+
+
+                int companyNameLength = 0;
+                int firstNameLength = 0;
+                int lastNameLength = 0;
+
                 if((lip.member.MemberType == 2 || lip.member.MemberType == 3) && lip.company.Name != null)
                 {
-                    myPageLink.InnerText = lip.company.Name;
+                    companyNameLength = lip.company.Name.Length;
+
+                    string companyName = lip.company.Name;
+                    string shortCompanyName = "";
+
+
+                    if(companyNameLength <= 14)
+                    {
+                        myPageLink.InnerText = lip.company.Name;
+                    }
+                    else
+                    {
+                        foreach (char c in companyName)
+                        {
+                            if(c.ToString() != " ")
+                            {
+                                shortCompanyName += c;
+                            }
+                            else if (c.ToString() == " ")
+                            {
+                                break;
+                            }
+                        }
+                        
+                        if(shortCompanyName.Length < 14)
+                        {
+                            myPageLink.InnerText = shortCompanyName;
+                        }
+                        else
+                        {
+                            myPageLink.InnerText = shortCompanyName.Substring(0, 14);
+                        }
+                    }
+
+
+
                     
                 }
                 else
                 {
-                    myPageLink.InnerText = lip.user.FirstName + " " + lip.user.SurName; 
+                    firstNameLength = lip.user.FirstName.Length;
+                    lastNameLength = lip.user.SurName.Length;
+
+                    if(firstNameLength + lastNameLength <= 14)
+                    {
+                        myPageLink.InnerText = lip.user.FirstName + " " + lip.user.SurName; 
+                    }
+                    else if(firstNameLength <= 14)
+                    {
+                        myPageLink.InnerText = lip.user.FirstName;
+                    }
+                    else if(firstNameLength > 14)
+                    {
+                        string firstName = lip.user.FirstName;
+
+                        string firstNameToShow = firstName.Substring(0, 14);
+
+                        myPageLink.InnerText = firstNameToShow;
+                    }
+
+
                 }
 
 

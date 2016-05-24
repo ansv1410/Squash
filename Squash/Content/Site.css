@@ -157,6 +157,7 @@ footer a:focus{
     border-radius:1px;
     /*box-shadow:rgba(0,0,0,0.2) 5px 5px;*/
     box-shadow:5px 5px 10px rgba(0,0,0,0.4);
+    
 }
 #closePostit{
     width:18px;
@@ -1282,11 +1283,96 @@ input[type="checkbox"]{
         margin-top:0;
     }
 
+    #postitnote{
+        right:18%;
+    }
+}
 
+@media screen and (min-width: 1100px) {
+    #postitnote{
+        right:20%;
+    }
+}
+
+@media screen and (min-width: 1300px) {
+    #postitnote{
+        right:23%;
+    }
+}
+
+@media screen and (min-width: 1500px) {
+    #postitnote{
+        right:26%;
+    }
+}
+
+@media screen and (min-width: 1700px) {
+    #postitnote{
+        right:29%;
+    }
+}
+
+@media screen and (min-width: 1900px) {
+    #postitnote{
+        right:32%;
+    }
+}
+
+@media screen and (min-width: 2250px) {
+    #postitnote{
+        right:34%;
+    }
+}
+
+@media screen and (min-width: 2500px) {
+    #postitnote{
+        right:36%;
+    }
+}
+
+@media screen and (min-width: 2850px) {
+    #postitnote{
+        right:38%;
+    }
+}
+
+@media screen and (min-width: 3350px) {
+    #postitnote{
+        right:39.5%;
+    }
+}
+
+@media screen and (min-width: 3850px) {
+    #postitnote{
+        right:41%;
+    }
+}
+
+@media screen and (min-width: 4500px) {
+    #postitnote{
+        right:42%;
+    }
+}
+
+@media screen and (min-width: 5000px) {
+    #postitnote{
+        right:43%;
+    }
 }
 
 
 
+
+@media screen and (max-width: 1006px){
+    #rightFloat{
+        padding-left:1%;
+        padding-right:0;
+    }
+    
+    #myPageLink{
+        padding-left:0;
+    }
+}
 
 
 
@@ -1319,10 +1405,13 @@ input[type="checkbox"]{
     #contactDiv .form-horizontal{
         padding-right:0;
     }
+    #postitnote{
+        right:15%;
+    }
 }
 
-@media screen and (max-width: 820px)
-{
+
+@media screen and (max-width: 850px){ /*ny 2016-05-24 16:17*/
     .navbar{
         width:100%;
     }
@@ -1332,7 +1421,22 @@ input[type="checkbox"]{
     footer{
         width:100%;
     }
+}
 
+@media screen and (max-width: 820px)
+{
+    /*.navbar{
+        width:100%;
+    }
+    .body-content{
+        width:100%;
+    }
+    footer{
+        width:100%;
+    }*/
+    #postitnote{
+        right:10%;
+    }
 }
 
 /*MOBILLÄGE NÄR MENYN BYTS ETC*/
@@ -1350,6 +1454,15 @@ input[type="checkbox"]{
     #mContainer{
         width: 100%;
     }
+
+    #myPageLink{
+        padding: 10px 15px 10px 15px;
+    }
+    #rightFloat{
+        padding-left:15px;
+        padding-right:15px;
+    }
+
     .mapDiv{
         padding-left:0%;
         padding-right:0%;
@@ -1514,7 +1627,9 @@ input[type="checkbox"]{
         margin-top:60px;
     }
 
-
+    #postitnote{
+        display:none;
+    }
 
 }
 
