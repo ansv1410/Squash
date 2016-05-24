@@ -625,7 +625,7 @@ namespace Squash.Classes
             DateTime endMonth = Convert.ToDateTime(endDate.ToString("yyyy-MM"));
 
 
-            string query = "SELECT CONCAT(u.Firstname, ' ', u.Surname) AS name, COUNT(*) as NoOfReservations FROM reservations r, users u "
+            string query = "SELECT CONCAT(CONCAT(UCASE(LEFT(u.Firstname, 1)), LCASE(SUBSTRING(u.Firstname, 2))), ' ', CONCAT(UCASE(LEFT(u.Surname, 1)), LCASE(SUBSTRING(u.Surname, 2)))) AS name, COUNT(*) as NoOfReservations FROM reservations r, users u "
                             + "INNER JOIN members m ON m.UserId = u.UserId "
                             + "WHERE r.StartDate BETWEEN '" + startMonth + "' AND DATE('" + endMonth + "') AND r.ReservationType != 3 AND r.MemberId = m.MemberId "
                             + "GROUP BY r.MemberId "

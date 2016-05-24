@@ -15,7 +15,7 @@
 
 
 
-        <div id="addressListDiv" runat="server">
+        <div id="addressListDiv" runat="server" visible="false">
             <div id="users">
 
                 <input id="tbSearchUser" class="search" placeholder="Sök" />
@@ -44,7 +44,7 @@
 
 
         var options = {
-            valueNames: ['listName', 'listStreet', 'listZip', 'listCity', 'listPhone']
+            valueNames: ['listName', 'listStreet', 'listZip', 'listCity', 'listEmail', 'listPhone']
         };
 
         var userList = new List('users', options);

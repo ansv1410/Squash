@@ -28,7 +28,7 @@
                 <p class="foldedText">Storsjöstråket 15 <br /> 831 34 Östersund</p>
             </div>
             <br />
-            <p class="directionsText"><i>Vägbeskrivning från Rådhuset.</i></p>
+            <p class="directionsText"><i>Vägbeskrivning från Rådhuset. Stanna vid parkeringen, ingången ligger i det inre hörnet av byggnaden.</i></p>
         </div>
         <div class="mapDiv">
             <div id="gmap_display">

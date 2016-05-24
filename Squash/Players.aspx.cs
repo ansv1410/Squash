@@ -33,6 +33,7 @@ namespace Squash
             if (Session["lip"] != null)
             {
                 lip = (LoggedInPerson)Session["lip"];
+                addressListDiv.Visible = true;
             }
             else
             {
@@ -133,7 +134,7 @@ namespace Squash
             {
                 if(u.PublicAddres != 0)
                 {
-                    string liObject = "<h5 class='listName'>" + u.FirstName + " " + u.SurName + "</h5><p class='listStreet'>" + u.StreatAddress + "</p><br /><p class='listZip'>" + u.ZipCode + " </p> <p class='listCity'>" + u.City + "</p><br /><p class='listPhone'>" + u.Phone + "</p><hr />";
+                    string liObject = "<h5 class='listName'>" + u.FirstName + " " + u.SurName + "</h5><p class='listStreet'>" + u.StreatAddress + "</p><br /><p class='listZip'>" + u.ZipCode + " </p> <p class='listCity'>" + u.City + "</p><br /><p class='listEmail'><a href='mailto:'" + u.EMail + ">"+u.EMail+"</a></p><br /><p class='listPhone'>" + u.Phone + "</p><hr />";
                 HtmlGenericControl li = new HtmlGenericControl("li");
                 li.InnerHtml = liObject;
                 userList.Controls.Add(li);
