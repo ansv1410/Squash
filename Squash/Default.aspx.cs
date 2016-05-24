@@ -22,7 +22,7 @@ namespace Squash
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            string queryGetNews = "SELECT * FROM News"; //WHERE date.......
+            string queryGetNews = "SELECT * FROM News ORDER BY Id DESC LIMIT 10";
             string queryGetMessages = "SELECT * FROM Messages";
             string showNews = "";
             string showMessages = "";

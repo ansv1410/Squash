@@ -15,7 +15,7 @@
             <div class="col-md-4" id="presentationDiv" runat="server" visible="false">
                 <h2>Välkommen!</h2>
                 <p class="foldedText">Östersunds Squashförening bildades 2004 och driver idag squashhallen på Storsjöstråket med två banor, omklädningsrum, dusch och bastu.</p>
-                <p class="foldedText">Banbokning görs enkelt här på hemsidan när du registrerat dig och godkänts som medlem, också det via hemsidan.</p>
+                <p class="foldedText">Banbokning görs enkelt här på hemsidan när du <a class="redirectLinks" href="Account/Register.aspx" title="Till sidan för att bli medlem">registrerat</a> dig och godkänts som medlem, också det via hemsidan.</p>
                 <p class="foldedText">Tillsvidare kan du läsa mer om oss och om squash via våra sidor på sociala medier:</p>
                 <div class="socialMediaIcon"><a href="https://www.facebook.com/pages/Squashhallen-%C3%96stersund/173142666069296" title="Till Facebooksida"><img runat="server" src="~\Images\FB.svg" /></a></div>
                 <div class="socialMediaIcon"><a href="https://plus.google.com/+OstersundssquashSe" title="Till Google+sida"><img runat="server" src="~\Images\Gplus.svg" /></a></div>
