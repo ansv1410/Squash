@@ -205,17 +205,20 @@ namespace Squash.Classes
         {
             string correctName = "";
             int count = 0;
+            bool whitespaceAtStart = true;
 
             foreach(char c in text)
             {
                 count++;
-                if (count == 1 && c.ToString() == " ")
+                //if (count == 1 && c.ToString() == " ")
+                if(c.ToString() == " " && whitespaceAtStart == true)
                 {
                     correctName += "";
                 }
                 else
                 {
                     correctName += c;
+                    whitespaceAtStart = false;
                 }
             }
 
