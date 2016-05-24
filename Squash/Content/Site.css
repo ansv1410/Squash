@@ -238,6 +238,33 @@ input[type="select"] {
 .form-horizontal{
     /*display:table;*/
 }
+
+.redirectLinks{
+    font-weight:bold;
+    color:#009FFF;
+    text-decoration:underline;
+}
+.redirectLinks:hover{
+    color:#F37735;
+    /*text-decoration:none;*/
+    text-decoration:underline;
+}
+.redirectLinks:active{
+    color:#2A6496;
+    /*text-decoration:none;*/
+    text-decoration:underline;
+}
+.redirectLinks:visited{
+    /*color:#934CDB;*/
+    /*text-decoration:none;*/
+    text-decoration:underline;
+}
+.redirectLinks:focus{
+    /*text-decoration:none;*/
+    text-decoration:underline;
+
+}
+
 /*GENOMGÅENDE - SLUT*/
 
 
