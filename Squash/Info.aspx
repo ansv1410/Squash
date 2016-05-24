@@ -6,7 +6,7 @@
         <div class="form-horizontal">
             <h4>Bokning, PIN-kod och abonnemang</h4>
             <hr />
-            <p class="foldedText" id="shortInfo">Squashhallen i Östersund drivs ideellt av Östersunds squashförening. Det innebär att vi inte har möjlighet att ha någon personal anställd. 
+            <p class="foldedText" id="shortInfo">Squashhallen i Östersund drivs ideellt av Östersunds Squashförening. Det innebär att vi inte har möjlighet att ha någon personal anställd. 
                 För att detta ska fungera krävs att samtliga spelare som utnyttjar någon av våra banor tar ansvar och följer de regler som vill tillsammans satt upp. <br /><br />
             Vi vill också påminna dig om att det är den som bokar en tid som är personligt ansvarig. Det innebär att du inte under några omständigheter ska lämna ifrån dig PIN-koden eller dina inloggningsuppgifter till någon annan.
             Det är även du som har bokat tiden som är ansvarig för att tiden betalas direkt i anslutning till att du spelar.
@@ -20,11 +20,11 @@
             <div id="booking" class="foldDiv">
                 <p class="foldedText">
                     För att kunna boka en tid måste du vara registrerad som användare. 
-                Det gör du i menyn under "Bli medlem". När du fyllt i dina uppgifter skickas de till en administratör. <br /><br />
-                Det tar sedan upp till en vecka innan ditt konto aktiverat och du kan börja använda det. Om du vill komma i kontakt med våra administratörer klicka längst ned på "Kontakt / Hitta hit". <br /><br />
-                Innan du går in och bokar en tid kan du klicka i menyn på "Spelschema & Bokningar". Där ser du vilka tider de kommande 8 dagarna som är bokningsbara. 
-                För att boka loggar du in på ditt konto och sedan klicka i menyn på "Spelschema & Bokningar". Välj sedan den tid du vill boka. Du kan max ha fem aktiva bokningar samtidigt. <br /><br /> 
-                Du kan inte använda ett företagskonto (det konto som finns för fasta företagsabonnemang), för att boka strötider, då detta inte är personligt.
+                Det gör du under menyvalet "<a class="redirectLinks" href="Account/Register.aspx" title="Till sidan för att bli medlem">Bli medlem</a>". När du fyllt i dina uppgifter skickas de till en administratör. <br /><br />
+                Det tar sedan upp till en vecka innan ditt konto aktiverat och du kan börja använda det. Om du vill komma i kontakt med våra administratörer klicka på "<a class="redirectLinks" href="Contact.aspx" title="Till kontaktsidan">Kontakt / Hitta hit</a>" längst ned på sidan. <br /><br />
+                Innan du går in och bokar en tid kan du klicka i menyn på "<a class="redirectLinks" href="Booking.aspx" title="Till sida för spelschema och bokningar">Spelschema & Bokningar</a>". Där ser du vilka tider de kommande 8 dagarna som är bokningsbara. 
+                För att boka loggar du in på ditt konto och sedan klicka i menyn på "<a class="redirectLinks" href="Booking.aspx" title="Till sida för spelschema och bokningar">Spelschema & Bokningar</a>". Välj sedan den tid du vill boka. <br /><br /> 
+                Det går att använda ett företagskonto (det konto som finns för fasta företagsabonnemang) för att boka strötider. Dessa tider kommer att bli bokade till fullpris.
                 </p>
             </div>
 
@@ -72,7 +72,7 @@
                     <br />
                     • Ett abonnemang gäller en timme på en bana per vecka
                     <br />
-                    • Du har möjlighet att boka lediga strötider, under vissa förutsättningar
+                    • Du har möjlighet att boka lediga strötider
                     <br />
                     Kostnad för ett Privatabonnemang är 1400 kr per sex månader.
                     <br />
@@ -87,7 +87,7 @@
                     <br />
                     • Ett abonnemang gäller en timme på en bana per vecka
                     <br />
-                    Kostnad för ett företagsabonnemang är XXXX per sex månader.<br />
+                    För kostnad av ett företagsabonnemang, kontakta administratör.<br />
 
                     <span class="subscriptionHeaders">Rörligt företagsabonnemang</span><br />
 
@@ -103,10 +103,12 @@
                     <br />
                     • Ett abonnemang gäller en timme på en bana per vecka
                     <br />
+                    För kostnad av ett rörligt företagsabonnemang, kontakta administratör <a class="redirectLinks" href="Contact.aspx" title="Till kontaktsidan">här</a>
+                    <br />
 
                     <span class="subscriptionHeaders">Strötider</span><br />
 
-                    Har du inte ett abonnemang eller vill du spela fler gånger i veckan. Då kan du utnyttja de strötider som finns. Mer information om det finns under menyvalet Information.
+                    Om du vill du spela fler gånger i veckan så kan du utnyttja de strötider som finns.
                     <br />
                     Kostnaden för en strötid är: 100 kr per bana och timme.
                 </p>

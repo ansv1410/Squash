@@ -10,7 +10,7 @@
         <h2><%: Title %></h2>
         <div class="form-horizontal">
             <div id="myinfo" runat="server">
-                <h4>Här syns din information och bokningar.</h4>
+                <h4>Här syns din information.</h4>
                 <h5>Uppgifterna går att uppdatera genom att trycka på knappen nederst.</h5>
                 <hr />
                 <asp:Panel ID="pnlDefaultButton" runat="server" DefaultButton="BtnShowEditInfo">
