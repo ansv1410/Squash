@@ -85,6 +85,15 @@ namespace Squash {
         protected global::System.Web.UI.WebControls.LinkButton lbtnLogin;
         
         /// <summary>
+        /// postitnote control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl postitnote;
+        
+        /// <summary>
         /// MyLoginControll control.
         /// </summary>
         /// <remarks>
@@ -128,5 +137,14 @@ namespace Squash {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hfLoggedInIP;
+        
+        /// <summary>
+        /// hfShowPostIt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfShowPostIt;
     }
 }

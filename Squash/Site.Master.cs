@@ -78,7 +78,6 @@ namespace Squash
                 pinDiv.Visible = ShowPinDiv();
 
             }
-
             if (!IsPostBack)
             {
                 // Set Anti-XSRF token
@@ -115,6 +114,7 @@ namespace Squash
             {
                 lip = (LoggedInPerson)Session["lip"];
                 privAcc.Visible = true;
+                postitnote.Visible = false;
                                 
                 if((lip.member.MemberType == 2 || lip.member.MemberType == 3) && lip.company.Name != null)
                 {
@@ -135,6 +135,12 @@ namespace Squash
             }
             else
             {
+                
+                if (Session["showPostit"] != null)
+                {
+                    string showPostit = Session["showPostit"].ToString();
+                    postitnote.Visible = false;
+                }
                 pinDiv.Visible = false;
                 pubAcc.Visible = true;
             }

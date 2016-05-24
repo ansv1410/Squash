@@ -110,6 +110,14 @@
             </div>
         </div>
 
+        <div id="postitnote" runat="server">
+            <img src="Images/arrow-hand-drawn-hi2.png" id="postitarrow" />
+            <img src="Images/dialog-close.png" id="closePostit" alt="Close" class="rbox-close" onclick="ClosePostit()" />
+            <div class="rbox-data">
+                <p>BLI MEDLEM HÄR!</p>
+            </div>
+        </div>
+
         <div class="overlay-container">
             <div class="page-overlay" onclick="CloseOverlay()">
             </div>
@@ -145,11 +153,17 @@
         </footer>
         <asp:HiddenField ID="hfShowLogin" runat="server" Value="0" />
         <asp:HiddenField ID="hfLoggedInIP" runat="server" Value="0" />
+        <asp:HiddenField ID="hfShowPostIt" runat="server" />
 
     </form>
 </body>
 </html>
 <script type="text/javascript">
+
+    function ClosePostit() {
+        $('#postitnote').fadeOut('fast');
+        <%Session["showPostit"]="false";%>;
+    }
 
     $.getJSON('http://ipinfo.io', function (data) {
         document.getElementById('hfLoggedInIP').setAttribute('Value', data.ip)
@@ -157,6 +171,7 @@
 
 
     function OpenOverlay() {
+        ClosePostit();
         $('.overlay-container').fadeIn('slow');
         document.getElementById('hfShowLogin').setAttribute('Value', '1')
         return false;
