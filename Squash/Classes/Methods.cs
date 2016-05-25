@@ -275,6 +275,7 @@ namespace Squash.Classes
             string correctName = "";
             int count = 0;
             bool whitespaceAtStart = true;
+            bool dashAtStart = true;
 
             foreach(char c in text)
             {
@@ -284,14 +285,33 @@ namespace Squash.Classes
                 {
                     correctName += "";
                 }
-                else
+                else if(c.ToString() == "-" && dashAtStart == true)
+                {
+                    correctName += "";
+                }
+                else if(Char.IsDigit(c))
+                {
+                    correctName += "";
+                    whitespaceAtStart = false;
+                    dashAtStart = false;
+                }
+                else if(Char.IsLetter(c) || c.ToString() == "-")
                 {
                     correctName += c;
                     whitespaceAtStart = false;
+                    dashAtStart = false;
+                }
+                else
+                {
+                    correctName += "";
+                    whitespaceAtStart = false;
+                    dashAtStart = false;
                 }
             }
 
             CultureInfo ci = new CultureInfo("sv-SE");
+            //toLowerFirst
+            string corrName = correctName.ToLower();
 
             return ci.TextInfo.ToTitleCase(correctName);
 

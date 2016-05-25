@@ -229,9 +229,28 @@ input[type="text"],
 input[type="password"],
 input[type="email"],
 input[type="tel"],
-input[type="select"] {
+input[type="select"],
+input[type="number"] {
     max-width: 280px;
 }
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
+    margin: 0;
+}
+
+
+
+
+
 .form-horizontal h2{
     padding-left:2%;
 }
@@ -403,6 +422,15 @@ h4{
     margin-bottom:12px;
 }
 /*MYPAGE - SLUT*/
+
+
+
+/*REGISTER*/
+#MainContent_lblMessage{
+    color:red;
+}
+/*REGISTER - SLUT*/
+
 
 
 

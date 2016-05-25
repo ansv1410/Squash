@@ -57,9 +57,10 @@
                 <div class="form-group">
                     <asp:Label runat="server" AssociatedControlID="tbTelephone" CssClass="col-md-2 control-label">Telefon</asp:Label>
                     <div class="col-md-10">
-                        <asp:TextBox runat="server" ID="tbTelephone" CssClass="form-control" TextMode="SingleLine" />
+                        <asp:TextBox runat="server" ID="tbTelephone" CssClass="form-control" TextMode="SingleLine" MaxLength="15"/>
                         <asp:RequiredFieldValidator runat="server" ControlToValidate="tbTelephone" ValidationGroup="Register"
                             CssClass="text-danger" ErrorMessage="Fyll i telefon." />
+                        <asp:RegularExpressionValidator ID="RegularExpressionValidatorPhone" runat="server" ControlToValidate="tbTelephone" CssClass="text-danger" ErrorMessage="Endast siffror." ValidationExpression="\d+"></asp:RegularExpressionValidator>
                     </div>
                 </div>
                 <%-- Inloggningskontroller --%>
