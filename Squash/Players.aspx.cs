@@ -34,6 +34,7 @@ namespace Squash
             {
                 lip = (LoggedInPerson)Session["lip"];
                 addressListDiv.Visible = true;
+                BuildUserList();
             }
             else
             {
@@ -42,7 +43,6 @@ namespace Squash
 
 
             BuildCharts(6);
-            BuildUserList();
         }
 
 
@@ -134,10 +134,10 @@ namespace Squash
             {
                 if(u.PublicAddres != 0)
                 {
-                    string liObject = "<h5 class='listName'>" + u.FirstName + " " + u.SurName + "</h5><p class='listStreet'>" + u.StreatAddress + "</p><br /><p class='listZip'>" + u.ZipCode + " </p> <p class='listCity'>" + u.City + "</p><br /><p class='listEmail'><a href='mailto:'" + u.EMail + ">"+u.EMail+"</a></p><br /><p class='listPhone'>" + u.Phone + "</p><hr />";
-                HtmlGenericControl li = new HtmlGenericControl("li");
-                li.InnerHtml = liObject;
-                userList.Controls.Add(li);
+                    string liObject = "<h5 class='listName'>" + u.FirstName + " " + u.SurName + "</h5><p class='listStreet'>" + u.StreatAddress + "</p><br /><p class='listZip'>" + u.ZipCode + " </p> <p class='listCity'>" + u.City + "</p><br /><a class='listEmail redirectLinks' href='mailto:" + u.EMail + "'>" + u.EMail + "</a><br /><p class='listPhone'>" + u.Phone + "</p><hr />";
+                    HtmlGenericControl li = new HtmlGenericControl("li");
+                    li.InnerHtml = liObject;
+                    userList.Controls.Add(li);
 
 
 
