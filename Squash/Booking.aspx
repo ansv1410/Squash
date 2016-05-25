@@ -13,10 +13,12 @@
 
 
 
-        <h2 id="spelSchemaH2">Spelschema</h2>
+        <h2 id="scheduleH2">Spelschema</h2>
+        <h4 id="scheduleH4">- Boka nedan</h4>
         <div id="divBookMess" runat="server">
             <p id="bookingConfirmationMessage" runat="server" class="successfulBookingMessage" visible="false"></p>
             <p id="bookingErrorMessage" runat="server" class="failedBookingMessage" visible="false"></p>
+            <p id="preBookingInfo" runat="server" class="bookingInfoText" visible="false"></p>
         </div>
 
 

@@ -66,18 +66,17 @@ namespace Squash.Account
             {
                 if (dr.Read())
                 {
-                    //if(dr.HasRows)
-                    //{
+                    
                     Users u = new Users();
                     u.Id = Convert.ToInt32(dr["Id"].ToString());
                     u.UserId = Convert.ToInt32(dr["UserId"].ToString());
-                    u.FirstName = dr["Firstname"].ToString();
-                    u.SurName = dr["Surname"].ToString();
-                    u.Phone = dr["Phone"].ToString();
+                    u.FirstName = method.FixName(dr["Firstname"].ToString());
+                    u.SurName = method.FixName(dr["Surname"].ToString());
+                    u.Phone = method.FixNumber(dr["Phone"].ToString());
                     u.EMail = dr["EMail"].ToString();
-                    u.StreatAddress = dr["StreetAddress"].ToString();
-                    u.ZipCode = dr["ZipCode"].ToString();
-                    u.City = dr["City"].ToString();
+                    u.StreatAddress = method.FixName(dr["StreetAddress"].ToString());
+                    u.ZipCode = method.FixNumber(dr["ZipCode"].ToString());
+                    u.City = method.FixName(dr["City"].ToString());
                     u.IPAddress = dr["IPAddress"].ToString();
                     u.Password = dr["Password"].ToString();
                     u.Cellular = dr["Cellular"].ToString();
@@ -107,8 +106,8 @@ namespace Squash.Account
                             Companies c = new Companies();
                             if(m.MemberType == 2 || m.MemberType == 3)
                             {
-                                string query = "SELECT * FROM companies c "
-                                               + "INNER JOIN membercompany mc ON c.ID = mc.CompanyId "
+                                string query = "SELECT * FROM Companies c "
+                                               + "INNER JOIN MemberCompany mc ON c.ID = mc.CompanyId "
                                                + "INNER JOIN members m ON mc.MemberId = m.MemberId "
                                                + "WHERE m.MemberId = "+m.MemberId+";";
 
@@ -121,9 +120,9 @@ namespace Squash.Account
                                 }
                             }
                             
+                            conn.Close();
                             
                             int memberId = m.MemberId;
-                            conn.Close();
 
                             Logins l = new Logins();
                             l.MemberId = memberId;
@@ -149,7 +148,10 @@ namespace Squash.Account
                             lip.member = m;
                             lip.logins = l;
                             lip.company = c;
-
+                            if (lip.member.MemberType == 3)
+                            {
+                                lip.memberfloatable = lip.IsMF();
+                            }
                             bool showBookingMessage = false;
                             string bookingMessage = "";
 
@@ -160,7 +162,7 @@ namespace Squash.Account
                             ((HiddenField)Page.Master.FindControl("hfShowLogin")).Value = "0";
 
                             FormsAuthentication.RedirectFromLoginPage(m.MemberId.ToString(), false);
-                            Response.Redirect("~/Default.aspx");
+                            Response.Redirect(Request.RawUrl);
 
                         }
                         else
