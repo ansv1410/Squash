@@ -20,7 +20,7 @@ namespace Squash.Classes
             
                 MemberFloatable mf = new MemberFloatable();
                 MySqlConnection conn = method.myConn();
-                string query = "SELECT * FROM memberfloatable WHERE MemberId =" + member.MemberId;
+                string query = "SELECT * FROM MemberFloatable WHERE MemberId =" + member.MemberId;
                 MySqlDataReader dr = method.myReader(query, conn);
 
                 if (dr.HasRows)
