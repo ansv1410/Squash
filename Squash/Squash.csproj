@@ -213,12 +213,14 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Account\Web.config" />
+    <Content Include="Images\arrow-hand-drawn-hi2.png" />
     <Content Include="Images\B1background.png" />
     <Content Include="Images\B2background.png" />
     <Content Include="Images\background\3905277-paper-background-plenty-of-copy-space-for-your-text-tiles-seamless-as-a-pattern1.jpg" />
     <Content Include="Images\background\BG.jpg" />
     <Content Include="Images\background\tumblr_mps8cpjZnq1rebw0do8_400.jpg" />
     <Content Include="Images\background\^1F0FEDF4FAF608E4F6D4A32363A14DD16168AE12E79B66F3CB^pimgpsh_fullsize_distr.png" />
+    <Content Include="Images\dialog-close.png" />
     <Content Include="Images\FB.svg" />
     <Content Include="Images\Gplus.svg" />
     <Content Include="Images\logga.svg" />
@@ -236,8 +238,11 @@
     <Content Include="mstile-310x310.png" />
     <Content Include="mstile-70x70.png" />
     <Content Include="safari-pinned-tab.svg" />
+    <Content Include="Scripts\list.js" />
     <Content Include="Web.config" />
     <Content Include="manifest.json" />
+    <Content Include="fonts\gnyrwn971.ttf" />
+    <None Include="Properties\PublishProfiles\squashosd - Web Deploy.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -430,10 +435,12 @@
     <Compile Include="Classes\Messages.cs" />
     <Compile Include="Classes\Methods.cs" />
     <Compile Include="Classes\News.cs" />
+    <Compile Include="Classes\PlayerStats.cs" />
     <Compile Include="Classes\Reservations.cs" />
     <Compile Include="Classes\ReservationTypes.cs" />
     <Compile Include="Classes\StatusCodes.cs" />
     <Compile Include="Classes\Subscriptions.cs" />
+    <Compile Include="Classes\TitleWithToString.cs" />
     <Compile Include="Classes\Users.cs" />
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
@@ -498,6 +505,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
