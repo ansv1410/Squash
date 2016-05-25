@@ -174,11 +174,11 @@ namespace Squash.Classes
 
         #region CheckTelephoneNumber
 
-        public string FixNumber(string phonenumber)
+        public string FixNumber(string number)
         {
             string newNum = "";
 
-            foreach (char c in phonenumber)
+            foreach (char c in number)
             {
                 if (Char.IsLetter(c))
                 {
@@ -195,6 +195,75 @@ namespace Squash.Classes
             }
 
             return newNum;
+        }
+
+
+        public string SplitNumber(string phoneNr)
+        {
+            string newNumber = "";
+            string areaCode = "";
+
+            if (phoneNr == "")
+            {
+                return phoneNr;
+            }
+
+            else if (phoneNr.Substring(0, 2) == "46")
+            {
+                phoneNr = "0" + phoneNr.Substring(2);
+            }
+
+            if (phoneNr.Length >= 8 && phoneNr.Length <= 10)
+            {
+                if(phoneNr.Substring(0,2) == "07")
+                {
+                    areaCode = phoneNr.Substring(0,3);
+                    if(phoneNr.Length == 8)
+                    {
+                        newNumber = areaCode + "-" + phoneNr.Substring(3, 3) + " " + phoneNr.Substring(6, 2);
+                    }
+                    if(phoneNr.Length == 9)
+                    {
+                        newNumber = areaCode + "-" + phoneNr.Substring(3, 2) + " " + phoneNr.Substring(5, 2) + " " + phoneNr.Substring(7, 2);
+                    }
+                    if(phoneNr.Length == 10)
+                    {
+                        newNumber = areaCode + "-" + phoneNr.Substring(3,3) + " " + phoneNr.Substring(6,2) + " " + phoneNr.Substring(8);
+
+                    }
+
+                    return newNumber;
+                }
+                else if(phoneNr.Substring(0,3) == "063")
+                {
+                    areaCode = phoneNr.Substring(0, 3);
+
+                    if(phoneNr.Length == 8)
+                    {
+                        newNumber = areaCode + "-" + phoneNr.Substring(3,3) + " " + phoneNr.Substring(6,2);
+                    }
+                    if (phoneNr.Length == 9)
+                    {
+                        newNumber = areaCode + "-" + phoneNr.Substring(3,2) + " " + phoneNr.Substring(5,2) + " " + phoneNr.Substring(7,2);
+                    }
+                    return newNumber;
+                }
+
+                else
+                {
+                    areaCode = phoneNr.Substring(0, 4);
+                    newNumber = areaCode + "-" + phoneNr.Substring(4);
+                    return newNumber;
+                }
+
+
+            }
+
+            else
+            {
+                return phoneNr;
+            }
+            
         }
 
         #endregion
@@ -984,8 +1053,8 @@ namespace Squash.Classes
                     u.UserId = Convert.ToInt16(dr["UserId"]);
                     u.FirstName = FixName(dr["Firstname"].ToString());
                     u.SurName = FixName(dr["Surname"].ToString());
-                    u.Phone = FixNumber(dr["Phone"].ToString());
-                    u.EMail = dr["EMail"].ToString();
+                    u.Phone = SplitNumber(FixNumber(dr["Phone"].ToString()));
+                    u.EMail = dr["EMail"].ToString().ToLower(); ;
                     u.StreatAddress = FixName(dr["StreetAddress"].ToString());
                     u.ZipCode = FixNumber(dr["ZipCode"].ToString());
                     u.City = FixName(dr["City"].ToString());
