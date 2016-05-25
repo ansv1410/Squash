@@ -24,7 +24,7 @@ namespace Squash.Classes
         #region Connection, myReader, myDelete
         public MySqlConnection myConn()
         {
-            MySqlConnection conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["squash"].ConnectionString);
+            MySqlConnection conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["squashOnline"].ConnectionString);
             return conn;
         }
         public MySqlDataReader myReader(string query, MySqlConnection conn)
@@ -399,7 +399,7 @@ namespace Squash.Classes
         public List<Companies> GetCompanyList()
         {
             List<Companies> companiesList = new List<Companies>();
-            string query = "SELECT Id, Name FROM companies";
+            string query = "SELECT Id, Name FROM Companies";
             MySqlConnection conn = myConn();
             MySqlDataReader dr = myReader(query, conn);
 
@@ -421,7 +421,7 @@ namespace Squash.Classes
         public List<MemberCompany> GetMemberCompanyList()
         {
             List<MemberCompany> memberCompanyList = new List<MemberCompany>();
-            string query = "SELECT mc.MemberId, mc.CompanyId FROM membercompany mc";
+            string query = "SELECT mc.MemberId, mc.CompanyId FROM MemberCompany mc";
             MySqlConnection conn = myConn();
             MySqlDataReader dr = myReader(query, conn);
 

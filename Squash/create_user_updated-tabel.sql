@@ -40,6 +40,11 @@ PRIMARY KEY (Id)
 
 )ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
+INSERT INTO news SET Headline ='Ny webbsida under konstruktion!', Newstext ='Den nya webbsidan utvecklas av två studenter på MIUN som B-Uppsats och är ett avslutningsprojekt för termin 4.', Imagepath='/Images/squashbild.png';
+INSERT INTO news SET Headline ='Utökade funktioner, tillgänglig på alla enheter', Newstext ='Nya funktioner så som att kunna boka två banor samtidigt, avboka flera bokningar på samma gång m.m. är numera möjligt med den nya webbsidan. Den är dessutom responsivt utvecklad vilket betyder att webbsidan beter sig och ser olika ut beroende på vilken enhet som används men med samma funktionalitet på alla. Webbsidan möjliggör smidiga bokningar och enkel navigering på mobil.', Imagepath ='/Images/tennis-309617_960_720.png';
+
+
+
 
 ALTER TABLE messages
 ADD COLUMN Headline varchar(250),

@@ -106,8 +106,8 @@ namespace Squash.Account
                             Companies c = new Companies();
                             if(m.MemberType == 2 || m.MemberType == 3)
                             {
-                                string query = "SELECT * FROM companies c "
-                                               + "INNER JOIN membercompany mc ON c.ID = mc.CompanyId "
+                                string query = "SELECT * FROM Companies c "
+                                               + "INNER JOIN MemberCompany mc ON c.ID = mc.CompanyId "
                                                + "INNER JOIN members m ON mc.MemberId = m.MemberId "
                                                + "WHERE m.MemberId = "+m.MemberId+";";
 
