@@ -242,6 +242,7 @@
     <Content Include="Web.config" />
     <Content Include="manifest.json" />
     <Content Include="fonts\gnyrwn971.ttf" />
+    <None Include="Properties\PublishProfiles\ostersundssquash - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\squashosd - Web Deploy.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
