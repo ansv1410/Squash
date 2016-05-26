@@ -20,14 +20,17 @@ namespace Squash
         MySqlConnection conn = method.myConn();
         LoggedInPerson lip;
         bool showBookingMessage;
+        bool isLoggedInMember;
         protected void Page_Load(object sender, EventArgs e)
         {
+            isLoggedInMember = false;
             lip = (LoggedInPerson)Session["lip"];
             //hfChosenCourts.Value = "0";
             //"8" är antalet dagar som metoden ska hämta, dynamiskt och kan ändras. 
             hfNoOfClickedCourts.Value = "0";
             if(Session["lip"] != null)
             {
+                isLoggedInMember = true;
                 HtmlTable table = method.MyBookingsTable(lip);
                 if (table != null)
                 {
@@ -245,7 +248,7 @@ namespace Squash
                                     if (sub.CourtId == C.CourtId && sub.CourtTimeId == CT.CourtTimeId && sub.DayId == D.DayId)
                                     {
                                         subscribed = true;
-                                        if (Session["lip"] != null)
+                                        if (isLoggedInMember)
                                         {
                                             if (sub.MemberId == lip.member.MemberId)
                                             {
@@ -291,7 +294,7 @@ namespace Squash
                                     if (res.CourtId == C.CourtId && res.StartDate == Convert.ToDateTime((thisDayIsFullDate + " " + thisDayIsFullTime)))
                                     {
                                         reserved = true;
-                                        if (Session["lip"] != null)
+                                        if (isLoggedInMember)
                                         {
                                             if (res.MemberId == lip.member.MemberId)
                                             {
@@ -365,7 +368,7 @@ namespace Squash
                                 }
 
                                 //Om användaren är inloggad
-                                if (Session["lip"] != null)
+                                if (isLoggedInMember)
                                 {
 
                                     string bookingDivId = thisDayIsFullDate + "_" + shortTime + "_" + C.CourtId.ToString();
@@ -487,7 +490,7 @@ namespace Squash
                             btnBook.CommandArgument = hourBookingDivId;
                             btnBook.Click += btnBook_Click;
 
-                            if(Session["lip"] != null)
+                            if (isLoggedInMember)
                             {
                                 hourBookingDiv.Controls.Add(method.BookingInfoMessage(lip, FullDateTime));
                             }
