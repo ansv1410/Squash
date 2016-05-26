@@ -200,6 +200,7 @@
     <Content Include="apple-touch-icon.png" />
     <Content Include="Booking.aspx" />
     <Content Include="browserconfig.xml" />
+    <Content Include="ChartTemp\placeholder.txt" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\Site.css" />
@@ -504,7 +505,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="ChartTemp\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
