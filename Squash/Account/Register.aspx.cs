@@ -108,10 +108,10 @@ namespace Squash.Account
                     {
                         if (!method.EmailExist(tbEmail.Text))
                         {
-                            string firstName = method.FixName(tbFirstName.Text);
-                            string surName = method.FixName(tbSurName.Text);
-                            string streetAddress = method.FixName(tbStreetAddress.Text);
-                            string city = method.FixName(tbCity.Text);
+                            string firstName = method.FixNameRegister(tbFirstName.Text);
+                            string surName = method.FixNameRegister(tbSurName.Text);
+                            string streetAddress = method.FixNameRegister(tbStreetAddress.Text);
+                            string city = method.FixNameRegister(tbCity.Text);
 
 
                             Users createUser = new Users()
