@@ -285,7 +285,31 @@ input[type=number] {
 
 }
 
+/*.row {
+  margin-right: 0px;
+  margin-left: 0px;
+}*/
+
+
 /*GENOMGÅENDE - SLUT*/
+
+
+
+
+/*FORGOT*/
+#forgotDiv{
+    overflow:auto;
+}
+#MainContent_pnlDefaultButton{
+    float:left;
+    padding-left:2%;
+}
+#forgotEmailDiv{
+    margin-bottom:0;
+}
+
+/*FORGOT - SLUT*/
+
 
 
 

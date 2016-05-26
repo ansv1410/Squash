@@ -18,6 +18,7 @@
     <%--    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>--%>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+    <script type="text/javascript" src="Scripts/list.js"></script>
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
@@ -71,7 +72,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" runat="server" href="~/Default">Östersunds squash</a>
+                        <a class="navbar-brand" runat="server" href="~/Default">Östersunds Squash</a>
                         <div id="pinDiv" runat="server" visible="false">
                             <div id="showPin" runat="server" visible="false">
                                 Dagens PIN<br />
@@ -109,6 +110,15 @@
             </div>
         </div>
 
+        <div id="postitnote" runat="server">
+
+            <img src="Images/arrow-hand-drawn-hi2.png" id="postitarrow" />
+            <img src="Images/dialog-close.png" id="closePostit" alt="Close" class="rbox-close" onclick="ClosePostit()" />
+            <div class="rbox-data">
+                <p>BLI MEDLEM HÄR!</p>
+            </div>
+        </div>
+
         <div class="overlay-container">
             <div class="page-overlay" onclick="CloseOverlay()">
             </div>
@@ -124,7 +134,7 @@
             <div class="overlay-message-PIN">
 
                 <h4>Visa PIN-kod?</h4>
-                <p>Efter att pinkoden visats kan du inte avboka någon av dina tider idag.</p>
+                <p>Efter att PIN-koden visats kan du inte avboka någon av dina tider idag.</p>
                 <div class="promptButtons">
                     <asp:Button ID="pinOK" CssClass="btn btn-default promptOK" runat="server" OnClick="lbtnShowPin_Click" Text="OK" />
                     <input id="pinCancel" class="btn btn-default promptCancel" type="button" value="Avbryt" />
@@ -144,11 +154,17 @@
         </footer>
         <asp:HiddenField ID="hfShowLogin" runat="server" Value="0" />
         <asp:HiddenField ID="hfLoggedInIP" runat="server" Value="0" />
+        <asp:HiddenField ID="hfShowPostIt" runat="server" />
 
     </form>
 </body>
 </html>
 <script type="text/javascript">
+
+    function ClosePostit() {
+        $('#postitnote').fadeOut('fast');
+        <%Session["showPostit"]="false";%>;
+    }
 
     $.getJSON('http://ipinfo.io', function (data) {
         document.getElementById('hfLoggedInIP').setAttribute('Value', data.ip)
@@ -156,6 +172,7 @@
 
 
     function OpenOverlay() {
+        ClosePostit();
         $('.overlay-container').fadeIn('slow');
         document.getElementById('hfShowLogin').setAttribute('Value', '1')
         return false;
