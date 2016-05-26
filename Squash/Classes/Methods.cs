@@ -735,6 +735,8 @@ namespace Squash.Classes
 
         public DataTable PlayerStats(DateTime startDate, DateTime endDate)
         {
+            System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("sv-SE");
+            System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo("sv-SE");
             MySqlConnection conn = myConn();
             DataTable dt = new DataTable();
 
@@ -816,6 +818,9 @@ namespace Squash.Classes
 
                 foreach (Tuple<Reservations, Courts, ReservationTypes> t in bookingInfoList)
                 {
+                    System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("sv-SE");
+                    System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo("sv-SE");
+
                     HtmlTableRow tr = new HtmlTableRow();
                     tr.Attributes.Add("class", "myBookingsTR");
                     //trList.Add(tr);
