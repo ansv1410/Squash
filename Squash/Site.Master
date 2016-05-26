@@ -111,6 +111,7 @@
         </div>
 
         <div id="postitnote" runat="server">
+
             <img src="Images/arrow-hand-drawn-hi2.png" id="postitarrow" />
             <img src="Images/dialog-close.png" id="closePostit" alt="Close" class="rbox-close" onclick="ClosePostit()" />
             <div class="rbox-data">
