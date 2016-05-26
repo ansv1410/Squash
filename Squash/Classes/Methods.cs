@@ -275,6 +275,35 @@ namespace Squash.Classes
             string correctName = "";
             int count = 0;
             bool whitespaceAtStart = true;
+
+            foreach (char c in text)
+            {
+                count++;
+                //if (count == 1 && c.ToString() == " ")
+                if (c.ToString() == " " && whitespaceAtStart == true)
+                {
+                    correctName += "";
+                }
+                else
+                {
+                    correctName += c;
+                    whitespaceAtStart = false;
+                }
+            }
+
+            CultureInfo ci = new CultureInfo("sv-SE");
+
+            return ci.TextInfo.ToTitleCase(correctName);
+
+            //return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(text);
+        }
+
+
+        public string FixNameRegister(string text)
+        {
+            string correctName = "";
+            int count = 0;
+            bool whitespaceAtStart = true;
             bool dashAtStart = true;
 
             foreach(char c in text)
