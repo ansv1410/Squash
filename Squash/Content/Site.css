@@ -305,7 +305,11 @@ input[type=number] {
     padding-left:2%;
 }
 #forgotEmailDiv{
-    margin-bottom:0;
+    margin-bottom:5px;
+}
+
+.text-danger{
+    font-size:inherit;
 }
 
 /*FORGOT - SLUT*/
