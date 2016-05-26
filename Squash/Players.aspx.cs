@@ -89,7 +89,7 @@ namespace Squash
 
                 Chart chart = new Chart();
                 //chart.Titles.Add(new Title(titleMonth + " - " + titleYear, Docking.Top, new Font("Tahoma", 20f, FontStyle.Bold), Color.Black));
-
+                chart.ImageLocation = "~/ChartTemp/Chart"+i.ToString();
                 chart.Series.Add("Series1");
                 chart.Attributes.Add("class", "monthChart");
 
