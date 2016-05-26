@@ -7,7 +7,6 @@ using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
 using System.Data;
 using System.Data.Sql;
-using MySql.Data.Entity;
 using MySql.Data.MySqlClient;
 using System.Configuration;
 using Squash.Classes;
