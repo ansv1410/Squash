@@ -455,8 +455,49 @@ h4{
 
 /*REGISTER*/
 #MainContent_lblMessage{
-    color:red;
+    color:#dc3838;
+    padding-left:2%;
 }
+#MainContent_pnlDefaultButton > .form-group > .col-md-3{
+    text-align:left;
+}
+
+#MainContent_pnlDefaultButton > .form-group > .col-md-offset-2{
+    clear:none;
+    margin-left:0;
+    padding-left:2%;
+}
+
+
+.agreementList{
+    /*max-width:100%;
+    white-space:nowrap;
+    word-break:normal;*/
+
+    list-style:none;
+    margin:0;
+    padding:0;
+    width:100%;
+}
+
+.agreementList.horizontal li{
+    display:inline;
+}
+.agreementList input{
+    float:left;
+    margin-bottom:10px;
+}
+.agreementList label{
+    display:inline;
+    /*vertical-align:super;*/
+}
+
+
+
+
+
+
+
 /*REGISTER - SLUT*/
 
 

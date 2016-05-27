@@ -7,14 +7,15 @@
         <asp:Literal runat="server" ID="ErrorMessage" />
     </p>--%>
 
-        <div class="form-horizontal">
+        <div class="form-horizontal" id="registerFormHorizontal">
             <h4>Fyll i formuläret nedan för att bli medlem.</h4>
             <h5>Uppgifterna skickas till administratör för godkännande. Efter godkännandet får du ett e-mail och därefter kan du använda tjänsten.</h5>
+            <asp:Label ID="lblMessage" runat="server"></asp:Label>
             <hr />
             <asp:Panel ID="pnlDefaultButton" runat="server" DefaultButton="btnCreateUser">
 
                 <div class="form-group">
-                    <asp:Label runat="server" AssociatedControlID="tbFirstName" CssClass="col-md-2 control-label">Förnamn</asp:Label>
+                    <asp:Label runat="server" AssociatedControlID="tbFirstName" CssClass="col-md-3 control-label">Förnamn</asp:Label>
                     <div class="col-md-10">
                         <asp:TextBox runat="server" ID="tbFirstName" CssClass="form-control" TextMode="SingleLine" />
                         <asp:RequiredFieldValidator runat="server" ControlToValidate="tbFirstName" ValidationGroup="Register"
@@ -22,7 +23,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <asp:Label runat="server" AssociatedControlID="tbSurName" CssClass="col-md-2 control-label">Efternamn</asp:Label>
+                    <asp:Label runat="server" AssociatedControlID="tbSurName" CssClass="col-md-3 control-label">Efternamn</asp:Label>
                     <div class="col-md-10">
                         <asp:TextBox runat="server" ID="tbSurName" CssClass="form-control" TextMode="SingleLine" />
                         <asp:RequiredFieldValidator runat="server" ControlToValidate="tbSurName" ValidationGroup="Register"
@@ -30,7 +31,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <asp:Label runat="server" AssociatedControlID="tbStreetAddress" CssClass="col-md-2 control-label">Gatuadress</asp:Label>
+                    <asp:Label runat="server" AssociatedControlID="tbStreetAddress" CssClass="col-md-3 control-label">Gatuadress</asp:Label>
                     <div class="col-md-10">
                         <asp:TextBox runat="server" ID="tbStreetAddress" CssClass="form-control" TextMode="SingleLine" />
                         <asp:RequiredFieldValidator runat="server" ControlToValidate="tbStreetAddress" ValidationGroup="Register"
@@ -38,7 +39,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <asp:Label runat="server" AssociatedControlID="tbPostalCode" CssClass="col-md-2 control-label">Postnummer</asp:Label>
+                    <asp:Label runat="server" AssociatedControlID="tbPostalCode" CssClass="col-md-3 control-label">Postnummer</asp:Label>
                     <div class="col-md-10">
                         <asp:TextBox runat="server" ID="tbPostalCode" CssClass="form-control" MaxLength="5" />
                         <asp:RequiredFieldValidator runat="server" ControlToValidate="tbPostalCode" ValidationGroup="Register"
@@ -47,7 +48,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <asp:Label runat="server" AssociatedControlID="tbCity" CssClass="col-md-2 control-label">Postort</asp:Label>
+                    <asp:Label runat="server" AssociatedControlID="tbCity" CssClass="col-md-3 control-label">Postort</asp:Label>
                     <div class="col-md-10">
                         <asp:TextBox runat="server" ID="tbCity" CssClass="form-control" TextMode="SingleLine" />
                         <asp:RequiredFieldValidator runat="server" ControlToValidate="tbCity" ValidationGroup="Register"
@@ -55,7 +56,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <asp:Label runat="server" AssociatedControlID="tbTelephone" CssClass="col-md-2 control-label">Telefon</asp:Label>
+                    <asp:Label runat="server" AssociatedControlID="tbTelephone" CssClass="col-md-3 control-label">Telefon</asp:Label>
                     <div class="col-md-10">
                         <asp:TextBox runat="server" ID="tbTelephone" CssClass="form-control" TextMode="SingleLine" MaxLength="15"/>
                         <asp:RequiredFieldValidator runat="server" ControlToValidate="tbTelephone" ValidationGroup="Register"
@@ -65,15 +66,16 @@
                 </div>
                 <%-- Inloggningskontroller --%>
                 <div class="form-group">
-                    <asp:Label runat="server" AssociatedControlID="tbEmail" CssClass="col-md-2 control-label">E-post</asp:Label>
+                    <asp:Label runat="server" AssociatedControlID="tbEmail" CssClass="col-md-3 control-label">E-post</asp:Label>
                     <div class="col-md-10">
                         <asp:TextBox runat="server" ID="tbEmail" CssClass="form-control" TextMode="Email" />
                         <asp:RequiredFieldValidator runat="server" ControlToValidate="tbEmail" ValidationGroup="Register"
                             CssClass="text-danger" ErrorMessage="Fyll i e-post." />
                     </div>
                 </div>
+                <hr />
                 <div class="form-group">
-                    <asp:Label runat="server" AssociatedControlID="tbPassword" CssClass="col-md-2 control-label">Lösenord</asp:Label>
+                    <asp:Label runat="server" AssociatedControlID="tbPassword" CssClass="col-md-3 control-label">Lösenord</asp:Label>
                     <div class="col-md-10">
                         <asp:TextBox runat="server" ID="tbPassword" TextMode="Password" CssClass="form-control" />
                         <asp:RequiredFieldValidator runat="server" ControlToValidate="tbPassword" ValidationGroup="Register"
@@ -83,7 +85,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <asp:Label runat="server" AssociatedControlID="tbConfirmPassword" CssClass="col-md-2 control-label">Upprepa lösenord</asp:Label>
+                    <asp:Label runat="server" AssociatedControlID="tbConfirmPassword" CssClass="col-md-3 control-label">Upprepa lösenord</asp:Label>
                     <div class="col-md-10">
                         <asp:TextBox runat="server" ID="tbConfirmPassword" TextMode="Password" CssClass="form-control" />
                         <asp:RequiredFieldValidator runat="server" ControlToValidate="tbConfirmPassword" ValidationGroup="Register"
@@ -93,11 +95,13 @@
                         <br />
                     </div>
                 </div>
+                <hr />
                 <%-- Radiobuttons för att godkänna lagring och eventuell visning i kontaktlista --%>
                 <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <asp:Label AssociatedControlID="rblAgreement" runat="server" Text="Jag godkänner att personuppgifter lagras och vill:"></asp:Label>
-                        <asp:RadioButtonList ID="rblAgreement" runat="server"
+                    <div class="col-md-offset-2 col-md-10" style="padding-left:15px; width:100%;">
+                        <asp:Label AssociatedControlID="rblAgreement" runat="server" Text="Jag godkänner att personuppgifter lagras och vill:" style="padding-left:2%;"></asp:Label>
+                        <br />
+                        <asp:RadioButtonList ID="rblAgreement" runat="server" CssClass="agreementList"
                             RepeatDirection="Vertical" RepeatLayout="Table">
                             <asp:ListItem Text=" synas i kontaktlista för andra medlemmar." Value="Agree" />
                             <asp:ListItem Text=" <u><em>inte</em></u> synas i kontaktlista för andra medlemmar." Value="Disagree" />
@@ -110,7 +114,7 @@
                     <div class="col-md-offset-2 col-md-10">
                         <asp:Button ID="btnCreateUser" runat="server" OnClick="CreateUser_Click" Text="Skapa konto" CssClass="btn btn-default" ValidationGroup="Register" />
                         <br />
-                        <asp:Label ID="lblMessage" runat="server"></asp:Label>
+                        <%--<asp:Label ID="lblMessage" runat="server"></asp:Label>--%>
                     </div>
                 </div>
 
