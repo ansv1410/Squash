@@ -89,13 +89,7 @@
                 $('.bookingDiv').removeClass('selectedCourt');
                 $('#MainContent_cancelReservationDiv').hide();
             }
-            //function ReopenBookingOverlay() {
-            //    var oneOrZero = document.getElementById('hfShowLogin').getAttribute('Value')
-            //    if (oneOrZero == "1")
-            //        $('.overlay-container').show();
-            //}
 
-            //ReopenOverlay();
 
             function chosenCourt(hfID, courtId, bookingDivID) {
                 var id = "MainContent_" + hfID;
@@ -214,19 +208,6 @@
             }
 
 
-            <%--$("#MainContent_btnCancelOK").click(function () {
-                var cbCancelReservationIDs = "";
-
-                $('.cbCancelReservation').each(function () {
-                    if (this.getAttribute("checked") == "checked") {
-                        cbCancelReservationIDs += this.getAttribute("id") + ",";
-                    }
-                });
-                    __doPostBack("<%= btnCancelOK.UniqueID %>", cbCancelReservationIDs);
-            });--%>
-
-
-
 
                 function ShowMobileDayDiv(dayDivId) {
                     var id = "#" + dayDivId;
@@ -252,7 +233,7 @@
                     if (browserWidth < 768) {
                         $(".dayDiv").each(function () {
                             this.style.width = "100%";
-                            ShowMobileDayDiv('1_day')
+                            //ShowMobileDayDiv('1_day')
                         });
                     }
                     else {

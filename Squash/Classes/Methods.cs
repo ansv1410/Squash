@@ -56,8 +56,8 @@ namespace Squash.Classes
             MySqlConnection conn = myConn();
             string queryEmailExist = "SELECT * FROM users_updated WHERE EMail = '" + email + "'";
             MySqlDataReader dr = myReader(queryEmailExist, conn);
-            
-            if(!dr.HasRows)
+
+            if (!dr.HasRows)
             {
                 conn.Close();
                 return false;
@@ -117,7 +117,7 @@ namespace Squash.Classes
         #region E-mail
         public void pwResetMail(string toEmail, string newPW)
         {
-           string content = "<!DOCTYPE html><html><head><meta charset='UTF-8'><title>Ditt nya lösenord</title></head><body><h2>Ditt nya lösenord</h2><hr /><p>"+ newPW +"</p></body></html>";
+            string content = "<!DOCTYPE html><html><head><meta charset='UTF-8'><title>Ditt nya lösenord</title></head><body><h2>Ditt nya lösenord</h2><hr /><p>" + newPW + "</p></body></html>";
 
 
             MailMessage mail = new MailMessage();
@@ -129,7 +129,7 @@ namespace Squash.Classes
             mail.BodyEncoding = System.Text.Encoding.UTF8;
             mail.IsBodyHtml = true;
             mail.Priority = MailPriority.High;
-            
+
             System.Net.ServicePointManager.ServerCertificateValidationCallback += delegate { return true; };
 
             SmtpClient client = new SmtpClient();
@@ -141,17 +141,17 @@ namespace Squash.Classes
                 try
                 {
 
-                string queryUpdatePW = "UPDATE users_updated "
-                + "SET Password = @pw "
-                + "WHERE EMail = '" + toEmail + "'";
-                MySqlConnection conn = myConn();
+                    string queryUpdatePW = "UPDATE users_updated "
+                    + "SET Password = @pw "
+                    + "WHERE EMail = '" + toEmail + "'";
+                    MySqlConnection conn = myConn();
 
-                MySqlCommand cmd = new MySqlCommand(queryUpdatePW, conn);
-                cmd.Parameters.AddWithValue("pw", Hashify(newPW));
+                    MySqlCommand cmd = new MySqlCommand(queryUpdatePW, conn);
+                    cmd.Parameters.AddWithValue("pw", Hashify(newPW));
 
-                conn.Open();
-                cmd.ExecuteNonQuery();
-                conn.Close();
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
 
                 }
                 catch (MySqlException ex)
@@ -159,12 +159,12 @@ namespace Squash.Classes
                     Debug.WriteLine(ex);
                 }
             }
-            catch(System.Net.Mail.SmtpException ex)
+            catch (System.Net.Mail.SmtpException ex)
             {
                 Debug.WriteLine(ex);
             }
-            
-            
+
+
 
         }
 
@@ -214,36 +214,36 @@ namespace Squash.Classes
 
             if (phoneNr.Length >= 8 && phoneNr.Length <= 10)
             {
-                if(phoneNr.Substring(0,2) == "07")
+                if (phoneNr.Substring(0, 2) == "07")
                 {
-                    areaCode = phoneNr.Substring(0,3);
-                    if(phoneNr.Length == 8)
+                    areaCode = phoneNr.Substring(0, 3);
+                    if (phoneNr.Length == 8)
                     {
                         newNumber = areaCode + "-" + phoneNr.Substring(3, 3) + " " + phoneNr.Substring(6, 2);
                     }
-                    if(phoneNr.Length == 9)
+                    if (phoneNr.Length == 9)
                     {
                         newNumber = areaCode + "-" + phoneNr.Substring(3, 2) + " " + phoneNr.Substring(5, 2) + " " + phoneNr.Substring(7, 2);
                     }
-                    if(phoneNr.Length == 10)
+                    if (phoneNr.Length == 10)
                     {
-                        newNumber = areaCode + "-" + phoneNr.Substring(3,3) + " " + phoneNr.Substring(6,2) + " " + phoneNr.Substring(8);
+                        newNumber = areaCode + "-" + phoneNr.Substring(3, 3) + " " + phoneNr.Substring(6, 2) + " " + phoneNr.Substring(8);
 
                     }
 
                     return newNumber;
                 }
-                else if(phoneNr.Substring(0,3) == "063")
+                else if (phoneNr.Substring(0, 3) == "063")
                 {
                     areaCode = phoneNr.Substring(0, 3);
 
-                    if(phoneNr.Length == 8)
+                    if (phoneNr.Length == 8)
                     {
-                        newNumber = areaCode + "-" + phoneNr.Substring(3,3) + " " + phoneNr.Substring(6,2);
+                        newNumber = areaCode + "-" + phoneNr.Substring(3, 3) + " " + phoneNr.Substring(6, 2);
                     }
                     if (phoneNr.Length == 9)
                     {
-                        newNumber = areaCode + "-" + phoneNr.Substring(3,2) + " " + phoneNr.Substring(5,2) + " " + phoneNr.Substring(7,2);
+                        newNumber = areaCode + "-" + phoneNr.Substring(3, 2) + " " + phoneNr.Substring(5, 2) + " " + phoneNr.Substring(7, 2);
                     }
                     return newNumber;
                 }
@@ -262,7 +262,7 @@ namespace Squash.Classes
             {
                 return phoneNr;
             }
-            
+
         }
 
         #endregion
@@ -305,25 +305,25 @@ namespace Squash.Classes
             bool whitespaceAtStart = true;
             bool dashAtStart = true;
 
-            foreach(char c in text)
+            foreach (char c in text)
             {
                 count++;
                 //if (count == 1 && c.ToString() == " ")
-                if(c.ToString() == " " && whitespaceAtStart == true)
+                if (c.ToString() == " " && whitespaceAtStart == true)
                 {
                     correctName += "";
                 }
-                else if(c.ToString() == "-" && dashAtStart == true)
+                else if (c.ToString() == "-" && dashAtStart == true)
                 {
                     correctName += "";
                 }
-                else if(Char.IsDigit(c))
+                else if (Char.IsDigit(c))
                 {
                     correctName += "";
                     whitespaceAtStart = false;
                     dashAtStart = false;
                 }
-                else if(Char.IsLetter(c) || c.ToString() == "-")
+                else if (Char.IsLetter(c) || c.ToString() == "-")
                 {
                     correctName += c;
                     whitespaceAtStart = false;
@@ -351,6 +351,44 @@ namespace Squash.Classes
 
         #region BookingMethods
 
+        public bool HasMaximizedReservations(DateTime dateToCheck, LoggedInPerson lip)
+        {
+            int numbersOfRes = 0;
+
+            int todayNo = Convert.ToInt16(dateToCheck.DayOfWeek.ToString("d"));
+            if (todayNo == 0)
+            {
+                todayNo = 7;
+            }
+
+            int startDay = todayNo - 1;
+            int endDay = 7 - todayNo + 1;
+
+            DateTime startDayOfWeek = dateToCheck.AddDays(-startDay);
+            DateTime endDayOfWeek = dateToCheck.AddDays(endDay);
+
+            string query = "SELECT COUNT(*) AS NoRes FROM reservations WHERE (StartDate BETWEEN DATE('" + startDayOfWeek + "') AND DATE('" + endDayOfWeek + "')) AND MemberId = " + lip.member.MemberId + ";";
+            MySqlConnection conn = myConn();
+            MySqlDataReader dr = myReader(query, conn);
+
+            if(dr.Read())
+            {
+                numbersOfRes = Convert.ToInt16(dr["NoRes"]);
+            }
+
+            if (numbersOfRes < 5)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+
+        }
+
+
+
         public int HasFloatReservation(DateTime dateToCheck, LoggedInPerson lip)
         {
             int NoOfFloatResLeft = lip.memberfloatable.NoTimesWeek;
@@ -362,12 +400,12 @@ namespace Squash.Classes
             }
 
             int startDay = todayNo - 1;
-            int endDay = 7 - todayNo +1;
+            int endDay = 7 - todayNo + 1;
 
             DateTime startDayOfWeek = dateToCheck.AddDays(-startDay);
             DateTime endDayOfWeek = dateToCheck.AddDays(endDay);
 
-            string query = "SELECT COUNT(*) AS NoRes FROM reservations WHERE (StartDate BETWEEN DATE('"+startDayOfWeek+"') AND DATE('"+endDayOfWeek+"')) AND ReservationType = 3 AND MemberId = "+lip.member.MemberId+";";
+            string query = "SELECT COUNT(*) AS NoRes FROM reservations WHERE (StartDate BETWEEN DATE('" + startDayOfWeek + "') AND DATE('" + endDayOfWeek + "')) AND ReservationType = 3 AND MemberId = " + lip.member.MemberId + ";";
             MySqlConnection conn = myConn();
             MySqlDataReader dr = myReader(query, conn);
 
@@ -474,13 +512,15 @@ namespace Squash.Classes
         }
 
         //HÄMTAR ALLA RESERVATIONER OCH LAGRAR DESSA I EN LISTA
-        public List<Reservations> GetReservationsList()
+        public List<Reservations> GetReservationsList(int numberOfDays)
         {
             List<Reservations> reservationsList = new List<Reservations>();
 
             string query = "SELECT r.CourtId, r.MemberId, r.StartDate, r.HandledBy, r.ReservationType, u.Firstname, u.Surname FROM reservations r "
                          + "INNER JOIN members m ON m.MemberId = r.MemberId "
-                         + "INNER JOIN users u ON u.UserId = m.UserId;";
+                         + "INNER JOIN users u ON u.UserId = m.UserId "
+                         + "WHERE StartDate BETWEEN DATE(NOW() - INTERVAL 1 HOUR) AND DATE(NOW() + INTERVAL '" + numberOfDays + "' DAY) "
+                         + "ORDER BY StartDate ASC;";
             MySqlConnection conn = myConn();
             MySqlDataReader dr = myReader(query, conn);
 
@@ -611,13 +651,13 @@ namespace Squash.Classes
                     fullTime = oneToZeroHour.ToString() + ":00:00";
                 }
             }
-            
+
             return fullTime;
 
         }
 
 
-        public HtmlGenericControl BookingInfoMessage(LoggedInPerson lip, DateTime chosenDay)
+        public HtmlGenericControl BookingInfoMessage(LoggedInPerson lip, DateTime chosenDay, bool HasCLReq, int noOfResLeft)
         {
             HtmlGenericControl bookingInfoTextDiv = new HtmlGenericControl("div");
             bookingInfoTextDiv.Attributes.Add("class", "bookingInfoTextDiv");
@@ -627,7 +667,8 @@ namespace Squash.Classes
 
             string divText = "";
 
-            if (HasCLRequest(lip, chosenDay))
+            //if (HasCLRequest(lip, chosenDay))
+            if(HasCLReq)
             {
                 divText += "• Eftersom Ni redan har sett dagens PIN-kod kommer du inte kunna avboka tiden. <br />";
 
@@ -640,10 +681,10 @@ namespace Squash.Classes
                     string onlyDate = chosenDay.ToString("yyyy-MM-dd");
                     DateTime floatableStart = Convert.ToDateTime(onlyDate + " 06:00:00");
                     DateTime floatableEnd = Convert.ToDateTime(onlyDate + " 16:00:00");
-                    if(chosenDay >= floatableStart && chosenDay <= floatableEnd)
+                    if (chosenDay >= floatableStart && chosenDay <= floatableEnd)
                     {
-                        int resLeft = HasFloatReservation(chosenDay, lip);
-                    
+                        int resLeft = noOfResLeft;
+
                         if (resLeft > 0)
                         {
                             divText += "• Ni har <strong>" + resLeft + "</strong> fria bokningar kvar för den valda veckan, övriga bokningar debiteras fullpris.";
@@ -676,10 +717,10 @@ namespace Squash.Classes
                     string onlyDate = chosenDay.ToString("yyyy-MM-dd");
                     DateTime floatableStart = Convert.ToDateTime(onlyDate + " 06:00:00");
                     DateTime floatableEnd = Convert.ToDateTime(onlyDate + " 16:00:00");
-                    if(chosenDay >= floatableStart && chosenDay <= floatableEnd)
+                    if (chosenDay >= floatableStart && chosenDay <= floatableEnd)
                     {
-                        int resLeft = HasFloatReservation(chosenDay, lip);
-                    
+                        int resLeft = noOfResLeft;
+
                         if (resLeft > 0)
                         {
                             divText += "• Ni har <strong>" + resLeft + "</strong> fria bokningar kvar för den valda veckan, övriga bokningar debiteras fullpris.";
@@ -699,7 +740,7 @@ namespace Squash.Classes
 
             bookingInfoText.InnerHtml = divText;
 
-            
+
             bookingInfoTextDiv.Controls.Add(bookingInfoText);
 
             return bookingInfoTextDiv;
@@ -710,24 +751,24 @@ namespace Squash.Classes
             DateTime chosenDay = DateTime.Now;
             string divText = "";
 
-                if (lip.member.MemberType == 2)
-                {
-                    divText += "• Fullpris för ströbokningar debiteras kontoansvarig.";
-                }
-                else if (lip.member.MemberType == 3)
-                {
-                    int resLeft = HasFloatReservation(chosenDay, lip);
+            if (lip.member.MemberType == 2)
+            {
+                divText += "• Fullpris för ströbokningar debiteras kontoansvarig.";
+            }
+            else if (lip.member.MemberType == 3)
+            {
+                int resLeft = HasFloatReservation(chosenDay, lip);
 
-                    if (resLeft > 0)
-                    {
-                        divText += "• Ni har <strong>" + resLeft + "</strong> fria bokningar kvar för nuvarande vecka, dagtid mellan <strong>6 - 16</strong>. Övriga bokningar debiteras fullpris.";
+                if (resLeft > 0)
+                {
+                    divText += "• Ni har <strong>" + resLeft + "</strong> fria bokningar kvar för nuvarande vecka, dagtid mellan <strong>6 - 16</strong>. Övriga bokningar debiteras fullpris.";
 
-                    }
-                    else
-                    {
-                        divText += "• Ni har <strong>inga</strong> fria bokningar kvar för nuvarande veckan, vid bokning debiteras fullpris.";
-                    }
                 }
+                else
+                {
+                    divText += "• Ni har <strong>inga</strong> fria bokningar kvar för nuvarande veckan, vid bokning debiteras fullpris.";
+                }
+            }
 
             return divText;
         }
@@ -856,21 +897,21 @@ namespace Squash.Classes
                         }
                         if (x == 3)
                         {
-                            td.InnerText = t.Item3.Cost.ToString() +":-";
+                            td.InnerText = t.Item3.Cost.ToString() + ":-";
                         }
                         if (x == 4)
                         {
-                            
+
                             if (t.Item1.StartDate > DateTime.Now.AddHours(1) && !HasCLRequest(lip))
                             {
                                 string thisDayIsFullDate = t.Item1.StartDate.ToString("yyyy-MM-dd", new CultureInfo("sv-SE"));
                                 string sTime = t.Item1.StartDate.ToShortTimeString();
                                 string shortTime = sTime.Substring(0, 2);
 
-                                string id = "cb_"+ t.Item1.CourtId.ToString() + "_" + thisDayIsFullDate + "_" + shortTime;
+                                string id = "cb_" + t.Item1.CourtId.ToString() + "_" + thisDayIsFullDate + "_" + shortTime;
 
                                 HtmlInputCheckBox cbCancelReservation = new HtmlInputCheckBox();
-                                cbCancelReservation.Attributes.Add("id", "cb_"+ t.Item1.CourtId.ToString() + "_" + thisDayIsFullDate + "_" + shortTime);
+                                cbCancelReservation.Attributes.Add("id", "cb_" + t.Item1.CourtId.ToString() + "_" + thisDayIsFullDate + "_" + shortTime);
                                 cbCancelReservation.Attributes.Add("value", "Bana " + t.Item1.CourtId.ToString() + " " + shortDayName + " " + dateOfDate + "/" + monthNumber + " " + shortTime + ":00");
                                 cbCancelReservation.Attributes.Add("class", "cbCancelReservation");
                                 cbCancelReservation.Attributes.Add("onclick", "checkOrUncheck('" + id + "')");
@@ -899,7 +940,7 @@ namespace Squash.Classes
 
 
 
-                            
+
 
 
 
@@ -946,7 +987,7 @@ namespace Squash.Classes
                         }
                         if (y == 4)
                         {
-                            
+
                         }
 
                         tr.Controls.Add(td);
@@ -1036,7 +1077,7 @@ namespace Squash.Classes
                 rt.ReservationTypeId = Convert.ToInt16(dr["resTypeId"]);
                 rt.Description = dr["resType"].ToString();
                 rt.Cost = Convert.ToInt16(dr["Cost"]);
-               
+
 
                 Tuple<Reservations, Courts, ReservationTypes> tupleResList = new Tuple<Reservations, Courts, ReservationTypes>(r, c, rt);
                 reservationInfoList.Add(tupleResList);
@@ -1066,7 +1107,7 @@ namespace Squash.Classes
                 s.CourtTimeId = Convert.ToInt16(dr["sCTId"]);
                 s.DayId = Convert.ToInt16(dr["sDId"]);
                 s.MemberId = Convert.ToInt16(dr["sMId"]);
-                
+
 
 
                 CourtTimes ct = new CourtTimes();
@@ -1133,31 +1174,31 @@ namespace Squash.Classes
         {
             string sweDay = null;
 
-            if(engDay == "Monday")
+            if (engDay == "Monday")
             {
                 sweDay = "Måndag";
             }
-            if(engDay == "Tuesday")
+            if (engDay == "Tuesday")
             {
                 sweDay = "Tisdag";
             }
-            if(engDay == "Wednesday")
+            if (engDay == "Wednesday")
             {
                 sweDay = "Onsdag";
             }
-            if(engDay == "Thursday")
+            if (engDay == "Thursday")
             {
                 sweDay = "Torsdag";
             }
-            if(engDay == "Friday")
+            if (engDay == "Friday")
             {
                 sweDay = "Fredag";
             }
-            if(engDay == "Saturday")
+            if (engDay == "Saturday")
             {
                 sweDay = "Lördag";
             }
-            if(engDay == "Sunday")
+            if (engDay == "Sunday")
             {
                 sweDay = "Söndag";
             }
@@ -1231,7 +1272,7 @@ namespace Squash.Classes
 
         public bool HasCLRequest(LoggedInPerson lip, DateTime chosenDay)
         {
-            string query = "SELECT COUNT(*) AS c FROM codelockrequests WHERE MemberId = " + lip.member.MemberId + " AND DATE(DateOfRequest) = DATE('"+chosenDay+"') ORDER BY DateOfRequest DESC";
+            string query = "SELECT COUNT(*) AS c FROM codelockrequests WHERE MemberId = " + lip.member.MemberId + " AND DATE(DateOfRequest) = DATE('" + chosenDay + "') ORDER BY DateOfRequest DESC";
             MySqlConnection conn = myConn();
             MySqlDataReader dr = myReader(query, conn);
 
