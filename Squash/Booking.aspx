@@ -245,13 +245,21 @@
 
                 }
 
+                function loadFirstDay() {
+                    var browserWidth = window.innerWidth;
+                    if (browserWidth < 768) {
+                        ShowMobileDayDiv('1_day')
+                    };
+                };
+
                 window.addEventListener('resize', function (event) {
                     fixWidth();
                 });
 
                 /*Document.ready för att startskärmen skall vara korrekt.*/
                 $(document).ready(fixWidth());
-
+                
+                loadFirstDay();
 
 
 
