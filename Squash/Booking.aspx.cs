@@ -475,7 +475,7 @@ namespace Squash
                     {
                         maximizedReservations = method.HasMaximizedReservations(DateTime.Now.Date, lip);
                         preBookingInfo.Visible = maximizedReservations;
-                        preBookingInfo.InnerHtml = "Du har bokat max reservationer för nuvarande vecka.";
+                        preBookingInfo.InnerHtml = "Ni har bokat max reservationer för nuvarande vecka.";
                         mondayCounter++;
                     }
                     else if (mondayCounter > 1 && i == 1)
@@ -826,7 +826,7 @@ namespace Squash
                                     }
                                     else if(maximizedReservations)
                                     {
-                                        courtDiv.Attributes.Add("title", "Du har bokat max antal tider denna vecka, försök boka måndag istället.");
+                                        courtDiv.Attributes.Add("title", "Ni har bokat max antal tider denna vecka, försök boka måndag istället.");
                                     }
 
                                     if ((lip.member.MemberType == 3) && (CT.StartHour < 6 || CT.StartHour > 16))
