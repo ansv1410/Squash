@@ -174,6 +174,7 @@
                 else {
                     document.getElementById(id).setAttribute("checked", "checked");
                     document.getElementById("btnCancelRes").removeAttribute("disabled");
+                    alert(id);
                 }
 
 
