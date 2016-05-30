@@ -110,7 +110,7 @@
                     document.getElementById(id).setAttribute('Value', "0");
                     $("#" + bookingDivID).removeClass("selectedCourt");
                     previousClicks -= 1;
-                    document.getElementById("MainContent_hfNoOfClickedCourts").setAttribute('Value', previousClicks.toString())
+                    document.getElementById("MainContent_hfNoOfClickedCourts").setAttribute('Value', previousClicks.toString());
                     if (previousClicks < 1) {
                         bookBtnUnclickable();
                     }
@@ -156,12 +156,12 @@
                 var cb = document.getElementById(id);
 
                 if (cb.getAttribute("checked") != null && cb.getAttribute("checked") == "checked") {
-                    document.getElementById(id).removeAttribute("checked")
+                    document.getElementById(id).removeAttribute("checked");
 
                     var counter = 0;
                     $('.cbCancelReservation').each(function () {
                         if (this.getAttribute("checked") == "checked") {
-                            counter++
+                            counter++;
                         }
                     });
                     if(counter == 0)
@@ -171,7 +171,7 @@
 
                 }
                 else {
-                    document.getElementById(id).setAttribute("checked", "checked")
+                    document.getElementById(id).setAttribute("checked", "checked");
                     document.getElementById("btnCancelRes").removeAttribute("disabled");
                 }
 
@@ -215,7 +215,7 @@
                     $(id).show();
 
                     $('.daySelector').removeClass('selectedMobileDay');
-                    $(id + "Selector").addClass('selectedMobileDay')
+                    $(id + "Selector").addClass('selectedMobileDay');
                 }
 
                 /*Justerar bredden på dayDivarna från mobilläge och tillbaka.*/
@@ -230,7 +230,7 @@
                         this.style.width = widthOfDaySelectors;
                     });
 
-                    if (browserWidth < 768) {
+                    if (browserWidth <= 768) {
                         $(".dayDiv").each(function () {
                             this.style.width = "100%";
                             //ShowMobileDayDiv('1_day')
@@ -247,8 +247,8 @@
 
                 function loadFirstDay() {
                     var browserWidth = window.innerWidth;
-                    if (browserWidth < 768) {
-                        ShowMobileDayDiv('1_day')
+                    if (browserWidth <= 768) {
+                        ShowMobileDayDiv('1_day');
                     };
                 };
 

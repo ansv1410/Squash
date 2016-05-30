@@ -1274,8 +1274,8 @@ input[type="checkbox"]{
     }
 }
 
-@media screen and (min-width: 768px) {
-    .body-content{
+@media screen and (min-width: 769px) {
+    .body-content {
         padding: 0;
         padding-top:100px;
     }
@@ -1500,7 +1500,7 @@ input[type="checkbox"]{
 }
 
 /*MOBILLÄGE NÄR MENYN BYTS ETC*/
-@media screen and (max-width: 767px){           /*testade 768px*/
+@media screen and (max-width: 768px){           /*testade 768px*/
     #infoDiv{
         margin-left:-15px;
         margin-right:-15px;
@@ -1768,10 +1768,10 @@ input[type="checkbox"]{
     }
 
     .headerDiv{
-        font-size:130%;
-        padding-top:2%;
-        margin-bottom:0;
-        font-weight:bold;
+    font-size:130%;
+    padding-top:2%;
+    margin-bottom:0;
+    font-weight:bold;
     }
     #pinDiv{
         font-size:90%;
