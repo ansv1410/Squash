@@ -36,6 +36,7 @@
                     </div>
                 </div>
             </div>
+            
         </div>
         <div id="selectorDiv" runat="server"></div>
         <div id="scheduleDiv" runat="server"></div>
