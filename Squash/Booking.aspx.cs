@@ -416,20 +416,6 @@ namespace Squash
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         public void LIPBuildSchedule(int noOfDays)
         {
             System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("sv-SE");

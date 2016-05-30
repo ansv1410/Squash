@@ -147,10 +147,9 @@
 
             function OpenCancelReservationOverlay(isSingleResId) {
 
-                //if (isSingleResId == "false") {
+                if (isSingleResId == "false") {
                     loopForm();
-                //    document.getElementById("MainContent_btnCancelOK").setAttribute("OnClick", "sendCbIDs(this, false, null)");
-                //}
+                }
 
                 $('.booking-overlay-message').css('max-width', '300px');
                 $('.booking-overlay-container').fadeIn('slow');
@@ -214,6 +213,9 @@
 
                 document.getElementById("toCancelDiv").innerHTML = singleResValue;
                 OpenCancelReservationOverlay(true);
+                document.getElementById("MainContent_hfCancelBookings").setAttribute('Value', singelResId.toString());
+                document.getElementById("toCancelDiv").innerHTML = singleResValue;
+                
                 //document.getElementById("MainContent_btnCancelOK").setAttribute("href", "javascript:__doPostBack('this','" + cbCancelReservationIDs + "')");
                 //document.getElementById("MainContent_btnCancelOK").setAttribute("onclick", "sendCbIDs(this, true, '" + singelResId + "')");
                 //document.getElementById("MainContent_btnCancelOK").setAttribute("onclick", "__doPostBack(ctl00$MainContent$btnCancelOK, '" + singelResId + "')");
