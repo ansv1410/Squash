@@ -125,7 +125,7 @@
 
                 if (isSingleResId == "false") {
                     loopForm();
-                    document.getElementById("MainContent_btnCancelOK").setAttribute("onclick", "sendCbIDs(this, false, null)");
+                    document.getElementById("MainContent_btnCancelOK").setAttribute("OnClick", "sendCbIDs(this, false, null)");
                 }
 
                 $('.booking-overlay-message').css('max-width', '300px');
@@ -174,7 +174,6 @@
                 else {
                     document.getElementById(id).setAttribute("checked", "checked");
                     document.getElementById("btnCancelRes").removeAttribute("disabled");
-                    alert(id);
                 }
 
 
@@ -188,6 +187,7 @@
                     $('.cbCancelReservation').each(function () {
                         if (this.getAttribute("checked") == "checked") {
                             cbCancelReservationIDs += this.getAttribute("id") + ",";
+
                         }
                     });
 
@@ -197,6 +197,7 @@
                     cbCancelReservationIDs = singleResID;
                 }
                     
+                alert(cbCancelReservationIDs);
                  __doPostBack(obj.id, cbCancelReservationIDs);
 
 
