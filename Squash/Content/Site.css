@@ -285,12 +285,6 @@ input[type=number] {
 
 }
 
-/*.row {
-  margin-right: 0px;
-  margin-left: 0px;
-}*/
-
-
 /*GENOMGÅENDE - SLUT*/
 
 
@@ -328,7 +322,6 @@ input[type=number] {
 #infoDiv{
     padding-top:0%;
     color:#444444;
-    
 }
 
 .headerDiv:hover{
@@ -493,11 +486,6 @@ h4{
 }
 
 
-
-
-
-
-
 /*REGISTER - SLUT*/
 
 
@@ -591,7 +579,7 @@ h4{
 
 #Telephone{
     /*background-color:lightcoral;*/
-    width:30%
+    width:30%;
 }
 
 #Email{
@@ -716,12 +704,6 @@ h4{
     height:50px;
 }
 
-/*[id='4-7-1']{
-    background-color:lightblue;
-}
-[id='4-7-2']{
-    background-color:pink;
-}*/
 .subscribedCourt{
     /*background-color:lightcoral;*/
   background: #fac5c5;
@@ -937,9 +919,6 @@ h4{
     background-color:#C7C7C7;
 }
 
-
-
-
 #MainContent_myBookingsDiv{
     margin: 0 auto;
     width:80%;
@@ -1006,7 +985,6 @@ h4{
 }
 
 
-
 #MainContent_divBookMess{
     margin-left:8%;
     width:92%;
@@ -1014,7 +992,7 @@ h4{
     font-size:120%;
 }
 .successfulBookingMessage{
-    color:rgb(69, 183, 23)
+    color:rgb(69, 183, 23);
 }
 
 .failedBookingMessage{
@@ -1050,7 +1028,6 @@ h4{
     margin-bottom:4%;
     display:table;
     width:90%;
-
 }
 
 .promptOK{
@@ -1102,7 +1079,7 @@ h4{
 
 
 input[type="checkbox"]{
-    border:3px solid red;
+    /*border:3px solid red;*/
     cursor:pointer;
     width:20px;
     height:20px;
@@ -1242,17 +1219,6 @@ input[type="checkbox"]{
     margin:10px -300px 0px 0px;
     padding-right:280px;
 }
-
-/*::-webkit-scrollbar{
-    display:none;
-}*/
-
-/*#MainContent_userList::-webkit-scrollbar { width: 0 !important }
-
-#MainContent_userList{ -ms-overflow-style: none; }
-
-#MainContent_userList { overflow: -moz-scrollbars-none; }*/
-
 
 
 #MainContent_userList > li > p{
@@ -1518,8 +1484,7 @@ input[type="checkbox"]{
     }
 }
 
-@media screen and (max-width: 820px)
-{
+@media screen and (max-width: 820px){
     /*.navbar{
         width:100%;
     }
@@ -1666,15 +1631,12 @@ input[type="checkbox"]{
         -webkit-transform: translate(-50%);
         transform: translate(-50%);
         /*text-align:center;
-        font-size:300%;
-        font-weight:bold;
-        color:rgba(0,0,0,0.5);
         margin-left:calc(50% - 67px);
-        /*margin-right:42%;
-        margin-top:5%;*/
-        /*margin-left:calc(44.2% - 42.7815px);*/
-        /*margin-right:calc(44.2% - 42.7815px);*/
-        /*z-index:1028;
+        margin-right:42%;
+        margin-top:5%;
+        margin-left:calc(44.2% - 42.7815px);
+        margin-right:calc(44.2% - 42.7815px);
+        z-index:1028;
         position:absolute;
         display:block*/
     }
@@ -1754,13 +1716,13 @@ input[type="checkbox"]{
 
 @media screen and (max-width: 550px){
     .overlay-message{
-    width: 95%
+        width:95%;
     }
     #MainContent_myBookingsDiv{
         width:90%;
     }
 }
-@media screen and (max-width: 440px) {
+@media screen and (max-width: 440px){
     #MainContent_myBookingsDiv{
         width:100%;
     }
