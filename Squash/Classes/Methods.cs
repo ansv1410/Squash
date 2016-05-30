@@ -910,7 +910,9 @@ namespace Squash.Classes
 
                                 string id = "cb_" + t.Item1.CourtId.ToString() + "_" + thisDayIsFullDate + "_" + shortTime;
 
-                                HtmlInputCheckBox cbCancelReservation = new HtmlInputCheckBox();
+                                //HtmlInputCheckBox cbCancelReservation = new HtmlInputCheckBox();
+                                HtmlGenericControl cbCancelReservation = new HtmlGenericControl("input");
+                                cbCancelReservation.Attributes.Add("type", "checkbox");
                                 cbCancelReservation.Attributes.Add("id", "cb_" + t.Item1.CourtId.ToString() + "_" + thisDayIsFullDate + "_" + shortTime);
                                 cbCancelReservation.Attributes.Add("value", "Bana " + t.Item1.CourtId.ToString() + " " + shortDayName + " " + dateOfDate + "/" + monthNumber + " " + shortTime + ":00");
                                 cbCancelReservation.Attributes.Add("class", "cbCancelReservation");
