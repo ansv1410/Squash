@@ -31,6 +31,15 @@ namespace Squash.Account {
         protected global::System.Web.UI.WebControls.Panel pnlDefaultButton;
         
         /// <summary>
+        /// lblHeadName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblHeadName;
+        
+        /// <summary>
         /// lblName control.
         /// </summary>
         /// <remarks>
@@ -38,6 +47,15 @@ namespace Squash.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblName;
+        
+        /// <summary>
+        /// lblHeadSA control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblHeadSA;
         
         /// <summary>
         /// lblStreetAddress control.
@@ -49,6 +67,15 @@ namespace Squash.Account {
         protected global::System.Web.UI.WebControls.Label lblStreetAddress;
         
         /// <summary>
+        /// lblHeadPC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblHeadPC;
+        
+        /// <summary>
         /// lblPostalCode control.
         /// </summary>
         /// <remarks>
@@ -56,6 +83,15 @@ namespace Squash.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblPostalCode;
+        
+        /// <summary>
+        /// lblHeadCity control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblHeadCity;
         
         /// <summary>
         /// lblCity control.
@@ -67,6 +103,15 @@ namespace Squash.Account {
         protected global::System.Web.UI.WebControls.Label lblCity;
         
         /// <summary>
+        /// lblHeadTelephone control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblHeadTelephone;
+        
+        /// <summary>
         /// lblTelephone control.
         /// </summary>
         /// <remarks>
@@ -74,6 +119,15 @@ namespace Squash.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblTelephone;
+        
+        /// <summary>
+        /// lblbHeadEmail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblbHeadEmail;
         
         /// <summary>
         /// lblEmail control.

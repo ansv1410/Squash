@@ -16,30 +16,44 @@
                 <asp:Panel ID="pnlDefaultButton" runat="server" DefaultButton="BtnShowEditInfo">
                     <div class="contentPaddingLeft">
                         <div class="my-info-label-div">
-                            <asp:Label ID="lblName" runat="server" CssClass="my-info-label"></asp:Label>
+                            <asp:Label ID="lblHeadName" runat="server" Text="Namn" CssClass="my-info-header-label"></asp:Label>
+                            <br />
+                            <asp:Label ID="lblName" runat="server" CssClass="my-info-label my-info-box"></asp:Label>
                         </div>
                         <div class="my-info-label-div">
-                            <asp:Label ID="lblStreetAddress" runat="server" CssClass="my-info-label"></asp:Label>
+                            <asp:Label ID="lblHeadSA" runat="server" Text="Adress" CssClass="my-info-header-label"></asp:Label>
+                            <br />
+                            <asp:Label ID="lblStreetAddress" runat="server" CssClass="my-info-label my-info-box"></asp:Label>
                         </div>
                         <div class="my-info-label-div">
-                            <asp:Label ID="lblPostalCode" runat="server" CssClass="my-info-label"></asp:Label>
+                            <asp:Label ID="lblHeadPC" runat="server" Text="Postnummer" CssClass="my-info-header-label"></asp:Label>
+                            <br />
+                            <asp:Label ID="lblPostalCode" runat="server" CssClass="my-info-label my-info-box"></asp:Label>
                         </div>
                         <div class="my-info-label-div">
-                            <asp:Label ID="lblCity" runat="server" CssClass="my-info-label"></asp:Label>
+                            <asp:Label ID="lblHeadCity" runat="server" Text="Stad" CssClass="my-info-header-label"></asp:Label>
+                            <br />
+                            <asp:Label ID="lblCity" runat="server" CssClass="my-info-label my-info-box"></asp:Label>
                         </div>
                         <div class="my-info-label-div">
-                            <asp:Label ID="lblTelephone" runat="server" CssClass="my-info-label"></asp:Label>
+                            <asp:Label ID="lblHeadTelephone" runat="server" Text="Telefon" CssClass="my-info-header-label"></asp:Label>
+                            <br />
+                            <asp:Label ID="lblTelephone" runat="server" CssClass="my-info-label my-info-box"></asp:Label>
                         </div>
                         <div class="my-info-label-div">
-                            <asp:Label ID="lblEmail" runat="server" CssClass="my-info-label"></asp:Label>
+                            <asp:Label ID="lblbHeadEmail" runat="server" Text="Email" CssClass="my-info-header-label"></asp:Label>
+                            <br />
+                            <asp:Label ID="lblEmail" runat="server" CssClass="my-info-label my-info-box"></asp:Label>
+                            <br />
+                            <br />
                         </div>
                         <div class="my-info-label-div">
                             <asp:Label ID="lblAgreement" runat="server" CssClass="my-info-label"></asp:Label>
                         </div>
                         <div class="my-info-label-div">
                             <div class="btn-update-info">
-                                <asp:Button ID="BtnShowEditInfo" runat="server" Text="Redigera uppgifter" CssClass="btn btn-default" OnClick="BtnShowEditInfo_Click" />
-                                <asp:Button ID="BtnShowEditPW" runat="server" Text="Byt Lösenord" CssClass="btn btn-default" OnClick="BtnShowEditPW_Click" />
+                                <asp:Button ID="BtnShowEditInfo" runat="server" Text="Redigera uppgifter" CssClass="btn btn-default btn-myPage" OnClick="BtnShowEditInfo_Click" />
+                                <asp:Button ID="BtnShowEditPW" runat="server" Text="Byt Lösenord" CssClass="btn btn-default btn-myPage" OnClick="BtnShowEditPW_Click" />
                             </div>
                         </div>
                     </div>

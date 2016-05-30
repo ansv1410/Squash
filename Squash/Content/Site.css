@@ -437,10 +437,30 @@ h4{
     /*color:red;*/
 }
 .btn-update-info{
-    margin-top:10px;
+    margin-top:20px;
+    margin-bottom:20px;
 }
 .my-info-label-div{
-    margin-bottom:12px;
+    margin-bottom:10px;
+}
+.my-info-header-label{
+    font-size:110%;
+    display:block;
+    margin-bottom:-15px;
+}
+.my-info-box{
+    font-weight:normal;
+    padding:5px;
+    border: 1px solid black;
+    border-radius:4px;
+    display:block;
+    margin-bottom:25px;
+}
+#MainContent_lblEmail{
+    margin-bottom:0px;
+}
+.btn-myPage{
+    margin-bottom:10px;
 }
 /*MYPAGE - SLUT*/
 
@@ -463,9 +483,9 @@ h4{
 
 
 .agreementList{
-    /*max-width:100%;
-    white-space:nowrap;
-    word-break:normal;*/
+    /*max-width:100%;*/
+    /*white-space:nowrap;*/
+    /*word-break:normal;*/
 
     list-style:none;
     margin:0;
@@ -1790,4 +1810,29 @@ input[type="checkbox"]{
         text-shadow:none;
     }
 
+}
+
+/*Ipads..*/
+@media screen and (width: 768px){
+    #mContainer{
+        background-color:black;
+    }
+    .navbar-brand{
+        margin-left:0;
+    }
+    #myPageLink{
+        padding:15px 15px 15px 0px;
+    }
+    .body-content{
+        padding-top:100px;
+    }
+    .navbar-right{
+        font-size:90%;
+    }
+    .navbar-collapse{
+        font-size:90%;
+    }
+    .navbar-header{
+        width:350px;
+    }
 }
