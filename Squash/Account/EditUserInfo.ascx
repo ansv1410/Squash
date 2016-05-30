@@ -69,9 +69,10 @@
     </div>
     <%-- Radiobuttons för att godkänna lagring och eventuell visning i kontaktlista --%>
     <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <asp:Label AssociatedControlID="rblMPAgreement" runat="server" Text="Jag godkänner att personuppgifter lagras och vill:"></asp:Label>
-            <asp:RadioButtonList ID="rblMPAgreement" runat="server"
+        <div class="col-md-offset-2 col-md-10" style="padding-left:15px;">
+            <asp:Label AssociatedControlID="rblMPAgreement" runat="server" Text="Jag godkänner att personuppgifter lagras och vill:" style="padding-left:2%;"></asp:Label>
+            <br />
+            <asp:RadioButtonList ID="rblMPAgreement" runat="server" CssClass="agreementList"
                 RepeatDirection="Vertical" RepeatLayout="Table">
                 <asp:ListItem Text=" synas i kontaktlista för andra medlemmar." Value="Agree" />
                 <asp:ListItem Text=" <u><em>inte</em></u> synas i kontaktlista för andra medlemmar." Value="Disagree" />

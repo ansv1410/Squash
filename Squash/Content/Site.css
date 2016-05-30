@@ -451,7 +451,7 @@ h4{
 .my-info-box{
     font-weight:normal;
     padding:5px;
-    border: 1px solid black;
+    border: 1px solid #cccccc;
     border-radius:4px;
     display:block;
     margin-bottom:25px;
@@ -505,7 +505,6 @@ h4{
     /*vertical-align:super;*/
 }
 
-
 /*REGISTER - SLUT*/
 
 
@@ -557,6 +556,7 @@ h4{
 #loginForm .col-md-10{
     width:100%;
 }
+
 /*LOGIN - SLUT*/
 
 
