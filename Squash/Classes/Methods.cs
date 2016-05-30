@@ -917,7 +917,7 @@ namespace Squash.Classes
                                 cbCancelReservation.Attributes.Add("value", "Bana " + t.Item1.CourtId.ToString() + " " + shortDayName + " " + dateOfDate + "/" + monthNumber + " " + shortTime + ":00");
                                 cbCancelReservation.Attributes.Add("class", "cbCancelReservation");
                                 cbCancelReservation.Attributes.Add("onclick", "checkOrUncheck('" + id + "')");
-                                cbCancelReservation.Attributes.Add("runat", "server");
+                                //cbCancelReservation.Attributes.Add("runat", "server");
 
                                 td.Controls.Add(cbCancelReservation);
                             }
