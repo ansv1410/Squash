@@ -21,6 +21,19 @@ namespace Squash
         LoggedInPerson lip;
         bool showBookingMessage;
         bool isLoggedInMember;
+
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            string ua = Request.UserAgent;
+            if (ua != null
+                && (ua.IndexOf("iPhone", StringComparison.CurrentCultureIgnoreCase) >= 0
+                || ua.IndexOf("iPad", StringComparison.CurrentCultureIgnoreCase) >= 0
+                || ua.IndexOf("iPod", StringComparison.CurrentCultureIgnoreCase) >= 0)
+                && ua.IndexOf("Safari", StringComparison.CurrentCultureIgnoreCase) < 0)
+            {
+                this.ClientTarget = "uplevel";
+            }
+        }
         
 
         protected void Page_Load(object sender, EventArgs e)
@@ -925,36 +938,6 @@ namespace Squash
             }
 
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         protected void btnBook_Click(object sender, EventArgs e)

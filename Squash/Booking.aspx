@@ -36,7 +36,7 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
         <div id="selectorDiv" runat="server"></div>
         <div id="scheduleDiv" runat="server"></div>
@@ -133,24 +133,24 @@
                 $('.hourBookingDiv').hide();
                 $('#MainContent_cancelReservationDiv').show();
                 return false;
-                
+
             }
 
             function loopForm() {
 
                 var table = document.getElementById("MainContent_myBookingsDiv");
-                
+
                 var cbResults = '';
 
                 $('.cbCancelReservation').each(function () {
                     if (this.getAttribute("checked") == "checked") {
                         cbResults += this.getAttribute("value") + "<br />";
-                        
+
                     }
                 });
 
                 document.getElementById("toCancelDiv").innerHTML = cbResults;
-                
+
             }
 
             function checkOrUncheck(id) {
@@ -165,8 +165,7 @@
                             counter++;
                         }
                     });
-                    if(counter == 0)
-                    {
+                    if (counter == 0) {
                         document.getElementById("btnCancelRes").setAttribute("disabled", "disabled");
                     }
 
@@ -196,9 +195,9 @@
                 else {
                     cbCancelReservationIDs = singleResID;
                 }
-                    
+
                 alert(cbCancelReservationIDs);
-                 __doPostBack(obj.id, cbCancelReservationIDs);
+                __doPostBack(obj.id, cbCancelReservationIDs);
 
 
             }
@@ -212,57 +211,57 @@
 
 
 
-                function ShowMobileDayDiv(dayDivId) {
-                    var id = "#" + dayDivId;
-                    $('.dayDiv').hide();
-                    $(id).show();
+            function ShowMobileDayDiv(dayDivId) {
+                var id = "#" + dayDivId;
+                $('.dayDiv').hide();
+                $(id).show();
 
-                    $('.daySelector').removeClass('selectedMobileDay');
-                    $(id + "Selector").addClass('selectedMobileDay');
-                }
+                $('.daySelector').removeClass('selectedMobileDay');
+                $(id + "Selector").addClass('selectedMobileDay');
+            }
 
-                /*Justerar bredden på dayDivarna från mobilläge och tillbaka.*/
-                function fixWidth() {
-                    var browserWidth = window.innerWidth;
-                    var id = "MainContent_hfWidthOfDayDivs";
-                    var id2 = "MainContent_hfWidthOfDaySelectors";
-                    var widthOfDayDivs = document.getElementById(id).getAttribute('Value');
-                    var widthOfDaySelectors = document.getElementById(id2).getAttribute('Value');
+            /*Justerar bredden på dayDivarna från mobilläge och tillbaka.*/
+            function fixWidth() {
+                var browserWidth = window.innerWidth;
+                var id = "MainContent_hfWidthOfDayDivs";
+                var id2 = "MainContent_hfWidthOfDaySelectors";
+                var widthOfDayDivs = document.getElementById(id).getAttribute('Value');
+                var widthOfDaySelectors = document.getElementById(id2).getAttribute('Value');
 
-                    $(".daySelector").each(function () {
-                        this.style.width = widthOfDaySelectors;
-                    });
-
-                    if (browserWidth <= 768) {
-                        $(".dayDiv").each(function () {
-                            this.style.width = "100%";
-                            //ShowMobileDayDiv('1_day')
-                        });
-                    }
-                    else {
-                        $(".dayDiv").each(function () {
-                            this.style.width = widthOfDayDivs;
-                            this.style.display = "block";
-                        });
-                    }
-
-                }
-
-                function loadFirstDay() {
-                    var browserWidth = window.innerWidth;
-                    if (browserWidth <= 768) {
-                        ShowMobileDayDiv('1_day');
-                    };
-                };
-
-                window.addEventListener('resize', function (event) {
-                    fixWidth();
+                $(".daySelector").each(function () {
+                    this.style.width = widthOfDaySelectors;
                 });
 
-                /*Document.ready för att startskärmen skall vara korrekt.*/
-                $(document).ready(fixWidth());
-                
-                loadFirstDay();
+                if (browserWidth <= 768) {
+                    $(".dayDiv").each(function () {
+                        this.style.width = "100%";
+                        //ShowMobileDayDiv('1_day')
+                    });
+                }
+                else {
+                    $(".dayDiv").each(function () {
+                        this.style.width = widthOfDayDivs;
+                        this.style.display = "block";
+                    });
+                }
+
+            }
+
+            function loadFirstDay() {
+                var browserWidth = window.innerWidth;
+                if (browserWidth <= 768) {
+                    ShowMobileDayDiv('1_day');
+                };
+            };
+
+            window.addEventListener('resize', function (event) {
+                fixWidth();
+            });
+
+            /*Document.ready för att startskärmen skall vara korrekt.*/
+            $(document).ready(fixWidth());
+
+            loadFirstDay();
 
 
 
