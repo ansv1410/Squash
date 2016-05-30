@@ -1094,7 +1094,9 @@ namespace Squash
 
         protected void btnCancelOK_Click(object sender, EventArgs e)
         {
-            string allIDs = Request.Form["__EVENTARGUMENT"].ToString();
+            //string allIDs = Request.Form["__EVENTARGUMENT"].ToString();
+
+            string allIDs = hfCancelBookings.Value;
 
             string[] IDs = allIDs.Split(',');
 
