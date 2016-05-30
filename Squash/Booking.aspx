@@ -230,7 +230,7 @@
                         this.style.width = widthOfDaySelectors;
                     });
 
-                    if (browserWidth < 768) {
+                    if (browserWidth <= 768) {
                         $(".dayDiv").each(function () {
                             this.style.width = "100%";
                             //ShowMobileDayDiv('1_day')
@@ -247,7 +247,7 @@
 
                 function loadFirstDay() {
                     var browserWidth = window.innerWidth;
-                    if (browserWidth < 768) {
+                    if (browserWidth <= 768) {
                         ShowMobileDayDiv('1_day');
                     };
                 };
