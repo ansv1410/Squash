@@ -6,16 +6,15 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="pageDiv">
-
-
         <div id="statsDiv" runat="server">
+        <h4 id="statsh4">Flitigaste spelarna</h4>
             <div id="monthPickerDiv" runat="server">
             </div>
         </div>
 
 
-
         <div id="addressListDiv" runat="server" visible="false">
+            <h4 id="contactsh4">Kontaktuppgifter</h4>
             <div id="users">
 
                 <input id="tbSearchUser" class="search" placeholder="Sök" />

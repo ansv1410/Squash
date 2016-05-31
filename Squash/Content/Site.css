@@ -1219,7 +1219,7 @@ input[type="checkbox"]{
 }
 
 #users{
-    margin-top:50px;
+    /*margin-top:50px;*/
 }
 
 #tbSearchUser{
@@ -1248,6 +1248,15 @@ input[type="checkbox"]{
     /*margin-bottom:5%;*/
     /*border-bottom:1px groove grey;*/
     list-style-type: none;
+}
+
+#statsh4{
+    margin-top:20px;
+}
+
+#contactsh4{
+    margin-top:50px;
+    margin-bottom:20px;
 }
 /*PLAYERS - SLUT*/
 
@@ -1354,6 +1363,9 @@ input[type="checkbox"]{
         width: 93%;
         margin: 0 auto;
     }
+    #statsh4{
+        padding-left:3.5%;
+    }
 }
 @media screen and (min-width: 992px){
     
@@ -1367,6 +1379,7 @@ input[type="checkbox"]{
     #postitnote{
         right:18%;
     }
+
 }
 
 @media screen and (min-width: 1100px) {
@@ -1815,7 +1828,7 @@ input[type="checkbox"]{
 /*Ipads..*/
 @media screen and (width: 768px){
     #mContainer{
-        background-color:black;
+        /*background-color:black;*/
     }
     .navbar-brand{
         margin-left:0;
