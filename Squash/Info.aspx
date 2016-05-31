@@ -135,31 +135,10 @@
                     }
                 }
 
-                //function isPostBack() {
-                //    return document.referrer.indexOf(document.location.href) > -1;
-                //}
-
-                //if (isPostBack()) {
-                //    $("foldDiv").each(function () {
-                //        if ($("MainContent_hf" + this.id + "Folded").val("true"))
-                //        {
-                //        $(this.id).hide();
-                //        $("#MainContent_hf" + section + "Folded").val("true");
-                //        }
-                //        else
-                //        {
-                //            $(this.id).show();
-                //        }
-                //    });
-
-                //}
-                //else {
-
                 $(".foldDiv").each(function () {
                     $("#" + this.id).hide();
                     $("#MainContent_hf" + this.id + "Folded").val("true");
                 });
-                //}
             </script>
 
         </div>

@@ -8,10 +8,6 @@
         <div id="myBookingsDiv" runat="server" visible="false">
             <h3 id="myBookingsH3">Mina bokningar</h3>
         </div>
-        <%--<input id="btnCancelRes" type="button" onclick="OpenCancelReservationOverlay()" class="btn" value="Avboka" disabled="disabled" />--%>
-
-
-
 
         <h2 id="scheduleH2">Spelschema</h2>
         <h4 id="scheduleH4">- Boka nedan</h4>
@@ -51,16 +47,6 @@
 
 
         <script type="text/javascript">
-            function confirm_clicked(ct, mId, fullDate, bookingDivId) {
-                var i = 2;
-
-                if (i < 4) {
-                    //alert(ct + " " + mId + " " + fullDate);
-                }
-
-
-            }
-
             function bookBtnClickable() {
 
                 $('.book-btn').each(function () {
@@ -180,34 +166,9 @@
                 
 
                 document.getElementById("toCancelDiv").innerHTML = cbResults;
-                //document.getElementById("MainContent_btnCancelOK").setAttribute("href", "javascript:__doPostBack('this','" + cbCancelReservationIDs + "')");
-                //document.getElementById("MainContent_btnCancelOK").setAttribute("onclick", "javascript:__doPostBack(ctl00$MainContent$btnCancelOK, '" + cbCancelReservationIDs + "')");
 
             }
 
-
-            //function sendCbIDs(obj, isSingleId, singleResID) {
-
-            //    var cbCancelReservationIDs = "";
-            //    if (!isSingleId) {
-            //        $('.cbCancelReservation').each(function () {
-            //            if (this.getAttribute("checked") == "checked") {
-            //                cbCancelReservationIDs += this.getAttribute("id") + ",";
-
-            //            }
-            //        });
-
-            //    }
-
-            //    else {
-            //        cbCancelReservationIDs = singleResID;
-            //    }
-
-            //    //__doPostBack(obj.id, cbCancelReservationIDs);
-            //    document.getElementById("MainContent_btnCancelOK").setAttribute("href", "javascript:__doPostBack('this','" + cbCancelReservationIDs + "')");
-                
-
-            //}
 
             function CancelThisRes(singelResId, singleResValue) {
 
@@ -216,9 +177,6 @@
                 document.getElementById("MainContent_hfCancelBookings").setAttribute('Value', singelResId.toString());
                 document.getElementById("toCancelDiv").innerHTML = singleResValue;
                 
-                //document.getElementById("MainContent_btnCancelOK").setAttribute("href", "javascript:__doPostBack('this','" + cbCancelReservationIDs + "')");
-                //document.getElementById("MainContent_btnCancelOK").setAttribute("onclick", "sendCbIDs(this, true, '" + singelResId + "')");
-                //document.getElementById("MainContent_btnCancelOK").setAttribute("onclick", "__doPostBack(ctl00$MainContent$btnCancelOK, '" + singelResId + "')");
             }
 
 
@@ -247,7 +205,6 @@
                 if (browserWidth <= 768) {
                     $(".dayDiv").each(function () {
                         this.style.width = "100%";
-                        //ShowMobileDayDiv('1_day')
                     });
                 }
                 else {

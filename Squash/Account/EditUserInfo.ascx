@@ -87,13 +87,5 @@
             <br />
         </div>
     </div>
-<%--    
-    <script>
-        function CheckEmailExist(){
-            document.getElementById("MainContent_hfEmailExist").setAttribute("Value", "0");
-        }
-
-    </script>--%>
-
 
 </asp:Panel>

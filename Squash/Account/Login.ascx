@@ -1,8 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Login.ascx.cs" Inherits="Squash.Account.Login" %>
 
-<%--<%@ Register Src="~/Account/OpenAuthProviders.ascx" TagPrefix="uc" TagName="OpenAuthProviders" %>--%>
-
-<%--<asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">--%>
 <h2>Logga in</h2>
 
 <div class="row">
@@ -33,14 +30,7 @@
                                 CssClass="text-danger" ErrorMessage="Lösenordsfältet måste fyllas i." />
                         </div>
                     </div>
-                    <%--<div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <div class="checkbox">
-                            <asp:CheckBox runat="server" ID="RememberMe" />
-                            <asp:Label runat="server" AssociatedControlID="RememberMe">Remember me?</asp:Label>
-                        </div>
-                    </div>
-                </div>--%>
+
                     <div class="form-group">
                         <div class="col-md-10">
                             <asp:Button ID="btnLogin" runat="server" OnClick="LogIn" OnClientClick="reopenOverlay()" Text="Logga in" CssClass="btn btn-default" ValidationGroup="Login" />
@@ -73,11 +63,4 @@
         </script>
     </div>
 
-    <%--        <div class="col-md-4">
-            <section id="socialLoginForm">
-                <uc:OpenAuthProviders runat="server" ID="OpenAuthLogin" />
-            </section>
-        </div>--%>
-    <%--<asp:HiddenField ID="hfShowLogin" runat="server" Value="0" />--%>
 </div>
-<%--</asp:Content>--%>

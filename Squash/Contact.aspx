@@ -34,14 +34,6 @@
             <div id="gmap_display">
                 <iframe id="iframeMap" frameborder="0" src="https://www.google.com/maps/embed/v1/directions?origin=Rådhusgatan+46,+Östersund,+Sverige&destination=Storsjöstråket+15,+Östersund,+Sverige&key=AIzaSyAN0om9mFmy1QN6Wf54tXAowK4eT0ZUPrU"></iframe>
             </div>
-            <%--<a class="embedded-map-html" href="https://www.dog-checks.com" id="grab-map-authorization">www.dog-checks.com</a><style>
-                                                                                                                                 #gmap_display .map-generator {
-                                                                                                                                     max-width: 100%;
-                                                                                                                                     max-height: 100%;
-                                                                                                                                     background: none;
-                                                                                                                                 }
-                                                                                                                             </style>--%>
-
         </div>
     </div>
 

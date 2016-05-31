@@ -3,10 +3,7 @@
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <div class="pageDiv">
         <h2><%: Title %></h2>
-        <%--<p class="text-danger">
-        <asp:Literal runat="server" ID="ErrorMessage" />
-    </p>--%>
-
+        
         <div class="form-horizontal" id="registerFormHorizontal">
             <h4>Fyll i formuläret nedan för att bli medlem.</h4>
             <h5>Uppgifterna skickas till administratör för godkännande. Efter godkännandet får du ett e-mail och därefter kan du använda tjänsten.</h5>
@@ -114,7 +111,6 @@
                     <div class="col-md-offset-2 col-md-10">
                         <asp:Button ID="btnCreateUser" runat="server" OnClick="CreateUser_Click" Text="Skapa konto" CssClass="btn btn-default" ValidationGroup="Register" />
                         <br />
-                        <%--<asp:Label ID="lblMessage" runat="server"></asp:Label>--%>
                     </div>
                 </div>
 
