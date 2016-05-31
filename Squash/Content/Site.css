@@ -1835,4 +1835,7 @@ input[type="checkbox"]{
     .navbar-header{
         width:350px;
     }
+    #pinDiv{
+        padding-left:20px;
+    }
 }
