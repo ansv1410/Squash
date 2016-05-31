@@ -1819,6 +1819,7 @@ input[type="checkbox"]{
     }
     .navbar-brand{
         margin-left:0;
+        font-size:150%;
     }
     #myPageLink{
         padding:15px 15px 15px 0px;
