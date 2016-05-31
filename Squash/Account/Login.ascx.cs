@@ -160,12 +160,16 @@ namespace Squash.Account
                             Session["bookingMessage"] = bookingMessage;
 
                             string rawUrl = Request.RawUrl;
-
+                            string rawUrlSub = "";
+                            if (rawUrl.Length >= 7)
+                            {
+                                rawUrlSub = rawUrl.Substring(1, 7);
+                            }
 
                             ((HiddenField)Page.Master.FindControl("hfShowLogin")).Value = "0";
 
                             FormsAuthentication.RedirectFromLoginPage(m.MemberId.ToString(), false);
-                            if (rawUrl.Substring(1, 7) == "Account")
+                            if (rawUrlSub == "Account")
                             {
                                 Response.Redirect("~/Default");
                             }
