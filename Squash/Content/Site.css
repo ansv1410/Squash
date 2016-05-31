@@ -1819,11 +1819,15 @@ input[type="checkbox"]{
     }
     .navbar-brand{
         margin-left:0;
-        font-size:150%;
+        font-size:160%;
     }
     #myPageLink{
         padding:15px 15px 15px 0px;
     }
+    #lbtnLogin{
+        padding-right:0px;
+    }
+
     .body-content{
         padding-top:100px;
     }
