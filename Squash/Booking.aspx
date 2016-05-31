@@ -206,6 +206,10 @@
                     $(".dayDiv").each(function () {
                         this.style.width = "100%";
                     });
+                    $(".B2").each(function () {
+                        $(this).removeClass('masterTiptool');
+                        $(this).removeAttr('title');
+                    });
                 }
                 else {
                     $(".dayDiv").each(function () {
