@@ -597,7 +597,12 @@ namespace Squash.Classes
         #endregion
 
         #region DesignMethods
-
+        /// <summary>
+        /// Delar upp antal kolumner jämt på bokningssidan i desktopläge.
+        /// </summary>
+        /// <param name="percentToDivide">Hur många procent man vill dela kolumnerna på</param>
+        /// <param name="noOfElements">Antalet kolumner som ska få dela på den totala procenten</param>
+        /// <returns>En procent som kolumnerna ska få som bredd</returns>
         public string DivideWidth(double percentToDivide, double noOfElements)
         {
             double width = percentToDivide / noOfElements;
@@ -618,8 +623,11 @@ namespace Squash.Classes
 
             return widthInPercent + "%";
         }
+
+
+
         /// <summary>
-        /// 
+        /// GÖr om till fulltid eller bara timmar.
         /// </summary>
         /// <param name="oneToZeroHour"></param>
         /// <param name="onlyHour">true för format: "06" eller false för: 06:00:00</param>
@@ -657,6 +665,14 @@ namespace Squash.Classes
         }
 
 
+        /// <summary>
+        /// GÖr ett meddelande om bokningen. Ex om man redan sett PIN-koden för dagen, att fullpris kommer debiteras, hur många bokningar man har kvar för veckan etc.
+        /// </summary>
+        /// <param name="lip">Logged In Person = inloggad person</param>
+        /// <param name="chosenDay">Vald dag</param>
+        /// <param name="HasCLReq">Om man har en CodeLockRequest</param>
+        /// <param name="noOfResLeft">Antalet reservationer kvar</param>
+        /// <returns>En div med en text i sig</returns>
         public HtmlGenericControl BookingInfoMessage(LoggedInPerson lip, DateTime chosenDay, bool HasCLReq, int noOfResLeft)
         {
             HtmlGenericControl bookingInfoTextDiv = new HtmlGenericControl("div");
@@ -667,7 +683,6 @@ namespace Squash.Classes
 
             string divText = "";
 
-            //if (HasCLRequest(lip, chosenDay))
             if(HasCLReq)
             {
                 divText += "• Eftersom Ni redan har sett dagens PIN-kod kommer du inte kunna avboka tiden. <br />";
@@ -745,6 +760,12 @@ namespace Squash.Classes
 
             return bookingInfoTextDiv;
         }
+        
+        /// <summary>
+        /// Gör en string med information om bokningen
+        /// </summary>
+        /// <param name="lip"></param>
+        /// <returns>En sträng med bokningsinformationstexten</returns>
         public string BookingInfoString(LoggedInPerson lip)
         {
 
@@ -774,6 +795,12 @@ namespace Squash.Classes
         }
 
 
+        /// <summary>
+        /// En DataTable som används vid statistiken med namn och med antalet bokningar
+        /// </summary>
+        /// <param name="startDate">Startdatum</param>
+        /// <param name="endDate">Slutdatum</param>
+        /// <returns>En Datatable med resultatet av SQLqueryn</returns>
         public DataTable PlayerStats(DateTime startDate, DateTime endDate)
         {
             System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("sv-SE");
@@ -808,151 +835,143 @@ namespace Squash.Classes
 
 
         #region BookingTable
+
+        /// <summary>
+        /// En tabell som innehåller alla bokningarna för lip. Gäller reservationer(ströbokningar) och även abonnemangstider
+        /// </summary>
+        /// <param name="lip">Logged in person = inloggad person</param>
+        /// <returns>En HTML-tabell som sedan läggs i en div</returns>
         public HtmlTable MyBookingsTable(LoggedInPerson lip)
         {
-            List<Tuple<Reservations, Courts, ReservationTypes>> bookingInfoList = GetResTuples(lip);
-            List<Tuple<Subscriptions, CourtTimes, Days>> subscriptionInfoList = GetSubTuples(lip);
+            List<Tuple<Reservations, Courts, ReservationTypes>> bookingInfoList = GetResTuples(lip); //En tuplelista som innehåller 3 olika klasser (Reservations, Courts, ReservationTypes).
+            List<Tuple<Subscriptions, CourtTimes, Days>> subscriptionInfoList = GetSubTuples(lip); //En tuplelista som innehåller 3 olika klasser (Subscriptions, CourtTimes, Days).
             MySqlConnection conn = myConn();
 
-            if (bookingInfoList.Count > 0 || subscriptionInfoList.Count > 0)
+            if (bookingInfoList.Count > 0 || subscriptionInfoList.Count > 0) //Kontrollerar om anringen reservationstuplelistan eller abonnemangstuplelistan har mer än 0 item.
             {
-                HtmlTable bookingsTable = new HtmlTable();
+                HtmlTable bookingsTable = new HtmlTable(); //Skapar en htmltabell
                 bookingsTable.Attributes.Add("id", "bookingsTable");
 
-                HtmlTableRow th = new HtmlTableRow();
+                HtmlTableRow th = new HtmlTableRow(); //Tabellrad som blir rubriken
                 th.Attributes.Add("class", "myBookingsTR");
 
-                for (int i = 0; i < 5; i++)
+                for (int i = 0; i < 5; i++) //For-loopen är 5 eftersom det är 5 olika värden i varje cell.
                 {
-                    HtmlTableCell td = new HtmlTableCell();
-                    td.Attributes.Add("class", "myBookingsTH");
+                    HtmlTableCell td = new HtmlTableCell(); //tabellcell
+                    td.Attributes.Add("class", "myBookingsTH");//Raden får klassen som en tableheader, alltså tabellkolumnsrubrik
 
                     if (i == 0)
                     {
-                        td.InnerText = "Datum";
+                        td.InnerText = "Datum"; //Första cellen får "Datum" som rubrik
                     }
                     if (i == 1)
                     {
-                        td.InnerText = "Tid";
+                        td.InnerText = "Tid"; //Andra cellen får "Tid" som rubrik
                     }
                     if (i == 2)
                     {
-                        td.InnerText = "Bana";
+                        td.InnerText = "Bana"; //Tredje cellen får "Bana" som rubrik
                     }
                     if (i == 3)
                     {
-                        td.InnerText = "Pris";
+                        td.InnerText = "Pris"; //Fjärde raden får "Pris" som rubrik
                     }
                     if (i == 4)
                     {
-                        td.InnerText = "Avboka";
+                        td.InnerText = "Avboka"; //Femte raden får "Avboka" som rubrik
                     }
 
-                    th.Controls.Add(td);
+                    th.Controls.Add(td); //Adderar cellerna till raden
                 }
-                bookingsTable.Controls.Add(th);
+                bookingsTable.Controls.Add(th); //Adderar tabellcellsrubrikerna till tabellen
 
 
 
-                //List<HtmlTableRow> trList = new List<HtmlTableRow>();
-
-
-                foreach (Tuple<Reservations, Courts, ReservationTypes> t in bookingInfoList)
+                foreach (Tuple<Reservations, Courts, ReservationTypes> t in bookingInfoList) //För varje reservation i reservationstuplelistan. Reservations = item1, Courts = item2, ReservationTypes = item3
                 {
+                    //Svenska som "kultur" så det blir rätt med tid.
                     System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("sv-SE");
                     System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo("sv-SE");
 
-                    HtmlTableRow tr = new HtmlTableRow();
-                    tr.Attributes.Add("class", "myBookingsTR");
-                    //trList.Add(tr);
+                    HtmlTableRow tr = new HtmlTableRow(); //Ny rad i tabellen
+                    tr.Attributes.Add("class", "myBookingsTR"); //Raden får en CSS-klass
 
                     string dayOfWeek = "";
                     string shortDayName = "";
                     string dateOfDate = "";
                     string monthNumber = "";
 
-                    for (int x = 0; x < 5; x++)
+                    for (int x = 0; x < 5; x++) //Likadan For-loop som tidigare.
                     {
-                        HtmlTableCell td = new HtmlTableCell();
-                        td.Attributes.Add("class", "myBookingsTD");
+                        HtmlTableCell td = new HtmlTableCell(); //Ny cell för den aktuella raden
+                        td.Attributes.Add("class", "myBookingsTD"); //Cellen får en CSS-klass
                         if (x == 0)
                         {
                             DateTime dateOfBooking = Convert.ToDateTime(t.Item1.StartDate.ToShortDateString());
-                            dayOfWeek = dateOfBooking.ToString("dddd", new CultureInfo("sv-SE"));
-                            shortDayName = FixName(dayOfWeek.Substring(0, 3));
-                            dateOfDate = dateOfBooking.ToString("%d", new CultureInfo("sv-SE"));
-                            monthNumber = dateOfBooking.ToString("%M", new CultureInfo("sv-SE"));
+                            dayOfWeek = dateOfBooking.ToString("dddd", new CultureInfo("sv-SE")); //Dagens namn
+                            shortDayName = FixName(dayOfWeek.Substring(0, 3)); //Anropar Fixname() som returnerar de tre första bokstäverna i namnet på dagen, ex "Ons"
+                            dateOfDate = dateOfBooking.ToString("%d", new CultureInfo("sv-SE")); //Datumet. Ex "5" eller "17"
+                            monthNumber = dateOfBooking.ToString("%M", new CultureInfo("sv-SE")); //Månadsnumret. Ex "2" eller "12".
 
                             td.InnerText = shortDayName + " " + dateOfDate + "/" + monthNumber;
-
-                            //td.InnerText = t.Item1.StartDate.ToShortDateString();
                         }
                         if (x == 1)
                         {
-                            td.InnerText = t.Item1.StartDate.ToShortTimeString();
+                            td.InnerText = t.Item1.StartDate.ToShortTimeString(); //Första itemet i "t" och skriver ut i cellen. I det här fallet datumet
                         }
                         if (x == 2)
                         {
-                            td.InnerText = t.Item2.CourtId.ToString();
+                            td.InnerText = t.Item2.CourtId.ToString(); //Andra itemet i "t" och skriver ut i cellen. I det här fallet ID för banan
                         }
                         if (x == 3)
                         {
-                            td.InnerText = t.Item3.Cost.ToString() + ":-";
+                            td.InnerText = t.Item3.Cost.ToString() + ":-"; //tredje itemet i "t" och skriver ut i cellen. I det här fallet kostnad
                         }
                         if (x == 4)
                         {
 
-                            if (t.Item1.StartDate > DateTime.Now.AddHours(1) && !HasCLRequest(lip))
+                            if ((t.Item1.StartDate > DateTime.Now.AddHours(1) && !HasCLRequest(lip)) || (t.Item1.StartDate.Date >= DateTime.Now.Date.AddDays(1))) //kontrollerar om datumet för reservationen är större än nu+1timme. och om lip inte har en CodeLockRequest. ELLER om reservationsdatumet är större än dagensdatum + 1.
                             {
-                                string thisDayIsFullDate = t.Item1.StartDate.ToString("yyyy-MM-dd", new CultureInfo("sv-SE"));
+                                string thisDayIsFullDate = t.Item1.StartDate.ToString("yyyy-MM-dd", new CultureInfo("sv-SE")); //hela datumet.
                                 string sTime = t.Item1.StartDate.ToShortTimeString();
-                                string shortTime = sTime.Substring(0, 2);
+                                string shortTime = sTime.Substring(0, 2); //Skriver ut timmen med 2 siffror.
 
                                 string id = "cb_" + t.Item1.CourtId.ToString() + "_" + thisDayIsFullDate + "_" + shortTime;
 
-                                //HtmlInputCheckBox cbCancelReservation = new HtmlInputCheckBox();
                                 HtmlGenericControl cbCancelReservation = new HtmlGenericControl("input");
                                 cbCancelReservation.Attributes.Add("type", "checkbox");
                                 cbCancelReservation.Attributes.Add("id", "cb_" + t.Item1.CourtId.ToString() + "_" + thisDayIsFullDate + "_" + shortTime);
                                 cbCancelReservation.Attributes.Add("value", "Bana " + t.Item1.CourtId.ToString() + " " + shortDayName + " " + dateOfDate + "/" + monthNumber + " " + shortTime + ":00");
                                 cbCancelReservation.Attributes.Add("class", "cbCancelReservation");
                                 cbCancelReservation.Attributes.Add("onclick", "checkOrUncheck('" + id + "')");
-                                //cbCancelReservation.Attributes.Add("runat", "server");
 
                                 td.Controls.Add(cbCancelReservation);
                             }
-                            else if (t.Item1.StartDate.Date >= DateTime.Now.Date.AddDays(1))
-                            {
-                                string thisDayIsFullDate = t.Item1.StartDate.ToString("yyyy-MM-dd", new CultureInfo("sv-SE"));
-                                string sTime = t.Item1.StartDate.ToShortTimeString();
-                                string shortTime = sTime.Substring(0, 2);
+                            #region bortkommenterad else if som ligger kvar just in case.
+                            //else if (t.Item1.StartDate.Date >= DateTime.Now.Date.AddDays(1))
+                            //{
+                            //    string thisDayIsFullDate = t.Item1.StartDate.ToString("yyyy-MM-dd", new CultureInfo("sv-SE"));
+                            //    string sTime = t.Item1.StartDate.ToShortTimeString();
+                            //    string shortTime = sTime.Substring(0, 2);
 
-                                string id = "cb_" + t.Item1.CourtId.ToString() + "_" + thisDayIsFullDate + "_" + shortTime;
+                            //    string id = "cb_" + t.Item1.CourtId.ToString() + "_" + thisDayIsFullDate + "_" + shortTime;
 
-                                HtmlInputCheckBox cbCancelReservation = new HtmlInputCheckBox();
-                                cbCancelReservation.Attributes.Add("id", "cb_" + t.Item1.CourtId.ToString() + "_" + thisDayIsFullDate + "_" + shortTime);
-                                cbCancelReservation.Attributes.Add("value", "Bana " + t.Item1.CourtId.ToString() + " " + shortDayName + " " + dateOfDate + "/" + monthNumber + " " + shortTime + ":00");
-                                cbCancelReservation.Attributes.Add("class", "cbCancelReservation");
-                                cbCancelReservation.Attributes.Add("onclick", "checkOrUncheck('" + id + "')");
-                                cbCancelReservation.Attributes.Add("runat", "server");
+                            //    HtmlInputCheckBox cbCancelReservation = new HtmlInputCheckBox();
+                            //    cbCancelReservation.Attributes.Add("id", "cb_" + t.Item1.CourtId.ToString() + "_" + thisDayIsFullDate + "_" + shortTime);
+                            //    cbCancelReservation.Attributes.Add("value", "Bana " + t.Item1.CourtId.ToString() + " " + shortDayName + " " + dateOfDate + "/" + monthNumber + " " + shortTime + ":00");
+                            //    cbCancelReservation.Attributes.Add("class", "cbCancelReservation");
+                            //    cbCancelReservation.Attributes.Add("onclick", "checkOrUncheck('" + id + "')");
+                            //    cbCancelReservation.Attributes.Add("runat", "server");
 
-                                td.Controls.Add(cbCancelReservation);
+                            //    td.Controls.Add(cbCancelReservation);
 
-                            }
-
-
-
-
-
-
-
+                            //}
+                            #endregion
                         }
 
-                        tr.Controls.Add(td);
+                        tr.Controls.Add(td); //Adderar cell till rad.
                     }
-                    bookingsTable.Rows.Add(tr);
-
-                    //myBookingsDiv.Visible = true;
+                    bookingsTable.Rows.Add(tr); //Adderar rad till tabell.
                 }
 
 
@@ -961,23 +980,22 @@ namespace Squash.Classes
 
                 foreach (Tuple<Subscriptions, CourtTimes, Days> tup in subscriptionInfoList)
                 {
-                    HtmlTableRow tr = new HtmlTableRow();
-                    tr.Attributes.Add("class", "mySubscriptionsTR");
+                    HtmlTableRow tr = new HtmlTableRow(); //ny rad
+                    tr.Attributes.Add("class", "mySubscriptionsTR"); //raden får CSS-klass
 
                     for (int y = 0; y < 5; y++)
                     {
-                        HtmlTableCell td = new HtmlTableCell();
-                        td.Attributes.Add("class", "mySubscriptionsTD");
+                        HtmlTableCell td = new HtmlTableCell(); //ny cell
+                        td.Attributes.Add("class", "mySubscriptionsTD"); //cellen får en CSS-klass
 
                         if (y == 0)
                         {
-                            td.InnerText = EngSweDaySwitch(tup.Item3.Description) + "ar";
-                            //td.InnerText = tup.Item3.Description+"s";
+                            td.InnerText = EngSweDaySwitch(tup.Item3.Description) + "ar"; //Dagens namn på svenska i plural
                         }
 
                         if (y == 1)
                         {
-                            td.InnerText = tup.Item2.StartHour + ":00";
+                            td.InnerText = tup.Item2.StartHour + ":00"; //Ex "16:00"
                         }
                         if (y == 2)
                         {
@@ -997,10 +1015,7 @@ namespace Squash.Classes
                     bookingsTable.Rows.Add(tr);
                 }
 
-
-
-
-                return bookingsTable;
+                return bookingsTable; //Returnerar tabellen
 
             }
             else
@@ -1010,6 +1025,11 @@ namespace Squash.Classes
 
 
         }
+        
+        /// <summary>
+        /// Hämtar PIN-koder från CodeLock i databasen och sorterar på det senaste.
+        /// </summary>
+        /// <returns>En lista med PIN-koder</returns>
         public List<CodeLock> GetCodeLocks()
         {
             MySqlConnection conn = myConn();
@@ -1031,6 +1051,11 @@ namespace Squash.Classes
             return codeLockList;
         }
 
+        /// <summary>
+        /// Gör en lista av Tuple för reservationer med lip från databasen
+        /// </summary>
+        /// <param name="lip">Logged In Person = Inloggad person</param>
+        /// <returns>En lista av tuple</returns>
         public List<Tuple<Reservations, Courts, ReservationTypes>> GetResTuples(LoggedInPerson lip)
         {
             MySqlConnection conn = myConn();
@@ -1088,6 +1113,11 @@ namespace Squash.Classes
             return reservationInfoList;
         }
 
+        /// <summary>
+        /// Gör en lista av Tuple för abonnemang med lip från databasen
+        /// </summary>
+        /// <param name="lip">Logged In Person = Inloggad person</param>
+        /// <returns>En lista av tuple</returns>
         public List<Tuple<Subscriptions, CourtTimes, Days>> GetSubTuples(LoggedInPerson lip)
         {
             MySqlConnection conn = myConn();
@@ -1133,6 +1163,10 @@ namespace Squash.Classes
 
         #region UserManagemet
 
+        /// <summary>
+        /// En metod som hämtar alla users från users_updated-tabellen i databasen och lägger dessa i en lista.
+        /// </summary>
+        /// <returns>En sorterad lista som är i första hand sorterad på förnamn och i andra hand på efternamn </returns>
         public List<Users> GetUserList()
         {
             MySqlConnection conn = myConn();
@@ -1172,6 +1206,15 @@ namespace Squash.Classes
 
         #endregion
 
+
+
+
+
+        /// <summary>
+        /// Tar emot namnet på en veckodag på engelska och gör om det till svenska
+        /// </summary>
+        /// <param name="engDay">Namnet på veckodagen på engelska</param>
+        /// <returns>Det svenska namnet på veckodagen</returns>
         public string EngSweDaySwitch(string engDay)
         {
             string sweDay = null;
@@ -1209,6 +1252,12 @@ namespace Squash.Classes
         }
 
 
+        /// <summary>
+        /// En metod som letar kontroller på en sida. Den loopar om och om igen.
+        /// </summary>
+        /// <param name="root">Rootkontrollen, var man vill börja leta efter den önskade kontrollen</param>
+        /// <param name="id">Den önskade kontrollen</param>
+        /// <returns>Antingen returneras rootkontrollen, eller den önskade kontrollen eller null</returns>
         public Control FindControlRecursive(Control root, string id)
         {
             if (root.ID == id)
@@ -1227,27 +1276,13 @@ namespace Squash.Classes
 
             return null;
         }
-        //public Control FindControlsRecursive(Control root)
-        //{
-        //    if (root is HtmlInputCheckBox)
-        //    {
-        //        return root;
-        //    }
-        //    foreach (Htmlco c in root.Controls)
-        //    {
-        //        Control t = FindControlsRecursive(c);
-        //        if (t != null)
-        //        {
-        //            if (t is HtmlInputCheckBox)
-        //            {
-        //                return t;
-        //            }
-        //        }
-        //    }
+        
 
-        //    return null;
-        //}
-
+        /// <summary>
+        /// Metoden kontrollerar om lip har en CodeLockRequest i databasen
+        /// </summary>
+        /// <param name="lip">Logged In Person = Inloggad person</param>
+        /// <returns>Sant eller falskt beroende på om det fins en CodeLockRequest eller inte</returns>
         public bool HasCLRequest(LoggedInPerson lip)
         {
             string query = "SELECT COUNT(*) AS c FROM codelockrequests WHERE MemberId = " + lip.member.MemberId + " AND DATE(DateOfRequest) = CURDATE() ORDER BY DateOfRequest DESC";
@@ -1272,6 +1307,14 @@ namespace Squash.Classes
             }
         }
 
+
+
+        /// <summary>
+        /// Metoden kontrollerar om lip har en CodeLockRequest i databasen för chosenDay
+        /// </summary>
+        /// <param name="lip">Logged In Person = Inloggad person</param>
+        /// <param name="chosenDay">Den valda dagen</param>
+        /// <returns>Sant eller falskt beroende på om det fins en CodeLockRequest eller inte</returns>
         public bool HasCLRequest(LoggedInPerson lip, DateTime chosenDay)
         {
             string query = "SELECT COUNT(*) AS c FROM codelockrequests WHERE MemberId = " + lip.member.MemberId + " AND DATE(DateOfRequest) = DATE('" + chosenDay + "') ORDER BY DateOfRequest DESC";
