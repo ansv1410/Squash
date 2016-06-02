@@ -525,9 +525,6 @@ namespace Squash
 
                 }
 
-                //Days loopDay = DayList.Single(cus => cus.DayId == i);
-                //int idOfLoopDay = loopDay.DayId;
-                //bool theDay = DayList.Any(cus => cus.DayId == i);
                 //Loopar veckans dagar enligt de dagar som specificerats i databasen skapar element för dessa.
                 foreach (Days D in DayList)
                 {
@@ -568,12 +565,6 @@ namespace Squash
                         {
                             hasCLReq = false;
                         }
-
-                        //HtmlGenericControl bookingTextDiv = method.BookingInfoMessage(lip, Convert.ToDateTime(thisDayIsFullDate).Date, hasCLReq, resLeft);
-                        
-
-
-
 
 
                         selectorDiv.Controls.Add(daySelector);
@@ -628,49 +619,15 @@ namespace Squash
                                 courtDiv.Attributes.Add("class", "courtDivs B" + C.CourtId);
 
                                 HtmlGenericControl pBookedBy = new HtmlGenericControl("p");
-                                //pBookedBy.InnerHtml = "Ledig tid";
 
                                 bool subscribed = false;
                                 bool reserved = false;
-
-
-
-
-
-
-
-                                //Subscriptions loopSub = allSubscriptions.(cus => cus.DayId == i);
-                                //int idOfLoopSub = loopSub.DayId;
-
-                                //IEnumerable<Subscriptions> wantedSubs = allSubscriptions.Where(s => s.DayId == loopSub.DayId);
-                                //IEnumerable<Subscriptions> wantedSubsDay = (from s in allSubscriptions where s.DayId == D.DayId select s);
-                                //List<Subscriptions> wDList = wantedSubsDay.ToList();
-
-                                //IEnumerable<Subscriptions> wantedSubsCT = (from w in wantedSubsDay where w.CourtTimeId == CT.CourtTimeId select w);
-                                //List<Subscriptions> wCTList = wantedSubsCT.ToList();
 
                                 try
                                 {
                                     Subscriptions sub = wantedSubsCT.Single(cus => cus.CourtId == C.CourtId);
 
 
-                                    //IEnumerable<Subscriptions> wantedSubsC = (from c in wantedSubsCT where c.CourtId == C.CourtId select c);
-
-                                    //List<Subscriptions> wCList = wantedSubsC.ToList();
-                                    //Subscriptions sub = wCList[0];
-
-
-                                    //IEnumerable<Subscriptions> wantedSubs = allSubscriptions.Where(t => t.DayId == idOfLoopDay);
-
-
-                                    //SELECT ALL SUBSCIPTIONS WHERE CourtId = C.CourtId AND CourtTimeId = CT.CourtTimeId && DayId == loopDay.DayId/D.DayId
-
-
-                                    //Loopar och jämför varje bana+tid och sätter ev. bokningstatus För abonnemangstider.
-                                    //foreach (Subscriptions sub in wCList)
-                                    //{
-                                    //if (sub.CourtId == C.CourtId && sub.CourtTimeId == CT.CourtTimeId && sub.DayId == D.DayId)
-                                    //{
                                     subscribed = true;
 
                                     if (sub.MemberId == lip.member.MemberId)
@@ -702,7 +659,6 @@ namespace Squash
                                                 }
                                             }
                                         }
-                                        //}
                                         break;
                                     }
                                 }
@@ -710,7 +666,6 @@ namespace Squash
                                 {
 
                                 }
-                                //}
 
                                 //Loopar och jämför varje bana+tid och sätter ev. bokningstatus För strötider.
                                 foreach (Reservations res in allReservations)
@@ -730,7 +685,6 @@ namespace Squash
 
                                                 string myResValue = C.Description + " " + shortDayName + " " + dateOfDate + "/" + monthNumber + " " + shortTime + ":00";
 
-                                                //if (!method.HasCLRequest(lip, Convert.ToDateTime(thisDayIsFullDate)))
                                                 if(!hasCLReq)
                                                 {
                                                     string cancelParameter = "cb_" + C.CourtId.ToString() + "_" + thisDayIsFullDate + "_" + shortTime;
@@ -791,7 +745,6 @@ namespace Squash
 
                                 string bookingDivId = thisDayIsFullDate + "_" + shortTime + "_" + C.CourtId.ToString();
 
-                                //"hf" associeras till den klickbara div som symboliserar den bana och tid som ska bokas, via IDt hf + bookingDivId. Värdet initieras till 0 och sätts till 1 vid klick i JavaScript-funktionen "chosenCourt"
                                 HiddenFieldWithClass hf = new HiddenFieldWithClass();
                                 hf.ID = "hf" + bookingDivId;
                                 hf.CssClass = "BookingHf";
@@ -865,7 +818,6 @@ namespace Squash
 
 
 
-                                //courtDiv.InnerHtml = D.DayId + "-" + CT.CourtTimeId + "-" + C.CourtId + " " + thisDayIsFullDate + " " + thisDayIsFullTime;
                                 int thisHour = Convert.ToInt16(DateTime.Now.Hour);
                                 string nowDate = DateTime.Now.ToString("yyyy-MM-dd", new CultureInfo("sv-SE"));
 
@@ -896,9 +848,7 @@ namespace Squash
                             btnBook.CommandArgument = hourBookingDivId;
                             btnBook.Click += btnBook_Click;
 
-                            //Segt
                             hourBookingDiv.Controls.Add(method.BookingInfoMessage(lip, FullDateTime, hasCLReq, resLeft));
-                            //
                             hourBookingDiv.Controls.Add(btnBook);
 
                             bookingOverlayMessage.Controls.Add(hourBookingDiv);
@@ -949,25 +899,20 @@ namespace Squash
             }
             corrStartTime += ":00:00";
 
-            //HiddenFieldWithClass a = new HiddenFieldWithClass();
 
             string insertQuery = "INSERT INTO reservations(CourtId, MemberId, StartDate, ReservationType) VALUES(@CID, @MID, @SD, @RT)";
 
+            ///Loopar och stegar in i bokningssidan för att hitta alla HiddenFieldWithClass och lägger dessa i lista.
             List<Control> controlList = new List<Control>();
             List<HiddenFieldWithClass> hfwcList = new List<HiddenFieldWithClass>();
-            //foreach (HiddenFieldWithClass hf in this.Page.Controls)
             foreach (Control c in this.Page.Controls)
             {
-                //controlList.Add(c);
                 foreach (Control c2 in c.Controls)
                 {
-                    //controlList.Add(c2);
                     foreach (Control c3 in c2.Controls)
                     {
-                        //controlList.Add(c3);
                         foreach (Control c4 in c3.Controls)
                         {
-                            //controlList.Add(c4);
                             foreach (Control c5 in c4.Controls)
                             {
                                 if (c5 is HiddenFieldWithClass)
@@ -994,6 +939,7 @@ namespace Squash
             int allreadyBookedCounter = 0;
             string bookingMessageString = "<u>Du har bokat:</u> <br/>";
 
+            //Kontrollerar om någon av de valda tiderna blivit bokad av någon annan sedan den valdes.
             foreach (HiddenFieldWithClass hf in hfwcList)
             {
                 string checkReservationQuery = "SELECT count(*) AS c FROM reservations WHERE CourtId = " + Convert.ToInt16(hf.Value) + " AND StartDate = '" + Convert.ToDateTime(corrStartTime) + "'; ";
@@ -1006,16 +952,16 @@ namespace Squash
                         allreadyBookedCounter += 1;
                     }
                 }
+                conn.Close();
             }
 
 
             if (allreadyBookedCounter == 0)
             {
+                ///Utför bokningen för alla valda tider.
                 foreach (HiddenFieldWithClass hf in hfwcList)
                 {
-                    //IF MEMBERTYPE == 3 @CID, @MID, @SD, @RT
-                    //AND IF lip.member.MemberId INTE HAR NÅGON TID DENNA VECKA
-                    //RESERVATIONTYPE = 3
+                    
                     MySqlCommand cmd = new MySqlCommand(insertQuery, conn);
                     cmd.Parameters.AddWithValue("CID", Convert.ToInt16(hf.Value));
                     cmd.Parameters.AddWithValue("MID", lip.member.MemberId);
@@ -1039,20 +985,26 @@ namespace Squash
                         }
                     }
 
-                    //insertQuery += "(" + Convert.ToInt16(hf.Value) + ", " + lip.member.MemberId + ", '" + Convert.ToDateTime(corrStartTime) + "', NULL, 1),";
                     string theDate = Convert.ToDateTime(corrStartTime).ToString("%d", new CultureInfo("sv-SE"));
                     string theMonth = Convert.ToDateTime(corrStartTime).ToString("%M", new CultureInfo("sv-SE"));
                     string theTime = corrStartTime.Substring(11, 5);
 
                     bookingMessageString += "Bana " + hf.Value + ", " + theDate + "/" + theMonth + " " + theTime + ". <br />";
 
-                    //string BM = "Bana " + hf.Value + ", " + theDate + "/" + theMonth + " " + Convert.ToDateTime(corrStartTime).ToString("hh:mm") + ". ";
-                    //bookingMessageString += "Bana " + hf.Value + ", " + Convert.ToDateTime(corrStartTime).Date.ToString("dd-MM") + " " + Convert.ToDateTime(corrStartTime).ToString("hh:mm") + ". ";
+                    try
+                    {
                     conn.Close();
                     conn.Open();
                     cmd.ExecuteNonQuery();
                     conn.Close();
                     conn.Dispose();
+
+                    }
+                    catch (MySqlException ex)
+                    {
+                        Debug.WriteLine(ex.Message);
+                        conn.Close();
+                    }
 
                 }
             }
@@ -1080,7 +1032,6 @@ namespace Squash
 
         protected void btnCancelOK_Click(object sender, EventArgs e)
         {
-            //string allIDs = Request.Form["__EVENTARGUMENT"].ToString();
 
             string allIDs = hfCancelBookings.Value;
 
@@ -1138,6 +1089,7 @@ namespace Squash
             catch (MySqlException ex)
             {
                 Debug.WriteLine(ex.Message);
+                conn.Close();
             }
 
             Response.Redirect("Booking.aspx");

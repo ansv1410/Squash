@@ -126,10 +126,19 @@ namespace Squash.Account
                             cmdInsertLogins.Parameters.AddWithValue("mid", l.MemberId);
                             cmdInsertLogins.Parameters.AddWithValue("li", l.LoggedIn);
                             cmdInsertLogins.Parameters.AddWithValue("ip", l.IPAddress);
+
+                            try
+                            {
                             conn.Open();
                             cmdInsertLogins.ExecuteNonQuery();
                             
                             conn.Close();
+                            }
+                            catch(MySqlException ex)
+                            {
+                                Debug.WriteLine(ex.Message);
+                                conn.Close();
+                            }
 
 
 

@@ -9,7 +9,7 @@
             <h3 id="myBookingsH3">Mina bokningar</h3>
         </div>
 
-        <h2 id="scheduleH2">Spelschema</h2>
+        <h2 id="scheduleH2" class="lockAndLoad">Spelschema</h2>
         <h4 id="scheduleH4">- Boka nedan</h4>
         <div id="divBookMess" runat="server">
             <p id="bookingConfirmationMessage" runat="server" class="successfulBookingMessage" visible="false"></p>
@@ -27,7 +27,7 @@
                     <div id="toCancelDiv">
                     </div>
                     <div id="cancelButtons" class="promptButtons">
-                        <asp:Button ID="btnCancelOK" runat="server" Text="OK" OnClick="btnCancelOK_Click" CssClass="btn btn-default promptOK" />
+                        <asp:Button ID="btnCancelOK" runat="server" Text="OK" OnClick="btnCancelOK_Click" CssClass="btn btn-default promptOK lockAndLoad" />
                         <input id="btnNoCancel" type="button" onclick="CloseBookingOverlay()" class="btn btn-default promptCancel" value="Avbryt" />
                     </div>
                 </div>

@@ -150,8 +150,16 @@ namespace Squash.Account
                             cmd.Parameters.AddWithValue("cell", "");
                             cmd.Parameters.AddWithValue("pa", createUser.PublicAddres);
 
+                            try
+                            {
                             conn.Open();
                             cmd.ExecuteNonQuery();
+                            }
+                            catch(MySqlException ex)
+                            {
+                                Debug.WriteLine(ex.Message);
+                                conn.Close();
+                            }
                         }
                         else
                         {
