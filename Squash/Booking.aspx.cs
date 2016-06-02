@@ -595,10 +595,15 @@ namespace Squash
 
                             hourDiv.Controls.Add(pTime);
 
+
+
+                           
+
                             HtmlGenericControl hourBookingDiv = new HtmlGenericControl("div");
                             hourBookingDiv.Attributes.Add("class", "hourBookingDiv");
                             hourBookingDiv.Attributes.Add("id", hourBookingDivId);
-                            hourBookingDiv.InnerHtml = "<h3>Boka - " + shortDayIs + " " + thisDayIsDate + "/" + thisDayIsMonth + " " + shortTime + ":00</h3><p>Klicka på önskade banor.</p><hr />";
+                            hourBookingDiv.InnerHtml = "<p class='redExitcross' onclick='CloseBookingOverlay()'>X</p><br /><h3>Boka - " + shortDayIs + " " + thisDayIsDate + "/" + thisDayIsMonth + " " + shortTime + ":00</h3><p>Klicka på önskade banor.</p><hr />";
+
 
                             HtmlGenericControl bookingDescriptionDiv = new HtmlGenericControl("div");
                             bookingDescriptionDiv.Attributes.Add("id", "bookingDescriptionDiv" + CT.CourtTimeId);

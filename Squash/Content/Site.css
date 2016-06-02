@@ -1149,6 +1149,27 @@ input[type="checkbox"]{
     border-radius:4px;
 }
 
+
+.hourBookingDiv > h3{
+    margin-top:-5px;
+}
+
+.redExitcross{
+    color:red;
+    font-weight:bold;
+    font-size:160%;
+    float:right;
+    margin-bottom:0;
+    cursor:pointer;
+}
+.redExitcross:hover{
+    color:coral;
+}
+.redExitcross:active{
+    color:firebrick;
+}
+
+
 /*BOOKING - SLUT*/
 
 
