@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ChangePassword.ascx.cs" Inherits="Squash.Account.ChangePassword" %>
 
 <h4>Välj ett nytt lösenord nedan</h4>
-<h5>Lösenordet uppdateras genast, har du glömt ditt nuvarande lösenord kan du istället beställa ett nytt.</h5>
+<h5>Lösenordet uppdateras genast, har du glömt ditt nuvarande lösenord kan du istället <a href="Forgot.aspx">beställa ett nytt</a>.</h5>
 <hr />
 
 <asp:Panel ID="pnlDefaultButton2" runat="server" DefaultButton="btnUpdatePW">

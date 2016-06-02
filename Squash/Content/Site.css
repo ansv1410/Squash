@@ -499,6 +499,7 @@ h4{
 .agreementList input{
     float:left;
     margin-bottom:10px;
+    margin-right:5px;
 }
 .agreementList label{
     display:inline;
@@ -1363,6 +1364,7 @@ input[type="checkbox"]{
         width: 93%;
         margin: 0 auto;
     }
+
     #statsh4{
         padding-left:3.5%;
     }
@@ -1721,6 +1723,9 @@ input[type="checkbox"]{
         display:none;
     }
 
+    #contactsh4{
+        font-size:150%;
+    }
 }
 
 @media screen and (max-width: 650px){
@@ -1812,6 +1817,9 @@ input[type="checkbox"]{
         /*color:yellow;*/
         padding-left:2%;
     }
+    #contactsh4{
+        font-size:130%;
+    }
 
 }
 @media screen and (max-width: 319px){
@@ -1821,6 +1829,9 @@ input[type="checkbox"]{
     #pinDiv{
         font-size:80%;
         text-shadow:none;
+    }
+    #contactsh4{
+        font-size:120%;
     }
 
 }

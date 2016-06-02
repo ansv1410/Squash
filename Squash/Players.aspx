@@ -14,7 +14,7 @@
 
 
         <div id="addressListDiv" runat="server" visible="false">
-            <h4 id="contactsh4">Kontaktuppgifter</h4>
+            <h4 id="contactsh4">Alla spelare - Kontaktuppgifter</h4>
             <div id="users">
 
                 <input id="tbSearchUser" class="search" placeholder="Sök" />
