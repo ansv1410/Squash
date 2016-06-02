@@ -28,21 +28,12 @@ namespace Squash.Account
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //hfShowLogin.Value = "1";
             RegisterHyperLink.NavigateUrl = "Register";
-            // Enable this once you have account confirmation enabled for password reset functionality
-            //ForgotPasswordHyperLink.NavigateUrl = "Forgot";
-            //OpenAuthLogin.ReturnUrl = Request.QueryString["ReturnUrl"];
             var returnUrl = HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]);
             if (!String.IsNullOrEmpty(returnUrl))
             {
                 RegisterHyperLink.NavigateUrl += "?ReturnUrl=" + returnUrl;
             }
-            //(HtmlGenericControl)Page.Master.FindControl("pubAcc").A
-            //((PlaceHolder)Page.Master.FindControl("pubAcc")).Visible = true;
-
-            //PlaceHolder ph = (PlaceHolder)Page.Master.FindControl("pubAcc");
-            //ph.Visible = true;
         }
 
         protected void LogIn(object sender, EventArgs e)
@@ -87,7 +78,7 @@ namespace Squash.Account
 
                     string ipAddress = ((HiddenField)Page.Master.FindControl("hfLoggedInIP")).Value;
 
-                    if (u.Password == method.Hashify(password))
+                    if (u.Password == method.Hashify(password)) //Anropar metoden för att hasha lösenordet och kontrollera om det är korrekt.
                     {
                         queryMemberId = "SELECT * FROM members WHERE UserId = '" + u.UserId + "'";
                         MySqlDataReader dr3 = method.myReader(queryMemberId, conn);
@@ -129,7 +120,7 @@ namespace Squash.Account
                             l.LoggedIn = DateTime.Now;
                             l.IPAddress = ipAddress;
 
-                            //EN INSERT TILL logins-tabellen.
+                            //Insert till logins-tabellen.
                             queryInsertLogins = "INSERT INTO logins (MemberId, LoggedIn, IPAddress) VALUES (@mid, @li, @ip)";
                             MySqlCommand cmdInsertLogins = new MySqlCommand(queryInsertLogins, conn);
                             cmdInsertLogins.Parameters.AddWithValue("mid", l.MemberId);
@@ -152,7 +143,7 @@ namespace Squash.Account
 
 
 
-                            LoggedInPerson lip = new LoggedInPerson();
+                            LoggedInPerson lip = new LoggedInPerson(); //Skapar lip
                             lip.user = u;
                             lip.member = m;
                             lip.logins = l;
@@ -164,6 +155,7 @@ namespace Squash.Account
                             bool showBookingMessage = false;
                             string bookingMessage = "";
 
+                            //Skapar Sessioner nedan
                             Session["lip"] = lip;
                             Session["showBookingMessage"] = showBookingMessage;
                             Session["bookingMessage"] = bookingMessage;

@@ -22,8 +22,8 @@ namespace Squash
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            string queryGetNews = "SELECT * FROM news ORDER BY Id DESC LIMIT 10";
-            string queryGetMessages = "SELECT * FROM messages";
+            string queryGetNews = "SELECT * FROM news ORDER BY Id DESC LIMIT 10"; //Hämtar de senaste 10 nyheterna i databasen
+            string queryGetMessages = "SELECT * FROM messages"; //Hämtar alla meddelanden från databasen
             string showNews = "";
             string showMessages = "";
 
@@ -31,7 +31,7 @@ namespace Squash
             {
                 MySqlDataReader drNews = method.myReader(queryGetNews, conn);
 
-                while (drNews.Read())
+                while (drNews.Read())//Läser in alla nyheterna och lägger ut dem i divar på sidan.
                 {
                     News n = new News();
                     n.Id = Convert.ToInt32(drNews["Id"].ToString());
@@ -53,7 +53,7 @@ namespace Squash
                 newsDiv.InnerHtml = showNews;
 
                 MySqlDataReader drMessages = method.myReader(queryGetMessages, conn);
-                while (drMessages.Read())
+                while (drMessages.Read())//Läser alla meddelanden och lägger ut de i divar på sidan
                 {
                     Messages m = new Messages();
                     m.Id = Convert.ToInt32(drMessages["Id"].ToString());
@@ -85,54 +85,6 @@ namespace Squash
                     newsDiv.Visible = true;
 
 
-
-
-                    //string query = "SELECT * FROM users WHERE UserId = 1";
-                    //MySqlDataReader dr = method.myReader(query, conn);
-                    //try
-                    //{
-                    //    while (dr.Read())
-                    //    {
-                    //        testarn.Text = dr["Firstname"].ToString();
-                    //    }
-                    //}
-                    //catch (MySqlException ex)
-                    //{
-                    //    Debug.WriteLine(ex.Message);
-                    //}
-                    //finally
-                    //{
-                    //    conn.Close();
-                    //}
-                    //List<Messages> messages = new List<Messages>();
-                    //string query = "SELECT * from Messages";
-                    //MySqlDataReader dr = method.myReader(query, conn);
-                    //try
-                    //{
-                    //    while (dr.Read())
-                    //    {
-                    //        Messages m = new Messages();
-                    //        m.Id = Convert.ToInt32(dr["Id"]);
-                    //        m.Message = dr["Messages"].ToString();
-                    //        messages.Add(m);
-                    //    }
-                    //}
-                    //catch (MySqlException ex)
-                    //{
-                    //    Debug.WriteLine(ex.Message);
-                    //}
-                    //finally
-                    //{
-                    //    conn.Close();
-                    //}
-
-                    //foreach (Messages m in messages)
-                    //{
-                    //    HtmlGenericControl li = new HtmlGenericControl("li");
-                    //    li.InnerHtml = m.Message;
-                    //    //messageList.Controls.Add(li);
-
-                    //}
                 }
                 else
                 {

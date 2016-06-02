@@ -25,86 +25,21 @@ namespace Squash
         static Methods method = new Methods();
         MySqlConnection conn = method.myConn();
 
-        //public string ShowOrNot
-        //{
-        //    get
-        //    {
-        //        return hfShowLogin.Value;
-        //    }
-        //    set
-        //    {
-        //        hfShowLogin.Value = value;
-        //    }
-        //}
 
         protected void Page_Init(object sender, EventArgs e)
         {
-            ////string testarn = hfShowLogin.Value;
-            //// The code below helps to protect against XSRF attacks
-            //var requestCookie = Request.Cookies[AntiXsrfTokenKey];
-            //Guid requestCookieGuidValue;
-            //if (requestCookie != null && Guid.TryParse(requestCookie.Value, out requestCookieGuidValue))
-            //{
-            //    // Use the Anti-XSRF token from the cookie
-            //    _antiXsrfTokenValue = requestCookie.Value;
-            //    Page.ViewStateUserKey = _antiXsrfTokenValue;
-            //}
-            //else
-            //{
-            //    // Generate a new Anti-XSRF token and save to the cookie
-            //    _antiXsrfTokenValue = Guid.NewGuid().ToString("N");
-            //    Page.ViewStateUserKey = _antiXsrfTokenValue;
-
-            //    var responseCookie = new HttpCookie(AntiXsrfTokenKey)
-            //    {
-            //        HttpOnly = true,
-            //        Value = _antiXsrfTokenValue
-            //    };
-            //    if (FormsAuthentication.RequireSSL && Request.IsSecureConnection)
-            //    {
-            //        responseCookie.Secure = true;
-            //    }
-            //    Response.Cookies.Set(responseCookie);
-            //}
-
             Page.PreLoad += master_Page_PreLoad;
         }
 
         protected void master_Page_PreLoad(object sender, EventArgs e)
         {
-            if (Session["lip"] != null)
+            if (Session["lip"] != null) //Inloggad person lagras i en Session av klassen LoggedInPerson
             {
                 lip = (LoggedInPerson)Session["lip"];
                 pinDiv.Visible = ShowPinDiv();
 
             }
-            //if (!IsPostBack)
-            //{
-            //    // Set Anti-XSRF token
-            //    ViewState[AntiXsrfTokenKey] = Page.ViewStateUserKey;
-            //    ViewState[AntiXsrfUserNameKey] = Context.User.Identity.Name ?? String.Empty;
-
-
-
-
-
-            //    if (Session == null)
-            //    {
-                    
-            //        //(this.FindControl("pubAcc")).Visible = true;
-
-            //        //((HiddenField)Page.Master.FindControl("hfShowLogin")).Value = "0";
-            //    }
-            //}
-            //else
-            //{
-            //    // Validate the Anti-XSRF token
-            //    if ((string)ViewState[AntiXsrfTokenKey] != _antiXsrfTokenValue
-            //        || (string)ViewState[AntiXsrfUserNameKey] != (Context.User.Identity.Name ?? String.Empty))
-            //    {
-            //        throw new InvalidOperationException("Validation of Anti-XSRF token failed.");
-            //    }
-            //}
+           
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -121,7 +56,7 @@ namespace Squash
                 int firstNameLength = 0;
                 int lastNameLength = 0;
 
-                if((lip.member.MemberType == 2 || lip.member.MemberType == 3) && lip.company.Name != null)
+                if((lip.member.MemberType == 2 || lip.member.MemberType == 3) && lip.company.Name != null) //Om memberType är 2, 3 eller om lips företagsnamn skiljer sig från null
                 {
                     companyNameLength = lip.company.Name.Length;
 
@@ -129,7 +64,7 @@ namespace Squash
                     string shortCompanyName = "";
 
 
-                    if(companyNameLength <= 14)
+                    if(companyNameLength <= 14) //Om företagsnamnet är mindre eller lika med 14 tecken så står det i headern till vänster om "Logga ut".
                     {
                         myPageLink.InnerText = lip.company.Name;
                     }
@@ -168,11 +103,11 @@ namespace Squash
 
                     if(firstNameLength + lastNameLength <= 14)
                     {
-                        myPageLink.InnerText = lip.user.FirstName + " " + lip.user.SurName; 
+                        myPageLink.InnerText = lip.user.FirstName + " " + lip.user.SurName;  //förnamn + efternamn i headern
                     }
                     else if(firstNameLength <= 14)
                     {
-                        myPageLink.InnerText = lip.user.FirstName;
+                        myPageLink.InnerText = lip.user.FirstName; //Bara förnamn i headern
                     }
                     else if(firstNameLength > 14)
                     {
@@ -180,17 +115,11 @@ namespace Squash
 
                         string firstNameToShow = firstName.Substring(0, 14);
 
-                        myPageLink.InnerText = firstNameToShow;
+                        myPageLink.InnerText = firstNameToShow; //Förnamnets 14 första tecken
                     }
 
 
                 }
-
-
-                //pinDiv.Visible = ShowPinDiv();
-                
-
-                //Visa myBookingsDiv
 
             }
             else
@@ -205,13 +134,6 @@ namespace Squash
                 pubAcc.Visible = true;
             }
 
-            //(HtmlGenericControl)Page.Master.FindControl("pubAcc").
-            //HtmlGenericControl accMenu = (HtmlGenericControl)m.FindControl("pubAcc");
-            //accMenu.Attributes.Remove("hidden");
-            
-            
-            
-
         }
 
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)
@@ -225,6 +147,10 @@ namespace Squash
             Response.Redirect("~/Default");
         }
 
+        /// <summary>
+        /// Visar PIN-koden i headern om man har en reservation som är inom en timme idag eller om man har valt att se dagens PIN.
+        /// </summary>
+        /// <returns>Returnerar en bool(true) om man har valt att se PIN-koden eller om man har en reservation inom en timme från nu</returns>
         public bool ShowPinDiv()
         {
             List<Tuple<Reservations, Courts, ReservationTypes>> resList = method.GetResTuples(lip);
@@ -269,9 +195,6 @@ namespace Squash
                                 }
                                 else
                                 {
-                                    //string query = "SELECT COUNT(*) AS c FROM codelockrequests WHERE MemberId = " + lip.member.MemberId + " AND DATE(DateOfRequest) = CURDATE() ORDER BY DateOfRequest DESC";
-                                    //MySqlDataReader dr = method.myReader(query, conn);
-
                                     if (method.HasCLRequest(lip))
                                     {
                                         todaysPin.InnerHtml = "Dagens PIN<br />" + codelock.Code;
@@ -302,6 +225,12 @@ namespace Squash
             return false;
 
         }
+        
+        /// <summary>
+        /// Visar PIN-kod i headern om inloggad person är ett företag och har en abonnemangstid på den aktuella dagen
+        /// </summary>
+        /// <param name="codeLockList"></param>
+        /// <returns>Sant om ovan uppfylls, annars falskt</returns>
         public bool ShowSubPin(List<CodeLock> codeLockList)
         {
             List<Tuple<Subscriptions, CourtTimes, Days>> subList = method.GetSubTuples(lip);
@@ -377,7 +306,6 @@ namespace Squash
                 conn.Close();
             }
 
-            //showPin.Visible = false;
             ShowPinDiv();
 
             //string url = HttpContext.Current.Request.RawUrl;

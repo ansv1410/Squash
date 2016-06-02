@@ -74,6 +74,11 @@ namespace Squash.Account
             //}
         }
 
+        /// <summary>
+        /// Kontrollerar gammalt lösenord med det nya för att kunna byta lösenord.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnUpdatePW_Command(object sender, CommandEventArgs e)
         {
             if (Page.IsValid)

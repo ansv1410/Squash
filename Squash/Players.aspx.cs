@@ -45,7 +45,10 @@ namespace Squash
             BuildCharts(6);
         }
 
-
+        /// <summary>
+        /// Bygger statistikdiagram
+        /// </summary>
+        /// <param name="noOfMonths">Antalet månader bakåt i tiden, just nu 6</param>
         public void BuildCharts(int noOfMonths)
         {
 
@@ -89,17 +92,13 @@ namespace Squash
 
                 Chart chart = new Chart();
                 chart.Titles.Add(new Title(titleMonth + " - " + titleYear, Docking.Top, new Font("Tahoma", 15.5f, FontStyle.Regular), Color.Black));
-                //chart.ImageLocation = "~/ChartTemp/Chart"+i.ToString();
-                //chart.ImageStorageMode = ImageStorageMode.UseHttpHandler;
                 
                 chart.Series.Add("Series1");
                 chart.Attributes.Add("class", "monthChart");
 
                 ChartArea ChartArea1 = new ChartArea("ChartArea1");
-                //chart.ChartAreas.Add("ChartArea1");
 
 
-                //System.Web.UI.DataVisualization.Charting.Title bokos = new System.Web.UI.DataVisualization.Charting.Title("Los Bokos", Docking.Top, new Font("Verdana", 12f, FontStyle.Bold), Color.Black);
                 ChartArea1.AxisY = new Axis { LabelStyle = new LabelStyle() { Font = new Font("Tahoma", 15.5f) } };
                 ChartArea1.AxisY.LabelAutoFitStyle = LabelAutoFitStyles.None;
 
@@ -109,9 +108,7 @@ namespace Squash
                 ChartArea1.AxisX = new Axis { LabelStyle = new LabelStyle() { Font = new Font("Tahoma", 15.5f) } };
                 ChartArea1.AxisX.LabelAutoFitStyle = LabelAutoFitStyles.None;
 
-
                 
-
                 chart.ChartAreas.Add(ChartArea1);
                 chart.Width = 1000;
                 chart.Height = 500;
@@ -119,7 +116,7 @@ namespace Squash
                 
 
 
-                DataView dv = method.PlayerStats(queryMonth, toMonth).DefaultView;
+                DataView dv = method.PlayerStats(queryMonth, toMonth).DefaultView;//Mellan vilka månader. Start- och slutmånad
 
                 chart.Series["Series1"].Points.DataBindXY(dv, "name", dv, "NoOfReservations");
 
@@ -128,10 +125,13 @@ namespace Squash
                 statsDiv.Controls.Add(chartDiv);
             }
         }
+        
+        /// <summary>
+        /// Gör listan av alla medlemmar
+        /// </summary>
         public void BuildUserList()
         {
             List<Users> uList = method.GetUserList();
-            //List<Users> sortedList = uList.OrderBy(u => u.FirstName).ThenBy(u=> u.SurName).ToList();
             foreach (Users u in uList)
             {
                 if(u.PublicAddres != 0)
@@ -140,8 +140,6 @@ namespace Squash
                     HtmlGenericControl li = new HtmlGenericControl("li");
                     li.InnerHtml = liObject;
                     userList.Controls.Add(li);
-
-
 
                 }
             }
