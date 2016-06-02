@@ -40,7 +40,7 @@ namespace Squash.Account
 
                 string corrNum = "";
 
-                /*FOR TELEPHONE*/
+                /*För telefonnummer*/
                 
                 if (newNum == "")
                 {
@@ -63,7 +63,7 @@ namespace Squash.Account
 
 
 
-                /*FOR ZIPCODE*/
+                /*För postnummer*/
                 if(zipCode == "" || zipCode.Length != 5)
                 {
                     errorMessage += "Ogiltigt postnummer. ";

@@ -46,29 +46,11 @@ namespace Squash.Account
                 l.Visible = true;
                 l.Text = "E-post finns redan i databasen, vänligen ange en ny.<br />";
 
-                //foreach(Control c in Page.Controls)
-                //{
-                //    if (c.ID == "EditMyInfoControl")
-                //    {
-                //        UserControl uc = (UserControl)c;
-
-                //        Label l = (Label)uc.FindControl("lblMPMessage");
-
-                //        l.Text = "E-post finns redan i databasen, vänligen ange en ny.";
-                //    }
-                //}
-
-
-
-                //UserControl u = FindControl("EditMyInfoControl") as UserControl;
-                //Label l = u.FindControl("lblMPMessage") as Label;
-                //l.Text = "E-post finns redan i databasen, vänligen ange en ny.";
                 
             }
 
-            else if (pwFailed != "1")
+            else if (pwFailed != "1") //QueryString som returneras i URLen
             {
-                //Response.Write("<script>alert('" + "Lösenordet lyckades ändras." + "')</script>");
 
                 editinfo.Visible = false;
                 changepw.Visible = false;
@@ -76,9 +58,6 @@ namespace Squash.Account
 
                 lip = (LoggedInPerson)Session["lip"];
 
-                //if (!Page.IsPostBack)
-                //{
-                //Response.Write("<script>alert('" + lip.user.FirstName + " " + lip.member.MemberId + " " + lip.logins.IPAddress + "')</script>");
 
                 lblName.Text = lip.user.FirstName + " " + lip.user.SurName;
                 lblStreetAddress.Text = lip.user.StreatAddress;
@@ -95,62 +74,18 @@ namespace Squash.Account
                 {
                     lblAgreement.Text = "Du har valt att inte finnas klubbens adresslista.";
                 }
-                //}
 
-                //else
-                //{
-                //    Response.Write("<script>alert('" + lip.user.FirstName + " " + lip.member.MemberId + " " + lip.logins.IPAddress + "')</script>");
-                //}
             }
 
 
             else
             {
-                //Response.Write("<script>alert('" + "Du fyllde i fel lösenord, gör om gör rätt." + "')</script>");
                 editinfo.Visible = false;
                 changepw.Visible = true;
                 myinfo.Visible = false;
             }
         }
-        //protected void Page_Load(object sender, EventArgs e, bool failedPW)
-        //{
-        //    if (failedPW == true)
-        //    {
-        //        editinfo.Visible = false;
-        //        changepw.Visible = true;
-        //        myinfo.Visible = false;
-        //    }
-
-        //    lip = (LoggedInPerson)Session["lip"];
-
-        //    //if (!Page.IsPostBack)
-        //    //{
-        //    //Response.Write("<script>alert('" + lip.user.FirstName + " " + lip.member.MemberId + " " + lip.logins.IPAddress + "')</script>");
-
-        //    lblName.Text = lip.user.FirstName + " " + lip.user.SurName;
-        //    lblStreetAddress.Text = lip.user.StreatAddress;
-        //    lblPostalCode.Text = lip.user.ZipCode;
-        //    lblCity.Text = lip.user.City;
-        //    lblTelephone.Text = lip.user.Phone;
-        //    lblEmail.Text = lip.user.EMail;
-
-        //    if (lip.user.PublicAddres == 1)
-        //    {
-        //        lblAgreement.Text = "Du har valt att finnas i klubbens adresslista.";
-        //    }
-        //    else if (lip.user.PublicAddres == 0)
-        //    {
-        //        lblAgreement.Text = "Du har valt att inte finnas klubbens adresslista.";
-        //    }
-        //    //}
-
-        //    //else
-        //    //{
-        //    //    Response.Write("<script>alert('" + lip.user.FirstName + " " + lip.member.MemberId + " " + lip.logins.IPAddress + "')</script>");
-        //    //}
-        //}
-
-
+        
         protected void BtnShowEditInfo_Click(object sender, EventArgs e)
         {
             myinfo.Visible = false;
