@@ -21,11 +21,21 @@ namespace Squash.Classes
     public class Methods
     {
         #region Connection, myReader, myDelete
+        /// <summary>
+        /// Skapar en färdig connection till sidans MySQLDatabas.
+        /// </summary>
+        /// <returns>MySQL connection</returns>
         public MySqlConnection myConn()
         {
             MySqlConnection conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["squashOnline"].ConnectionString);
             return conn;
         }
+        /// <summary>
+        /// Skapar en färdig DataReader för MySQL
+        /// </summary>
+        /// <param name="query">Fullständig MySQL-query</param>
+        /// <param name="conn">MySQL Connection</param>
+        /// <returns></returns>
         public MySqlDataReader myReader(string query, MySqlConnection conn)
         {
             //MySqlConnection conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["squash"].ConnectionString);
@@ -36,7 +46,11 @@ namespace Squash.Classes
             MySqlDataReader dr = cmd.ExecuteReader();
             return dr;
         }
-
+        /// <summary>
+        /// Utför angiven Delete-query.
+        /// </summary>
+        /// <param name="query">Fullständig DELETE -query</param>
+        /// <param name="conn">MySQL Connection</param>
         public void myDelete(string query, MySqlConnection conn)
         {
             //MySqlConnection conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["squash"].ConnectionString);
@@ -51,6 +65,11 @@ namespace Squash.Classes
 
 
         #region LogIn
+        /// <summary>
+        /// Kontrollerar om angiven E-postadress finns i databasen.
+        /// </summary>
+        /// <param name="email">E-post att kontrollera</param>
+        /// <returns>true eller false</returns>
         public bool EmailExist(string email)
         {
             MySqlConnection conn = myConn();
@@ -68,7 +87,11 @@ namespace Squash.Classes
                 return true;
             }
         }
-
+        /// <summary>
+        /// Hashar en string till sha1.
+        /// </summary>
+        /// <param name="pw">string att hasha</param>
+        /// <returns>hash som string</returns>
         public string Hashify(string pw)
         {
             string input = pw;
@@ -87,7 +110,10 @@ namespace Squash.Classes
 
             return finalHash;
         }
-
+        /// <summary>
+        /// Genererar ett nytt lösenord för användning i återställningsmail.
+        /// </summary>
+        /// <param name="toEmail">E-post att skicka lösenordet till.</param>
         public void ResetPW(string toEmail)
         {
 
@@ -115,6 +141,11 @@ namespace Squash.Classes
         #endregion
 
         #region E-mail
+        /// <summary>
+        /// Skapar och skickar ett återställningsmail för lösenord och skriver den nya hashen till databasen.
+        /// </summary>
+        /// <param name="toEmail">E-postadress att skicka till</param>
+        /// <param name="newPW">Lösenord att skicka</param>
         public void pwResetMail(string toEmail, string newPW)
         {
             string content = "<!DOCTYPE html><html><head><meta charset='UTF-8'><title>Ditt nya lösenord</title></head><body><h2>Ditt nya lösenord</h2><hr /><p>" + newPW + "</p></body></html>";
@@ -172,7 +203,11 @@ namespace Squash.Classes
         #endregion
 
         #region CheckTelephoneNumber
-
+        /// <summary>
+        /// Formaterar och tar bort allt utom siffror i en string.
+        /// </summary>
+        /// <param name="number"></param>
+        /// <returns>String(telnr)</returns>
         public string FixNumber(string number)
         {
             string newNum = "";
@@ -196,7 +231,11 @@ namespace Squash.Classes
             return newNum;
         }
 
-
+        /// <summary>
+        /// Delar och formaterar telefonnummer för snyggare presentation.
+        /// </summary>
+        /// <param name="phoneNr">Oformaterad string(telnr)</param>
+        /// <returns>Telefonnr med "-" och " " ex: 063-10 10 10</returns>
         public string SplitNumber(string phoneNr)
         {
             string newNumber = "";
@@ -269,6 +308,11 @@ namespace Squash.Classes
 
         #region UpperCaseLowerCase
 
+        /// <summary>
+        /// Sätter första bokstaven i en string till VERSAL och resten till gemener.
+        /// </summary>
+        /// <param name="text">Namn att formatera</param>
+        /// <returns>Formaterad string</returns>
         public string FixName(string text)
         {
             string correctName = "";
@@ -297,7 +341,11 @@ namespace Squash.Classes
             //return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(text);
         }
 
-
+        /// <summary>
+        /// Sätter första bokstaven i en string till VERSAL och resten till gemener, hanterar också mellanrum och "-" i dubbelnamn.
+        /// </summary>
+        /// <param name="text">Oformaterat namn</param>
+        /// <returns>Formaterat namn</returns>
         public string FixNameRegister(string text)
         {
             string correctName = "";
@@ -338,19 +386,22 @@ namespace Squash.Classes
             }
 
             CultureInfo ci = new CultureInfo("sv-SE");
-            //toLowerFirst
             string corrName = correctName.ToLower();
 
             return ci.TextInfo.ToTitleCase(correctName);
 
-            //return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(text);
         }
 
         #endregion
 
 
         #region BookingMethods
-
+        /// <summary>
+        /// Kontrollerar om användaren har uppnått maximalt antalbokningar den valda veckan.
+        /// </summary>
+        /// <param name="dateToCheck">Valfritt datum under veckan som ska kontrolleras.</param>
+        /// <param name="lip">Inloggad användare</param>
+        /// <returns>True = uppnått maxantal, false = ej uppnått maxantal</returns>
         public bool HasMaximizedReservations(DateTime dateToCheck, LoggedInPerson lip)
         {
             int numbersOfRes = 0;
@@ -388,7 +439,12 @@ namespace Squash.Classes
         }
 
 
-
+        /// <summary>
+        /// Kontrollerar hur många tider som fortfarande kan bokas utan kostnad for abonnenter som har flytande abonnemangsform.
+        /// </summary>
+        /// <param name="dateToCheck">Valfritt datum inom veckan som ska kontrolleras.</param>
+        /// <param name="lip">Inloggad användare</param>
+        /// <returns>Antal kvarvarande fria bokningar.</returns>
         public int HasFloatReservation(DateTime dateToCheck, LoggedInPerson lip)
         {
             int NoOfFloatResLeft = lip.memberfloatable.NoTimesWeek;
@@ -421,6 +477,11 @@ namespace Squash.Classes
 
 
         }
+        /// <summary>
+        /// Kontrollerar om inloggad användare har ett abonnemang.
+        /// </summary>
+        /// <param name="lip">Inloggad användare</param>
+        /// <returns>true eller false</returns>
         public bool IsSubscriber(LoggedInPerson lip)
         {
             foreach (Subscriptions sub in GetSubscriptionList())
@@ -432,6 +493,10 @@ namespace Squash.Classes
             }
             return false;
         }
+        /// <summary>
+        /// Hämtar och sammanfogar dagar, timmar och banor till en lista för användning i bokningsschemat.
+        /// </summary>
+        /// <returns>Lista med dagar>timmar>banor</returns>
         public List<Days> GetDayList()
         {
             List<Days> DayList = new List<Days>();
@@ -466,7 +531,7 @@ namespace Squash.Classes
             }
             conn.Close();
 
-            query = "SELECT * FROM courttimes WHERE Active = 1";
+            query = "SELECT * FROM courttimes WHERE Active = 1";//Active = 1 är tider som ligger som bokningsbara i databasen.
             dr = myReader(query, conn);
             while (dr.Read())
             {
@@ -484,7 +549,10 @@ namespace Squash.Classes
             return DayList;
         }
 
-        //HÄMTAR ALLA ABONNEMANGSBOKNINGAR OCH LAGRAR DESSA I EN LISTA
+        /// <summary>
+        /// Hämtar alla de subscription-objekt som finns i databasen.
+        /// </summary>
+        /// <returns>Lista med Subscriptions</returns>
         public List<Subscriptions> GetSubscriptionList()
         {
             List<Subscriptions> subscriptionList = new List<Subscriptions>();
@@ -511,7 +579,12 @@ namespace Squash.Classes
             return subscriptionList;
         }
 
-        //HÄMTAR ALLA RESERVATIONER OCH LAGRAR DESSA I EN LISTA
+        
+        /// <summary>
+        /// Hämtar alla reservations-objekt som finns i databasen för det valda antalet dagar från och med NU.
+        /// </summary>
+        /// <param name="numberOfDays">Antal dagar att hämta från nu.</param>
+        /// <returns>Lista med Reservations.</returns>
         public List<Reservations> GetReservationsList(int numberOfDays)
         {
             List<Reservations> reservationsList = new List<Reservations>();
@@ -530,14 +603,7 @@ namespace Squash.Classes
                 r.CourtId = Convert.ToInt16(dr["CourtId"]);
                 r.MemberId = Convert.ToInt16(dr["MemberId"]);
                 r.StartDate = Convert.ToDateTime(dr["StartDate"]);
-                //if (dr["HandledBy"] != DBNull.Value)
-                //{
-                //    r.HandledBy = Convert.ToInt16(dr["HandledBy"]);
-                //}
-                //else
-                //{
-                //    r.HandledBy = 0;
-                //}
+           
                 if (dr["ReservationType"] != DBNull.Value)
                 {
                     r.ReservationType = Convert.ToInt16(dr["ReservationType"]);
@@ -552,7 +618,10 @@ namespace Squash.Classes
             return reservationsList;
         }
 
-        //HÄMTAR ALLA FÖRETAG OCH LAGRAR DESSA I EN LISTA.
+        /// <summary>
+        /// Hämtar alla företag från DB och lagrar i lista.
+        /// </summary>
+        /// <returns>Lista med Companies</returns>
         public List<Companies> GetCompanyList()
         {
             List<Companies> companiesList = new List<Companies>();
@@ -574,7 +643,10 @@ namespace Squash.Classes
 
         }
 
-        //HÄMTAR ALLA RADER FRÅN MEMBERCOMPANY OCH LAGRAR DESSA I EN LISTA.
+        /// <summary>
+        /// Hämtar alla rader från MemberCompany i DB.
+        /// </summary>
+        /// <returns>Lista med MemberCompany</returns>
         public List<MemberCompany> GetMemberCompanyList()
         {
             List<MemberCompany> memberCompanyList = new List<MemberCompany>();
