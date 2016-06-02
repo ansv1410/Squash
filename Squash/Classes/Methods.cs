@@ -56,10 +56,19 @@ namespace Squash.Classes
             //MySqlConnection conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["squash"].ConnectionString);
 
             MySqlCommand cmd = new MySqlCommand(query, conn);
+
+            try
+            {
             conn.Close();
             conn.Open();
             cmd.ExecuteNonQuery();
             conn.Close();
+            }
+            catch(MySqlException ex)
+            {
+                Debug.WriteLine(ex.Message);
+                conn.Close();
+            }
         }
         #endregion
 
@@ -169,8 +178,6 @@ namespace Squash.Classes
             {
                 client.Send(mail);
 
-                try
-                {
 
                     string queryUpdatePW = "UPDATE users_updated "
                     + "SET Password = @pw "
@@ -180,6 +187,8 @@ namespace Squash.Classes
                     MySqlCommand cmd = new MySqlCommand(queryUpdatePW, conn);
                     cmd.Parameters.AddWithValue("pw", Hashify(newPW));
 
+                try
+                {
                     conn.Open();
                     cmd.ExecuteNonQuery();
                     conn.Close();
@@ -188,6 +197,7 @@ namespace Squash.Classes
                 catch (MySqlException ex)
                 {
                     Debug.WriteLine(ex);
+                    conn.Close();
                 }
             }
             catch (System.Net.Mail.SmtpException ex)

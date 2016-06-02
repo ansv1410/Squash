@@ -251,9 +251,18 @@ namespace Squash
                                         MySqlCommand cmdInsertToCLR = new MySqlCommand(query, conn);
                                         cmdInsertToCLR.Parameters.AddWithValue("mid", lip.member.MemberId);
                                         cmdInsertToCLR.Parameters.AddWithValue("date", DateTime.Now);
+
+                                        try
+                                        {
                                         conn.Open();
                                         cmdInsertToCLR.ExecuteNonQuery();
                                         conn.Close();
+                                        }
+                                        catch(MySqlException ex)
+                                        {
+                                            Debug.WriteLine(ex.Message);
+                                            conn.Close();
+                                        }
 
                                     }
                                    
@@ -313,9 +322,18 @@ namespace Squash
                         MySqlCommand cmdInsertToCLR = new MySqlCommand(query, conn);
                         cmdInsertToCLR.Parameters.AddWithValue("mid", lip.member.MemberId);
                         cmdInsertToCLR.Parameters.AddWithValue("date", DateTime.Now);
+
+                        try
+                        {
                         conn.Open();
                         cmdInsertToCLR.ExecuteNonQuery();
                         conn.Close();
+                        }
+                        catch (MySqlException ex)
+                        {
+                            Debug.WriteLine(ex.Message);
+                            conn.Close();
+                        }
 
                     }
 
@@ -346,9 +364,18 @@ namespace Squash
             MySqlCommand cmdInsertToCLR = new MySqlCommand(query, conn);
             cmdInsertToCLR.Parameters.AddWithValue("mid", lip.member.MemberId);
             cmdInsertToCLR.Parameters.AddWithValue("date", DateTime.Now);
+
+            try
+            {
             conn.Open();
             cmdInsertToCLR.ExecuteNonQuery();
             conn.Close();
+            }
+            catch (MySqlException ex)
+            {
+                Debug.WriteLine(ex.Message);
+                conn.Close();
+            }
 
             //showPin.Visible = false;
             ShowPinDiv();

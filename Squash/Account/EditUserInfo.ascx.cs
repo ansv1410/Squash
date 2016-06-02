@@ -149,8 +149,17 @@ namespace Squash.Account
             //cmd.Parameters.AddWithValue("pw", UpdateUser.Password);
             cmd.Parameters.AddWithValue("pa", UpdateUser.PublicAddres);
 
+            try
+            {
             conn.Open();
             cmd.ExecuteNonQuery();
+            conn.Close();
+            }
+            catch (MySqlException ex)
+            {
+                Debug.WriteLine(ex.Message);
+                conn.Close();
+            }
 
             lip.user = UpdateUser;
             Session["lip"] = lip;

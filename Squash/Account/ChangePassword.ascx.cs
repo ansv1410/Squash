@@ -102,9 +102,18 @@ namespace Squash.Account
                         string PwHash = method.Hashify(newPW);
                         cmd.Parameters.AddWithValue("pw", PwHash);
 
+                        try
+                        {
                         conn.Open();
                         cmd.ExecuteNonQuery();
                         conn.Close();
+
+                        }
+                        catch(MySqlException ex)
+                        {
+                            Debug.WriteLine(ex.Message);
+                            conn.Close();
+                        }
                         lip.user.Password = PwHash;
                         Session["lip"] = lip;
                         Response.Redirect("MyPage.aspx");
@@ -114,6 +123,10 @@ namespace Squash.Account
                         string pwID = e.CommandArgument.ToString();
                         Response.Redirect("MyPage.aspx?falsePw=" + pwID);
                     }
+                }
+                else
+                {
+                    conn.Close();
                 }
 
 
