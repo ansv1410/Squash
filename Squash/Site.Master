@@ -109,7 +109,7 @@
         <div id="postitnote" runat="server">
 
             <img src="Images/arrow-hand-drawn-hi2.png" id="postitarrow" title="↑" />
-            <img src="Images/dialog-close.png" id="closePostit" alt="Close" class="rbox-close" onclick="ClosePostit()" title="X"/>
+            <img src="Images/dialog-close.png" id="closePostit" alt="Close" class="rbox-close" onclick="ClosePostit()" title="X" />
             <div class="rbox-data">
                 <p>BLI MEDLEM HÄR!</p>
             </div>
@@ -159,7 +159,7 @@
 
     function ClosePostit() {
         $('#postitnote').fadeOut('fast');
-        <%Session["showPostit"]="false";%>;
+        <%Session["showPostit"] = "false";%>;
     }
 
     $.getJSON('http://ipinfo.io', function (data) {
@@ -237,5 +237,15 @@
             .css({ top: mousey, left: mousex })
         });
     });
+
+    $(document).ready(function () {
+
+        $('.lockAndLoad').click(function () {
+
+            this.style.visibility = 'hidden';
+        });
+
+    });
+
 
 </script>
