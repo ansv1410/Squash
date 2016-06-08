@@ -163,23 +163,24 @@
     }
 
     $.getJSON('http://ipinfo.io', function (data) {
-        document.getElementById('hfLoggedInIP').setAttribute('Value', data.ip)
+        document.getElementById('hfLoggedInIP').setAttribute('Value', data.ip);
     });
 
 
     function OpenOverlay() {
         ClosePostit();
         $('.overlay-container').fadeIn('slow');
-        document.getElementById('hfShowLogin').setAttribute('Value', '1')
+        document.getElementById('hfShowLogin').setAttribute('Value', '1');
+        document.getElementById('MyLoginControll_tbLogInEmail').focus();
         return false;
     }
 
     function CloseOverlay() {
-        document.getElementById('hfShowLogin').setAttribute('Value', '0')
+        document.getElementById('hfShowLogin').setAttribute('Value', '0');
         $('.overlay-container').fadeOut('slow');
     }
     function ReopenOverlay() {
-        var oneOrZero = document.getElementById('hfShowLogin').getAttribute('Value')
+        var oneOrZero = document.getElementById('hfShowLogin').getAttribute('Value');
         if (oneOrZero == "1")
             $('.overlay-container').show();
     }
