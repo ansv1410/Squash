@@ -55,7 +55,7 @@ namespace Squash
                     btnCancelRes.Attributes.Add("type", "button");
                     btnCancelRes.Attributes.Add("onclick", "OpenCancelReservationOverlay('false')");
                     btnCancelRes.Attributes.Add("class", "btn btn-default");
-                    btnCancelRes.Attributes.Add("value", "Avboka ▲");
+                    btnCancelRes.Attributes.Add("value", "↑ Avboka");
                     btnCancelRes.Attributes.Add("disabled", "disabled");
 
                     myBookingsDiv.Controls.Add(table);
