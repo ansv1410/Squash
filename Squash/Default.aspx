@@ -5,7 +5,7 @@
         <div class="row">
 
             <%-- MEDDELANDEDIV: Hela bredden överst centrerat. --%>
-            <div class="col-md-10" id="messagesDiv" runat="server" visible="false"> 
+            <div class="col-md-10" id="messagesDiv" runat="server" visible="false">
             </div>
             <%-- PRESENTATIONSDIV: Ligger till vänster om nyhetsdiv och under meddelandediv. Smal. --%>
             <div class="col-md-4" id="presentationDiv" runat="server" visible="false">

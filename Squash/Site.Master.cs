@@ -169,7 +169,7 @@ namespace Squash
                             {
                                 if (DateTime.Now.AddHours(1) > t.Item1.StartDate)
                                 {
-                                    todaysPin.InnerHtml = "Dagens PIN<br />" + codelock.Code;
+                                    todaysPin.InnerHtml = "Dagens PIN<br />" + "<p class='pinNumber'> "+codelock.Code+"</p>";
                                     todaysPin.Visible = true;
                                     if (!method.HasCLRequest(lip))
                                     {
