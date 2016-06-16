@@ -197,12 +197,12 @@ namespace Squash
                                 {
                                     if (method.HasCLRequest(lip))
                                     {
-                                        todaysPin.InnerHtml = "Dagens PIN<br />" + codelock.Code;
+                                        todaysPin.InnerHtml = "Dagens PIN<br />" + "<p class='pinNumber'> " + codelock.Code + "</p>";
                                         todaysPin.Visible = true;
                                     }
                                     else
                                     {
-                                        todaysPin.InnerHtml = "Dagens PIN<br />" + codelock.Code;
+                                        todaysPin.InnerHtml = "Dagens PIN<br />" + "<p class='pinNumber'> " + codelock.Code + "</p>";
                                         showPin.Visible = true;
                                     }
                                     conn.Close();
@@ -271,7 +271,7 @@ namespace Squash
 
                         if (DateTime.Now >= codelock.DateOfChange)
                         {
-                            todaysPin.InnerHtml = "Dagens PIN<br />" + codelock.Code;
+                            todaysPin.InnerHtml = "Dagens PIN<br />" + "<p class='pinNumber'> " + codelock.Code + "</p>";
                             todaysPin.Visible = true;
                             return true;
                         }
