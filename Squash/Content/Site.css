@@ -1094,8 +1094,9 @@ h4{
 
 
 #lbtnShowPin {
+    font-size:100%;
     border: 1px groove #e0e0e0;
-    padding: 0px 4px 0px 4px;
+    padding: 1px 6px 1px 6px;
     color: black;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
