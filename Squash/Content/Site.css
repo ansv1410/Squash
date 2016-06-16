@@ -383,13 +383,28 @@ h4{
 }
 #bookingLinkP{
     font-weight:normal;
+    margin-top:20px;
 }
+#bookCourtLink{
+    padding:8px 8px 8px 8px;
+    background-color:#ECECED;
+    border: 1px solid lightgrey;
+    border-radius:4px;
+    font-size:130%;
+}
+#bookCourtLink:hover{
+    background-color:#D9D9DB;
+    text-decoration:none;
+    border-color:#979799;
+}
+
 .messageHeaderP{
-    text-decoration:underline;
-    font-size:120%;
+    font-weight:bold;
+    /*text-decoration:underline;*/
+    font-size:110%;
 }
 .messageBookingP{
-    font-size:120%;
+    font-size:110%;
 }
 .paragraphInline{
     display:inline;

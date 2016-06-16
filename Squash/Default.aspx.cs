@@ -60,12 +60,13 @@ namespace Squash
                     m.Headline = drMessages["Headline"].ToString();
                     m.Message = drMessages["Messages"].ToString();
 
-                    showMessages += "<div><p class=" + "foldedText" + "><span class=" + "messageHeaderP" + ">" + m.Headline + "</span> " + m.Message + "</p></div>";
+                    showMessages += "<div><p class=" + "foldedText" + "><span class=" + "messageHeaderP" + ">" + m.Headline + "</span> <br /> " + m.Message + "</p></div>";
                 }
-                string bookingLink = "<p class='foldedText' id='bookingLinkP'><span class='messageBookingP'>Boka bana <a class='redirectLinks' href='Booking.aspx' title='Till sidan för att boka'>här</a></span></p>";
+                //string bookingLink = "<p class='foldedText' id='bookingLinkP'><span class='messageBookingP'>Boka bana <a class='redirectLinks' href='Booking.aspx' title='Till sidan för att boka'>här</a></span></p>";
+                string bookingLink = "<p class='foldedText' id='bookingLinkP'><span class='messageBookingP'><a id='bookCourtLink' href='Booking.aspx' title='Till sidan för att boka'>Boka bana</a></span></p>";
 
-
-                messagesDiv.InnerHtml = "<h2>Meddelanden</h2>" + bookingLink + showMessages + "<hr />";
+                //messagesDiv.InnerHtml = "<h2>Meddelanden</h2>" + bookingLink + showMessages + "<hr />";
+                messagesDiv.InnerHtml = bookingLink + "<h2>Meddelanden</h2>" + showMessages + "<hr />";
             }
             catch (MySqlException ex)
             {
