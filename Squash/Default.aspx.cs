@@ -62,7 +62,7 @@ namespace Squash
 
                     showMessages += "<div><p class=" + "foldedText" + "><span class=" + "messageHeaderP" + ">" + m.Headline + "</span> " + m.Message + "</p></div>";
                 }
-                string bookingLink = "<p class='foldedText' id='bookingLinkP'><span class='messageHeaderP'>Boka bana <a class='redirectLinks' href='Booking.aspx' title='Till sidan för att boka'>här</a></span></p>";
+                string bookingLink = "<p class='foldedText' id='bookingLinkP'><span class='messageBookingP'>Boka bana <a class='redirectLinks' href='Booking.aspx' title='Till sidan för att boka'>här</a></span></p>";
 
 
                 messagesDiv.InnerHtml = "<h2>Meddelanden</h2>" + bookingLink + showMessages + "<hr />";

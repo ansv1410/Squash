@@ -381,8 +381,14 @@ h4{
     padding-left:2%;
     width:100%;
 }
+#bookingLinkP{
+    font-weight:normal;
+}
 .messageHeaderP{
     text-decoration:underline;
+    font-size:120%;
+}
+.messageBookingP{
     font-size:120%;
 }
 .paragraphInline{
@@ -416,9 +422,7 @@ h4{
     padding-right:2%;
 }
 
-#bookingLinkP{
-    font-weight:bold;
-}
+
 /*DEFAULT - SLUT*/
 
 
